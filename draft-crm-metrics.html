@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>5 ключевых метрик для измерения эффективности CRM-стратегии</title>
+<meta name="description" content="Пять ключевых показателей CRM-маркетинга: LTV, Retention Rate, Churn Rate, AOV и NPS. Как считать, зачем нужны и как улучшить.">
+<meta name="keywords" content="crm метрики, ltv формула, retention rate, churn rate, aov средний чек, nps лояльность, crm маркетинг показатели">
+<meta property="og:title" content="5 ключевых метрик для измерения эффективности CRM-стратегии">
+<meta property="og:description" content="Пять ключевых показателей: LTV, Retention Rate, Churn Rate, AOV и NPS. Как считать, зачем нужны и как улучшить.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://crmgroup.ru/blog/top-five-crm-metrics-guide/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Schema.org FAQPage для Яндекс Нейро -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Что такое LTV и как его считать?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "LTV (Customer Lifetime Value) — общая прибыль от одного клиента за всё время взаимодействия с ним. Формула: LTV = ARPU × средняя продолжительность взаимодействия. Например, клиент платит 500 рублей в месяц в течение года: LTV = 500 × 12 = 6000 рублей."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Что такое Retention Rate и как его считать?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Retention Rate (RR) — процент клиентов, которые продолжают пользоваться продуктом за определённый период. Формула: RR = ((Клиенты на конец периода − Новые клиенты) / Клиенты на начало периода) × 100%. Нормальный RR зависит от отрасли и сравнивается внутри компании."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Что такое Churn Rate и какой показатель считается нормальным?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Churn Rate (CR) — процент клиентов, которые отказались от продукта. Формула: CR = (Ушедшие клиенты / Клиенты на начало периода) × 100%. Средний CR для большинства отраслей составляет 3–7%. Показатель выше 10% в месяц сигнализирует о проблемах с продуктом или сервисом."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Как рассчитать AOV (средний чек)?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "AOV (Average Order Value) — средний чек покупателя за период. Формула: AOV = Общая выручка / Количество заказов. Например, 50 заказов принесли 100 000 рублей: AOV = 100 000 / 50 = 2000 рублей."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Что такое NPS и как его интерпретировать?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "NPS (Net Promoter Score) — индекс потребительской лояльности. Формула: NPS = % промоутеров (оценка 9–10) − % критиков (оценка 0–6). Значение 80–100% — идеально, 50–80% — отлично, 20–50% — хорошо, 0–20% — есть потенциал. Отрицательный NPS — серьёзная проблема."
+      }
+    }
+  ]
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "5 ключевых метрик для измерения эффективности CRM-стратегии",
+  "datePublished": "2024-08-15",
+  "author": {"@type": "Person", "name": "Артём Свиридов"},
+  "publisher": {"@type": "Organization", "name": "CRM-group"},
+  "description": "Пять ключевых показателей CRM-маркетинга: LTV, Retention Rate, Churn Rate, AOV и NPS."
+}
+</script>
+
+<style>
+  /* ─── Reset & Base ─── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:          #f7f6f3;       /* тёплый off-white вместо #fff — снижает яркость */
+    --surface:     #ffffff;
+    --surface-alt: #f2f1ed;
+    --accent:      #dc1327;       /* красный бренд CRM-group */
+    --accent-soft: #fff5f5;
+    --text:        #1a1a1a;       /* не чистый чёрный — мягче */
+    --text-secondary: #5a5a5a;
+    --text-muted:  #8a8a8a;
+    --border:      #e4e2dc;
+    --shadow:      0 2px 16px rgba(0,0,0,.07);
+    --radius:      12px;
+    --font:        'Inter', -apple-system, sans-serif;
+
+    /* Типографика — ключевые улучшения */
+    --fs-base:     17px;          /* было 16px */
+    --lh-base:     1.78;          /* было 1.5 */
+    --measure:     68ch;          /* ширина строки ~68 символов */
+    --gap-section: 56px;
+  }
+
+  html { font-size: var(--fs-base); scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font);
+    background: var(--bg);
+    color: var(--text);
+    line-height: var(--lh-base);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ─── Layout ─── */
+  .site-header {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 0 24px;
+    position: sticky; top: 0; z-index: 100;
+  }
+  .site-header__inner {
+    max-width: 1160px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 60px;
+  }
+  .site-logo { font-weight: 700; font-size: 18px; color: var(--text); text-decoration: none; }
+  .site-logo span { color: var(--accent); }
+  .header-link {
+    color: var(--text-secondary); text-decoration: none; font-size: 14px;
+    padding: 6px 16px; border-radius: 8px; border: 1px solid var(--border);
+    transition: border-color .2s;
+  }
+  .header-link:hover { border-color: var(--accent); color: var(--accent); }
+
+  .page-layout {
+    max-width: 1160px; margin: 0 auto; padding: 0 24px;
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    grid-template-areas: "breadcrumb breadcrumb" "header header" "content aside";
+    column-gap: 48px;
+    align-items: start;
+  }
+
+  /* ─── Breadcrumb ─── */
+  .breadcrumb {
+    grid-area: breadcrumb;
+    padding: 20px 0 0;
+    font-size: 13px; color: var(--text-muted);
+    display: flex; gap: 6px; align-items: center;
+  }
+  .breadcrumb a { color: var(--text-muted); text-decoration: none; }
+  .breadcrumb a:hover { color: var(--accent); }
+  .breadcrumb__sep { color: var(--border); }
+
+  /* ─── Article Header ─── */
+  .article-header {
+    grid-area: header;
+    padding: 32px 0 40px;
+  }
+  .article-meta {
+    display: flex; gap: 16px; align-items: center;
+    margin-bottom: 20px;
+    font-size: 13px; color: var(--text-muted);
+  }
+  .article-tag {
+    background: var(--accent-soft); color: var(--accent);
+    padding: 3px 10px; border-radius: 20px; font-size: 12px; font-weight: 500;
+  }
+  .article-header h1 {
+    font-size: clamp(24px, 4vw, 38px);
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--text);
+    max-width: 780px;
+    letter-spacing: -0.3px;
+  }
+  .article-lead {
+    margin-top: 20px;
+    font-size: 18px;
+    line-height: 1.65;
+    color: var(--text-secondary);
+    max-width: var(--measure);
+    padding-left: 16px;
+    border-left: 3px solid var(--accent);
+  }
+
+  /* ─── Article Content ─── */
+  .article-content {
+    grid-area: content;
+    padding-bottom: 80px;
+  }
+
+  .prose {
+    max-width: var(--measure);
+  }
+  .prose > * + * { margin-top: 1.4em; }
+
+  .prose p { color: var(--text); }
+
+  .prose h2 {
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1.25;
+    color: var(--text);
+    margin-top: 52px;
+    margin-bottom: 20px;
+    letter-spacing: -0.2px;
+    padding-top: 24px;
+    border-top: 2px solid var(--border);
+  }
+
+  .prose h3 {
+    font-size: 19px;
+    font-weight: 600;
+    color: var(--text);
+    margin-top: 32px;
+    margin-bottom: 12px;
+  }
+
+  .prose a {
+    color: var(--accent);
+    text-decoration: underline;
+    text-decoration-color: rgba(220,19,39,.3);
+    text-underline-offset: 3px;
+    transition: text-decoration-color .2s;
+  }
+  .prose a:hover { text-decoration-color: var(--accent); }
+
+  .prose em { color: var(--text-secondary); font-style: italic; }
+
+  /* ─── Sticky Aside / TOC ─── */
+  .article-aside {
+    grid-area: aside;
+    position: sticky; top: 76px;
+    padding-bottom: 40px;
+  }
+
+  .toc-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px 20px 16px;
+    box-shadow: var(--shadow);
+  }
+  .toc-card__title {
+    font-size: 11px; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.8px; color: var(--text-muted);
+    margin-bottom: 14px;
+  }
+  .toc-list { list-style: none; }
+  .toc-list li { display: flex; }
+  .toc-list li + li { margin-top: 2px; }
+  .toc-list a {
+    display: block; width: 100%;
+    padding: 7px 10px;
+    border-radius: 8px;
+    font-size: 13.5px; line-height: 1.4;
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: background .15s, color .15s;
+  }
+  .toc-list a:hover,
+  .toc-list a.active { background: var(--accent-soft); color: var(--accent); }
+  .toc-list__num {
+    display: inline-block; min-width: 20px;
+    font-weight: 600; color: var(--accent); margin-right: 4px;
+    opacity: .6; font-size: 12px;
+  }
+
+  .toc-cta {
+    margin-top: 16px;
+    background: var(--accent);
+    color: #fff;
+    display: block; text-align: center;
+    padding: 12px 16px; border-radius: 8px;
+    font-size: 14px; font-weight: 600;
+    text-decoration: none;
+    transition: opacity .2s;
+  }
+  .toc-cta:hover { opacity: .9; }
+
+  /* ─── Formula Block ─── */
+  .formula-block {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+    margin: 24px 0;
+    text-align: center;
+  }
+  .formula-block img {
+    max-width: 100%; height: auto; display: block; margin: 0 auto;
+  }
+  .formula-caption {
+    font-size: 13px; color: var(--text-muted);
+    margin-top: 10px; text-align: center;
+  }
+  .formula-example {
+    background: var(--surface-alt);
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin: 12px 0;
+    font-style: italic; color: var(--text-secondary);
+    font-size: 15.5px;
+  }
+
+  /* ─── Expert Comment (block-comment) ─── */
+  .expert-comment {
+    background: #fffbf5;
+    border: 1px solid #f0e8d4;
+    border-left: 4px solid #e8a838;
+    border-radius: 0 var(--radius) var(--radius) 0;
+    padding: 22px 24px 18px;
+    margin: 28px 0;
+    max-width: var(--measure);
+  }
+  .expert-comment__text { font-size: 16px; line-height: 1.7; color: var(--text); }
+  .expert-comment__text p + p { margin-top: 12px; }
+  .expert-author {
+    display: flex; align-items: center; gap: 12px;
+    margin-top: 16px; padding-top: 14px;
+    border-top: 1px solid #f0e8d4;
+  }
+  .expert-author img {
+    width: 44px; height: 44px; border-radius: 50%; object-fit: cover;
+    flex-shrink: 0;
+  }
+  .expert-author__name { font-weight: 600; font-size: 14px; color: var(--text); }
+  .expert-author__post { font-size: 13px; color: var(--text-muted); margin-top: 1px; }
+
+  /* ─── Sidenote (definition) ─── */
+  .def-block {
+    background: var(--surface);
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    padding: 16px 20px;
+    margin: 16px 0;
+    font-size: 15.5px;
+    max-width: var(--measure);
+  }
+  .def-block__label {
+    font-size: 11px; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.7px; color: var(--text-muted); margin-bottom: 6px;
+  }
+  .def-related {
+    background: var(--accent-soft);
+    border-radius: 8px; padding: 12px 16px;
+    margin-top: 12px; font-size: 14px;
+  }
+  .def-related__label { font-weight: 600; color: var(--accent); margin-bottom: 4px; }
+  .def-related a { color: var(--accent); font-size: 14px; }
+
+  /* ─── Numbered List ─── */
+  .prose .num-list { list-style: none; padding: 0; }
+  .prose .num-list li {
+    display: flex; gap: 14px; align-items: flex-start;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .prose .num-list li:last-child { border-bottom: none; }
+  .num-list__n {
+    min-width: 28px; height: 28px;
+    background: var(--accent); color: #fff;
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 700; flex-shrink: 0; margin-top: 1px;
+  }
+
+  /* ─── Table ─── */
+  .table-wrap {
+    overflow-x: auto; margin: 24px 0; border-radius: var(--radius);
+    box-shadow: 0 0 0 1px var(--border);
+    max-width: var(--measure);
+  }
+  table {
+    width: 100%; border-collapse: collapse;
+    font-size: 15px; background: var(--surface);
+  }
+  thead th {
+    background: #f4f3ef; font-weight: 600;
+    padding: 12px 16px; text-align: left;
+    border-bottom: 2px solid var(--border);
+    font-size: 13.5px; color: var(--text);
+  }
+  tbody td { padding: 12px 16px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr:hover td { background: #fafaf8; }
+
+  /* ─── CTA Banner ─── */
+  .cta-banner {
+    background: linear-gradient(135deg, #1a0508 0%, #3d0b12 100%);
+    border-radius: var(--radius);
+    padding: 28px 28px 24px;
+    margin: 32px 0;
+    max-width: var(--measure);
+  }
+  .cta-banner__title {
+    font-size: 18px; font-weight: 700; color: #fff; line-height: 1.35;
+    margin-bottom: 16px;
+  }
+  .cta-banner__link {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff; font-weight: 600; font-size: 14px;
+    padding: 10px 22px; border-radius: 8px;
+    text-decoration: none; transition: opacity .2s;
+  }
+  .cta-banner__link:hover { opacity: .9; }
+
+  /* ─── FAQ Нейро Cards ─── */
+  .faq-section {
+    margin-top: 56px; padding-top: 32px;
+    border-top: 2px solid var(--border);
+    max-width: var(--measure);
+  }
+  .faq-section__title {
+    font-size: 22px; font-weight: 700; margin-bottom: 6px;
+  }
+  .faq-section__sub {
+    font-size: 14px; color: var(--text-muted); margin-bottom: 24px;
+  }
+  .faq-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    margin-bottom: 10px;
+  }
+  .faq-item summary {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 16px 20px;
+    cursor: pointer;
+    font-weight: 600; font-size: 15.5px; line-height: 1.4;
+    list-style: none; gap: 12px;
+    transition: background .15s;
+  }
+  .faq-item summary:hover { background: var(--surface-alt); }
+  .faq-item summary::after {
+    content: '+'; font-size: 22px; font-weight: 300;
+    color: var(--accent); flex-shrink: 0;
+    transition: transform .2s;
+  }
+  .faq-item[open] summary::after { transform: rotate(45deg); }
+  .faq-item__body {
+    padding: 0 20px 18px;
+    font-size: 15.5px; line-height: 1.75;
+    color: var(--text-secondary);
+    border-top: 1px solid var(--border);
+    margin-top: -1px;
+    padding-top: 16px;
+  }
+
+  /* ─── Author Block ─── */
+  .author-block {
+    display: flex; align-items: center; gap: 14px;
+    padding: 20px; background: var(--surface);
+    border: 1px solid var(--border); border-radius: var(--radius);
+    margin: 8px 0;
+    max-width: var(--measure);
+  }
+  .author-block img {
+    width: 52px; height: 52px; border-radius: 50%; object-fit: cover; flex-shrink: 0;
+  }
+  .author-block__label { font-size: 12px; color: var(--text-muted); margin-bottom: 3px; }
+  .author-block__name { font-weight: 600; font-size: 15px; }
+  .author-block__post { font-size: 13px; color: var(--text-secondary); }
+
+  /* ─── Experts Grid ─── */
+  .experts-section { margin-top: 32px; max-width: var(--measure); }
+  .experts-section__title {
+    font-size: 12px; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.8px; color: var(--text-muted); margin-bottom: 14px;
+  }
+  .experts-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 12px;
+  }
+  .expert-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 14px 12px 12px;
+    text-align: center;
+  }
+  .expert-card img {
+    width: 52px; height: 52px; border-radius: 50%; object-fit: cover; margin-bottom: 8px;
+  }
+  .expert-card__name { font-weight: 600; font-size: 13px; line-height: 1.3; }
+  .expert-card__post { font-size: 11.5px; color: var(--text-muted); margin-top: 3px; line-height: 1.4; }
+
+  /* ─── Social share ─── */
+  .social-share {
+    display: flex; gap: 10px; margin: 32px 0;
+    max-width: var(--measure);
+  }
+  .social-btn {
+    display: flex; align-items: center; gap: 8px;
+    padding: 10px 18px; border-radius: 8px;
+    font-size: 14px; font-weight: 500; text-decoration: none;
+    transition: opacity .2s;
+  }
+  .social-btn:hover { opacity: .85; }
+  .social-btn--vk { background: #0077ff; color: #fff; }
+  .social-btn--tg { background: #229ED9; color: #fff; }
+
+  /* ─── Newsletter Form ─── */
+  .newsletter {
+    background: var(--text); color: #fff;
+    border-radius: var(--radius);
+    padding: 32px 36px;
+    margin-top: 40px;
+    max-width: var(--measure);
+  }
+  .newsletter h2 {
+    font-size: 22px; font-weight: 700; margin-bottom: 8px;
+    color: #fff; margin-top: 0; border: none; padding: 0;
+  }
+  .newsletter p { font-size: 15px; opacity: .7; margin-bottom: 20px; }
+  .newsletter-form { display: flex; gap: 10px; flex-wrap: wrap; }
+  .newsletter-form input[type=email] {
+    flex: 1; min-width: 200px;
+    padding: 12px 16px; border-radius: 8px;
+    border: 1px solid rgba(255,255,255,.15);
+    background: rgba(255,255,255,.08);
+    color: #fff; font-size: 15px; font-family: inherit;
+    outline: none;
+  }
+  .newsletter-form input[type=email]::placeholder { color: rgba(255,255,255,.4); }
+  .newsletter-form input[type=email]:focus { border-color: rgba(255,255,255,.4); }
+  .newsletter-form button {
+    background: var(--accent); color: #fff;
+    border: none; border-radius: 8px;
+    padding: 12px 24px; font-size: 15px; font-weight: 600;
+    cursor: pointer; font-family: inherit;
+    transition: opacity .2s;
+  }
+  .newsletter-form button:hover { opacity: .9; }
+  .newsletter-agree {
+    font-size: 12px; opacity: .5; margin-top: 10px; line-height: 1.5;
+  }
+  .newsletter-agree a { color: #fff; }
+
+  /* ─── Progress bar ─── */
+  .reading-progress {
+    position: fixed; top: 60px; left: 0; right: 0; height: 3px;
+    background: rgba(0,0,0,.06); z-index: 99;
+  }
+  .reading-progress__bar {
+    height: 100%; width: 0;
+    background: var(--accent);
+    transition: width .1s linear;
+  }
+
+  /* ─── UX badge ─── */
+  .ux-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: #f0f9ff; color: #0ea5e9;
+    border: 1px solid #bae6fd; border-radius: 20px;
+    font-size: 12px; font-weight: 500; padding: 3px 10px;
+    margin-bottom: 8px;
+  }
+
+  /* ─── Responsive ─── */
+  @media (max-width: 900px) {
+    .page-layout {
+      grid-template-columns: 1fr;
+      grid-template-areas: "breadcrumb" "header" "content";
+    }
+    .article-aside { display: none; }
+    .mobile-toc {
+      display: block;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px 18px;
+      margin-bottom: 28px;
+    }
+    .mobile-toc summary {
+      cursor: pointer; font-weight: 600; font-size: 15px;
+      list-style: none; display: flex; justify-content: space-between; align-items: center;
+    }
+    .mobile-toc summary::after { content: '↓'; color: var(--accent); }
+    .mobile-toc[open] summary::after { content: '↑'; }
+    .mobile-toc-list {
+      list-style: none; margin-top: 12px; padding: 0;
+    }
+    .mobile-toc-list li + li { margin-top: 4px; }
+    .mobile-toc-list a {
+      display: block; padding: 6px 8px; border-radius: 6px;
+      font-size: 14px; color: var(--text-secondary); text-decoration: none;
+    }
+    .mobile-toc-list a:hover { background: var(--accent-soft); color: var(--accent); }
+  }
+  @media (min-width: 901px) {
+    .mobile-toc { display: none; }
+  }
+  @media (max-width: 600px) {
+    .page-layout { padding: 0 16px; }
+    .newsletter { padding: 24px 20px; }
+    .expert-comment { padding: 16px 18px; }
+    .prose h2 { font-size: 22px; }
+    .newsletter-form { flex-direction: column; }
+    .newsletter-form input[type=email] { min-width: 0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Reading progress -->
+<div class="reading-progress"><div class="reading-progress__bar" id="rpBar"></div></div>
+
+<!-- Header -->
+<header class="site-header">
+  <div class="site-header__inner">
+    <a class="site-logo" href="https://crmgroup.ru/">CRM<span>-group</span></a>
+    <a class="header-link" href="https://crmgroup.ru/blog/">← Все статьи</a>
+  </div>
+</header>
+
+<div class="page-layout">
+  <!-- Breadcrumb -->
+  <nav class="breadcrumb">
+    <a href="/">Главная</a>
+    <span class="breadcrumb__sep">/</span>
+    <a href="/blog/">Блог</a>
+    <span class="breadcrumb__sep">/</span>
+    <span>5 метрик CRM</span>
+  </nav>
+
+  <!-- Article Header -->
+  <header class="article-header">
+    <div class="article-meta">
+      <span class="article-tag">CRM-маркетинг</span>
+      <time datetime="2024-08-15">15 августа 2024</time>
+      <span>· 9 мин чтения</span>
+    </div>
+    <h1>5&nbsp;ключевых метрик для измерения эффективности CRM-стратегии</h1>
+    <p class="article-lead">Пять ключевых показателей, которые помогут увидеть общую картину взаимодействия с&nbsp;аудиторией и&nbsp;выявить возможности для роста дохода. Мы&nbsp;субъективны, но&nbsp;у&nbsp;нас есть пруфы.</p>
+  </header>
+
+  <!-- Main Content -->
+  <main class="article-content" id="article-content">
+
+    <!-- Mobile TOC -->
+    <details class="mobile-toc">
+      <summary>Содержание статьи</summary>
+      <ul class="mobile-toc-list">
+        <li><a href="#anchor_0">Ключевые метрики CRM-маркетинга</a></li>
+        <li><a href="#anchor_1">LTV — пожизненная ценность клиента</a></li>
+        <li><a href="#anchor_2">Retention Rate — коэффициент удержания</a></li>
+        <li><a href="#anchor_3">Churn Rate — коэффициент оттока</a></li>
+        <li><a href="#anchor_4">AOV — средний чек</a></li>
+        <li><a href="#anchor_5">NPS — индекс потребительской лояльности</a></li>
+        <li><a href="#anchor_6">Как улучшить метрики</a></li>
+      </ul>
+    </details>
+
+    <div class="prose">
+
+      <!-- Intro -->
+      <div id="anchor_0"></div>
+      <p>Оценить эффективность CRM-маркетинга можно с&nbsp;помощью множества метрик, и&nbsp;порой сложно понять, как оценивать свой проект. В&nbsp;статье подробно разбираем пять ключевых показателей, которые помогут увидеть общую картину взаимодействия с&nbsp;аудиторией и&nbsp;выявить возможности для роста дохода.</p>
+
+      <div class="def-related">
+        <div class="def-related__label">Читайте также</div>
+        <a href="https://crmgroup.ru/blog/incrementality/">Как правильно считать доходность в CRM-маркетинге →</a>
+      </div>
+
+      <!-- ─── LTV ─── -->
+      <h2 id="anchor_1">LTV — пожизненная ценность клиента</h2>
+
+      <div class="def-block">
+        <div class="def-block__label">Определение</div>
+        <p><a href="https://emailsoldiers.ru/glossary/ltv">LTV</a>&nbsp;(Customer Lifetime Value) показывает общую прибыль от&nbsp;одного клиента за&nbsp;всё время взаимодействия с&nbsp;ним. Этот показатель определяет важность покупателя для компании в&nbsp;долгосрочной перспективе.</p>
+        <div class="def-related" style="margin-top: 12px;">
+          <div class="def-related__label">Словарь</div>
+          <a href="https://crmgroup.ru/glossary/crm-strategy/">CRM-стратегия — что это такое →</a>
+        </div>
+      </div>
+
+      <h3>Как считать</h3>
+
+      <div class="formula-block">
+        <img src="https://crmgroup.ru/wp-content/uploads/2024/08/img-94.png" alt="Формула LTV: ARPU умножить на среднюю продолжительность взаимодействия" loading="lazy">
+        <p class="formula-caption">Формула LTV</p>
+      </div>
+
+      <p><a href="https://crmgroup.ru/glossary/arpu/">ARPU</a>&nbsp;(Average Revenue Per User) — средний доход от&nbsp;одного клиента за&nbsp;период, а&nbsp;средняя продолжительность взаимодействия — время, в&nbsp;течение которого клиент остаётся с&nbsp;компанией.</p>
+
+      <div class="formula-example">
+        <strong>Пример:</strong> клиент на&nbsp;протяжении года пользовался сервисом по&nbsp;подписке с&nbsp;ежемесячной оплатой 500&nbsp;рублей.<br>
+        LTV = 500 × 12 = <strong>6 000 рублей</strong>
+      </div>
+
+      <h3>Зачем считать</h3>
+
+      <p>Чтобы оптимизировать расходы на&nbsp;рекламу и&nbsp;принимать стратегические решения. Если LTV выше стоимости привлечения клиента&nbsp;(<a href="https://emailsoldiers.ru/glossary/customer-acquisition-cost">CAC</a>), значит, вложения в&nbsp;маркетинг окупаются.</p>
+
+      <p>А&nbsp;ещё с&nbsp;помощью LTV можно определить наиболее значимых клиентов. Сравните их&nbsp;по&nbsp;уровням LTV и&nbsp;выделите тех, кто имеет самый высокий показатель. Так вы&nbsp;сможете уделить им&nbsp;больше внимания: разработать специальные предложения, чтобы они оставались с&nbsp;брендом дольше и&nbsp;покупали больше.</p>
+
+      <div class="expert-comment">
+        <div class="expert-comment__text">
+          <p>Главная трудность с&nbsp;подсчётом LTV — определиться, на&nbsp;каком интервале это делать. По&nbsp;определению, надо считать весь срок жизни клиента.</p>
+          <p>Но&nbsp;представим ситуацию: какое-то время клиент регулярно совершал покупки, а&nbsp;потом вдруг перестал. Мы&nbsp;посчитали его LTV. Но&nbsp;через год, два или три он&nbsp;вдруг вернулся. Нужно ли&nbsp;пересчитывать LTV или считать этого клиента новым?</p>
+          <p>Чтобы избежать этой проблемы, LTV часто считают на&nbsp;ограниченном периоде — например, за&nbsp;квартал или год.</p>
+        </div>
+        <div class="expert-author">
+          <img src="https://crmgroup.ru/wp-content/uploads/2023/03/Valera-Kurakin.png" alt="Валерий Куракин" loading="lazy">
+          <div>
+            <div class="expert-author__name">Валерий Куракин</div>
+            <div class="expert-author__post">руководитель отдела аналитики</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─── Retention Rate ─── -->
+      <h2 id="anchor_2">RR — коэффициент удержания</h2>
+
+      <p><a href="https://crmgroup.ru/glossary/retention/">RR</a>&nbsp;(Retention Rate) показывает, какой процент клиентов продолжает пользоваться продуктами или услугами компании за&nbsp;конкретный временной период.</p>
+
+      <h3>Как считать</h3>
+
+      <div class="formula-block">
+        <img src="https://crmgroup.ru/wp-content/uploads/2024/08/img-93.png" alt="Формула Retention Rate: (Клиенты на конец периода − Новые клиенты) / Клиенты на начало периода × 100%" loading="lazy">
+        <p class="formula-caption">Формула Retention Rate</p>
+      </div>
+
+      <div class="formula-example">
+        <strong>Пример:</strong> у&nbsp;компании было 100&nbsp;клиентов. За&nbsp;месяц 10 ушли, но&nbsp;пришли 20 новых, увеличив базу до&nbsp;110 человек.<br>
+        RR = ((110 − 20) / 100) × 100% = <strong>90%</strong>
+      </div>
+
+      <h3>Зачем считать</h3>
+
+      <p>Чтобы точнее прогнозировать доходы и&nbsp;рассчитывать число клиентов, которых нужно привлечь для достижения <a href="https://crmgroup.ru/glossary/kpi/">KPI</a>. Зная RR, команда маркетинга может определить, сколько клиентов останется с&nbsp;компанией в&nbsp;следующем периоде.</p>
+
+      <p>А&nbsp;ещё RR даёт возможность отследить тенденции в&nbsp;поведении покупателей и&nbsp;скорректировать стратегию так, чтобы предупредить их&nbsp;отток. Например, RR&nbsp;показывает, что клиенты часто уходят после трёх месяцев подписки — следует выяснить, что происходит на&nbsp;этом этапе, и&nbsp;внести изменения.</p>
+
+      <p>Увеличивая RR, компания влияет и&nbsp;на&nbsp;LTV, а&nbsp;значит, обеспечивает себе стабильные и&nbsp;предсказуемые доходы.</p>
+
+      <p>Важно учесть, что RR в&nbsp;разных сферах бизнеса может значительно варьироваться. Поэтому сравнивать его нужно внутри компании по&nbsp;различным периодам, а&nbsp;также по&nbsp;средним значениям в&nbsp;конкретной нише.</p>
+
+      <!-- ─── Churn Rate ─── -->
+      <h2 id="anchor_3">CR — коэффициент оттока</h2>
+
+      <p><a href="https://crmgroup.ru/glossary/customer-churn-rate/">CR</a>&nbsp;(Churn Rate) показывает, какой процент клиентов отказался от&nbsp;использования продукта. Например, перестал покупать товар или оплачивать подписку.</p>
+
+      <h3>Как считать</h3>
+
+      <div class="formula-block">
+        <img src="https://crmgroup.ru/wp-content/uploads/2024/08/img-92.png" alt="Формула Churn Rate: Ушедшие клиенты / Клиенты на начало периода × 100%" loading="lazy">
+        <p class="formula-caption">Формула Churn Rate</p>
+      </div>
+
+      <div class="formula-example">
+        <strong>Пример:</strong> 15 из&nbsp;100 клиентов компании ушли в&nbsp;течение месяца.<br>
+        CR = (15 / 100) × 100% = <strong>15%</strong>
+      </div>
+
+      <h3>Зачем считать</h3>
+
+      <p>Чтобы оценить стабильность клиентской базы. <a href="https://recurly.com/research/churn-rate-benchmarks/" target="_blank" rel="nofollow noreferrer">Средний CR для различных отраслей находится в&nbsp;пределах 3–7%</a>. Чем ниже этот показатель — тем лучше. Высокий коэффициент оттока, то&nbsp;есть от&nbsp;10% в&nbsp;месяц и&nbsp;больше, указывает на&nbsp;то, что у&nbsp;компании есть проблемы с&nbsp;продуктом или обслуживанием.</p>
+
+      <p>Учитывайте, что все метрики связаны. Снижение CR&nbsp;не&nbsp;только улучшает качество потребительского опыта, но&nbsp;и&nbsp;увеличивает LTV клиентов.</p>
+
+      <!-- ─── AOV ─── -->
+      <h2 id="anchor_4">AOV — средний чек</h2>
+
+      <p><a href="https://crmgroup.ru/glossary/average-order-value/">AOV</a>&nbsp;(Average Order Value) — средний чек каждого покупателя за&nbsp;определённый период.</p>
+
+      <h3>Как считать</h3>
+
+      <div class="formula-block">
+        <img src="https://crmgroup.ru/wp-content/uploads/2024/08/img-90.png" alt="Формула AOV: Общая выручка / Количество заказов" loading="lazy">
+        <p class="formula-caption">Формула AOV</p>
+      </div>
+
+      <div class="formula-example">
+        <strong>Пример:</strong> 50 заказов принесли прибыль 100 000 рублей.<br>
+        AOV = 100 000 / 50 = <strong>2 000 рублей</strong>
+      </div>
+
+      <h3>Зачем считать</h3>
+
+      <div class="def-related" style="margin-bottom: 16px;">
+        <div class="def-related__label">Смотрите кейс</div>
+        <a href="https://emailsoldiers.ru/cases/vichy-triggers">На 36% увеличили средний чек промокампании →</a>
+      </div>
+
+      <p>Чтобы лучше понять покупательские привычки. Оценка среднего чека позволяет разрабатывать эффективные маркетинговые кампании и&nbsp;программы лояльности для клиентов.</p>
+
+      <p>Кроме того, знание AOV даёт возможности для увеличения LTV. Например, с&nbsp;помощью AOV можно определить, какие продукты или услуги чаще всего покупают вместе. Это открывает возможности для кросс-продаж и&nbsp;апселлов.</p>
+
+      <!-- ─── NPS ─── -->
+      <h2 id="anchor_5">NPS — индекс потребительской лояльности</h2>
+
+      <p><a href="https://emailsoldiers.ru/glossary/nps">NPS</a>&nbsp;(Net Promoter Score) измеряет готовность клиентов рекомендовать компанию, продукт или услугу другим людям.</p>
+
+      <h3>Как считать</h3>
+
+      <div class="def-related" style="margin-bottom: 16px;">
+        <div class="def-related__label">Читайте также</div>
+        <a href="https://crmgroup.ru/blog/nps-survey/">Как мы проводили NPS-опрос и что изменили в работе →</a>
+      </div>
+
+      <p>Расчёт NPS происходит в&nbsp;два этапа. На&nbsp;первом клиентов просят оценить по&nbsp;десятибалльной шкале, насколько они готовы рекомендовать бренд. Затем ответивших делят на&nbsp;три группы:</p>
+
+      <ul class="num-list">
+        <li>
+          <span class="num-list__n">1</span>
+          <div><strong>Промоутеры</strong> — поставили оценку 9–10 баллов. Очень лояльны к&nbsp;бренду и&nbsp;готовы его рекомендовать.</div>
+        </li>
+        <li>
+          <span class="num-list__n">2</span>
+          <div><strong>Нейтралы</strong> — поставили оценку 7–8 баллов. В&nbsp;целом довольны предложениями, но&nbsp;не&nbsp;готовы активно рекомендовать бренд. Могут уйти к&nbsp;конкурентам за&nbsp;более привлекательными условиями.</div>
+        </li>
+        <li>
+          <span class="num-list__n">3</span>
+          <div><strong>Критики</strong> — поставили оценку 6 баллов или ниже. Недовольны качеством и&nbsp;близки к&nbsp;оттоку. Как правило, именно они оставляют негативные отзывы на&nbsp;сайтах-отзовиках.</div>
+        </li>
+      </ul>
+
+      <p>На&nbsp;втором этапе NPS рассчитывают по&nbsp;формуле:</p>
+
+      <div class="formula-block">
+        <img src="https://crmgroup.ru/wp-content/uploads/2024/08/img-91.png" alt="Формула NPS: % промоутеров − % критиков" loading="lazy">
+        <p class="formula-caption">Формула NPS</p>
+      </div>
+
+      <div class="formula-example">
+        <strong>Пример:</strong> опрос выявил 50% промоутеров, 30% нейтралов и&nbsp;20% критиков.<br>
+        NPS = 50% − 20% = <strong>30%</strong>
+      </div>
+
+      <h3>Зачем считать</h3>
+
+      <p>NPS позволяет оценить лояльность клиентов, а&nbsp;его высокое значение часто коррелирует с&nbsp;ростом бизнеса. <a href="https://www.qualtrics.com/experience-management/customer/good-net-promoter-score/" target="_blank" rel="nofollow noreferrer">Консалтинговая компания Bain&nbsp;&amp;&nbsp;Company</a>, которая разработала индекс NPS, предлагает такую градацию:</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Коэффициент NPS</th>
+              <th>Как интерпретировать</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>80–100%</strong></td><td>Идеально. Компании с таким NPS считаются лучшими в своей нише.</td></tr>
+            <tr><td><strong>50–80%</strong></td><td>Отлично. Такие показатели бывают у брендов с мировым именем. NPS Netflix в 2022 году — 68%, Starbucks — 77%.</td></tr>
+            <tr><td><strong>20–50%</strong></td><td>Хорошо. Большинство стабильных и зарекомендовавших себя компаний фиксируют такой NPS.</td></tr>
+            <tr><td><strong>0–20%</strong></td><td>Неплохо. Есть куда расти, но положительный индекс — уже показатель успешности бизнеса.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>Если NPS отрицательный, то&nbsp;есть число критиков превышает число промоутеров, значит, в&nbsp;компании есть проблемы. Нужно анализировать и&nbsp;решать их&nbsp;как можно скорее.</p>
+
+      <div class="expert-comment">
+        <div class="expert-comment__text">
+          <p>NPS — возможно, самая простая и&nbsp;понятная метрика для оценки удовлетворённости клиентов, которая позволяет быстро понять, насколько они довольны продуктом и&nbsp;готовы ли его рекомендовать.</p>
+          <p>Для одного из&nbsp;наших клиентов в&nbsp;сфере фармацевтики мы&nbsp;внедрили систематические NPS-опросы врачей после визитов медицинских представителей. Все показатели собираем в&nbsp;дашборд. Так клиент может отслеживать динамику ответов и&nbsp;работать с&nbsp;аномалиями — например, низкими оценками.</p>
+        </div>
+        <div class="expert-author">
+          <img src="https://crmgroup.ru/wp-content/uploads/2023/10/Александр-Волков_1.png" alt="Александр Волков" loading="lazy">
+          <div>
+            <div class="expert-author__name">Александр Волков</div>
+            <div class="expert-author__post">руководитель Martech-направления</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─── Как улучшить ─── -->
+      <h2 id="anchor_6">Как улучшить метрики</h2>
+
+      <p>Улучшение показателей — это комплексный процесс, сложно выделить отдельную стратегию для роста каждой метрики. Они переплетаются между собой, и&nbsp;работа с&nbsp;одной неизбежно влияет на&nbsp;множество других.</p>
+
+      <div class="def-related">
+        <div class="def-related__label">Читайте также</div>
+        <a href="https://crmgroup.ru/blog/how-to-build-omnichannel-communication/">Как построить омниканальную коммуникацию с клиентами →</a>
+      </div>
+
+      <div class="expert-comment">
+        <div class="expert-comment__text">
+          <p>Метрики тесно связаны между собой. Например, повышение Retention Rate напрямую ведёт к&nbsp;снижению Churn Rate, что в&nbsp;свою очередь увеличивает LTV. А&nbsp;своевременное проведение NPS-опроса позволяет держать руку на&nbsp;пульсе и&nbsp;быстро вносить корректировки.</p>
+          <p>Я&nbsp;бы добавил метрику Contactability, которая помогает оценить способность компании эффективно связываться с&nbsp;клиентами через различные каналы связи. Она важна для оптимизации коммуникаций и&nbsp;выявления наиболее эффективного канала для работы с&nbsp;клиентской базой.</p>
+        </div>
+        <div class="expert-author">
+          <img src="https://crmgroup.ru/wp-content/uploads/2024/08/sobolevskyi.jpg" alt="Сергей Соболевский" loading="lazy">
+          <div>
+            <div class="expert-author__name">Сергей Соболевский</div>
+            <div class="expert-author__post">ведущий менеджер проектов</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cta-banner">
+        <div class="cta-banner__title">Проводим аудит и&nbsp;составляем action-план для увеличения выручки в&nbsp;первый месяц</div>
+        <a class="cta-banner__link" href="https://service.crmgroup.ru/marketing-audit.html" rel="noopener">Узнать цену →</a>
+      </div>
+
+      <p>Ниже — универсальные маркетинговые инструменты, которые помогут держать проект в&nbsp;тонусе и&nbsp;повышать общую результативность кампаний:</p>
+
+      <ul class="num-list">
+        <li><span class="num-list__n">1</span><div><strong><a href="https://crmgroup.ru/glossary/trigger-emails/">Триггерные рассылки</a></strong> — автоматические сообщения в&nbsp;ответ на&nbsp;действия пользователя. Повышают вовлечённость и&nbsp;стимулируют повторное взаимодействие с&nbsp;брендом.</div></li>
+        <li><span class="num-list__n">2</span><div><strong><a href="https://crmgroup.ru/glossary/omnichannel/">Омниканальность</a></strong> — взаимодействие через email, SMS, чат-боты, push-уведомления. Обеспечивает более полный охват и&nbsp;позволяет клиентам выбрать удобный метод оповещений.</div></li>
+        <li><span class="num-list__n">3</span><div><strong><a href="https://crmgroup.ru/glossary/kaskadnye-kommunikaczii/">Каскадные коммуникации</a></strong> — отправка сообщений по&nbsp;нескольким каналам. Повышают шанс на&nbsp;взаимодействие, если первоначальные сообщения остаются без ответа.</div></li>
+        <li><span class="num-list__n">4</span><div><strong>Апселлы</strong> — предложение более дорогих версий продукта в&nbsp;момент покупки. Увеличивают AOV и&nbsp;общую прибыль. Важно предлагать действительно полезные клиенту товары.</div></li>
+        <li><span class="num-list__n">5</span><div><strong>Кросс-продажи</strong> — предложение сопутствующих товаров и&nbsp;услуг. Помогают увеличивать AOV, общую выручку и&nbsp;удовлетворённость клиентов.</div></li>
+        <li><span class="num-list__n">6</span><div><strong>Реферальные программы</strong> — системы вознаграждений, которые мотивируют клиентов привлекать новых покупателей. Органически увеличивают базу и&nbsp;снижают затраты на&nbsp;привлечение.</div></li>
+        <li><span class="num-list__n">7</span><div><strong><a href="https://emailsoldiers.ru/glossary/loyalty-programs">Программы лояльности</a></strong> — системы вознаграждений за&nbsp;повторные покупки. Скидки, подарки и&nbsp;спецпредложения стимулируют повторные покупки, повышая RR и&nbsp;LTV.</div></li>
+        <li><span class="num-list__n">8</span><div><strong>Персонализация</strong> — адаптация сообщений под конкретных клиентов. Напрямую влияет на&nbsp;AOV, RR и&nbsp;NPS.</div></li>
+      </ul>
+
+      <div class="expert-comment">
+        <div class="expert-comment__text">
+          <p>Мы&nbsp;регулярно замеряем LTV, Churn Rate и&nbsp;NPS в&nbsp;нашем деловом сообществе фанатов сервиса servicefans.ru. На&nbsp;основании замеров и&nbsp;обратной связи <a href="https://crmgroup.ru/glossary/process-approach-marketing/">улучшаем процессы</a> онбординга и&nbsp;пребывания участников в&nbsp;сообществе.</p>
+          <p>Как говорил Билл Хьюлетт, невозможно чем-то управлять, пока ты&nbsp;это не&nbsp;измерил. Но&nbsp;и&nbsp;измерять метрики стоит только тогда, когда вы&nbsp;готовы внедрять результаты в&nbsp;жизнь компании, а&nbsp;не&nbsp;просто похвалиться на&nbsp;отраслевых конференциях.</p>
+        </div>
+        <div class="expert-author">
+          <img src="https://crmgroup.ru/wp-content/uploads/2024/08/ivan_firsov1.jpg" alt="Иван Фирсов" loading="lazy">
+          <div>
+            <div class="expert-author__name">Иван Фирсов</div>
+            <div class="expert-author__post">бизнес-коуч, основатель <a href="https://servicefans.ru/" target="_blank" rel="noreferrer noopener">сообщества «Фанаты сервиса»</a></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─── FAQ / Яндекс Нейро ─── -->
+      <section class="faq-section" itemscope itemtype="https://schema.org/FAQPage">
+        <div class="ux-badge">⚡ Яндекс Нейро</div>
+        <h2 class="faq-section__title" style="border:none;padding:0;margin-top:4px;">Частые вопросы по метрикам CRM</h2>
+        <p class="faq-section__sub">Быстрые ответы на популярные вопросы</p>
+
+        <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+          <summary itemprop="name">Что такое LTV и&nbsp;как его считать?</summary>
+          <div class="faq-item__body" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+            <div itemprop="text">
+              LTV (Customer Lifetime Value) — общая прибыль от&nbsp;одного клиента за&nbsp;всё время взаимодействия. Формула: <strong>LTV = ARPU × средняя продолжительность взаимодействия</strong>. Например, клиент платит 500&nbsp;рублей в&nbsp;месяц в&nbsp;течение года: LTV = 500 × 12 = 6&nbsp;000 рублей.
+            </div>
+          </div>
+        </details>
+
+        <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+          <summary itemprop="name">Что такое Retention Rate и&nbsp;как его считать?</summary>
+          <div class="faq-item__body" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+            <div itemprop="text">
+              Retention Rate (RR) — процент клиентов, которые продолжают пользоваться продуктом. Формула: <strong>RR = ((Клиенты на конец периода − Новые клиенты) / Клиенты на начало периода) × 100%</strong>. Нормальный RR зависит от&nbsp;отрасли и&nbsp;сравнивается внутри компании по&nbsp;периодам.
+            </div>
+          </div>
+        </details>
+
+        <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+          <summary itemprop="name">Что такое Churn Rate и&nbsp;какой показатель считается нормальным?</summary>
+          <div class="faq-item__body" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+            <div itemprop="text">
+              Churn Rate (CR) — процент клиентов, отказавшихся от&nbsp;продукта. Формула: <strong>CR = (Ушедшие клиенты / Клиенты на начало периода) × 100%</strong>. Средний CR для большинства отраслей составляет 3–7%. Показатель выше 10% в&nbsp;месяц сигнализирует о&nbsp;проблемах с&nbsp;продуктом или сервисом.
+            </div>
+          </div>
+        </details>
+
+        <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+          <summary itemprop="name">Как рассчитать AOV (средний чек)?</summary>
+          <div class="faq-item__body" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+            <div itemprop="text">
+              AOV (Average Order Value) — средний чек покупателя за&nbsp;период. Формула: <strong>AOV = Общая выручка / Количество заказов</strong>. Например, 50&nbsp;заказов принесли 100&nbsp;000 рублей: AOV = 100&nbsp;000 / 50 = 2&nbsp;000 рублей.
+            </div>
+          </div>
+        </details>
+
+        <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+          <summary itemprop="name">Что такое NPS и&nbsp;как его интерпретировать?</summary>
+          <div class="faq-item__body" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+            <div itemprop="text">
+              NPS (Net Promoter Score) — индекс потребительской лояльности. Формула: <strong>NPS = % промоутеров (оценка 9–10) − % критиков (оценка 0–6)</strong>. Значение 80–100% — идеально, 50–80% — отлично (Netflix 68%, Starbucks 77%), 20–50% — хорошо. Отрицательный NPS — серьёзная проблема.
+            </div>
+          </div>
+        </details>
+      </section>
+
+      <!-- ─── Authors ─── -->
+      <div style="margin-top: 48px; padding-top: 32px; border-top: 1px solid var(--border);">
+        <div style="display:flex; gap:12px; flex-wrap:wrap;">
+          <div class="author-block" style="flex:1; min-width:200px;">
+            <img src="https://crmgroup.ru/wp-content/uploads/2024/08/artem-sviridov.jpg" alt="Артём Свиридов" loading="lazy">
+            <div>
+              <div class="author-block__label">Автор статьи</div>
+              <div class="author-block__name">Артём Свиридов</div>
+              <div class="author-block__post">контент-маркетолог MONK</div>
+            </div>
+          </div>
+          <div class="author-block" style="flex:1; min-width:200px;">
+            <img src="https://crmgroup.ru/wp-content/uploads/2023/03/Marina-Vlasova.png" alt="Марина Власова" loading="lazy">
+            <div>
+              <div class="author-block__label">Редактор</div>
+              <div class="author-block__name">Марина Власова</div>
+              <div class="author-block__post">шеф-редактор CRM-group</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─── Experts ─── -->
+      <div class="experts-section">
+        <div class="experts-section__title">Эксперты статьи</div>
+        <div class="experts-grid">
+          <div class="expert-card">
+            <img src="https://crmgroup.ru/wp-content/uploads/2023/03/Valera-Kurakin.png" alt="Валерий Куракин" loading="lazy">
+            <div class="expert-card__name">Валерий Куракин</div>
+            <div class="expert-card__post">руководитель отдела аналитики</div>
+          </div>
+          <div class="expert-card">
+            <img src="https://crmgroup.ru/wp-content/uploads/2023/10/Александр-Волков_1.png" alt="Александр Волков" loading="lazy">
+            <div class="expert-card__name">Александр Волков</div>
+            <div class="expert-card__post">руководитель Martech-направления</div>
+          </div>
+          <div class="expert-card">
+            <img src="https://crmgroup.ru/wp-content/uploads/2024/08/sobolevskyi.jpg" alt="Сергей Соболевский" loading="lazy">
+            <div class="expert-card__name">Сергей Соболевский</div>
+            <div class="expert-card__post">ведущий менеджер проектов</div>
+          </div>
+          <div class="expert-card">
+            <img src="https://crmgroup.ru/wp-content/uploads/2024/08/ivan_firsov1.jpg" alt="Иван Фирсов" loading="lazy">
+            <div class="expert-card__name">Иван Фирсов</div>
+            <div class="expert-card__post">бизнес-коуч, Фанаты сервиса</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─── Social share ─── -->
+      <div class="social-share">
+        <a class="social-btn social-btn--vk" href="https://vk.com/crm_group" target="_blank" rel="noreferrer noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M21.579 6.855c.14-.465 0-.806-.662-.806h-2.193c-.558 0-.813.295-.953.619 0 0-1.115 2.719-2.695 4.482-.51.513-.743.675-1.021.675-.14 0-.341-.162-.341-.627V6.855c0-.558-.162-.806-.626-.806H9.642c-.348 0-.558.258-.558.503 0 .528.79.65.871 2.138v3.228c0 .707-.127.836-.406.836-.743 0-2.551-2.729-3.623-5.853C5.698 6.565 5.484 6.05 4.922 6.05H2.729C2.099 6.05 2 6.344 2 6.669c0 .581.743 3.457 3.462 7.263C7.26 16.529 9.777 17.8 12.084 17.8c1.378 0 1.548-.31 1.548-.844 0-2.464-.127-2.7.573-2.7.325 0 .883.163 2.185 1.417 1.487 1.487 1.733 2.127 2.57 2.127h2.192c.63 0 .948-.31.766-.927-.2-.611-.908-1.497-1.847-2.547-.51-.604-1.277-1.254-1.51-1.579-.325-.42-.232-.604 0-.975.001 0 2.672-3.759 2.948-5.037l.07.12z"/></svg>
+          ВКонтакте
+        </a>
+        <a class="social-btn social-btn--tg" href="https://t.me/crmgroup_ru" target="_blank" rel="noreferrer noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.48 13.617l-2.95-.924c-.643-.204-.657-.643.136-.953l11.572-4.461c.537-.194 1.006.131.656.942z"/></svg>
+          Telegram
+        </a>
+      </div>
+
+      <!-- ─── Newsletter ─── -->
+      <div class="newsletter">
+        <h2>Подпишитесь на&nbsp;рассылку о&nbsp;CRM‑маркетинге</h2>
+        <p>Тренды, свежие кейсы и&nbsp;актуальные инструкции.</p>
+        <div class="newsletter-form">
+          <input type="email" placeholder="Электронная почта" autocomplete="email">
+          <button type="submit">Подписаться</button>
+        </div>
+        <p class="newsletter-agree">Нажимая кнопку, вы&nbsp;соглашаетесь с&nbsp;<a href="https://crmgroup.ru/conditions" target="_blank">условиями обработки персональных данных</a></p>
+      </div>
+
+    </div><!-- /prose -->
+  </main>
+
+  <!-- Sticky Aside -->
+  <aside class="article-aside">
+    <nav class="toc-card">
+      <div class="toc-card__title">Содержание</div>
+      <ul class="toc-list">
+        <li><a href="#anchor_0"><span class="toc-list__num">00</span>Ключевые метрики CRM</a></li>
+        <li><a href="#anchor_1"><span class="toc-list__num">01</span>LTV — пожизненная ценность</a></li>
+        <li><a href="#anchor_2"><span class="toc-list__num">02</span>Retention Rate — удержание</a></li>
+        <li><a href="#anchor_3"><span class="toc-list__num">03</span>Churn Rate — отток</a></li>
+        <li><a href="#anchor_4"><span class="toc-list__num">04</span>AOV — средний чек</a></li>
+        <li><a href="#anchor_5"><span class="toc-list__num">05</span>NPS — лояльность</a></li>
+        <li><a href="#anchor_6"><span class="toc-list__num">06</span>Как улучшить метрики</a></li>
+      </ul>
+      <a class="toc-cta" href="https://service.crmgroup.ru/marketing-audit.html" rel="noopener">Получить аудит CRM →</a>
+    </nav>
+  </aside>
+
+</div><!-- /page-layout -->
+
+<script>
+  // Reading progress bar
+  const bar = document.getElementById('rpBar');
+  window.addEventListener('scroll', () => {
+    const el = document.getElementById('article-content');
+    const rect = el.getBoundingClientRect();
+    const pct = Math.max(0, Math.min(100,
+      (-rect.top / (rect.height - window.innerHeight)) * 100
+    ));
+    bar.style.width = pct + '%';
+  }, { passive: true });
+
+  // TOC active link highlight
+  const headings = document.querySelectorAll('[id^="anchor_"]');
+  const links = document.querySelectorAll('.toc-list a');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        links.forEach(l => l.classList.remove('active'));
+        const active = document.querySelector(`.toc-list a[href="#${e.target.id}"]`);
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+  headings.forEach(h => observer.observe(h));
+</script>
+
+</body>
+</html>
