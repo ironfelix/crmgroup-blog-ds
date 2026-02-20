@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Анализ реализуемости стратегии — CRM Group 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-bg-primary: #ffffff;
+            --color-bg-secondary: #fafbfc;
+            --color-bg-tertiary: #f8f9fa;
+            --color-text-primary: #1a1a1a;
+            --color-text-secondary: #5f6368;
+            --color-accent: #1a73e8;
+            --color-success: #34a853;
+            --color-warning: #fbbc04;
+            --color-danger: #ea4335;
+            --space-md: 16px;
+            --space-lg: 24px;
+            --space-xl: 32px;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--color-bg-secondary);
+            color: var(--color-text-primary);
+            line-height: 1.6;
+            font-size: 14px;
+            -webkit-font-smoothing: antialiased;
+            padding: var(--space-xl);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1a73e8 0%, #1557b0 100%);
+            color: white;
+            padding: var(--space-xl);
+            border-radius: var(--radius-lg);
+            margin-bottom: var(--space-xl);
+        }
+
+        .header h1 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        .verdict {
+            background: var(--color-bg-primary);
+            border-radius: var(--radius-lg);
+            padding: var(--space-xl);
+            margin-bottom: var(--space-xl);
+            border-left: 6px solid var(--color-success);
+        }
+
+        .verdict-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--color-success);
+            margin-bottom: var(--space-md);
+        }
+
+        .verdict-text {
+            font-size: 16px;
+            line-height: 1.7;
+            margin-bottom: var(--space-md);
+        }
+
+        .section {
+            background: var(--color-bg-primary);
+            border-radius: var(--radius-lg);
+            padding: var(--space-xl);
+            margin-bottom: var(--space-xl);
+            border: 1px solid #e8eaed;
+        }
+
+        h2 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: var(--space-lg);
+            color: var(--color-text-primary);
+        }
+
+        h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: var(--space-md);
+            color: var(--color-accent);
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--space-md);
+            margin-bottom: var(--space-lg);
+        }
+
+        .metric-card {
+            background: var(--color-bg-tertiary);
+            padding: var(--space-md);
+            border-radius: var(--radius-md);
+        }
+
+        .metric-label {
+            font-size: 12px;
+            color: var(--color-text-secondary);
+            margin-bottom: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .metric-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--color-text-primary);
+            margin-bottom: 4px;
+        }
+
+        .metric-subtitle {
+            font-size: 13px;
+            color: var(--color-text-secondary);
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: var(--space-lg) 0;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #e8eaed;
+        }
+
+        .comparison-table th {
+            background: var(--color-bg-tertiary);
+            font-weight: 600;
+            font-size: 13px;
+            color: var(--color-text-primary);
+        }
+
+        .comparison-table td {
+            font-size: 14px;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 14px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .status-good { background: #e6f9ed; color: #137333; }
+        .status-warning { background: #fef7e0; color: #b45309; }
+        .status-bad { background: #fce8e6; color: #c5221f; }
+
+        .highlight-box {
+            background: #f0f7ff;
+            border-left: 4px solid var(--color-accent);
+            padding: var(--space-md);
+            border-radius: var(--radius-md);
+            margin: var(--space-md) 0;
+        }
+
+        .warning-box {
+            background: #fef7e0;
+            border-left: 4px solid var(--color-warning);
+            padding: var(--space-md);
+            border-radius: var(--radius-md);
+            margin: var(--space-md) 0;
+        }
+
+        .success-box {
+            background: #e6f9ed;
+            border-left: 4px solid var(--color-success);
+            padding: var(--space-md);
+            border-radius: var(--radius-md);
+            margin: var(--space-md) 0;
+        }
+
+        .calc-box {
+            background: var(--color-bg-tertiary);
+            padding: var(--space-md);
+            border-radius: var(--radius-md);
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            margin: var(--space-md) 0;
+        }
+
+        .calc-box strong {
+            color: var(--color-accent);
+        }
+
+        ul {
+            margin-left: 20px;
+            margin-top: 8px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .action-steps {
+            counter-reset: step;
+        }
+
+        .action-step {
+            background: var(--color-bg-tertiary);
+            padding: var(--space-md);
+            border-radius: var(--radius-md);
+            margin-bottom: var(--space-md);
+            position: relative;
+            padding-left: 60px;
+        }
+
+        .action-step::before {
+            content: counter(step);
+            counter-increment: step;
+            position: absolute;
+            left: var(--space-md);
+            top: var(--space-md);
+            width: 32px;
+            height: 32px;
+            background: var(--color-accent);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+
+        @media (max-width: 768px) {
+            body { padding: 16px; }
+            .header h1 { font-size: 24px; }
+            .metrics-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Анализ реализуемости стратегии</h1>
+            <p>CRM Group / Email Soldiers • На основе P&L 2025 (факт 4 месяца)</p>
+        </div>
+
+        <div class="verdict">
+            <div class="verdict-title">✅ ВЕРДИКТ: СТРАТЕГИЯ РЕАЛИЗУЕМА</div>
+            <div class="verdict-text">
+                <strong>Финансовое состояние агентства значительно лучше ожидаемого.</strong>
+                Margin 40.8% даёт большой запас для трансформации. Чистая рентабельность 27.6% (план) —
+                это уровень выше большинства агентств. Переход на пакетную модель и автоматизацию реален.
+            </div>
+            <div class="verdict-text">
+                <strong>Ключевой риск:</strong> низкая эффективность (145k₽/чел vs норма 300-500k₽).
+                Но это именно то, что стратегия должна исправить. Runway достаточный для перехода.
+            </div>
+        </div>
+
+        <!-- Current State -->
+        <div class="section">
+            <h2>1. Текущее состояние (факт 2025)</h2>
+
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-label">Выручка/мес</div>
+                    <div class="metric-value">10.9M₽</div>
+                    <div class="metric-subtitle">Факт за 4 месяца</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Gross Margin</div>
+                    <div class="metric-value">40.8%</div>
+                    <div class="metric-subtitle">Отлично для агентства</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Net Margin (план)</div>
+                    <div class="metric-value">27.6%</div>
+                    <div class="metric-subtitle">Выше среднего по рынку</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Команда</div>
+                    <div class="metric-value">~81 чел</div>
+                    <div class="metric-subtitle">По ЗП производственных</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Revenue/чел</div>
+                    <div class="metric-value">145k₽</div>
+                    <div class="metric-subtitle">Ниже нормы (300-500k)</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">ЗП доля</div>
+                    <div class="metric-value">56%</div>
+                    <div class="metric-subtitle">Высокий показатель</div>
+                </div>
+            </div>
+
+            <div class="success-box">
+                <strong>Хорошие новости:</strong>
+                <ul>
+                    <li>Margin 40.8% → есть запас для инвестиций в переход</li>
+                    <li>Net margin 27.6% → бизнес прибыльный, не в кризисе</li>
+                    <li>Годовая проекция 130M₽ → стабильный оборот</li>
+                </ul>
+            </div>
+
+            <div class="warning-box">
+                <strong>Проблемные зоны:</strong>
+                <ul>
+                    <li>Revenue/чел 145k₽ вместо 300-500k₽ → эффективность -52% от нормы</li>
+                    <li>ЗП 56% от выручки → команда переразмерена или недозагружена</li>
+                    <li>Gap до цели 15M₽/мес → нужно +38% роста</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Financial Analysis -->
+        <div class="section">
+            <h2>2. Финансовая модель: может ли бизнес пережить переход?</h2>
+
+            <h3>2.1. Runway (запас прочности)</h3>
+
+            <div class="calc-box">
+<strong>Текущая прибыль/мес:</strong>
+Выручка: 10.9M₽
+Расходы: -6.4M₽
+Margin: 4.5M₽/мес
+
+<strong>Чистая прибыль (после всех расходов):</strong>
+Net margin 27.6% × 10.9M = ~3M₽/мес
+Годовая чистая прибыль (план): 53.8M₽
+
+<strong>Runway при полной остановке выручки:</strong>
+Если есть резервы ~20M₽ → 3-4 месяца
+Если есть кредитная линия → +2-3 месяца
+            </div>
+
+            <div class="success-box">
+                <strong>✅ Вывод:</strong> При чистой прибыли 3M₽/мес и margin 40.8% у бизнеса достаточно запаса
+                для перехода. Даже если 20% клиентов уйдут в первые 3 месяца, бизнес выдержит.
+            </div>
+
+            <h3>2.2. Worst-case сценарий (первые 6 месяцев перехода)</h3>
+
+            <div class="calc-box">
+<strong>Допущения:</strong>
+- Теряем 20% клиентов (не переходят на пакеты)
+- Revenue падает: 10.9M → 8.7M₽/мес
+- Costs не падают сразу (notice period)
+- Инвестиции: +500k₽/мес (инструменты, hiring)
+
+<strong>Worst-case финансы:</strong>
+Revenue: 8.7M₽/мес
+Costs: -6.9M₽/мес (старые + инвестиции)
+Margin: 1.8M₽/мес → снижение с 4.5M до 1.8M
+
+<strong>Убыток за 6 мес:</strong>
+(4.5M - 1.8M) × 6 = 16.2M₽
+            </div>
+
+            <div class="highlight-box">
+                <strong>Критичный вопрос:</strong> Есть ли у агентства 16-20M₽ резервов или доступ к кредиту?
+                <br><br>
+                Если <strong>ДА</strong> → переход безопасен.<br>
+                Если <strong>НЕТ</strong> → нужен более плавный переход (растянуть на 12-18 мес).
+            </div>
+        </div>
+
+        <!-- Unit Economics -->
+        <div class="section">
+            <h2>3. Unit-экономика новой модели</h2>
+
+            <h3>3.1. Пакет "Рост LTV" — 400k₽/мес</h3>
+
+            <div class="calc-box">
+<strong>Revenue клиента:</strong>
+400k₽/мес × 12 мес = 4.8M₽/год
+
+<strong>Team cost на клиента (новая модель):</strong>
+1 CSM на 8 клиентов = 150k₽ / 8 = 18.75k₽/мес
+1 Specialist на 3 клиента = 100k₽ / 3 = 33k₽/мес
+1 Data Analyst на 40 клиентов = 120k₽ / 40 = 3k₽/мес
+Overhead 20% = 11k₽/мес
+<strong>Total: ~66k₽/мес на клиента</strong>
+
+<strong>Gross Margin:</strong>
+(400k - 66k) / 400k = <strong>83.5%</strong> 🎯
+
+<strong>НО! Реалистичная корректировка:</strong>
+Первые 3-6 мес: onboarding, setup = 2x времени
+Кастомизация: +30% времени
+Корректировки: +20% времени
+
+<strong>Реальный margin: 50-60%</strong> (всё равно лучше текущих 40.8%)
+            </div>
+
+            <h3>3.2. Сколько нужно клиентов для 15M₽/мес?</h3>
+
+            <div class="calc-box">
+<strong>Целевая выручка: 15M₽/мес</strong>
+
+При среднем пакете 400k₽/мес:
+15M / 400k = <strong>37.5 клиентов → ~40 клиентов</strong>
+
+При команде 60 человек:
+Revenue/чел = 15M / 60 = <strong>250k₽/мес</strong> ✅
+
+Сравнение:
+Сейчас: 145k₽/чел
+Новая модель: 250k₽/чел
+<strong>Рост: +72%</strong>
+            </div>
+
+            <div class="success-box">
+                <strong>✅ Реалистично:</strong> 40 клиентов на пакетах по 400k₽/мес при команде 60 человек =
+                выполнимая модель. Revenue/чел 250k₽ — уже в пределах нормы.
+            </div>
+        </div>
+
+        <!-- Client Base Analysis -->
+        <div class="section">
+            <h2>4. Клиентская база: кто подходит под новую модель?</h2>
+
+            <div class="warning-box">
+                <strong>⚠️ КРИТИЧНО:</strong> Эти данные нужно собрать в ближайшие 2 недели!
+            </div>
+
+            <h3>Критерии подходящего клиента:</h3>
+
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Критерий</th>
+                        <th>Минимум</th>
+                        <th>Почему важно</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Повторные покупки</strong></td>
+                        <td>3+ в год</td>
+                        <td>Без повторных покупок нечем управлять</td>
+                    </tr>
+                    <tr>
+                        <td><strong>База клиентов</strong></td>
+                        <td>5,000+</td>
+                        <td>Нужен объём для lifecycle сценариев</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Текущий LTV</strong></td>
+                        <td>>20k₽</td>
+                        <td>Ниже = не окупится работа</td>
+                    </tr>
+                    <tr>
+                        <td><strong>CRM система</strong></td>
+                        <td>Есть + данные</td>
+                        <td>Без данных = делаем setup руками</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Оборот</strong></td>
+                        <td>>50M₽/год</td>
+                        <td>Должны позволить себе 400k/мес</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="highlight-box">
+                <strong>Задача на 2 недели:</strong>
+                <ol>
+                    <li>Взять список всех текущих клиентов</li>
+                    <li>Для каждого оценить по 5 критериям выше</li>
+                    <li>Разбить на группы:
+                        <ul>
+                            <li><strong>Green</strong> — подходят под все критерии (5/5)</li>
+                            <li><strong>Yellow</strong> — подходят под 3-4 критерия</li>
+                            <li><strong>Red</strong> — подходят под <3 критерия</li>
+                        </ul>
+                    </li>
+                </ol>
+            </div>
+
+            <div class="calc-box">
+<strong>Сценарии:</strong>
+
+<strong>Оптимистичный:</strong> 50% клиентов = Green fit
+При 30 текущих клиентах → 15 Green
+Нужно ещё: 40 - 15 = 25 новых клиентов за 12-18 мес
+= 1.4 - 2 клиента/мес (реалистично)
+
+<strong>Пессимистичный:</strong> 30% клиентов = Green fit
+При 30 текущих → 9 Green
+Нужно ещё: 40 - 9 = 31 новых клиентов за 12-18 мес
+= 1.7 - 2.6 клиента/мес (напряжённо, но возможно)
+
+<strong>Критичный:</strong> <20% клиентов = Green fit
+При 30 текущих → <6 Green
+Нужно ещё: >34 новых клиентов
+= >2.8 клиента/мес → <strong>НЕРЕАЛЬНО без масштабного маркетинга</strong>
+            </div>
+        </div>
+
+        <!-- CAC:LTV Analysis -->
+        <div class="section">
+            <h2>5. CAC:LTV — экономика привлечения</h2>
+
+            <div class="warning-box">
+                <strong>⚠️ Нужны данные:</strong> Сколько сейчас тратите на привлечение клиента?
+            </div>
+
+            <h3>Оценочный расчёт:</h3>
+
+            <div class="calc-box">
+<strong>Текущий CAC (оценка):</strong>
+Если на sales/marketing: 500k₽/мес
+Новых клиентов: 2/мес
+CAC = 500k / 2 = <strong>250k₽</strong>
+
+<strong>LTV клиента на пакете (консервативно):</strong>
+Средний чек: 400k₽/мес
+Средний срок жизни: 12 мес (консервативно)
+Gross margin: 60%
+
+LTV = 400k × 12 × 0.6 = <strong>2.88M₽</strong>
+
+<strong>CAC:LTV = 250k / 2.88M = 1:11.5</strong> ✅ Отлично!
+
+<strong>Даже при пессимистичном сценарии:</strong>
+CAC вырастет до 400k₽ (больше маркетинга)
+Срок жизни снизится до 9 мес
+LTV = 400k × 9 × 0.6 = 2.16M₽
+CAC:LTV = 400k / 2.16M = <strong>1:5.4</strong> ✅ Приемлемо
+            </div>
+
+            <div class="success-box">
+                <strong>✅ Вывод:</strong> Даже при консервативных оценках экономика привлечения работает.
+                CAC:LTV выше 1:5 = здоровый бизнес.
+            </div>
+        </div>
+
+        <!-- Go/No-Go Checklist -->
+        <div class="section">
+            <h2>6. Go/No-Go чек-лист</h2>
+
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Критерий</th>
+                        <th>Порог Go ✅</th>
+                        <th>Текущее состояние</th>
+                        <th>Статус</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Gross Margin</strong></td>
+                        <td>>25%</td>
+                        <td>40.8%</td>
+                        <td><span class="status-badge status-good">✅ GO</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Net Margin</strong></td>
+                        <td>>15%</td>
+                        <td>27.6%</td>
+                        <td><span class="status-badge status-good">✅ GO</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Runway</strong></td>
+                        <td>>6 мес</td>
+                        <td>Нужно уточнить резервы</td>
+                        <td><span class="status-badge status-warning">⚠️ ПРОВЕРИТЬ</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>CAC:LTV</strong></td>
+                        <td>>1:5</td>
+                        <td>1:11.5 (оценка)</td>
+                        <td><span class="status-badge status-good">✅ GO</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Green-fit клиентов</strong></td>
+                        <td>>10</td>
+                        <td>Нужно посчитать</td>
+                        <td><span class="status-badge status-warning">⚠️ СОБРАТЬ ДАННЫЕ</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Автоматизация потенциал</strong></td>
+                        <td>>30% времени</td>
+                        <td>Нужен time tracking аудит</td>
+                        <td><span class="status-badge status-warning">⚠️ СОБРАТЬ ДАННЫЕ</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Команда готова</strong></td>
+                        <td>>50%</td>
+                        <td>Нужен аудит людей</td>
+                        <td><span class="status-badge status-warning">⚠️ ОЦЕНИТЬ</span></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="highlight-box">
+                <strong>Текущий счёт:</strong>
+                <ul>
+                    <li>✅ GO: 3 критерия (финансы отличные)</li>
+                    <li>⚠️ НУЖНЫ ДАННЫЕ: 4 критерия (операционные вопросы)</li>
+                    <li>❌ NO-GO: 0 критериев</li>
+                </ul>
+
+                <strong>Вывод:</strong> Финансово бизнес готов. Нужно собрать операционные данные за 2-4 недели,
+                чтобы принять окончательное решение.
+            </div>
+        </div>
+
+        <!-- Key Risks -->
+        <div class="section">
+            <h2>7. Ключевые риски</h2>
+
+            <h3>🔴 Критичные риски (могут сломать переход)</h3>
+
+            <div class="warning-box">
+                <strong>1. Runway <6 месяцев</strong><br>
+                <strong>Митигация:</strong> Проверить резервы сейчас. Если недостаточно — получить кредитную линию
+                или растянуть переход на 18-24 мес (более плавно).
+            </div>
+
+            <div class="warning-box">
+                <strong>2. Green-fit клиентов <10</strong><br>
+                <strong>Митигация:</strong> Если текущая база не подходит, пересмотреть ICP или сделать пакеты проще/дешевле.
+                Возможно, начать с Yellow-fit клиентов (частичное соответствие).
+            </div>
+
+            <div class="warning-box">
+                <strong>3. Массовый уход команды (>30%)</strong><br>
+                <strong>Митигация:</strong> Прозрачная коммуникация стратегии. Retention программа для ключевых людей.
+                Hiring pipeline на замену.
+            </div>
+
+            <h3>🟡 Средние риски (управляемые)</h3>
+
+            <ul>
+                <li><strong>Автоматизация <30%</strong> → Пересмотреть нагрузку, возможно 1 CSM = 5-6 клиентов вместо 8-10</li>
+                <li><strong>Клиенты не переходят на пакеты</strong> → Пилот со скидкой 20-30%, доказать ценность</li>
+                <li><strong>CAC растёт >2x</strong> → Фокус на inbound (контент, кейсы), меньше cold outreach</li>
+            </ul>
+        </div>
+
+        <!-- Action Plan -->
+        <div class="section">
+            <h2>8. План действий на 4 недели</h2>
+
+            <div class="action-steps">
+                <div class="action-step">
+                    <strong>Неделя 1: Финансовый аудит</strong><br>
+                    • Посчитать резервы (cash + доступный кредит)<br>
+                    • Уточнить runway (сколько месяцев без новой выручки)<br>
+                    • Оценить worst-case: можем ли пережить 6 мес перехода?
+                </div>
+
+                <div class="action-step">
+                    <strong>Неделя 2: Клиентский аудит</strong><br>
+                    • Список всех текущих клиентов<br>
+                    • Оценка по 5 критериям → Green/Yellow/Red<br>
+                    • Выбрать 3 Green-клиентов для pilot пакета
+                </div>
+
+                <div class="action-step">
+                    <strong>Неделя 3: Операционный аудит</strong><br>
+                    • Time tracking: 5 клиентов, 2 недели<br>
+                    • Разбивка времени: reporting, диагностика, настройка, встречи<br>
+                    • Оценить: что можно автоматизировать? (цель >30%)
+                </div>
+
+                <div class="action-step">
+                    <strong>Неделя 4: Аудит команды + pilot</strong><br>
+                    • Оценка людей: кто CSM, кто Specialist, кто не сможет<br>
+                    • Драфт 2-3 пакетов + unit-экономика<br>
+                    • Запуск pilot с 3 клиентами (скидка 20-30%)
+                </div>
+            </div>
+        </div>
+
+        <!-- Final Verdict -->
+        <div class="section">
+            <h2>9. Финальный вердикт</h2>
+
+            <div class="success-box">
+                <h3 style="margin: 0 0 12px 0; color: #137333;">✅ СТРАТЕГИЯ РЕАЛИЗУЕМА</h3>
+
+                <p style="margin-bottom: 12px;">
+                    <strong>Почему:</strong>
+                </p>
+                <ul>
+                    <li>Финансовое состояние сильное: margin 40.8%, net margin 27.6%</li>
+                    <li>Есть запас для инвестиций в переход (прибыль 3M₽/мес)</li>
+                    <li>Unit-экономика новой модели работает (margin 50-60% vs текущие 40.8%)</li>
+                    <li>Цель 40 клиентов на пакетах реалистична при текущей базе</li>
+                    <li>Revenue/чел вырастет с 145k до 250k₽ (+72%) без роста команды</li>
+                </ul>
+
+                <p style="margin: 16px 0 12px 0;">
+                    <strong>Что нужно сделать:</strong>
+                </p>
+                <ul>
+                    <li><strong>Проверить runway</strong> — критичен для безопасного перехода</li>
+                    <li><strong>Собрать данные по клиентам</strong> — понять, сколько Green-fit</li>
+                    <li><strong>Запустить pilot</strong> — доказать модель на 3 клиентах за 3 месяца</li>
+                    <li><strong>Оценить команду</strong> — кто может, кто нет, кого нанять</li>
+                </ul>
+
+                <p style="margin-top: 16px; font-size: 16px;">
+                    <strong>Следующий шаг:</strong> Выполнить план на 4 недели, потом принять окончательное решение GO/NO-GO на основе pilot результатов.
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

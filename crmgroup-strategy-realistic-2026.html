@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Реалистичная стратегия развития — CRM Group 2026-2029</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-bg-primary: #ffffff;
+            --color-bg-secondary: #fafbfc;
+            --color-bg-tertiary: #f8f9fa;
+            --color-text-primary: #1a1a1a;
+            --color-text-secondary: #5f6368;
+            --color-accent: #1a73e8;
+            --color-success: #34a853;
+            --color-warning: #fbbc04;
+            --color-danger: #ea4335;
+            --space-md: 16px;
+            --space-lg: 24px;
+            --space-xl: 32px;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--color-bg-secondary);
+            color: var(--color-text-primary);
+            line-height: 1.6;
+            font-size: 14px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container { max-width: 1000px; margin: 0 auto; padding: var(--space-xl) var(--space-lg); }
+
+        .header {
+            background: var(--color-bg-primary);
+            border-radius: var(--radius-lg);
+            padding: var(--space-xl);
+            margin-bottom: var(--space-xl);
+            border: 1px solid #e8eaed;
+        }
+
+        .logo {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--color-text-secondary);
+            margin-bottom: var(--space-md);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        h1 {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--color-text-primary);
+            line-height: 1.2;
+            margin-bottom: var(--space-md);
+        }
+
+        .subtitle {
+            font-size: 16px;
+            color: var(--color-text-secondary);
+            font-weight: 400;
+        }
+
+        .current-state {
+            background: linear-gradient(135deg, #ea4335 0%, #fbbc04 100%);
+            border-radius: var(--radius-lg);
+            padding: var(--space-xl);
+            margin-bottom: var(--space-xl);
+            color: white;
+        }
+
+        .current-state-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: var(--space-md);
+            margin-top: var(--space-lg);
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: var(--radius-md);
+            padding: var(--space-md);
+            backdrop-filter: blur(10px);
+        }
+
+        .stat-value {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .stat-label {
+            font-size: 13px;
+            opacity: 0.9;
+        }
+
+        .section {
+            background: var(--color-bg-primary);
+            border-radius: var(--radius-lg);
+            padding: var(--space-xl);
+            margin-bottom: var(--space-xl);
+            border: 1px solid #e8eaed;
+        }
+
+        h2 {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--color-text-primary);
+            margin-bottom: var(--space-lg);
+        }
+
+        h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--color-text-primary);
+            margin-bottom: var(--space-md);
+        }
+
+        .vision-box {
+            background: #f0f7ff;
+            border-left: 4px solid var(--color-accent);
+            padding: var(--space-lg);
+            border-radius: var(--radius-md);
+            margin-bottom: var(--space-md);
+        }
+
+        .vision-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: #1557b0;
+            margin-bottom: 8px;
+        }
+
+        .vision-text {
+            font-size: 14px;
+            color: var(--color-text-primary);
+            line-height: 1.7;
+        }
+
+        .roadmap-stages {
+            display: grid;
+            gap: var(--space-xl);
+            margin-top: var(--space-xl);
+        }
+
+        .stage {
+            position: relative;
+            background: var(--color-bg-tertiary);
+            border-radius: var(--radius-lg);
+            padding: var(--space-lg);
+            border: 2px solid #e8eaed;
+            transition: all 0.2s ease;
+        }
+
+        .stage.critical { border-color: var(--color-danger); background: #fef7f7; }
+        .stage:hover { border-color: var(--color-accent); box-shadow: 0 4px 12px rgba(26, 115, 232, 0.1); }
+
+        .stage-number {
+            position: absolute;
+            top: -12px;
+            left: var(--space-lg);
+            background: var(--color-accent);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        .stage.critical .stage-number { background: var(--color-danger); }
+
+        .stage-header {
+            margin-top: 8px;
+            margin-bottom: var(--space-md);
+        }
+
+        .stage-name {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--color-text-primary);
+            margin-bottom: 8px;
+        }
+
+        .stage-timeline {
+            display: inline-block;
+            background: var(--color-bg-primary);
+            padding: 4px 12px;
+            border-radius: 14px;
+            font-size: 13px;
+            color: var(--color-text-secondary);
+            font-weight: 500;
+        }
+
+        .stage-goal {
+            font-size: 14px;
+            color: var(--color-text-secondary);
+            margin-bottom: var(--space-lg);
+            font-style: italic;
+        }
+
+        .stage-block {
+            background: var(--color-bg-primary);
+            border-radius: var(--radius-md);
+            padding: var(--space-md);
+            margin-bottom: var(--space-md);
+        }
+
+        .stage-block-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1557b0;
+            margin-bottom: 8px;
+        }
+
+        .stage-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .stage-list li {
+            padding-left: 20px;
+            margin-bottom: 8px;
+            position: relative;
+            font-size: 14px;
+            color: var(--color-text-primary);
+        }
+
+        .stage-list li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--color-accent);
+            font-weight: 600;
+        }
+
+        .metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--space-md);
+            margin-top: var(--space-md);
+        }
+
+        .metric-card {
+            background: var(--color-bg-primary);
+            border: 2px solid #e8eaed;
+            border-radius: var(--radius-md);
+            padding: var(--space-md);
+            text-align: center;
+        }
+
+        .metric-label {
+            font-size: 12px;
+            color: var(--color-text-secondary);
+            margin-bottom: 4px;
+            text-transform: uppercase;
+        }
+
+        .metric-value {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--color-accent);
+        }
+
+        .metric-change {
+            font-size: 12px;
+            color: var(--color-success);
+            font-weight: 500;
+            margin-top: 4px;
+        }
+
+        .danger-box {
+            background: #fce8e6;
+            border-left: 4px solid var(--color-danger);
+            padding: var(--space-md);
+            border-radius: var(--radius-md);
+            margin: var(--space-md) 0;
+        }
+
+        .warning-box {
+            background: #fef7e0;
+            border-left: 4px solid var(--color-warning);
+            padding: var(--space-md);
+            border-radius: var(--radius-md);
+            margin: var(--space-md) 0;
+        }
+
+        .success-box {
+            background: #e6f9ed;
+            border-left: 4px solid var(--color-success);
+            padding: var(--space-md);
+            border-radius: var(--radius-md);
+            margin: var(--space-md) 0;
+        }
+
+        .timeline-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: var(--space-lg) 0;
+        }
+
+        .timeline-table th,
+        .timeline-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #e8eaed;
+        }
+
+        .timeline-table th {
+            background: var(--color-bg-tertiary);
+            font-weight: 600;
+            font-size: 13px;
+        }
+
+        @media (max-width: 768px) {
+            .container { padding: var(--space-lg) var(--space-md); }
+            h1 { font-size: 24px; }
+            .stats-grid, .metrics { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">CRM Group / Email Soldiers</div>
+            <h1>Реалистичная стратегия развития 2026-2029</h1>
+            <p class="subtitle">От выживания к оператору функции управления ценностью клиентов</p>
+        </div>
+
+        <!-- Текущее состояние -->
+        <div class="current-state">
+            <div class="current-state-title">⚠️ Точка А: Реальное состояние (факт 2025)</div>
+            <p style="opacity: 0.95; margin-bottom: var(--space-md);">
+                Бизнес на грани рентабельности. Чистая маржа 5% (план был 27.6%). Операционные расходы съедают
+                почти всю валовую прибыль. Без стабилизации трансформация невозможна.
+            </p>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value">83 чел</div>
+                    <div class="stat-label">в команде</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">11.6M₽</div>
+                    <div class="stat-label">выручка/месяц</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">5%</div>
+                    <div class="stat-label">Чистая маржа</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">139k₽</div>
+                    <div class="stat-label">выручка на человека</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">580k₽</div>
+                    <div class="stat-label">прибыль/месяц</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">41%</div>
+                    <div class="stat-label">план продаж (штук)</div>
+                </div>
+            </div>
+
+            <div class="danger-box" style="margin-top: var(--space-lg); background: rgba(255,255,255,0.2); border-left-color: white;">
+                <strong style="color: white;">Критичная проблема:</strong> Операционные расходы 37% выручки (норма 20-30%).
+                При такой чистой марже любое падение выручки на 5-10% = убыток. Нет запаса для трансформации.
+            </div>
+        </div>
+
+        <!-- Видение и миссия -->
+        <div class="section">
+            <h2>Куда мы идём (видение сохраняется)</h2>
+
+            <div class="vision-box">
+                <div class="vision-title">Видение (4-5 лет)</div>
+                <div class="vision-text">
+                    Удержание клиентов и рост LTV (ценности клиента за весь период) станут в компаниях базовой, управляемой бизнес-функцией —
+                    наравне с финансами и продажами. Повторные продажи не будут зависеть от разовых кампаний,
+                    героизма отдельных сотрудников или ручной работы.
+                </div>
+            </div>
+
+            <div class="vision-box">
+                <div class="vision-title">Миссия</div>
+                <div class="vision-text">
+                    Мы берём на себя управление ростом LTV и повторных продаж, превращая удержание из набора
+                    маркетинговых активностей в устойчивую операционную функцию с измеримым вкладом в прибыль бизнеса.
+                </div>
+            </div>
+
+            <div class="warning-box">
+                <strong>⚠️ ВАЖНО:</strong> Видение сохраняется, но <strong>timeline меняется</strong>.
+                Вместо 3-5 лет → 4-5 лет. Первые 6-12 месяцев уйдут на стабилизацию прибыльности,
+                потом трансформация бизнес-модели.
+            </div>
+        </div>
+
+        <!-- Дорожная карта -->
+        <div class="section">
+            <h2>Дорожная карта: 5 стадий (с учётом стабилизации)</h2>
+
+            <div class="danger-box">
+                <strong>🚨 КРИТИЧНО:</strong> Добавлена <strong>Этап 0: СТАБИЛИЗАЦИЯ</strong> (0-6 мес).
+                Без неё трансформация приведёт к убыткам -9M₽ за 6 месяцев.
+            </div>
+
+            <table class="timeline-table">
+                <thead>
+                    <tr>
+                        <th>Стадия</th>
+                        <th>Фокус</th>
+                        <th>Срок</th>
+                        <th>Главная метрика</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="background: #fef7f7;">
+                        <td><strong style="color: #ea4335;">Этап 0: СТАБИЛИЗАЦИЯ</strong></td>
+                        <td>Вернуть прибыльность</td>
+                        <td>0-6 мес</td>
+                        <td>чистая маржа 5% → 15-20%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Этап 1: СТАНДАРТИЗАЦИЯ</strong></td>
+                        <td>Пакеты вместо почасовой оплаты</td>
+                        <td>6-12 мес</td>
+                        <td>50%+ клиентов на пакетах</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Этап 2: ПОВЫШЕНИЕ ЭФФЕКТИВНОСТИ</strong></td>
+                        <td>Автоматизация + эффективность</td>
+                        <td>12-24 мес</td>
+                        <td>выручка/чел 250-300k₽</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Этап 3: МАСШТАБИРОВАНИЕ</strong></td>
+                        <td>Подписка + управление ценностью клиентов</td>
+                        <td>24-42 мес</td>
+                        <td>50+ клиентов, 80%+ ежемесячная регулярная выручка (MRR)</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="roadmap-stages">
+                <!-- Этап 0: СТАБИЛИЗАЦИЯ -->
+                <div class="stage critical">
+                    <div class="stage-number">0</div>
+                    <div class="stage-header">
+                        <div class="stage-name">СТАБИЛИЗАЦИЯ — Вернуть прибыльность</div>
+                        <span class="stage-timeline">0-6 месяцев</span>
+                    </div>
+                    <div class="stage-goal">
+                        Цель: чистая маржа 5% → 15-20%. Создать запас для трансформации.
+                    </div>
+
+                    <div class="stage-block">
+                        <div class="stage-block-title">⚠️ КРИТИЧНО: Без этой фазы трансформация = банкротство</div>
+                        <ul class="stage-list">
+                            <li>При чистой марже 5% и прибыли 580k₽/мес нет запаса для инвестиций</li>
+                            <li>Worst-case трансформации сейчас: убыток -1.5M₽/мес × 6 мес = -9M₽</li>
+                            <li>Операционные расходы 37% vs норма 20-30% — главная причина низкой прибыли</li>
+                        </ul>
+                    </div>
+
+                    <div class="stage-block">
+                        <div class="stage-block-title">Что делаем (месяц 1-2)</div>
+                        <ul class="stage-list">
+                            <li>Аудит операционных расходов: куда уходят 4.3M₽/мес (52M₽/год)?</li>
+                            <li>Аудит прибыльности по клиентам: чистая маржа по каждому → прибыльные / нейтральные / убыточные</li>
+                            <li>Уйти от убыточных клиентов или поднять цену +30-50%</li>
+                            <li>Учёт рабочего времени: понять куда уходит время команды</li>
+                        </ul>
+                    </div>
+
+                    <div class="stage-block">
+                        <div class="stage-block-title">Что делаем (месяц 3-6)</div>
+                        <ul class="stage-list">
+                            <li>Сократить операционные расходы: 4.3M → 3M₽/мес (-1.3M экономия)</li>
+                            <li>Автоматизация отчётности → освободить 20-30% времени менеджеров</li>
+                            <li>Повысить эффективность: выручка/чел 139k → 180-200k₽</li>
+                            <li>Ускорить sales: 4 → 6-7 сделок/мес (стандартные пакеты)</li>
+                        </ul>
+                    </div>
+
+                    <div class="metrics">
+                        <div class="metric-card">
+                            <div class="metric-label">Чистая маржа</div>
+                            <div class="metric-value">5% → 18%</div>
+                            <div class="metric-change">+13pp</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-label">Прибыль/мес</div>
+                            <div class="metric-value">0.6M → 2.3M₽</div>
+                            <div class="metric-change">+4x рост</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-label">Операционка</div>
+                            <div class="metric-value">37% → 25%</div>
+                            <div class="metric-change">-1.3M₽/мес</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-label">выручка/чел</div>
+                            <div class="metric-value">139k → 180k₽</div>
+                            <div class="metric-change">+30%</div>
+                        </div>
+                    </div>
+
+                    <div class="danger-box" style="margin-top: var(--space-md);">
+                        <strong>🚨 ГОТОВ / НЕ ГОТОВ — чекпоинт:</strong> Если через 6 мес чистая маржа &lt;12% →
+                        трансформация откладывается. Продолжаем стабилизацию ещё 3-6 месяцев.
+                    </div>
+                </div>
+
+                <!-- Этап 1: СТАНДАРТИЗАЦИЯ -->
+                <div class="stage">
+                    <div class="stage-number">1</div>
+                    <div class="stage-header">
+                        <div class="stage-name">СТАНДАРТИЗАЦИЯ — Пакеты вместо почасовой оплаты</div>
+                        <span class="stage-timeline">6-12 месяцев</span>
+                    </div>
+                    <div class="stage-goal">
+                        Цель: Стандартизировать предложение, перейти от почасовой оплаты к фиксированным пакетам
+                    </div>
+
+                    <div class="success-box">
+                        <strong>✅ Условия запуска:</strong>
+                        <ul style="margin-left: 20px; margin-top: 8px;">
+                            <li>Чистая маржа >15%</li>
+                            <li>Прибыль >2M₽/мес стабильно 3 месяца</li>
+                            <li>Резервный фонд 10-15M₽ накоплен</li>
+                        </ul>
+                    </div>
+
+                    <div class="stage-block">
+                        <div class="stage-block-title">Создать 3-4 стандартных пакета</div>
+                        <ul class="stage-list">
+                            <li>Пакет "Базовый жизненный цикл" — 200k₽/мес (3 базовых сценария)</li>
+                            <li>Пакет "Рост ценности клиентов" — 400k₽/мес (full lifecycle, 5-7 сценариев)</li>
+                            <li>Пакет "Полное управление" — 800k₽/мес (управление всей функцией)</li>
+                            <li>Чек-листы и шаблоны для каждого пакета</li>
+                        </ul>
+                    </div>
+
+                    <div class="stage-block">
+                        <div class="stage-block-title">План перехода</div>
+                        <ul class="stage-list">
+                            <li>Новые клиенты: только пакеты</li>
+                            <li>Старые клиенты: миграция за 3-6 месяцев (мягко)</li>
+                            <li>Кто не переходит: почасовая оплата, но +30% к ставке</li>
+                            <li>Пилот: 3-5 прибыльных клиентов на пакетах (скидка 20%)</li>
+                        </ul>
+                    </div>
+
+                    <div class="metrics">
+                        <div class="metric-card">
+                            <div class="metric-label">Клиенты на пакетах</div>
+                            <div class="metric-value">50%+</div>
+                            <div class="metric-change">Новые + пилот</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-label">выручка/чел</div>
+                            <div class="metric-value">180k → 220k₽</div>
+                            <div class="metric-change">+22%</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-label">Команда</div>
+                            <div class="metric-value">83 → 75 чел</div>
+                            <div class="metric-change">Естественная убыль</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Этап 2: ПОВЫШЕНИЕ ЭФФЕКТИВНОСТИ -->
+                <div class="stage">
+                    <div class="stage-number">2</div>
+                    <div class="stage-header">
+                        <div class="stage-name">ПОВЫШЕНИЕ ЭФФЕКТИВНОСТИ — Делать меньше, зарабатывать больше</div>
+                        <span class="stage-timeline">12-24 месяцев</span>
+                    </div>
+                    <div class="stage-goal">
+                        Цель: Автоматизировать рутину, построить эффективность (1 человек = больше клиентов)
+                    </div>
+
+                    <div class="stage-block">
+                        <div class="stage-block-title">Автоматизация рутины (быстрые результаты)</div>
+                        <ul class="stage-list">
+                            <li>Отчётность: автоматические дашборды (освободит 30-40% времени)</li>
+                            <li>Диагностика: чек-листы + скрипты вместо "каждый раз с нуля"</li>
+                            <li>Подключение клиентов: видео + материалы для самостоятельного изучения вместо 10 часов звонков</li>
+                            <li>Библиотека шаблонов: методики по вертикалям (электронная торговля, услуги, B2B)</li>
+                        </ul>
+                    </div>
+
+                    <div class="stage-block">
+                        <div class="stage-block-title">Изменение структуры команды</div>
+                        <ul class="stage-list">
+                            <li>Было: 1 менеджер = 2-3 клиента (выделенная команда)</li>
+                            <li>Стало: 1 менеджер по работе с клиентами = 8-10 клиентов</li>
+                            <li>Специалисты работают пулом на 30-40 клиентов</li>
+                            <li>1 аналитик данных на 30-40 клиентов (метрики + инсайты)</li>
+                        </ul>
+                    </div>
+
+                    <div class="stage-block">
+                        <div class="stage-block-title">Специализация по отраслям</div>
+                        <ul class="stage-list">
+                            <li>Выбрать 2-3 вертикали с максимальной концентрацией клиентов</li>
+                            <li>Создать методики: что работает в каждой вертикали</li>
+                            <li>Специализированные команды (эффективнее универсальных)</li>
+                        </ul>
+                    </div>
+
+                    <div class="metrics">
+                        <div class="metric-card">
+                            <div class="metric-label">выручка/чел</div>
+                            <div class="metric-value">220k → 280k₽</div>
+                            <div class="metric-change">+27% через эффективность</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-label">Клиентов/менеджер</div>
+                            <div class="metric-value">2-3 → 8-10</div>
+                            <div class="metric-change">3x рост</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-label">Автоматизация</div>
+                            <div class="metric-value">30%+</div>
+                            <div class="metric-change">времени сэкономлено</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-label">Команда</div>
+                            <div class="metric-value">75 → 65 чел</div>
+                            <div class="metric-change">Заморозка найма</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Этап 3: МАСШТАБИРОВАНИЕ -->
+                <div class="stage">
+                    <div class="stage-number">3</div>
+                    <div class="stage-header">
+                        <div class="stage-name">МАСШТАБИРОВАНИЕ — Подписка и управление ценностью</div>
+                        <span class="stage-timeline">24-42 месяцев</span>
+                    </div>
+                    <div class="stage-goal">
+                        Цель: Подписная модель, управление функцией ценности клиентов, предсказуемая ежемесячная регулярная выручка (MRR)
+                    </div>
+
+                    <div class="stage-block">
+                        <div class="stage-block-title">Переход к подписной модели</div>
+                        <ul class="stage-list">
+                            <li>Пакеты → ежемесячный контракт (ретейнер) (минимум 6-12 мес контракт)</li>
+                            <li>Ценообразование: базовая ставка + % от прироста LTV</li>
+                            <li>Пример: 300k₽/мес + 10% от прироста repeat revenue</li>
+                            <li>Ежеквартальные бизнес-обзоры с метриками (LTV, отток клиентов, стоимость привлечения к ценности клиента (CAC:LTV))</li>
+                        </ul>
+                    </div>
+
+                    <div class="stage-block">
+                        <div class="stage-block-title">Управление функцией ценности клиентов</div>
+                        <ul class="stage-list">
+                            <li>Мы не "делаем кампании", мы "отвечаем за рост LTV"</li>
+                            <li>Стандарты обслуживания (SLA) на response time, optimization cycles</li>
+                            <li>Регулярные метрики: LTV, Repeat Rate, отток клиентов</li>
+                            <li>Клиент воспринимает нас как оператора функции, не подрядчика</li>
+                        </ul>
+                    </div>
+
+                    <div class="stage-block">
+                        <div class="stage-block-title">Масштаб без роста команды 1:1</div>
+                        <ul class="stage-list">
+                            <li>50+ клиентов на 60-65 человек (не 150!)</li>
+                            <li>Автоматизация + методики + специализация = эффективность</li>
+                            <li>Target: 500k₽/чел revenue (топ 10% агентств)</li>
+                        </ul>
+                    </div>
+
+                    <div class="metrics">
+                        <div class="metric-card">
+                            <div class="metric-label">Ежемесячная регулярная выручка (MRR)</div>
+                            <div class="metric-value">80%+</div>
+                            <div class="metric-change">recurring revenue</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-label">Клиенты</div>
+                            <div class="metric-value">50+</div>
+                            <div class="metric-change">на 60-65 человек</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-label">выручка/чел</div>
+                            <div class="metric-value">500k₽</div>
+                            <div class="metric-change">топ 10% рынка</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-label">Чистая маржа</div>
+                            <div class="metric-value">30-35%</div>
+                            <div class="metric-change">vs 5% сейчас</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Сравнение -->
+        <div class="section">
+            <h2>Сравнение: было vs стало</h2>
+
+            <table class="timeline-table">
+                <thead>
+                    <tr>
+                        <th>Параметр</th>
+                        <th>Оптимистичный план (было)</th>
+                        <th>Реалистичный план (стало)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Стартовая точка</strong></td>
+                        <td>Здоровый бизнес (маржа 27.6%)</td>
+                        <td style="color: #ea4335;">Выживание (маржа 5%)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Фаз трансформации</strong></td>
+                        <td>3 стадии</td>
+                        <td>4 стадии (+ стабилизация)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Timeline до новой модели</strong></td>
+                        <td>18-24 месяца</td>
+                        <td style="font-weight: 600;">30-42 месяца</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Приоритет #1</strong></td>
+                        <td>Продуктизация + продажи</td>
+                        <td style="font-weight: 600;">Стабилизация прибыльности</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Финансовый запас требуется</strong></td>
+                        <td>Достаточно текущего</td>
+                        <td style="color: #fbbc04;">Нужно создать 15-20M₽</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Риск провала</strong></td>
+                        <td>Средний</td>
+                        <td style="color: #ea4335;">Высокий без стабилизации</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="warning-box">
+                <strong>⚠️ ГЛАВНОЕ ОТЛИЧИЕ:</strong> Добавлена обязательная фаза стабилизации (0-6 мес).
+                Без неё трансформация приведёт к убыткам и может сломать бизнес.
+                Timeline увеличен на 12-18 месяцев, но это реалистичный путь.
+            </div>
+        </div>
+
+        <!-- План действий -->
+        <div class="section">
+            <h2>Что делать прямо сейчас (первые 30 дней)</h2>
+
+            <div class="danger-box">
+                <strong>🚨 КРИТИЧНО:</strong> Первый месяц = диагностика. Без понимания куда уходят деньги
+                невозможно принять решение по стабилизации.
+            </div>
+
+            <h3>Неделя 1-2: Финансовый аудит</h3>
+            <ul style="margin-left: 20px;">
+                <li>Детальная разбивка операционных расходов за 6 месяцев (куда уходят 4.3M₽/мес?)</li>
+                <li>Аудит прибыльности по клиентам: чистая маржа по каждому → прибыльные / нейтральные / убыточные</li>
+                <li>Посчитать резервы: сколько месяцев можем прожить без новой выручки?</li>
+            </ul>
+
+            <h3>Неделя 3-4: Операционный аудит</h3>
+            <ul style="margin-left: 20px;">
+                <li>Учёт рабочего времени: 5 клиентов, 2 недели (куда уходит время?)</li>
+                <li>Выявить категории где >30% можно автоматизировать</li>
+                <li>Посчитать: сколько клиентов реально ведёт 1 менеджер?</li>
+            </ul>
+
+            <h3>Неделя 4-5: Быстрые результаты</h3>
+            <ul style="margin-left: 20px;">
+                <li>Уйти от убыточных клиентов или поднять цену +30-50%</li>
+                <li>Сократить 2-3 самых дорогих неэффективных расхода</li>
+                <li>Автоматизировать отчётность для топ-5 клиентов (пилот)</li>
+            </ul>
+
+            <div class="success-box" style="margin-top: var(--space-lg);">
+                <strong>✅ Цель на 30 дней:</strong> Понять куда уходят деньги + быстрые результаты на 300-500k₽/мес экономии.
+                Это даст прирост чистой маржи 5% → 7-8% и докажет, что стабилизация возможна.
+            </div>
+        </div>
+
+        <!-- Итоги -->
+        <div class="section">
+            <h2>Главные выводы</h2>
+
+            <div class="warning-box">
+                <strong>⚠️ СТРАТЕГИЯ ТРАНСФОРМАЦИИ СОХРАНЯЕТСЯ, НО TIMELINE МЕНЯЕТСЯ</strong>
+                <ul style="margin-left: 20px; margin-top: 12px;">
+                    <li>Видение и миссия остаются прежними</li>
+                    <li>Но добавлена обязательная фаза стабилизации (0-6 мес)</li>
+                    <li>Timeline увеличен: 18-24 мес → 30-42 мес</li>
+                    <li>Приоритет сдвинут: сначала выживание, потом рост</li>
+                </ul>
+            </div>
+
+            <div class="danger-box">
+                <strong>🚨 КРИТИЧНЫЕ УСЛОВИЯ ДЛЯ ПЕРЕХОДА К ТРАНСФОРМАЦИИ:</strong>
+                <ol style="margin-left: 20px; margin-top: 12px;">
+                    <li><strong>Чистая маржа >15%</strong> стабильно 3 месяца</li>
+                    <li><strong>Резервный фонд 15-20M₽</strong> накоплен</li>
+                    <li><strong>Sales 8-10 сделок/мес</strong> (сейчас 4/мес)</li>
+                    <li><strong>выручка/чел >180k₽</strong> (сейчас 139k₽)</li>
+                </ol>
+                <p style="margin-top: 12px;">
+                    Если эти условия не выполнены — трансформация откладывается. Продолжаем стабилизацию.
+                </p>
+            </div>
+
+            <div class="success-box">
+                <strong>✅ ЧТО ДАСТ РЕАЛИСТИЧНЫЙ ПОДХОД:</strong>
+                <ul style="margin-left: 20px; margin-top: 12px;">
+                    <li>Меньше риск банкротства (есть финансовый запас для маневра)</li>
+                    <li>Команда видит результаты стабилизации → больше доверия к трансформации</li>
+                    <li>Клиенты не пострадают от резких изменений</li>
+                    <li>Финальная модель устойчивее (маржа 30-35% vs 5% сейчас)</li>
+                </ul>
+            </div>
+
+            <p style="margin-top: var(--space-lg); font-size: 16px; font-weight: 600;">
+                <strong>Следующий шаг:</strong> Финансовый + операционный аудит (30 дней).
+                Потом решение: переход к стабилизации или поиск других вариантов.
+            </p>
+        </div>
+    </div>
+</body>
+</html>

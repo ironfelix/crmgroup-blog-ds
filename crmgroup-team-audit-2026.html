@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Аудит команды CRM Group 2026 — Оптимизация ФОТ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-bg-primary: #ffffff;
+            --color-bg-secondary: #fafbfc;
+            --color-bg-tertiary: #f8f9fa;
+            --color-text-primary: #1a1a1a;
+            --color-text-secondary: #5f6368;
+            --color-accent: #1a73e8;
+            --color-success: #34a853;
+            --color-warning: #fbbc04;
+            --color-danger: #ea4335;
+            --space-md: 16px;
+            --space-lg: 24px;
+            --space-xl: 32px;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--color-bg-secondary);
+            color: var(--color-text-primary);
+            line-height: 1.6;
+            font-size: 14px;
+            -webkit-font-smoothing: antialiased;
+            padding: var(--space-xl);
+        }
+
+        .container { max-width: 1200px; margin: 0 auto; }
+
+        .header {
+            background: linear-gradient(135deg, #1a73e8 0%, #174ea6 100%);
+            color: white;
+            padding: var(--space-xl);
+            border-radius: var(--radius-lg);
+            margin-bottom: var(--space-xl);
+        }
+
+        .header h1 { font-size: 32px; font-weight: 700; margin-bottom: 8px; }
+        .header p { font-size: 16px; opacity: 0.9; }
+
+        .alert {
+            background: #fce8e6;
+            border-left: 6px solid var(--color-danger);
+            padding: var(--space-xl);
+            border-radius: var(--radius-md);
+            margin-bottom: var(--space-xl);
+        }
+
+        .alert-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--color-danger);
+            margin-bottom: 12px;
+        }
+
+        .section {
+            background: var(--color-bg-primary);
+            border-radius: var(--radius-lg);
+            padding: var(--space-xl);
+            margin-bottom: var(--space-xl);
+            border: 1px solid #e8eaed;
+        }
+
+        h2 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: var(--space-lg);
+            color: var(--color-text-primary);
+        }
+
+        h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: var(--space-md);
+            color: var(--color-accent);
+            margin-top: var(--space-lg);
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--space-md);
+            margin: var(--space-md) 0;
+        }
+
+        .metric-card {
+            background: var(--color-bg-tertiary);
+            padding: var(--space-md);
+            border-radius: var(--radius-md);
+            border: 2px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .metric-card:hover {
+            border-color: var(--color-accent);
+            transform: translateY(-2px);
+        }
+
+        .metric-label {
+            font-size: 12px;
+            color: var(--color-text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+
+        .metric-value {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--color-text-primary);
+        }
+
+        .metric-value.danger { color: var(--color-danger); }
+        .metric-value.success { color: var(--color-success); }
+        .metric-value.warning { color: var(--color-warning); }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: var(--space-md) 0;
+        }
+
+        th {
+            background: var(--color-bg-tertiary);
+            text-align: left;
+            padding: 12px;
+            font-weight: 600;
+            font-size: 12px;
+            color: var(--color-text-secondary);
+            text-transform: uppercase;
+            border-bottom: 2px solid #e8eaed;
+        }
+
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #f1f3f4;
+        }
+
+        tr:hover {
+            background: var(--color-bg-tertiary);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .badge-critical {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .badge-important {
+            background: #e3f2fd;
+            color: #1565c0;
+        }
+
+        .badge-nice {
+            background: #fff3e0;
+            color: #ef6c00;
+        }
+
+        .badge-redundant {
+            background: #ffebee;
+            color: #c62828;
+        }
+
+        .recommendation {
+            background: var(--color-bg-tertiary);
+            padding: var(--space-md);
+            border-radius: var(--radius-md);
+            margin: var(--space-md) 0;
+            border-left: 4px solid var(--color-accent);
+        }
+
+        .recommendation h4 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .recommendation ul {
+            margin-left: 20px;
+            margin-top: 8px;
+        }
+
+        .recommendation li {
+            margin-bottom: 6px;
+        }
+
+        .scenario {
+            background: var(--color-bg-tertiary);
+            padding: var(--space-lg);
+            border-radius: var(--radius-md);
+            margin: var(--space-md) 0;
+        }
+
+        .scenario-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+        }
+
+        .scenario-conservative { border-left: 6px solid var(--color-success); }
+        .scenario-moderate { border-left: 6px solid var(--color-warning); }
+        .scenario-aggressive { border-left: 6px solid var(--color-danger); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Аудит команды CRM Group 2026</h1>
+            <p>Анализ структуры ФОТ и рекомендации по оптимизации для выхода на целевую маржинальность</p>
+            <p style="margin-top: 8px; font-size: 14px; opacity: 0.8;">Дата анализа: 16.02.2026</p>
+        </div>
+
+        <div class="alert">
+            <div class="alert-title">Критическая ситуация</div>
+            <p>Текущая чистая маржа: <strong>5%</strong> при выручке 138.8M₽/год</p>
+            <p>ФОТ от выручки: <strong>88.9%</strong> (норма для агентств 50-60%)</p>
+            <p>Для выхода на целевую маржу 15-20% необходимо сократить расходы на <strong>2.5-3.0M₽/мес</strong></p>
+        </div>
+
+        <!-- Executive Summary -->
+        <div class="section">
+            <h2>1. Executive Summary</h2>
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-label">Всего сотрудников</div>
+                    <div class="metric-value">81</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">ФОТ месяц (с налогами)</div>
+                    <div class="metric-value">10,284,652 ₽</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">ФОТ год</div>
+                    <div class="metric-value danger">123,415,826 ₽</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">% от выручки</div>
+                    <div class="metric-value danger">88.9%</div>
+                </div>
+            </div>
+
+            <h3>Структура расходов</h3>
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-label">Производство</div>
+                    <div class="metric-value success">6,397,734 ₽</div>
+                    <div style="font-size: 12px; color: var(--color-text-secondary); margin-top: 4px;">
+                        62.2% ФОТ
+                    </div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Производство (вспом.)</div>
+                    <div class="metric-value warning">1,357,623 ₽</div>
+                    <div style="font-size: 12px; color: var(--color-text-secondary); margin-top: 4px;">
+                        13.2% ФОТ
+                    </div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Непроизводство</div>
+                    <div class="metric-value danger">2,529,296 ₽</div>
+                    <div style="font-size: 12px; color: var(--color-text-secondary); margin-top: 4px;">
+                        24.6% ФОТ
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Структура команды -->
+        <div class="section">
+            <h2>2. Структура команды по департаментам</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Департамент</th>
+                        <th style="text-align: right;">Человек</th>
+                        <th style="text-align: right;">ФОТ месяц (₽)</th>
+                        <th style="text-align: right;">ФОТ год (₽)</th>
+                        <th style="text-align: right;">% ФОТ</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Интернет-маркетинг</strong></td>
+                        <td style="text-align: right;">23</td>
+                        <td style="text-align: right;">3,137,695</td>
+                        <td style="text-align: right;">37,652,340</td>
+                        <td style="text-align: right;">30.5%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Дизайн</strong></td>
+                        <td style="text-align: right;">11</td>
+                        <td style="text-align: right;">1,267,615</td>
+                        <td style="text-align: right;">15,211,382</td>
+                        <td style="text-align: right;">12.3%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Руководство</strong></td>
+                        <td style="text-align: right;">2</td>
+                        <td style="text-align: right;">927,360</td>
+                        <td style="text-align: right;">11,128,320</td>
+                        <td style="text-align: right;">9.0%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Креатив</strong></td>
+                        <td style="text-align: right;">6</td>
+                        <td style="text-align: right;">818,187</td>
+                        <td style="text-align: right;">9,818,241</td>
+                        <td style="text-align: right;">8.0%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Контент</strong></td>
+                        <td style="text-align: right;">10</td>
+                        <td style="text-align: right;">730,484</td>
+                        <td style="text-align: right;">8,765,806</td>
+                        <td style="text-align: right;">7.1%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>МарТех</strong></td>
+                        <td style="text-align: right;">4</td>
+                        <td style="text-align: right;">622,546</td>
+                        <td style="text-align: right;">7,470,553</td>
+                        <td style="text-align: right;">6.1%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Продажи</strong></td>
+                        <td style="text-align: right;">4</td>
+                        <td style="text-align: right;">496,973</td>
+                        <td style="text-align: right;">5,963,674</td>
+                        <td style="text-align: right;">4.8%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Аналитика</strong></td>
+                        <td style="text-align: right;">4</td>
+                        <td style="text-align: right;">490,111</td>
+                        <td style="text-align: right;">5,881,333</td>
+                        <td style="text-align: right;">4.8%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Офис</strong></td>
+                        <td style="text-align: right;">4</td>
+                        <td style="text-align: right;">468,435</td>
+                        <td style="text-align: right;">5,621,220</td>
+                        <td style="text-align: right;">4.6%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Верстка</strong></td>
+                        <td style="text-align: right;">4</td>
+                        <td style="text-align: right;">443,753</td>
+                        <td style="text-align: right;">5,325,037</td>
+                        <td style="text-align: right;">4.3%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Бухгалтерия</strong></td>
+                        <td style="text-align: right;">5</td>
+                        <td style="text-align: right;">351,753</td>
+                        <td style="text-align: right;">4,221,041</td>
+                        <td style="text-align: right;">3.4%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>HR</strong></td>
+                        <td style="text-align: right;">2</td>
+                        <td style="text-align: right;">284,774</td>
+                        <td style="text-align: right;">3,417,293</td>
+                        <td style="text-align: right;">2.8%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Маркетинг</strong></td>
+                        <td style="text-align: right;">2</td>
+                        <td style="text-align: right;">244,966</td>
+                        <td style="text-align: right;">2,939,586</td>
+                        <td style="text-align: right;">2.4%</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Топ-10 самых дорогих -->
+        <div class="section">
+            <h2>3. Топ-10 самых дорогих позиций</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ФИО</th>
+                        <th>Должность</th>
+                        <th>Департамент</th>
+                        <th style="text-align: right;">ЗП месяц (₽)</th>
+                        <th style="text-align: right;">ЗП год (₽)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Ильин Иван Константинович</td>
+                        <td>CEO (Генеральный директор)</td>
+                        <td>Руководство</td>
+                        <td style="text-align: right;">795,000</td>
+                        <td style="text-align: right;">9,540,000</td>
+                    </tr>
+                    <tr>
+                        <td>Чернышёв Денис Вадимович</td>
+                        <td>Синьор-стратег</td>
+                        <td>Интернет-маркетинг</td>
+                        <td style="text-align: right;">238,349</td>
+                        <td style="text-align: right;">2,860,186</td>
+                    </tr>
+                    <tr>
+                        <td>Абрамова Екатерина Владимировна</td>
+                        <td>Технический менеджер проектов/тимлид</td>
+                        <td>МарТех</td>
+                        <td style="text-align: right;">225,159</td>
+                        <td style="text-align: right;">2,701,909</td>
+                    </tr>
+                    <tr>
+                        <td>Гуренкова Инна Михайловна</td>
+                        <td>Руководитель клиентского сервиса</td>
+                        <td>Офис</td>
+                        <td style="text-align: right;">211,863</td>
+                        <td style="text-align: right;">2,542,361</td>
+                    </tr>
+                    <tr>
+                        <td>Самсаева Кристина Юрьевна</td>
+                        <td>Директор по персоналу</td>
+                        <td>HR</td>
+                        <td style="text-align: right;">198,720</td>
+                        <td style="text-align: right;">2,384,640</td>
+                    </tr>
+                    <tr>
+                        <td>Филиппова Екатерина Николаевна</td>
+                        <td>Руководитель отдела продаж</td>
+                        <td>Продажи</td>
+                        <td style="text-align: right;">198,720</td>
+                        <td style="text-align: right;">2,384,640</td>
+                    </tr>
+                    <tr>
+                        <td>Малыхина Юлия Эдуардовна</td>
+                        <td>Руководитель группы дизайнеров</td>
+                        <td>Дизайн</td>
+                        <td style="text-align: right;">198,621</td>
+                        <td style="text-align: right;">2,383,448</td>
+                    </tr>
+                    <tr>
+                        <td>Сламбеков Аргын</td>
+                        <td>Интернет-маркетолог</td>
+                        <td>Интернет-маркетинг</td>
+                        <td style="text-align: right;">194,434</td>
+                        <td style="text-align: right;">2,333,208</td>
+                    </tr>
+                    <tr>
+                        <td>Кострома Дмитрий Геннадьевич</td>
+                        <td>Интернет-маркетолог</td>
+                        <td>Интернет-маркетинг</td>
+                        <td style="text-align: right;">185,379</td>
+                        <td style="text-align: right;">2,224,552</td>
+                    </tr>
+                    <tr>
+                        <td>Петров Владислав Валерьевич</td>
+                        <td>Интернет-маркетолог</td>
+                        <td>Интернет-маркетинг</td>
+                        <td style="text-align: right;">185,379</td>
+                        <td style="text-align: right;">2,224,552</td>
+                    </tr>
+                    <tr>
+                        <td>Аксенова Наталья Валериевна</td>
+                        <td>CFO</td>
+                        <td>Руководство</td>
+                        <td style="text-align: right;">132,360</td>
+                        <td style="text-align: right;">1,588,320</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Анализ по категориям -->
+        <div class="section">
+            <h2>4. Категоризация сотрудников по критичности</h2>
+            <p style="margin-bottom: var(--space-lg); color: var(--color-text-secondary);">
+                Каждая позиция классифицирована по критичности для бизнеса:
+            </p>
+
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-label"><span class="badge badge-critical">CRITICAL</span></div>
+                    <div class="metric-value">13 чел</div>
+                    <div style="font-size: 14px; color: var(--color-text-secondary); margin-top: 8px;">
+                        2,785,476 ₽/мес
+                    </div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label"><span class="badge badge-important">IMPORTANT</span></div>
+                    <div class="metric-value">57 чел</div>
+                    <div style="font-size: 14px; color: var(--color-text-secondary); margin-top: 8px;">
+                        6,947,528 ₽/мес
+                    </div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label"><span class="badge badge-nice">NICE-TO-HAVE</span></div>
+                    <div class="metric-value">10 чел</div>
+                    <div style="font-size: 14px; color: var(--color-text-secondary); margin-top: 8px;">
+                        540,042 ₽/мес
+                    </div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label"><span class="badge badge-redundant">REDUNDANT</span></div>
+                    <div class="metric-value">1 чел</div>
+                    <div style="font-size: 14px; color: var(--color-text-secondary); margin-top: 8px;">
+                        11,606 ₽/мес
+                    </div>
+                </div>
+            </div>
+
+            <h3>CRITICAL — сохранить (13 чел, 2.8M₽/мес)</h3>
+            <div class="recommendation">
+                <p>Ключевые роли, без которых невозможна работа бизнеса. НЕ трогать.</p>
+                <table style="margin-top: 12px;">
+                    <thead>
+                        <tr>
+                            <th>ФИО</th>
+                            <th>Должность</th>
+                            <th>Департамент</th>
+                            <th style="text-align: right;">ЗП/мес (₽)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Ильин Иван Константинович</td><td>CEO (Генеральный директор)</td><td>Руководство</td><td style="text-align: right;">795,000</td></tr>
+                        <tr><td>Абрамова Екатерина Владимировна</td><td>Тех. менеджер проектов/тимлид</td><td>МарТех</td><td style="text-align: right;">225,159</td></tr>
+                        <tr><td>Гуренкова Инна Михайловна</td><td>Руководитель клиентского сервиса</td><td>Офис</td><td style="text-align: right;">211,863</td></tr>
+                        <tr><td>Самсаева Кристина Юрьевна</td><td>Директор по персоналу</td><td>HR</td><td style="text-align: right;">198,720</td></tr>
+                        <tr><td>Филиппова Екатерина Николаевна</td><td>Руководитель отдела продаж</td><td>Продажи</td><td style="text-align: right;">198,720</td></tr>
+                        <tr><td>Малыхина Юлия Эдуардовна</td><td>Руководитель группы дизайнеров</td><td>Дизайн</td><td style="text-align: right;">198,621</td></tr>
+                        <tr><td>Свистунов Даниил Иванович</td><td>Рук. отдела коммуникац. дизайна</td><td>Креатив</td><td style="text-align: right;">172,224</td></tr>
+                        <tr><td>Безух Михаил Алексеевич</td><td>Технический менеджер проектов</td><td>МарТех</td><td style="text-align: right;">158,976</td></tr>
+                        <tr><td>Куракин Валерий Сергеевич</td><td>Руководитель отдела аналитики</td><td>Аналитика</td><td style="text-align: right;">158,976</td></tr>
+                        <tr><td>Устинова Марина Александровна</td><td>Руководитель отдела веб-дизайна</td><td>Креатив</td><td style="text-align: right;">158,897</td></tr>
+                        <tr><td>Аксенова Наталья Валериевна</td><td>CFO</td><td>Руководство</td><td style="text-align: right;">132,360</td></tr>
+                        <tr><td>Филиппова Екатерина Николаевна</td><td>Директор по маркетингу</td><td>Маркетинг</td><td style="text-align: right;">99,310</td></tr>
+                        <tr><td>Профит</td><td>Рук. отд. бух. учета (АУТСОРС)</td><td>Бухгалтерия</td><td style="text-align: right;">76,650</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>IMPORTANT — оптимизировать (57 чел, 6.9M₽/мес)</h3>
+            <div class="recommendation">
+                <p>Производственные роли. Можно оптимизировать нагрузку, но не увольнять массово. Потенциал сокращения: 8-12 человек при перераспределении задач.</p>
+                <p style="margin-top: 12px; font-weight: 600;">Топ кандидаты на сокращение (низкая загрузка/дублирование):</p>
+                <table style="margin-top: 12px;">
+                    <thead>
+                        <tr>
+                            <th>ФИО</th>
+                            <th>Должность</th>
+                            <th>Департамент</th>
+                            <th style="text-align: right;">ЗП/мес (₽)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Радецкая Лика Дмитриевна</td><td>CRM-маркетолог стажер</td><td>Интернет-маркетинг</td><td style="text-align: right;">105,931</td></tr>
+                        <tr><td>Щендрик Полина Сергеевна</td><td>Интернет-маркетолог</td><td>Интернет-маркетинг</td><td style="text-align: right;">86,112</td></tr>
+                        <tr><td>Корсунова Дарья</td><td>Старший дизайнер</td><td>Дизайн</td><td style="text-align: right;">85,107</td></tr>
+                        <tr><td>Арнаут Денис Александрович</td><td>HTML-верстальщик</td><td>Верстка</td><td style="text-align: right;">86,170</td></tr>
+                        <tr><td>Гуслякова Виктория Сергеевна</td><td>Контент-менеджер</td><td>Контент</td><td style="text-align: right;">79,488</td></tr>
+                        <tr><td>Мулаева Анастасия Олеговна</td><td>Бухгалтер</td><td>Бухгалтерия</td><td style="text-align: right;">79,448</td></tr>
+                        <tr><td>Кирьянова Евгения</td><td>Бухгалтер</td><td>Бухгалтерия</td><td style="text-align: right;">79,448</td></tr>
+                    </tbody>
+                </table>
+                <p style="margin-top: 12px;"><strong>Экономия при сокращении 7 чел:</strong> ~600k₽/мес</p>
+            </div>
+
+            <h3>NICE-TO-HAVE — рассмотреть увольнение (10 чел, 540k₽/мес)</h3>
+            <div class="recommendation">
+                <p>Роли, которые не критичны для MVP бизнеса. Можно сократить или заменить на аутсорс.</p>
+                <table style="margin-top: 12px;">
+                    <thead>
+                        <tr>
+                            <th>ФИО</th>
+                            <th>Должность</th>
+                            <th>Департамент</th>
+                            <th style="text-align: right;">ЗП/мес (₽)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Проклашин Александр Сергеевич</td><td>Системный администратор</td><td>Офис</td><td style="text-align: right;">132,414</td></tr>
+                        <tr><td>Федярова Карина Сергеевна</td><td>Помощник руководителя</td><td>Офис</td><td style="text-align: right;">112,552</td></tr>
+                        <tr><td>Богданова Маргарита</td><td>Кадровик</td><td>HR</td><td style="text-align: right;">86,054</td></tr>
+                        <tr><td>Васькина Анастасия</td><td>Бухгалтер</td><td>Бухгалтерия</td><td style="text-align: right;">66,207</td></tr>
+                        <tr><td>Чернышов Илья Геннадьевич</td><td>Юрист</td><td>Бухгалтерия</td><td style="text-align: right;">50,000</td></tr>
+                        <tr><td>Щур Анастасия Игоревна</td><td>Стажер</td><td>Интернет-маркетинг</td><td style="text-align: right;">27,279</td></tr>
+                        <tr><td>Баландина Наталия Владимировна</td><td>Корректор</td><td>Контент</td><td style="text-align: right;">24,932</td></tr>
+                        <tr><td>Дворкина Елена Тимуровна</td><td>Контент-менеджер</td><td>Контент</td><td style="text-align: right;">18,063</td></tr>
+                        <tr><td>Морозова Анастасия Леонидовна</td><td>Корректор</td><td>Контент</td><td style="text-align: right;">15,919</td></tr>
+                        <tr><td>Волынина Светлана Сергеевна</td><td>Контент-менеджер</td><td>Контент</td><td style="text-align: right;">6,622</td></tr>
+                    </tbody>
+                </table>
+                <p style="margin-top: 12px;"><strong>Потенциал экономии:</strong> 540k₽/мес (полное сокращение категории)</p>
+            </div>
+
+            <h3>REDUNDANT — уволить немедленно (1 чел, 12k₽/мес)</h3>
+            <div class="recommendation">
+                <p>Избыточные роли, которые дублируют функции или не нужны бизнесу.</p>
+                <table style="margin-top: 12px;">
+                    <thead>
+                        <tr>
+                            <th>ФИО</th>
+                            <th>Должность</th>
+                            <th>Департамент</th>
+                            <th style="text-align: right;">ЗП/мес (₽)</th>
+                            <th>Причина</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Ильин Константин Иванович</td>
+                            <td>Оператор ПК</td>
+                            <td>Офис</td>
+                            <td style="text-align: right;">11,606</td>
+                            <td>Роль не ясна, функции можно распределить</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Сценарии оптимизации -->
+        <div class="section">
+            <h2>5. Сценарии оптимизации</h2>
+
+            <div class="scenario" style="border-left: 6px solid #1a73e8;">
+                <div class="scenario-title" style="color: #1a73e8;">Вариант 0: Переговоры с топами (без увольнений)</div>
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-label">Экономия месяц</div>
+                        <div class="metric-value" style="color: #1a73e8;">310,000 ₽</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">Экономия год</div>
+                        <div class="metric-value" style="color: #1a73e8;">3,720,000 ₽</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">Новая маржа</div>
+                        <div class="metric-value" style="color: #1a73e8;">7.7%</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">Сокращение</div>
+                        <div class="metric-value" style="color: #1a73e8;">0 чел</div>
+                    </div>
+                </div>
+                <div class="recommendation">
+                    <h4>Действия:</h4>
+                    <ul>
+                        <li><strong>1-on-1 переговоры</strong> с топ-менеджерами о временном снижении ЗП на <strong>12%</strong> (среднее между 10-15%) на период <strong>6-12 месяцев</strong></li>
+                        <li><strong>Аргументация для переговоров:</strong>
+                            <ul style="margin-left: 20px; margin-top: 8px;">
+                                <li>Бизнес margin сейчас критично низкий (5%), при норме для агентств 15-20%</li>
+                                <li>Альтернатива: сокращение 15-20 человек в командах (см. сценарии ниже)</li>
+                                <li>Временная мера до выхода на margin 15%+ (ориентировочно 6-12 месяцев)</li>
+                                <li>После стабилизации — пересмотр вверх + бонусы от результата</li>
+                                <li>Сигнал команде "затягиваем пояса вместе" вместо массовых увольнений</li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <h4 style="margin-top: var(--space-md);">Топ-менеджеры для переговоров:</h4>
+                    <table style="margin-top: 12px;">
+                        <thead>
+                            <tr>
+                                <th>ФИО</th>
+                                <th>Должность</th>
+                                <th style="text-align: right;">Текущая ЗП/мес (₽)</th>
+                                <th style="text-align: right;">После -12% (₽)</th>
+                                <th style="text-align: right;">Экономия/мес (₽)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Ильин Иван Константинович</td>
+                                <td>CEO</td>
+                                <td style="text-align: right;">795,000</td>
+                                <td style="text-align: right;">699,600</td>
+                                <td style="text-align: right;">95,400</td>
+                            </tr>
+                            <tr>
+                                <td>Абрамова Екатерина Владимировна</td>
+                                <td>Тех. менеджер проектов/тимлид</td>
+                                <td style="text-align: right;">225,159</td>
+                                <td style="text-align: right;">198,140</td>
+                                <td style="text-align: right;">27,019</td>
+                            </tr>
+                            <tr>
+                                <td>Гуренкова Инна Михайловна</td>
+                                <td>Руководитель клиентского сервиса</td>
+                                <td style="text-align: right;">211,863</td>
+                                <td style="text-align: right;">186,439</td>
+                                <td style="text-align: right;">25,424</td>
+                            </tr>
+                            <tr>
+                                <td>Самсаева Кристина Юрьевна</td>
+                                <td>Директор по персоналу</td>
+                                <td style="text-align: right;">198,720</td>
+                                <td style="text-align: right;">174,874</td>
+                                <td style="text-align: right;">23,846</td>
+                            </tr>
+                            <tr>
+                                <td>Филиппова Екатерина Николаевна</td>
+                                <td>Руководитель отдела продаж</td>
+                                <td style="text-align: right;">198,720</td>
+                                <td style="text-align: right;">174,874</td>
+                                <td style="text-align: right;">23,846</td>
+                            </tr>
+                            <tr>
+                                <td>Малыхина Юлия Эдуардовна</td>
+                                <td>Руководитель группы дизайнеров</td>
+                                <td style="text-align: right;">198,621</td>
+                                <td style="text-align: right;">174,786</td>
+                                <td style="text-align: right;">23,835</td>
+                            </tr>
+                            <tr>
+                                <td>Свистунов Даниил Иванович</td>
+                                <td>Рук. отдела коммуникац. дизайна</td>
+                                <td style="text-align: right;">172,224</td>
+                                <td style="text-align: right;">151,557</td>
+                                <td style="text-align: right;">20,667</td>
+                            </tr>
+                            <tr>
+                                <td>Безух Михаил Алексеевич</td>
+                                <td>Технический менеджер проектов</td>
+                                <td style="text-align: right;">158,976</td>
+                                <td style="text-align: right;">139,899</td>
+                                <td style="text-align: right;">19,077</td>
+                            </tr>
+                            <tr>
+                                <td>Куракин Валерий Сергеевич</td>
+                                <td>Руководитель отдела аналитики</td>
+                                <td style="text-align: right;">158,976</td>
+                                <td style="text-align: right;">139,899</td>
+                                <td style="text-align: right;">19,077</td>
+                            </tr>
+                            <tr>
+                                <td>Устинова Марина Александровна</td>
+                                <td>Руководитель отдела веб-дизайна</td>
+                                <td style="text-align: right;">158,897</td>
+                                <td style="text-align: right;">139,829</td>
+                                <td style="text-align: right;">19,068</td>
+                            </tr>
+                            <tr>
+                                <td>Аксенова Наталья Валериевна</td>
+                                <td>CFO</td>
+                                <td style="text-align: right;">132,360</td>
+                                <td style="text-align: right;">116,477</td>
+                                <td style="text-align: right;">15,883</td>
+                            </tr>
+                            <tr style="font-weight: 600; background: var(--color-bg-tertiary);">
+                                <td colspan="2"><strong>ИТОГО:</strong></td>
+                                <td style="text-align: right;">2,609,516</td>
+                                <td style="text-align: right;">2,296,374</td>
+                                <td style="text-align: right;">313,142</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h4 style="margin-top: var(--space-md);">Итоговая экономия:</h4>
+                    <ul>
+                        <li><strong>Экономия/мес:</strong> ~310,000 ₽</li>
+                        <li><strong>Экономия/год:</strong> ~3,720,000 ₽</li>
+                        <li><strong>Новая маржа:</strong> 7.7% (было 5.0%)</li>
+                        <li><strong>Можно комбинировать с увольнением REDUNDANT:</strong> +12k₽/мес (Ильин К.И., Оператор ПК)</li>
+                    </ul>
+
+                    <h4 style="margin-top: var(--space-md);">Плюсы:</h4>
+                    <ul>
+                        <li>Нет потери компетенций и знаний о клиентах/проектах</li>
+                        <li>Сигнал команде "мы вместе" вместо массовых увольнений</li>
+                        <li>Можно комбинировать с небольшими сокращениями REDUNDANT/NICE-TO-HAVE (дополнительно 50-80k₽/мес)</li>
+                        <li>Низкие риски для производительности</li>
+                        <li>Время на внедрение автоматизации и оптимизацию процессов</li>
+                    </ul>
+
+                    <h4 style="margin-top: var(--space-md);">Минусы:</h4>
+                    <ul>
+                        <li>Может демотивировать топов (риск ухода лучших)</li>
+                        <li>Экономия недостаточна для выхода на целевую маржу 15-20%</li>
+                        <li>Не решает структурные проблемы раздутого штата</li>
+                        <li>Если топы откажутся, придется переходить к сценарию 1-3</li>
+                    </ul>
+
+                    <p style="margin-top: var(--space-md); font-weight: 600; color: var(--color-accent);">
+                        Риск: минимальный. Подходит как первый шаг или если необходимо выиграть время для более глубокой реорганизации.
+                    </p>
+                </div>
+            </div>
+
+            <div class="scenario scenario-conservative">
+                <div class="scenario-title" style="color: var(--color-success);">Вариант 1: Консервативный</div>
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-label">Экономия месяц</div>
+                        <div class="metric-value success">911,606 ₽</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">Экономия год</div>
+                        <div class="metric-value success">10,939,272 ₽</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">Новая маржа</div>
+                        <div class="metric-value success">12.9%</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">Сокращение</div>
+                        <div class="metric-value success">~8-10 чел</div>
+                    </div>
+                </div>
+                <div class="recommendation">
+                    <h4>Действия:</h4>
+                    <ul>
+                        <li><strong>Уволить REDUNDANT:</strong> Ильин К.И. (Оператор ПК) → 12k₽/мес</li>
+                        <li><strong>Сократить NICE-TO-HAVE (5 чел):</strong> Федярова К.С., Щур А.И., Баландина Н.В., Дворкина Е.Т., Морозова А.Л., Волынина С.С. → 300k₽/мес</li>
+                        <li><strong>Сократить IMPORTANT (3 чел в маркетинге):</strong> Радецкая Л.Д., Шендрик П.С., Гуслякова В.С. → 300k₽/мес</li>
+                        <li><strong>Объединить задачи в дизайне/верстке (2 чел):</strong> Корсунова Д., Арнаут Д.А. → 170k₽/мес</li>
+                        <li><strong>Сократить 1 бухгалтера:</strong> Мулаева А.О. или Кирьянова Е. → 80k₽/мес</li>
+                    </ul>
+                    <p style="margin-top: var(--space-md); font-weight: 600;">
+                        Риск: низкий. Минимальное влияние на производительность.
+                    </p>
+                </div>
+            </div>
+
+            <div class="scenario scenario-moderate">
+                <div class="scenario-title" style="color: var(--color-warning);">Вариант 2: Умеренный (РЕКОМЕНДУЕТСЯ)</div>
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-label">Экономия месяц</div>
+                        <div class="metric-value warning">2,511,606 ₽</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">Экономия год</div>
+                        <div class="metric-value warning">30,139,272 ₽</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">Новая маржа</div>
+                        <div class="metric-value warning">26.7%</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">Сокращение</div>
+                        <div class="metric-value warning">~15-18 чел</div>
+                    </div>
+                </div>
+                <div class="recommendation">
+                    <h4>Действия (консервативный + дополнительно):</h4>
+                    <ul>
+                        <li><strong>Базовый сценарий:</strong> 911k₽/мес</li>
+                        <li><strong>Сократить весь NICE-TO-HAVE (10 чел):</strong> +540k₽/мес</li>
+                        <li><strong>Сократить еще 5 человек в интернет-маркетинге:</strong> Денисенко Е.П., Ткаченко А.Д., Порываева В.Д., Пономаренко Е.Д., Орел О.А. → +650k₽/мес</li>
+                        <li><strong>Сократить 2 дизайнера:</strong> Исмаилова Л.Ю., Балабанова Е.Ю. → +200k₽/мес</li>
+                        <li><strong>Сократить 2 бухгалтера (вместо 1):</strong> + еще одного → +80k₽/мес</li>
+                        <li><strong>Убрать аутсорс бухгалтерии "Профит":</strong> +77k₽/мес (есть 4 штатных бухгалтера)</li>
+                        <li><strong>Снизить ЗП помощнику руководителя:</strong> уже в сокращении NICE-TO-HAVE</li>
+                    </ul>
+                    <p style="margin-top: var(--space-md); font-weight: 600;">
+                        Риск: средний. Потребуется перераспределение задач и автоматизация.
+                    </p>
+                </div>
+            </div>
+
+            <div class="scenario scenario-aggressive">
+                <div class="scenario-title" style="color: var(--color-danger);">Вариант 3: Агрессивный</div>
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-label">Экономия месяц</div>
+                        <div class="metric-value danger">4,711,606 ₽</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">Экономия год</div>
+                        <div class="metric-value danger">56,539,272 ₽</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">Новая маржа</div>
+                        <div class="metric-value danger">45.7%</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">Сокращение</div>
+                        <div class="metric-value danger">~25-30 чел</div>
+                    </div>
+                </div>
+                <div class="recommendation">
+                    <h4>Действия (умеренный + дополнительно):</h4>
+                    <ul>
+                        <li><strong>Базовый умеренный:</strong> 2,511k₽/мес</li>
+                        <li><strong>Сократить интернет-маркетинг до 15 человек (−8 чел):</strong> +1,000k₽/мес</li>
+                        <li><strong>Сократить дизайн до 7 человек (−4 чел):</strong> +400k₽/мес</li>
+                        <li><strong>Сократить контент до 6 человек (−4 чел):</strong> +200k₽/мес</li>
+                        <li><strong>Сократить креатив до 4 человек (−2 чел):</strong> +300k₽/мес</li>
+                        <li><strong>Объединить МарТех и Аналитику, сократить 1 позицию:</strong> +150k₽/мес</li>
+                        <li><strong>Снизить ЗП топ-менеджерам на 15%:</strong> +150k₽/мес</li>
+                        <li><strong>Перевести часть задач на фриланс/аутстафф</strong> для гибкости</li>
+                    </ul>
+                    <p style="margin-top: var(--space-md); font-weight: 600;">
+                        Риск: высокий. Требуется серьезная реорганизация процессов и автоматизация. Возможно снижение качества/скорости выполнения проектов.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Сравнительная таблица сценариев -->
+        <div class="section">
+            <h2>6. Сравнительная таблица всех вариантов</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Вариант</th>
+                        <th style="text-align: right;">Экономия/мес (₽)</th>
+                        <th style="text-align: right;">Экономия/год (₽)</th>
+                        <th style="text-align: right;">Новая маржа</th>
+                        <th style="text-align: right;">Сокращений (чел)</th>
+                        <th>Риск</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="background: #e3f2fd;">
+                        <td><strong>Вариант 0: Снижение ЗП топам</strong></td>
+                        <td style="text-align: right;">310,000</td>
+                        <td style="text-align: right;">3,720,000</td>
+                        <td style="text-align: right;">7.7%</td>
+                        <td style="text-align: right;">0</td>
+                        <td><span class="badge" style="background: #e8f5e9; color: #2e7d32;">Минимальный</span></td>
+                    </tr>
+                    <tr style="background: #e8f5e9;">
+                        <td><strong>Вариант 1: Консервативный</strong></td>
+                        <td style="text-align: right;">911,606</td>
+                        <td style="text-align: right;">10,939,272</td>
+                        <td style="text-align: right;">12.9%</td>
+                        <td style="text-align: right;">8-10</td>
+                        <td><span class="badge badge-critical">Низкий</span></td>
+                    </tr>
+                    <tr style="background: #fff3e0;">
+                        <td><strong>Вариант 2: Умеренный (РЕКОМЕНДУЕТСЯ)</strong></td>
+                        <td style="text-align: right;">2,511,606</td>
+                        <td style="text-align: right;">30,139,272</td>
+                        <td style="text-align: right;">26.7%</td>
+                        <td style="text-align: right;">15-18</td>
+                        <td><span class="badge badge-nice">Средний</span></td>
+                    </tr>
+                    <tr style="background: #ffebee;">
+                        <td><strong>Вариант 3: Агрессивный</strong></td>
+                        <td style="text-align: right;">4,711,606</td>
+                        <td style="text-align: right;">56,539,272</td>
+                        <td style="text-align: right;">45.7%</td>
+                        <td style="text-align: right;">25-30</td>
+                        <td><span class="badge badge-redundant">Высокий</span></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="recommendation" style="margin-top: var(--space-lg);">
+                <h4>Рекомендация по выбору варианта:</h4>
+                <ul>
+                    <li><strong>Вариант 0:</strong> Если важно сохранить всю команду и выиграть время. Недостаточно для целевой маржи 15%, но можно комбинировать с небольшими сокращениями REDUNDANT/NICE-TO-HAVE.</li>
+                    <li><strong>Вариант 1:</strong> Если важно минимизировать риски и потерю компетенций. Выход на приемлемую маржу ~13%, но не достигает цели 15-20%.</li>
+                    <li><strong>Вариант 2 (РЕКОМЕНДУЕТСЯ):</strong> Оптимальный баланс между экономией и рисками. Достижение целевой маржи 26.7% с умеренным влиянием на производительность.</li>
+                    <li><strong>Вариант 3:</strong> Если необходима радикальная трансформация. Высокая маржа, но требует серьезной реорганизации процессов и автоматизации.</li>
+                </ul>
+                <p style="margin-top: var(--space-md); font-weight: 600;">
+                    <strong>Гибридный подход:</strong> Можно начать с Варианта 0 (переговоры с топами) + частичное сокращение REDUNDANT/NICE-TO-HAVE, затем через 3-6 месяцев перейти к Варианту 2 при необходимости.
+                </p>
+            </div>
+        </div>
+
+        <!-- Ожидаемый эффект -->
+        <div class="section">
+            <h2>7. Ожидаемый эффект (умеренный вариант)</h2>
+
+            <h3>Текущая ситуация</h3>
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-label">Выручка год</div>
+                    <div class="metric-value">138,800,000 ₽</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">ФОТ год</div>
+                    <div class="metric-value danger">123,415,826 ₽</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Чистая прибыль</div>
+                    <div class="metric-value danger">6,940,000 ₽</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Net margin</div>
+                    <div class="metric-value danger">5.0%</div>
+                </div>
+            </div>
+
+            <h3>После оптимизации (умеренный сценарий)</h3>
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-label">Выручка год</div>
+                    <div class="metric-value">138,800,000 ₽</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">ФОТ год</div>
+                    <div class="metric-value success">93,276,554 ₽</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Чистая прибыль</div>
+                    <div class="metric-value success">37,079,272 ₽</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Net margin</div>
+                    <div class="metric-value success">26.7%</div>
+                </div>
+            </div>
+
+            <div class="alert" style="background: #e8f5e9; border-left-color: var(--color-success);">
+                <div class="alert-title" style="color: var(--color-success);">Итоговый эффект (умеренный сценарий)</div>
+                <ul style="margin-left: 20px; margin-top: 12px;">
+                    <li>Экономия на ФОТ: <strong>30,139,272 ₽/год</strong></li>
+                    <li>Прирост чистой прибыли: <strong>+30,139,272 ₽/год</strong> (от 6.9M₽ до 37M₽)</li>
+                    <li>Новая маржа: <strong>26.7%</strong> (было 5.0%)</li>
+                    <li>Сокращение команды: ~15-18 человек (с 81 до ~63-66)</li>
+                    <li>ФОТ снизится с 88.9% до 67.2% от выручки</li>
+                </ul>
+            </div>
+
+            <h3>Рекомендации по внедрению</h3>
+            <div class="recommendation">
+                <h4>Траектория А: Мягкий старт (Вариант 0 → Вариант 2)</h4>
+                <p><strong>Шаг 0:</strong> Переговоры с топами (1-2 недели)</p>
+                <ul>
+                    <li>Провести 1-on-1 встречи с 11 топ-менеджерами о временном снижении ЗП на 12% (6-12 мес)</li>
+                    <li>Аргументация: margin 5% критичен, альтернатива — увольнения в командах</li>
+                    <li>Экономия: ~310k₽/мес, маржа 7.7%</li>
+                </ul>
+
+                <p style="margin-top: var(--space-md);"><strong>Шаг 1:</strong> Быстрые победы (1-2 недели)</p>
+                <ul>
+                    <li>Уволить REDUNDANT роли (Ильин К.И.) → 12k₽/мес</li>
+                    <li>Убрать аутсорс бухгалтерии "Профит" → 77k₽/мес</li>
+                    <li>Провести аудит загрузки всех сотрудников (time tracking на 2 недели)</li>
+                    <li><strong>Итого с Шагом 0: экономия ~400k₽/мес, маржа ~8.5%</strong></li>
+                </ul>
+
+                <p style="margin-top: var(--space-md);"><strong>Шаг 2:</strong> Оценка через 3-6 месяцев</p>
+                <ul>
+                    <li>Если margin недостаточна или топы согласны на полную реорганизацию → переход к Варианту 2</li>
+                    <li>Если ситуация стабилизировалась → продолжить работу с текущей структурой</li>
+                </ul>
+
+                <h4 style="margin-top: var(--space-lg);">Траектория Б: Прямой переход к Варианту 2 (рекомендуется)</h4>
+                <p><strong>Шаг 1:</strong> Быстрые победы (1-2 недели)</p>
+                <ul>
+                    <li>Уволить REDUNDANT роли (Ильин К.И.) → 12k₽/мес</li>
+                    <li>Убрать аутсорс бухгалтерии "Профит" → 77k₽/мес</li>
+                    <li>Провести аудит загрузки всех сотрудников (time tracking на 2 недели)</li>
+                </ul>
+
+                <p style="margin-top: var(--space-md);"><strong>Шаг 2:</strong> Средний приоритет (1 месяц)</p>
+                <ul>
+                    <li>На основе аудита загрузки выявить 10-15 сотрудников с низкой продуктивностью</li>
+                    <li>Сократить весь NICE-TO-HAVE (10 чел) → 540k₽/мес</li>
+                    <li>Сократить 5-7 человек в интернет-маркетинге с низкой загрузкой → 650k₽/мес</li>
+                    <li>Сократить 2 бухгалтера (остается 3) → 160k₽/мес</li>
+                </ul>
+
+                <p style="margin-top: var(--space-md);"><strong>Шаг 3:</strong> Глубокая оптимизация (2-3 месяца)</p>
+                <ul>
+                    <li>Провести массовое сокращение по итогам аудита (итого 15-18 чел)</li>
+                    <li>Перераспределить задачи между оставшимися сотрудниками</li>
+                    <li>Внедрить автоматизацию в дизайне, верстке, контенте (AI-инструменты)</li>
+                    <li>Пересмотреть структуру департаментов при необходимости</li>
+                    <li>Рассмотреть перевод части задач на фриланс/аутстафф для гибкости</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section" style="background: var(--color-bg-tertiary); border: 2px dashed #e8eaed;">
+            <h2>Заключение</h2>
+            <p style="font-size: 16px; line-height: 1.8;">
+                Для выхода на целевую маржу <strong>15-20%</strong> (вместо текущих 5%) необходимо сократить ФОТ
+                на <strong>2.5M₽/мес</strong> (~25% от текущих расходов).
+                Предложено <strong>4 варианта</strong> оптимизации с разным уровнем риска и экономии:
+            </p>
+            <ul style="font-size: 16px; line-height: 1.8; margin-top: var(--space-md); margin-left: 20px;">
+                <li><strong>Вариант 0 (без увольнений):</strong> Переговоры с 11 топ-менеджерами о снижении ЗП на 12% → экономия 310k₽/мес, маржа 7.7%. Минимальный риск, но недостаточно для целевой маржи.</li>
+                <li><strong>Вариант 1 (консервативный):</strong> Сокращение 8-10 человек → экономия 911k₽/мес, маржа 12.9%. Низкий риск, приближение к целевой маржи.</li>
+                <li><strong>Вариант 2 (умеренный, РЕКОМЕНДУЕТСЯ):</strong> Сокращение 15-18 человек → экономия 2.5M₽/мес, маржа 26.7%. Средний риск, достижение и превышение целевой маржи.</li>
+                <li><strong>Вариант 3 (агрессивный):</strong> Сокращение 25-30 человек → экономия 4.7M₽/мес, маржа 45.7%. Высокий риск, радикальная трансформация.</li>
+            </ul>
+            <p style="font-size: 16px; line-height: 1.8; margin-top: var(--space-md);">
+                Рекомендуется начать с <strong>Варианта 2 (умеренный)</strong>, который позволит
+                достичь маржи <strong>26.7%</strong> и сохранить критичные компетенции,
+                при этом радикально улучшив финансовые показатели (прибыль вырастет с 6.9M₽ до 37M₽/год).
+            </p>
+            <p style="font-size: 16px; line-height: 1.8; margin-top: var(--space-md);">
+                <strong>Альтернативный (гибридный) подход:</strong> Начать с Варианта 0 (переговоры с топами) + сокращение REDUNDANT/NICE-TO-HAVE (8-10 чел, ~550k₽/мес экономии).
+                Это даст экономию ~860k₽/мес и маржу ~12.5% без потери ключевых компетенций. Через 3-6 месяцев оценить ситуацию и при необходимости перейти к более глубоким сокращениям.
+            </p>
+            <p style="font-size: 16px; line-height: 1.8; margin-top: var(--space-md); font-weight: 600;">
+                Конкретные имена для увольнения указаны в разделе 4. Начать следует с категории REDUNDANT и NICE-TO-HAVE,
+                затем провести аудит загрузки для выявления низкопродуктивных сотрудников в категории IMPORTANT.
+            </p>
+        </div>
+
+    </div>
+</body>
+</html>

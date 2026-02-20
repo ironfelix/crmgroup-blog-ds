@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Рекомендации по бизнесу — CRM Group 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-bg-primary: #ffffff;
+            --color-bg-secondary: #fafbfc;
+            --color-bg-tertiary: #f8f9fa;
+            --color-text-primary: #1a1a1a;
+            --color-text-secondary: #5f6368;
+            --color-accent: #1a73e8;
+            --color-success: #34a853;
+            --color-warning: #fbbc04;
+            --color-danger: #ea4335;
+            --space-md: 16px;
+            --space-lg: 24px;
+            --space-xl: 32px;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--color-bg-secondary);
+            color: var(--color-text-primary);
+            line-height: 1.6;
+            font-size: 14px;
+            -webkit-font-smoothing: antialiased;
+            padding: var(--space-xl);
+        }
+
+        .container { max-width: 1200px; margin: 0 auto; }
+
+        .header {
+            background: linear-gradient(135deg, #ea4335 0%, #fbbc04 100%);
+            color: white;
+            padding: var(--space-xl);
+            border-radius: var(--radius-lg);
+            margin-bottom: var(--space-xl);
+        }
+
+        .header h1 { font-size: 32px; font-weight: 700; margin-bottom: 8px; }
+        .header p { font-size: 16px; opacity: 0.9; }
+
+        .alert {
+            background: #fce8e6;
+            border-left: 6px solid var(--color-danger);
+            padding: var(--space-lg);
+            border-radius: var(--radius-md);
+            margin-bottom: var(--space-xl);
+        }
+
+        .alert-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--color-danger);
+            margin-bottom: 12px;
+        }
+
+        .section {
+            background: var(--color-bg-primary);
+            border-radius: var(--radius-lg);
+            padding: var(--space-xl);
+            margin-bottom: var(--space-xl);
+            border: 1px solid #e8eaed;
+        }
+
+        h2 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: var(--space-lg);
+            color: var(--color-text-primary);
+        }
+
+        h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: var(--space-md);
+            color: var(--color-accent);
+            margin-top: var(--space-lg);
+        }
+
+        .priority-box {
+            background: #fce8e6;
+            border: 2px solid var(--color-danger);
+            padding: var(--space-lg);
+            border-radius: var(--radius-md);
+            margin: var(--space-md) 0;
+        }
+
+        .priority-box h4 {
+            color: var(--color-danger);
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .warning-box {
+            background: #fef7e0;
+            border-left: 4px solid var(--color-warning);
+            padding: var(--space-md);
+            border-radius: var(--radius-md);
+            margin: var(--space-md) 0;
+        }
+
+        .success-box {
+            background: #e6f9ed;
+            border-left: 4px solid var(--color-success);
+            padding: var(--space-md);
+            border-radius: var(--radius-md);
+            margin: var(--space-md) 0;
+        }
+
+        .highlight-box {
+            background: #f0f7ff;
+            border-left: 4px solid var(--color-accent);
+            padding: var(--space-md);
+            border-radius: var(--radius-md);
+            margin: var(--space-md) 0;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--space-md);
+            margin: var(--space-md) 0;
+        }
+
+        .metric-card {
+            background: var(--color-bg-tertiary);
+            padding: var(--space-md);
+            border-radius: var(--radius-md);
+        }
+
+        .metric-label {
+            font-size: 12px;
+            color: var(--color-text-secondary);
+            margin-bottom: 4px;
+            text-transform: uppercase;
+        }
+
+        .metric-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--color-text-primary);
+        }
+
+        .metric-bad { color: var(--color-danger) !important; }
+        .metric-warning { color: var(--color-warning) !important; }
+        .metric-good { color: var(--color-success) !important; }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: var(--space-md) 0;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #e8eaed;
+        }
+
+        th {
+            background: var(--color-bg-tertiary);
+            font-weight: 600;
+            font-size: 13px;
+        }
+
+        ul { margin-left: 20px; margin-top: 8px; }
+        li { margin-bottom: 8px; }
+
+        .recommendation {
+            background: var(--color-bg-tertiary);
+            padding: var(--space-md);
+            border-radius: var(--radius-md);
+            margin-bottom: var(--space-md);
+            border-left: 4px solid var(--color-accent);
+        }
+
+        .recommendation-title {
+            font-weight: 600;
+            font-size: 15px;
+            color: var(--color-accent);
+            margin-bottom: 8px;
+        }
+
+        .recommendation-impact {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-left: 8px;
+        }
+
+        .impact-high { background: #fce8e6; color: #c5221f; }
+        .impact-medium { background: #fef7e0; color: #b45309; }
+        .impact-low { background: #e8f0fe; color: #1967d2; }
+
+        .action-box {
+            background: linear-gradient(135deg, #1a73e8 0%, #1557b0 100%);
+            color: white;
+            padding: var(--space-lg);
+            border-radius: var(--radius-md);
+            margin: var(--space-lg) 0;
+        }
+
+        .action-box h4 {
+            font-size: 16px;
+            margin-bottom: 12px;
+        }
+
+        .action-box ul {
+            margin-left: 20px;
+        }
+
+        .action-box li {
+            margin-bottom: 6px;
+        }
+
+        @media (max-width: 768px) {
+            body { padding: 16px; }
+            .header h1 { font-size: 24px; }
+            .metrics-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Рекомендации по бизнесу</h1>
+            <p>CRM Group / Email Soldiers • Анализ P&L 2025</p>
+        </div>
+
+        <!-- Alert -->
+        <div class="alert">
+            <div class="alert-title">⚠️ СЕРЬЁЗНАЯ ПРОБЛЕМА: ПРОДАЖИ СИЛЬНО ОТСТАЮТ ОТ ПЛАНА</div>
+            <p style="margin-bottom: 12px; font-size: 15px;">
+                <strong>План на год:</strong> 115 продаж<br>
+                <strong>Факт (все месяцы с данными):</strong> 47 продаж<br>
+                <strong>Выполнение:</strong> 41% (отставание -59%)
+            </p>
+            <p style="margin-bottom: 12px; font-size: 15px;">
+                <strong>Разбивка факта:</strong> Большие 17 | Тендеры 6 | Маленькие 24 = 47
+            </p>
+            <p style="font-size: 15px;">
+                Темп ~4 продажи/мес. Для годовой цели нужно **9.5 продаж/мес** — требуется ускорение в 2.4x.
+                Без исправления план года провален.
+            </p>
+        </div>
+
+        <!-- Current State -->
+        <div class="section">
+            <h2>Диагноз: что не так</h2>
+
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-label">Выполнение плана продаж</div>
+                    <div class="metric-value metric-bad">41%</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Revenue/чел</div>
+                    <div class="metric-value metric-bad">134k₽</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Revenue/Payroll коэф.</div>
+                    <div class="metric-value metric-warning">1.79x</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">ЗП доля в расходах</div>
+                    <div class="metric-value metric-warning">94.5%</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Gross Margin</div>
+                    <div class="metric-value metric-good">40.8%</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Net Margin (план)</div>
+                    <div class="metric-value metric-good">27.6%</div>
+                </div>
+            </div>
+
+            <h3>Ключевые проблемы:</h3>
+
+            <div class="priority-box">
+                <h4>🔴 ПРИОРИТЕТ 1: Продажи провалены (41% выполнения)</h4>
+                <p>
+                    План 115 продаж, факт 47 продаж. Темп ~4 продажи/мес, нужно 9.5/мес для годовой цели
+                    (ускорение в 2.4x). При текущем темпе план года недостижим, выручка будет ниже прогноза на 35-40%.
+                </p>
+            </div>
+
+            <div class="warning-box">
+                <strong>🟡 ПРОБЛЕМА 2: Низкая эффективность команды</strong><br>
+                Revenue/чел 134k₽ вместо нормы 300-500k₽ (-55% к рынку).
+                При 81 человеке команда либо переразмерена, либо недозагружена.
+            </div>
+
+            <div class="warning-box">
+                <strong>🟡 ПРОБЛЕМА 3: Структура расходов неоптимальна</strong><br>
+                ЗП = 94.5% прямых расходов. Коэффициент Revenue/Payroll 1.79x (нужно >2x).
+                Бизнес слишком зависим от численности.
+            </div>
+
+            <div class="success-box">
+                <strong>✅ ЧТО РАБОТАЕТ ХОРОШО:</strong>
+                <ul>
+                    <li>Margin 40.8% — отличный показатель, есть запас для инвестиций</li>
+                    <li>Net margin 27.6% (план) — прибыльность выше среднего</li>
+                    <li>ЗП/чел 75k₽ — разумный уровень, не переплачиваете</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Priority 1: Team Efficiency (moved up) -->
+        <div class="section">
+            <h2>ПРИОРИТЕТ 1: Повысить эффективность команды</h2>
+
+            <div class="priority-box">
+                <h4>КРИТИЧНОСТЬ: Низкая эффективность блокирует рост и съедает margin</h4>
+                <p>
+                    Revenue/чел 134k₽ при ЗП/чел 75k₽ → коэффициент 1.79x. Норма для здорового роста: >2.5x.
+                    Это главное препятствие для масштабирования и трансформации бизнес-модели.
+                </p>
+            </div>
+
+            <h3>Почему отстаём от плана? (гипотезы для проверки)</h3>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Гипотеза</th>
+                        <th>Как проверить</th>
+                        <th>Решение, если подтвердится</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>1. Нет лидов</strong></td>
+                        <td>Сколько лидов в месяц? Конверсия лид→сделка?</td>
+                        <td>Усилить маркетинг, inbound, холодные касания</td>
+                    </tr>
+                    <tr>
+                        <td><strong>2. Лиды есть, не закрываются</strong></td>
+                        <td>Конверсия сделок? Win rate?</td>
+                        <td>Пересмотреть sales процесс, обучить команду</td>
+                    </tr>
+                    <tr>
+                        <td><strong>3. Долгий цикл сделки</strong></td>
+                        <td>Средняя длина цикла? Где застревают?</td>
+                        <td>Упростить предложение, пакеты вместо кастома</td>
+                    </tr>
+                    <tr>
+                        <td><strong>4. Неправильный ICP</strong></td>
+                        <td>Кто отказывается и почему?</td>
+                        <td>Пересмотреть целевую аудиторию</td>
+                    </tr>
+                    <tr>
+                        <td><strong>5. Цена/ценность не сходятся</strong></td>
+                        <td>Возражения по цене? Сравнение с конкурентами?</td>
+                        <td>Переупаковать ценность или снизить цену</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Рекомендации (выполнить в течение 2 недель):</h3>
+
+            <div class="recommendation">
+                <div class="recommendation-title">
+                    1. Sales аудит за последние 4 месяца
+                    <span class="recommendation-impact impact-high">КРИТИЧНО</span>
+                </div>
+                <ul>
+                    <li>Сколько лидов пришло? Откуда (маркетинг, холодные звонки, рефералы)?</li>
+                    <li>Сколько перешло в активные переговоры?</li>
+                    <li>Сколько дошло до оффера?</li>
+                    <li>Почему отказались? (записать ТОП-5 причин)</li>
+                    <li>Средняя длина цикла сделки?</li>
+                </ul>
+            </div>
+
+            <div class="recommendation">
+                <div class="recommendation-title">
+                    2. Упростить предложение
+                    <span class="recommendation-impact impact-high">КРИТИЧНО</span>
+                </div>
+                <ul>
+                    <li>Сейчас: каждый клиент = кастомное предложение → долгий цикл</li>
+                    <li>Создать 2-3 стандартных пакета с фиксированной ценой</li>
+                    <li>Пример: "Старт 200k₽", "Рост 400k₽", "Управление 800k₽"</li>
+                    <li>Клиент должен понять ценность за 5 минут, а не за 3 встречи</li>
+                </ul>
+            </div>
+
+            <div class="recommendation">
+                <div class="recommendation-title">
+                    3. Inbound вместо outbound
+                    <span class="recommendation-impact impact-medium">СРЕДНИЙ ПРИОРИТЕТ</span>
+                </div>
+                <ul>
+                    <li>Публиковать кейсы: "Как увеличили LTV на 40% для бренда X"</li>
+                    <li>Контент про удержание клиентов (статьи, посты в LinkedIn)</li>
+                    <li>Вебинары для целевой аудитории: "Как управлять LTV как функцией"</li>
+                    <li>Цель: 30% лидов из inbound за 6 месяцев</li>
+                </ul>
+            </div>
+
+            <div class="recommendation">
+                <div class="recommendation-title">
+                    4. Пересмотреть ICP (Ideal Customer Profile)
+                    <span class="recommendation-impact impact-medium">СРЕДНИЙ ПРИОРИТЕТ</span>
+                </div>
+                <ul>
+                    <li>Кто ваши лучшие клиенты (по margin, длине жизни, лёгкости работы)?</li>
+                    <li>Выделить 3-5 характеристик: вертикаль, оборот, размер базы, etc.</li>
+                    <li>Фокусировать продажи только на этот профиль</li>
+                    <li>Отказываться от клиентов вне ICP (сливают время)</li>
+                </ul>
+            </div>
+
+            <div class="action-box">
+                <h4>🎯 ЦЕЛЬ НА 3 МЕСЯЦА:</h4>
+                <ul>
+                    <li>Ускориться до 9-10 закрытых сделок/мес (vs текущие 6/мес)</li>
+                    <li>Средний чек 300-400k₽</li>
+                    <li>Цикл сделки <30 дней (через стандартные пакеты)</li>
+                    <li>Win rate >35% (из лидов в сделки)</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Priority 2: Team Efficiency -->
+        <div class="section">
+            <h2>ПРИОРИТЕТ 2: Повысить эффективность команды</h2>
+
+            <div class="warning-box">
+                <strong>Проблема:</strong> Revenue/чел 134k₽ при ЗП/чел 75k₽ → коэффициент 1.79x<br>
+                <strong>Норма:</strong> Коэффициент >2.5x для устойчивого роста
+            </div>
+
+            <h3>Почему эффективность низкая?</h3>
+
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-label">Менеджеры (35.9% ЗП)</div>
+                    <div class="metric-value">2.2M₽/мес</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Исполнители (64.1% ЗП)</div>
+                    <div class="metric-value">3.9M₽/мес</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Оценка численности</div>
+                    <div class="metric-value">~81 чел</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Прочие расходы</div>
+                    <div class="metric-value">0.35M₽</div>
+                </div>
+            </div>
+
+            <h3>Рекомендации:</h3>
+
+            <div class="recommendation">
+                <div class="recommendation-title">
+                    1. Time tracking аудит (2 недели)
+                    <span class="recommendation-impact impact-high">ВЫСОКИЙ ПРИОРИТЕТ</span>
+                </div>
+                <p><strong>Задача:</strong> Понять, куда уходит время команды.</p>
+                <ul>
+                    <li>Взять 5 клиентов (репрезентативная выборка)</li>
+                    <li>Все сотрудники на этих проектах фиксируют время по категориям:
+                        <ul>
+                            <li>Reporting (создание отчётов)</li>
+                            <li>Диагностика / аудит</li>
+                            <li>Настройка сценариев</li>
+                            <li>Корректировки / правки</li>
+                            <li>Встречи с клиентом</li>
+                            <li>Внутренняя координация</li>
+                            <li>Обучение / онбординг</li>
+                        </ul>
+                    </li>
+                    <li>Цель: выявить категории, где >30% времени можно автоматизировать</li>
+                </ul>
+            </div>
+
+            <div class="recommendation">
+                <div class="recommendation-title">
+                    2. Client-to-team ratio оптимизация
+                    <span class="recommendation-impact impact-high">ВЫСОКИЙ ПРИОРИТЕТ</span>
+                </div>
+                <p><strong>Сейчас (оценка):</strong> 1 менеджер = 2-3 клиента (низкая загрузка)</p>
+                <p><strong>Цель:</strong> 1 менеджер = 5-6 клиентов (переходная), потом 8-10 (новая модель)</p>
+                <ul>
+                    <li>Стандартизировать процессы (чек-листы, шаблоны)</li>
+                    <li>Автоматизировать reporting → освободить 30-40% времени</li>
+                    <li>Один менеджер координирует, специалисты работают пулом</li>
+                </ul>
+                <p><strong>Эффект:</strong> При 30 клиентах нужно 5-6 менеджеров вместо 10-15</p>
+            </div>
+
+            <div class="recommendation">
+                <div class="recommendation-title">
+                    3. Natural attrition + hiring freeze
+                    <span class="recommendation-impact impact-medium">СРЕДНИЙ ПРИОРИТЕТ</span>
+                </div>
+                <ul>
+                    <li>Не увольнять, но не нанимать замену на каждого ушедшего</li>
+                    <li>Естественная текучесть 10-15%/год → за 6 мес уйдут 5-8 человек</li>
+                    <li>Перераспределить нагрузку на оставшихся (через автоматизацию)</li>
+                    <li>Цель: 81 чел → 70 чел за 6 мес → 60 чел за 12 мес</li>
+                    <li>Revenue/чел вырастет: 134k → 155k → 180k</li>
+                </ul>
+            </div>
+
+            <div class="recommendation">
+                <div class="recommendation-title">
+                    4. Переквалификация vs замена
+                    <span class="recommendation-impact impact-low">НИЗКИЙ ПРИОРИТЕТ</span>
+                </div>
+                <ul>
+                    <li>Провести аудит команды: кто может стать CSM, кто Specialist, кто не подходит</li>
+                    <li>30-40% можно переквалифицировать (обучение 1-2 месяца)</li>
+                    <li>20-30% уйдут сами (не согласны на изменения)</li>
+                    <li>Остальные — подходят под новую модель</li>
+                </ul>
+            </div>
+
+            <div class="action-box">
+                <h4>🎯 ЦЕЛЬ НА 6 МЕСЯЦЕВ:</h4>
+                <ul>
+                    <li>Revenue/чел вырастет: 134k → 180k₽/мес (+34%)</li>
+                    <li>Команда сократится: 81 → 70 чел (через natural attrition)</li>
+                    <li>Один менеджер ведёт 5-6 клиентов (вместо 2-3)</li>
+                    <li>30%+ времени автоматизировано (reporting, диагностика)</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Priority 3: Cost Structure -->
+        <div class="section">
+            <h2>ПРИОРИТЕТ 3: Оптимизировать структуру расходов</h2>
+
+            <div class="highlight-box">
+                <strong>Текущая структура:</strong>
+                <ul>
+                    <li>ЗП производственных: 94.5% прямых расходов (6.08M₽/мес)</li>
+                    <li>Прочие расходы: 5.5% (0.35M₽/мес)</li>
+                    <li>Revenue/Payroll: 1.79x (нужно >2x)</li>
+                </ul>
+            </div>
+
+            <h3>Рекомендации:</h3>
+
+            <div class="recommendation">
+                <div class="recommendation-title">
+                    1. Увеличить Revenue без роста Payroll
+                    <span class="recommendation-impact impact-high">ВЫСОКИЙ ПРИОРИТЕТ</span>
+                </div>
+                <p><strong>Цель:</strong> Коэффициент Revenue/Payroll 2.0x → 2.5x за 12 мес</p>
+                <div class="calc-box" style="background: #f8f9fa; padding: 12px; border-radius: 6px; font-family: monospace; font-size: 13px; margin-top: 8px;">
+<strong>Сценарий 1: Рост выручки</strong>
+Payroll: 6.08M₽/мес (не растёт)
+Revenue: 10.9M → 15M₽/мес (+38%)
+Коэф: 15M / 6.08M = 2.47x ✅
+
+<strong>Сценарий 2: Сокращение Payroll</strong>
+Revenue: 10.9M₽/мес (не растёт)
+Payroll: 6.08M → 5M₽/мес (-18%)
+Коэф: 10.9M / 5M = 2.18x ✅
+
+<strong>Сценарий 3: Комбинированный (оптимальный)</strong>
+Revenue: 10.9M → 13M₽/мес (+19%)
+Payroll: 6.08M → 5.2M₽/мес (-14%)
+Коэф: 13M / 5.2M = 2.5x ✅✅
+                </div>
+            </div>
+
+            <div class="recommendation">
+                <div class="recommendation-title">
+                    2. Вариабилизация части расходов
+                    <span class="recommendation-impact impact-medium">СРЕДНИЙ ПРИОРИТЕТ</span>
+                </div>
+                <p><strong>Проблема:</strong> 94.5% расходов = ЗП (фиксированные). При падении выручки margin мгновенно схлопывается.</p>
+                <ul>
+                    <li>Часть исполнителей перевести на проектную основу (15-20%)</li>
+                    <li>Фрилансеры для пиковых нагрузок</li>
+                    <li>Бонусы привязать к метрикам клиента (LTV рост, churn снижение)</li>
+                    <li>Цель: 20% переменных расходов</li>
+                </ul>
+            </div>
+
+            <div class="recommendation">
+                <div class="recommendation-title">
+                    3. Пересмотреть соотношение менеджеры/исполнители
+                    <span class="recommendation-impact impact-medium">СРЕДНИЙ ПРИОРИТЕТ</span>
+                </div>
+                <p><strong>Сейчас:</strong> Менеджеры 36% ЗП, исполнители 64%</p>
+                <p><strong>Вопрос:</strong> Оптимально ли это соотношение?</p>
+                <ul>
+                    <li>Если менеджеры недозагружены (2-3 клиента вместо 8-10) → сократить</li>
+                    <li>Если исполнители делают рутину → автоматизировать 30-40%</li>
+                    <li>Новая модель: менеджеры 40%, исполнители 40%, data/automation 20%</li>
+                </ul>
+            </div>
+
+            <div class="recommendation">
+                <div class="recommendation-title">
+                    4. Аудит "прочих расходов" (5.5%)
+                    <span class="recommendation-impact impact-low">НИЗКИЙ ПРИОРИТЕТ</span>
+                </div>
+                <p><strong>Сумма:</strong> 0.35M₽/мес (~4.2M₽/год)</p>
+                <ul>
+                    <li>Что входит? (Софт, подрядчики, маркетинг, офис?)</li>
+                    <li>Есть ли неиспользуемые подписки?</li>
+                    <li>Можно ли консолидировать инструменты?</li>
+                    <li>Цель: оптимизация 10-15% → экономия ~400-600k₽/год</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Priority 4: Financial Health -->
+        <div class="section">
+            <h2>ПРИОРИТЕТ 4: Укрепить финансовое здоровье</h2>
+
+            <div class="success-box">
+                <strong>Хорошие новости:</strong> Margin 40.8% и Net margin 27.6% — это сильные показатели.
+                Бизнес прибыльный, не в кризисе.
+            </div>
+
+            <h3>Рекомендации:</h3>
+
+            <div class="recommendation">
+                <div class="recommendation-title">
+                    1. Создать резервный фонд (3-6 мес расходов)
+                    <span class="recommendation-impact impact-high">ВЫСОКИЙ ПРИОРИТЕТ</span>
+                </div>
+                <p><strong>Зачем:</strong> Безопасность при трансформации бизнес-модели</p>
+                <ul>
+                    <li>Месячные расходы: ~6.4M₽</li>
+                    <li>Резерв на 6 мес: ~38-40M₽</li>
+                    <li>Текущая чистая прибыль: ~3M₽/мес</li>
+                    <li>При откладывании 50% прибыли → фонд за 10-12 месяцев</li>
+                </ul>
+            </div>
+
+            <div class="recommendation">
+                <div class="recommendation-title">
+                    2. Кредитная линия (опционально)
+                    <span class="recommendation-impact impact-medium">СРЕДНИЙ ПРИОРИТЕТ</span>
+                </div>
+                <ul>
+                    <li>Получить доступ к 15-20M₽ кредитной линии</li>
+                    <li>Не использовать, но иметь как safety net</li>
+                    <li>Стоимость: комиссия за лимит 1-2%/год (~200-400k₽)</li>
+                    <li>Польза: уверенность при трансформации</li>
+                </ul>
+            </div>
+
+            <div class="recommendation">
+                <div class="recommendation-title">
+                    3. Диверсификация revenue streams
+                    <span class="recommendation-impact impact-low">НИЗКИЙ ПРИОРИТЕТ</span>
+                </div>
+                <ul>
+                    <li>Сейчас: 100% зависимость от текущих клиентов</li>
+                    <li>Добавить: продуктизированные аудиты (50-100k₽, quick win)</li>
+                    <li>Добавить: обучающие программы для клиентов (recurring 20-30k₽/мес)</li>
+                    <li>Цель: 10-15% revenue из новых streams за 12 мес</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Quick Wins -->
+        <div class="section">
+            <h2>Quick Wins (можно сделать за 2-4 недели)</h2>
+
+            <div class="recommendation">
+                <div class="recommendation-title">
+                    1. Стандартные пакеты вместо кастома
+                    <span class="recommendation-impact impact-high">БЫСТРЫЙ ЭФФЕКТ</span>
+                </div>
+                <p><strong>Эффект:</strong> Сократить цикл сделки с 60-90 дней до 20-30 дней</p>
+                <ul>
+                    <li>Создать 3 пакета: Старт (200k), Рост (400k), Управление (800k)</li>
+                    <li>Описать состав: что входит, что не входит, сколько часов</li>
+                    <li>Перевести текущих Yellow-клиентов на пакеты</li>
+                    <li>Все новые продажи — только пакеты</li>
+                </ul>
+            </div>
+
+            <div class="recommendation">
+                <div class="recommendation-title">
+                    2. Автоматизация reporting
+                    <span class="recommendation-impact impact-high">БЫСТРЫЙ ЭФФЕКТ</span>
+                </div>
+                <p><strong>Эффект:</strong> Освободить 20-30% времени менеджеров</p>
+                <ul>
+                    <li>Выбрать 1-2 инструмента для дашбордов (Google Data Studio, Tableau, custom)</li>
+                    <li>Настроить автоматические отчёты для топ-5 клиентов</li>
+                    <li>Вместо ручных отчётов: клиент получает доступ к real-time дашборду</li>
+                    <li>Экономия: 10-15 часов/мес на клиента</li>
+                </ul>
+            </div>
+
+            <div class="recommendation">
+                <div class="recommendation-title">
+                    3. Client profitability аудит
+                    <span class="recommendation-impact impact-medium">БЫСТРЫЙ ЭФФЕКТ</span>
+                </div>
+                <p><strong>Эффект:</strong> Найти 10-20% клиентов, которые убыточны</p>
+                <ul>
+                    <li>Взять всех клиентов, посчитать: Revenue vs Team Cost</li>
+                    <li>Разбить на Green (margin >30%), Yellow (10-30%), Red (<10%)</li>
+                    <li>Red клиенты: поднять цену +30-50% или уйти</li>
+                    <li>Освободившийся ресурс → на прибыльных клиентов</li>
+                </ul>
+            </div>
+
+            <div class="recommendation">
+                <div class="recommendation-title">
+                    4. Публикация кейсов (inbound marketing)
+                    <span class="recommendation-impact impact-medium">БЫСТРЫЙ ЭФФЕКТ</span>
+                </div>
+                <p><strong>Эффект:</strong> Генерация тёплых лидов без холодных звонков</p>
+                <ul>
+                    <li>Взять 3 лучших кейса (рост LTV, снижение churn, рост повторных продаж)</li>
+                    <li>Написать статью: проблема → решение → результат (метрики!)</li>
+                    <li>Опубликовать: LinkedIn, Habr, VC.ru, medium</li>
+                    <li>Цель: 5-10 входящих запросов/мес через 2-3 месяца</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Action Plan -->
+        <div class="section">
+            <h2>План действий на 30 дней</h2>
+
+            <h3>Неделя 1-2: Диагностика</h3>
+            <ul>
+                <li>✅ Sales аудит: лиды, конверсия, причины отказов</li>
+                <li>✅ Client profitability: кто Green/Yellow/Red</li>
+                <li>✅ Time tracking запуск (5 клиентов, 2 недели)</li>
+                <li>✅ Резервы: посчитать runway</li>
+            </ul>
+
+            <h3>Неделя 3: Quick Wins</h3>
+            <ul>
+                <li>🎯 Создать 3 стандартных пакета</li>
+                <li>🎯 Выбрать инструмент для автоматизации reporting</li>
+                <li>🎯 Написать 1 кейс для публикации</li>
+                <li>🎯 Поднять цену Red-клиентам или уйти</li>
+            </ul>
+
+            <h3>Неделя 4: Pilot</h3>
+            <ul>
+                <li>🚀 Предложить 3 Green-клиентам перейти на пакет (скидка 20%)</li>
+                <li>🚀 Запустить автоматические дашборды для 2-3 клиентов</li>
+                <li>🚀 Опубликовать кейс + продвигать в соцсетях</li>
+                <li>🚀 Провести встречу с командой: презентовать стратегию</li>
+            </ul>
+
+            <div class="action-box">
+                <h4>🎯 ЦЕЛИ НА 90 ДНЕЙ (контрольные точки):</h4>
+                <ul>
+                    <li><strong>Продажи:</strong> 5+ новых сделок/мес (vs текущие 0.5/мес)</li>
+                    <li><strong>Эффективность:</strong> Revenue/чел 150k₽ → 165k₽ (+10%)</li>
+                    <li><strong>Margin:</strong> сохранить 40%+ при росте</li>
+                    <li><strong>Клиенты на пакетах:</strong> 30%+ текущих + все новые</li>
+                    <li><strong>Автоматизация:</strong> reporting для 50%+ клиентов</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Summary -->
+        <div class="section">
+            <h2>Резюме: что делать</h2>
+
+            <div class="priority-box">
+                <h4>🔴 КРИТИЧНО (немедленно):</h4>
+                <ul>
+                    <li>Повысить эффективность команды: time tracking + автоматизация (2-4 недели)</li>
+                    <li>Стандартные пакеты вместо кастома → ускорить продажи (1 неделя)</li>
+                    <li>Client profitability аудит → уйти от убыточных (2 недели)</li>
+                </ul>
+            </div>
+
+            <div class="warning-box">
+                <strong>🟡 ВАЖНО (1-3 месяца):</strong>
+                <ul>
+                    <li>Автоматизация reporting → освободить 20-30% времени</li>
+                    <li>Time tracking аудит → понять, что автоматизировать дальше</li>
+                    <li>Inbound маркетинг: кейсы, контент, вебинары</li>
+                    <li>Оптимизация команды: natural attrition + hiring freeze</li>
+                </ul>
+            </div>
+
+            <div class="success-box">
+                <strong>✅ ХОРОШИЕ НОВОСТИ:</strong>
+                <ul>
+                    <li>Финансовое состояние сильное (margin 40.8%, прибыль 3M₽/мес)</li>
+                    <li>Есть запас для инвестиций в трансформацию</li>
+                    <li>Проблемы операционные, не фундаментальные — решаемы за 3-6 месяцев</li>
+                </ul>
+            </div>
+
+            <div class="highlight-box">
+                <p style="font-size: 16px; font-weight: 600; margin-bottom: 12px;">
+                    Главный вывод:
+                </p>
+                <p style="font-size: 15px;">
+                    Бизнес прибыльный и здоровый, но <strong>неэффективный</strong>. Главная проблема — низкая эффективность команды
+                    (Revenue/чел 134k₽ vs норма 300-500k₽). Продажи отстают от плана (53% выполнения), но темп не критичный.
+                </p>
+                <p style="font-size: 15px; margin-top: 12px;">
+                    <strong>Приоритет:</strong> Повысить эффективность (автоматизация, оптимизация команды) + ускорить продажи
+                    (стандартные пакеты + inbound). Трансформация в Customer Value оператора реальна, финансовое состояние позволяет.
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

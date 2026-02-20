@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Реальный анализ бизнеса — CRM Group 2025</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-bg-primary: #ffffff;
+            --color-bg-secondary: #fafbfc;
+            --color-bg-tertiary: #f8f9fa;
+            --color-text-primary: #1a1a1a;
+            --color-text-secondary: #5f6368;
+            --color-accent: #1a73e8;
+            --color-success: #34a853;
+            --color-warning: #fbbc04;
+            --color-danger: #ea4335;
+            --space-md: 16px;
+            --space-lg: 24px;
+            --space-xl: 32px;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--color-bg-secondary);
+            color: var(--color-text-primary);
+            line-height: 1.6;
+            font-size: 14px;
+            -webkit-font-smoothing: antialiased;
+            padding: var(--space-xl);
+        }
+
+        .container { max-width: 1200px; margin: 0 auto; }
+
+        .header {
+            background: linear-gradient(135deg, #ea4335 0%, #c5221f 100%);
+            color: white;
+            padding: var(--space-xl);
+            border-radius: var(--radius-lg);
+            margin-bottom: var(--space-xl);
+        }
+
+        .header h1 { font-size: 32px; font-weight: 700; margin-bottom: 8px; }
+        .header p { font-size: 16px; opacity: 0.9; }
+
+        .alert {
+            background: #fce8e6;
+            border-left: 6px solid var(--color-danger);
+            padding: var(--space-xl);
+            border-radius: var(--radius-md);
+            margin-bottom: var(--space-xl);
+        }
+
+        .alert-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--color-danger);
+            margin-bottom: 12px;
+        }
+
+        .section {
+            background: var(--color-bg-primary);
+            border-radius: var(--radius-lg);
+            padding: var(--space-xl);
+            margin-bottom: var(--space-xl);
+            border: 1px solid #e8eaed;
+        }
+
+        h2 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: var(--space-lg);
+            color: var(--color-text-primary);
+        }
+
+        h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: var(--space-md);
+            color: var(--color-accent);
+            margin-top: var(--space-lg);
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--space-md);
+            margin: var(--space-md) 0;
+        }
+
+        .metric-card {
+            background: var(--color-bg-tertiary);
+            padding: var(--space-md);
+            border-radius: var(--radius-md);
+            border: 2px solid transparent;
+        }
+
+        .metric-card.danger { border-color: var(--color-danger); background: #fce8e6; }
+        .metric-card.warning { border-color: var(--color-warning); background: #fef7e0; }
+        .metric-card.success { border-color: var(--color-success); background: #e6f9ed; }
+
+        .metric-label {
+            font-size: 12px;
+            color: var(--color-text-secondary);
+            margin-bottom: 4px;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .metric-value {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--color-text-primary);
+            margin-bottom: 4px;
+        }
+
+        .metric-bad { color: var(--color-danger) !important; }
+        .metric-warning { color: var(--color-warning) !important; }
+        .metric-good { color: var(--color-success) !important; }
+
+        .metric-subtitle {
+            font-size: 13px;
+            color: var(--color-text-secondary);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: var(--space-md) 0;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #e8eaed;
+        }
+
+        th {
+            background: var(--color-bg-tertiary);
+            font-weight: 600;
+            font-size: 13px;
+        }
+
+        .comparison-table td:nth-child(2) { color: var(--color-text-secondary); }
+        .comparison-table td:nth-child(3) { font-weight: 600; }
+
+        .highlight-box {
+            background: #f0f7ff;
+            border-left: 4px solid var(--color-accent);
+            padding: var(--space-md);
+            border-radius: var(--radius-md);
+            margin: var(--space-md) 0;
+        }
+
+        .warning-box {
+            background: #fef7e0;
+            border-left: 4px solid var(--color-warning);
+            padding: var(--space-md);
+            border-radius: var(--radius-md);
+            margin: var(--space-md) 0;
+        }
+
+        .danger-box {
+            background: #fce8e6;
+            border-left: 4px solid var(--color-danger);
+            padding: var(--space-md);
+            border-radius: var(--radius-md);
+            margin: var(--space-md) 0;
+        }
+
+        .success-box {
+            background: #e6f9ed;
+            border-left: 4px solid var(--color-success);
+            padding: var(--space-md);
+            border-radius: var(--radius-md);
+            margin: var(--space-md) 0;
+        }
+
+        ul { margin-left: 20px; margin-top: 8px; }
+        li { margin-bottom: 8px; }
+
+        .priority-list {
+            counter-reset: priority;
+        }
+
+        .priority-item {
+            background: var(--color-bg-tertiary);
+            padding: var(--space-md);
+            border-radius: var(--radius-md);
+            margin-bottom: var(--space-md);
+            border-left: 4px solid var(--color-danger);
+            position: relative;
+            padding-left: 60px;
+        }
+
+        .priority-item::before {
+            content: counter(priority);
+            counter-increment: priority;
+            position: absolute;
+            left: var(--space-md);
+            top: var(--space-md);
+            width: 32px;
+            height: 32px;
+            background: var(--color-danger);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        .priority-title {
+            font-weight: 600;
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+
+        @media (max-width: 768px) {
+            body { padding: 16px; }
+            .header h1 { font-size: 24px; }
+            .metrics-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚨 Реальный анализ бизнеса 2025</h1>
+            <p>CRM Group / Email Soldiers • На основе ФАКТИЧЕСКИХ данных P&L</p>
+        </div>
+
+        <!-- Critical Alert -->
+        <div class="alert">
+            <div class="alert-title">КРИТИЧНО: Бизнес на грани рентабельности</div>
+            <p style="margin-bottom: 12px; font-size: 16px;">
+                <strong>Чистая прибыль за год (факт):</strong> 6.9M₽ на выручку 139M₽<br>
+                <strong>Net margin:</strong> 5% (при плане 27.6%)<br>
+                <strong>Выполнение плана по прибыли:</strong> 13% (6.9M вместо 53.8M)
+            </p>
+            <p style="font-size: 15px; font-weight: 600;">
+                Это НЕ здоровый прибыльный бизнес. Любое падение выручки на 5-10% = убыток.
+                До трансформации бизнес-модели нужно срочно фиксить прибыльность.
+            </p>
+        </div>
+
+        <!-- Plan vs Fact -->
+        <div class="section">
+            <h2>1. План vs Факт 2025</h2>
+
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Показатель</th>
+                        <th>ПЛАН</th>
+                        <th>ФАКТ</th>
+                        <th>Выполнение</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Выручка без НДС</strong></td>
+                        <td>195.0M₽</td>
+                        <td style="font-weight: 600;">138.8M₽</td>
+                        <td><span style="color: #fbbc04;">71%</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Валовая прибыль</strong></td>
+                        <td>113.9M₽</td>
+                        <td style="font-weight: 600;">59.6M₽</td>
+                        <td><span style="color: #fbbc04;">52%</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>EBITDA</strong></td>
+                        <td>56.1M₽</td>
+                        <td style="font-weight: 600;">8.6M₽</td>
+                        <td><span style="color: #ea4335;">15%</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Чистая прибыль</strong></td>
+                        <td>53.8M₽</td>
+                        <td style="font-weight: 600;">6.9M₽</td>
+                        <td><span style="color: #ea4335;">13%</span></td>
+                    </tr>
+                    <tr style="border-top: 2px solid #e8eaed;">
+                        <td><strong>Gross Margin</strong></td>
+                        <td>58.4%</td>
+                        <td style="font-weight: 600;">43.0%</td>
+                        <td>-15.4pp</td>
+                    </tr>
+                    <tr>
+                        <td><strong>EBITDA Margin</strong></td>
+                        <td>28.8%</td>
+                        <td style="font-weight: 600;">6.2%</td>
+                        <td><span style="color: #ea4335;">-22.6pp</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Net Margin</strong></td>
+                        <td>27.6%</td>
+                        <td style="font-weight: 600; color: #ea4335;">5.0%</td>
+                        <td><span style="color: #ea4335;">-22.6pp</span></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="danger-box">
+                <strong>🚨 КРИТИЧНАЯ ПРОБЛЕМА:</strong>
+                <ul>
+                    <li>План по прибыли провален на <strong>87%</strong> (6.9M вместо 53.8M)</li>
+                    <li>Net margin <strong>5%</strong> — это уровень выживания, не роста</li>
+                    <li>EBITDA margin <strong>6.2%</strong> — почти все деньги уходят на операционку</li>
+                    <li>При margin 5% любая проблема (отток клиентов -10%, рост расходов +5%) = убыток</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Key Metrics -->
+        <div class="section">
+            <h2>2. Ключевые метрики (ФАКТ 2025)</h2>
+
+            <div class="metrics-grid">
+                <div class="metric-card danger">
+                    <div class="metric-label">Net Margin</div>
+                    <div class="metric-value metric-bad">5.0%</div>
+                    <div class="metric-subtitle">План: 27.6%</div>
+                </div>
+                <div class="metric-card warning">
+                    <div class="metric-label">EBITDA Margin</div>
+                    <div class="metric-value metric-warning">6.2%</div>
+                    <div class="metric-subtitle">План: 28.8%</div>
+                </div>
+                <div class="metric-card success">
+                    <div class="metric-label">Gross Margin</div>
+                    <div class="metric-value metric-good">43.0%</div>
+                    <div class="metric-subtitle">План: 58.4%</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Выручка/мес</div>
+                    <div class="metric-value">11.6M₽</div>
+                    <div class="metric-subtitle">План: 16.2M₽</div>
+                </div>
+                <div class="metric-card danger">
+                    <div class="metric-label">Прибыль/мес</div>
+                    <div class="metric-value metric-bad">580k₽</div>
+                    <div class="metric-subtitle">План: 4.5M₽</div>
+                </div>
+                <div class="metric-card warning">
+                    <div class="metric-label">Revenue/чел</div>
+                    <div class="metric-value metric-warning">139k₽</div>
+                    <div class="metric-subtitle">Норма: 300-500k₽</div>
+                </div>
+            </div>
+
+            <h3>Численность и расходы:</h3>
+
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-label">Команда (оценка)</div>
+                    <div class="metric-value">~83 чел</div>
+                    <div class="metric-subtitle">По ЗП производственных</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">ЗП произв./мес</div>
+                    <div class="metric-value">6.2M₽</div>
+                    <div class="metric-subtitle">~75k₽/чел</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Прямые расходы/мес</div>
+                    <div class="metric-value">6.6M₽</div>
+                    <div class="metric-subtitle">57% от выручки</div>
+                </div>
+                <div class="metric-card warning">
+                    <div class="metric-label">Revenue/Payroll</div>
+                    <div class="metric-value metric-warning">1.85x</div>
+                    <div class="metric-subtitle">Нужно: >2.5x</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sales Analysis -->
+        <div class="section">
+            <h2>3. Продажи: парадокс количества vs денег</h2>
+
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Метрика</th>
+                        <th>ПЛАН</th>
+                        <th>ФАКТ</th>
+                        <th>Выполнение</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Продажи (штук)</strong></td>
+                        <td>115</td>
+                        <td style="font-weight: 600;">47</td>
+                        <td><span style="color: #ea4335;">41%</span></td>
+                    </tr>
+                    <tr>
+                        <td>— Большие проекты</td>
+                        <td>12</td>
+                        <td>17</td>
+                        <td><span style="color: #34a853;">142%</span></td>
+                    </tr>
+                    <tr>
+                        <td>— Тендеры</td>
+                        <td>13</td>
+                        <td>6</td>
+                        <td><span style="color: #ea4335;">46%</span></td>
+                    </tr>
+                    <tr>
+                        <td>— Маленькие</td>
+                        <td>90</td>
+                        <td>24</td>
+                        <td><span style="color: #ea4335;">27%</span></td>
+                    </tr>
+                    <tr style="border-top: 2px solid #e8eaed;">
+                        <td><strong>Продажи (рубли)</strong></td>
+                        <td>48.6M₽</td>
+                        <td style="font-weight: 600;">66.1M₽</td>
+                        <td><span style="color: #34a853;">136%</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Средний чек</strong></td>
+                        <td>422k₽</td>
+                        <td style="font-weight: 600;">1,406k₽</td>
+                        <td><span style="color: #34a853;">+233%</span></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="highlight-box">
+                <strong>🎯 ПАРАДОКС ПРОДАЖ:</strong>
+                <ul>
+                    <li>✅ Продажи в рублях: <strong>136% плана</strong> (66.1M вместо 48.6M)</li>
+                    <li>❌ Продажи в штуках: <strong>41% плана</strong> (47 вместо 115)</li>
+                    <li>📊 Средний чек: <strong>1.4M₽</strong> vs план 422k₽ (в 3.3 раза выше!)</li>
+                </ul>
+            </div>
+
+            <div class="warning-box">
+                <strong>ЧТО ЭТО ОЗНАЧАЕТ:</strong>
+                <ul>
+                    <li><strong>Плюс:</strong> Умеют продавать дорого, закрывают крупные сделки</li>
+                    <li><strong>Минус:</strong> Мало новых клиентов (47 за год = 4/мес)</li>
+                    <li><strong>Риск:</strong> Зависимость от крупных сделок. Потеря 3-5 больших клиентов = -20-30% выручки</li>
+                    <li><strong>Риск:</strong> Мало диверсификации, высокая концентрация</li>
+                </ul>
+            </div>
+
+            <div class="danger-box">
+                <strong>⚠️ КРИТИЧНО ДЛЯ ТРАНСФОРМАЦИИ:</strong><br>
+                Новая модель (пакеты по 400k₽) требует 40+ клиентов. При текпе 4 клиента/мес нужно 10 месяцев
+                чтобы набрать портфель. Если sales не ускорится в 2-3x — трансформация невозможна.
+            </div>
+        </div>
+
+        <!-- Diagnosis -->
+        <div class="section">
+            <h2>4. Диагноз: почему прибыль провалена?</h2>
+
+            <h3>Структура расходов (среднее/мес):</h3>
+
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Статья</th>
+                        <th>Сумма/мес</th>
+                        <th>% от выручки</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Выручка без НДС</td>
+                        <td>11.6M₽</td>
+                        <td>100%</td>
+                    </tr>
+                    <tr style="border-top: 1px solid #e8eaed;">
+                        <td>Прямые расходы (производство)</td>
+                        <td>-6.6M₽</td>
+                        <td>57%</td>
+                    </tr>
+                    <tr>
+                        <td>— в т.ч. ЗП производственных</td>
+                        <td>-6.2M₽</td>
+                        <td>54%</td>
+                    </tr>
+                    <tr>
+                        <td>— в т.ч. прочие прямые</td>
+                        <td>-0.4M₽</td>
+                        <td>3%</td>
+                    </tr>
+                    <tr style="border-top: 1px solid #e8eaed;">
+                        <td><strong>Валовая прибыль</strong></td>
+                        <td style="font-weight: 600;">5.0M₽</td>
+                        <td style="font-weight: 600;">43%</td>
+                    </tr>
+                    <tr style="border-top: 1px solid #e8eaed;">
+                        <td>Операционные расходы (оценка)*</td>
+                        <td>-4.3M₽</td>
+                        <td>37%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>EBITDA</strong></td>
+                        <td style="font-weight: 600;">0.7M₽</td>
+                        <td style="font-weight: 600;">6%</td>
+                    </tr>
+                    <tr style="border-top: 1px solid #e8eaed;">
+                        <td>Прочие расходы (оценка)*</td>
+                        <td>-0.1M₽</td>
+                        <td>1%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Чистая прибыль</strong></td>
+                        <td style="font-weight: 600; color: #ea4335;">0.6M₽</td>
+                        <td style="font-weight: 600; color: #ea4335;">5%</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p style="font-size: 12px; color: #5f6368; margin-top: 8px;">
+                * Операционные расходы = разница между валовой прибылью и EBITDA (включает: управление, продажи, маркетинг, офис, и т.д.)
+            </p>
+
+            <h3>Где уходят деньги:</h3>
+
+            <div class="danger-box">
+                <strong>🔴 ПРОБЛЕМА 1: ЗП производственных = 54% выручки</strong>
+                <ul>
+                    <li>ЗП производственных: 74.9M₽/год (6.2M₽/мес)</li>
+                    <li>Норма для агентства: 35-45% выручки</li>
+                    <li>Причина: низкая эффективность (139k₽/чел vs норма 300-500k)</li>
+                    <li>Решение: либо вырастить revenue, либо оптимизировать команду через автоматизацию</li>
+                </ul>
+            </div>
+
+            <div class="danger-box">
+                <strong>🔴 ПРОБЛЕМА 2: Административные расходы = 26.5% выручки</strong>
+                <ul>
+                    <li>Административные: 36.7M₽/год (3.1M₽/мес)</li>
+                    <li>Норма для агентства: 10-15%</li>
+                    <li>Включает: ЗП топменеджмента (13.6M), ЗП АУП (6.9M), HR (3.2M), офис/ПО (4M), прочее (9M)</li>
+                    <li>Переплата: ~11-16pp × 138.8M = <strong>15-22M₽/год (1.3-1.8M₽/мес)</strong></li>
+                    <li><strong>Нужен детальный аудит каждой роли:</strong> кто, зачем, можно ли без него?</li>
+                </ul>
+            </div>
+
+            <div class="warning-box">
+                <strong>🟡 Коммерческие расходы = 10.3% выручки</strong>
+                <ul>
+                    <li>Sales + Marketing: 14.3M₽/год (1.2M₽/мес)</li>
+                    <li>В пределах нормы (8-12%)</li>
+                    <li>НО: реклама всего 1.5M₽/год (1.1%) при продажах 41% плана → нужно увеличить до 3-5%</li>
+                </ul>
+            </div>
+
+            <div class="warning-box">
+                <strong>🟡 ВЫВОД:</strong> Проблема не в gross margin (43% — нормально), а в том, что операционка съедает почти всю валовую прибыль.
+                При нормальных опекс (25%) чистая прибыль была бы 18% вместо 5%.
+            </div>
+        </div>
+
+        <!-- Operational Expenses Breakdown -->
+        <div class="section">
+            <h2>4.5. Детализация операционных расходов</h2>
+
+            <h3>Административные: 36.7M₽/год (26.5% выручки) — ПРОБЛЕМА!</h3>
+
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Категория</th>
+                        <th>Сумма/год</th>
+                        <th>% выручки</th>
+                        <th>Комментарий</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="background: #fef7f7;">
+                        <td><strong>ЗП топменеджмента</strong></td>
+                        <td>13.6M₽</td>
+                        <td style="color: #ea4335;">9.8%</td>
+                        <td>Высоко при команде 83 чел</td>
+                    </tr>
+                    <tr>
+                        <td>ЗП административного персонала</td>
+                        <td>6.9M₽</td>
+                        <td>4.9%</td>
+                        <td>Бухгалтерия, офис, админы</td>
+                    </tr>
+                    <tr>
+                        <td>ЗП HR команды</td>
+                        <td>3.2M₽</td>
+                        <td>2.3%</td>
+                        <td>Внутренний HR</td>
+                    </tr>
+                    <tr style="border-top: 2px solid #e8eaed;">
+                        <td><strong>Итого ЗП АУП</strong></td>
+                        <td style="font-weight: 600;">23.7M₽</td>
+                        <td style="font-weight: 600;">17.1%</td>
+                        <td style="font-weight: 600;">Норма: 8-12%</td>
+                    </tr>
+                    <tr style="border-top: 1px solid #e8eaed;">
+                        <td>Офис и инфраструктура</td>
+                        <td>2.5M₽</td>
+                        <td>1.8%</td>
+                        <td>Аренда, коммуналка, ПО</td>
+                    </tr>
+                    <tr>
+                        <td>ПО для HR</td>
+                        <td>1.1M₽</td>
+                        <td>0.8%</td>
+                        <td>HR системы</td>
+                    </tr>
+                    <tr>
+                        <td>Финансовые сервисы</td>
+                        <td>0.8M₽</td>
+                        <td>0.6%</td>
+                        <td>Бухгалтерия, банки</td>
+                    </tr>
+                    <tr>
+                        <td>Прочие административные</td>
+                        <td>8.6M₽</td>
+                        <td>6.2%</td>
+                        <td>Разное</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Коммерческие: 14.3M₽/год (10.3% выручки) — в норме</h3>
+
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Категория</th>
+                        <th>Сумма/год</th>
+                        <th>% выручки</th>
+                        <th>Комментарий</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>ЗП отдела продаж</td>
+                        <td>7.3M₽</td>
+                        <td>5.3%</td>
+                        <td>В норме</td>
+                    </tr>
+                    <tr>
+                        <td>Бонусы продаж</td>
+                        <td>1.0M₽</td>
+                        <td>0.7%</td>
+                        <td>В норме</td>
+                    </tr>
+                    <tr>
+                        <td>ЗП маркетинга</td>
+                        <td>4.2M₽</td>
+                        <td>3.1%</td>
+                        <td>В норме</td>
+                    </tr>
+                    <tr style="background: #fef7f7;">
+                        <td><strong>Реклама/продвижение</strong></td>
+                        <td>1.5M₽</td>
+                        <td style="color: #fbbc04;">1.1%</td>
+                        <td>Мало! Нужно 3-5%</td>
+                    </tr>
+                    <tr>
+                        <td>Прочее коммерческое</td>
+                        <td>0.2M₽</td>
+                        <td>0.1%</td>
+                        <td>-</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="danger-box">
+                <strong>🚨 ГЛАВНАЯ ПРОБЛЕМА:</strong> Административные расходы 26.5% vs норма 10-15%.
+                <br><br>
+                <strong>Если сократить до 15%:</strong> экономия 11.5pp × 138.8M = <strong>16M₽/год (1.3M₽/мес)</strong>
+                <br>
+                <strong>Результат:</strong> Net margin 5% → 16.5% ✅
+            </div>
+
+            <div class="warning-box">
+                <strong>⚠️ НО КАК СОКРАЩАТЬ?</strong> Без понимания "кто есть кто" невозможно решить.
+                <br><br>
+                <strong>Нужен аудит команды:</strong> список всех людей с ролями и ЗП → анализ каждой роли → решение по каждому.
+            </div>
+        </div>
+
+        <!-- Critical Priorities -->
+        <div class="section">
+            <h2>5. Критичные приоритеты (срочно!)</h2>
+
+            <div class="priority-list">
+                <div class="priority-item">
+                    <div class="priority-title">Аудит команды: кто, зачем, можно ли без него?</div>
+                    <p><strong>Проблема:</strong> ЗП АУП 17% выручки (норма 8-12%). Но без списка людей непонятно где резать.</p>
+                    <p><strong>Действие:</strong></p>
+                    <ul style="margin-left: 20px; margin-top: 8px;">
+                        <li>Собрать список ВСЕХ сотрудников: имя, роль, ЗП/мес, департамент</li>
+                        <li>Разбить по категориям: производство, топменеджмент, АУП, HR, sales, маркетинг</li>
+                        <li>Для каждой роли ответить: зачем? чем занят? можно ли без него? можно ли дешевле?</li>
+                        <li>Выявить "мёртвые роли" — люди, без которых бизнес не остановится</li>
+                    </ul>
+                    <p><strong>Цель:</strong> Найти 10-15 ролей для оптимизации (увольнение, замена на junior, аутсорс)</p>
+                    <p><strong>Срок:</strong> 1 неделя на сбор данных + 1 неделя на анализ</p>
+                </div>
+
+                <div class="priority-item">
+                    <div class="priority-title">Повысить эффективность команды</div>
+                    <p><strong>Проблема:</strong> Revenue/чел 139k₽ (норма 300-500k). ЗП = 54% выручки (норма 35-45%).</p>
+                    <p><strong>Действие:</strong> Time tracking аудит → автоматизация 30%+ времени → 1 менеджер = 5-6 клиентов вместо 2-3</p>
+                    <p><strong>Цель:</strong> Либо вырастить revenue до 15-18M/мес, либо сократить команду до 65-70 чел</p>
+                    <p><strong>Срок:</strong> 3-6 месяцев</p>
+                </div>
+
+                <div class="priority-item">
+                    <div class="priority-title">Ускорить продажи в 2x</div>
+                    <p><strong>Проблема:</strong> Темп 4 продажи/мес недостаточен ни для плана, ни для трансформации.</p>
+                    <p><strong>Действие:</strong> Стандартные пакеты → сократить цикл сделки с 60-90 до 20-30 дней. Inbound маркетинг (кейсы, контент).</p>
+                    <p><strong>Цель:</strong> 8-10 продаж/мес (2x рост) для поддержки трансформации</p>
+                    <p><strong>Срок:</strong> 3 месяца</p>
+                </div>
+
+                <div class="priority-item">
+                    <div class="priority-title">Client profitability аудит</div>
+                    <p><strong>Проблема:</strong> Средний чек 1.4M₽, но margin 5% → есть убыточные клиенты.</p>
+                    <p><strong>Действие:</strong> Посчитать margin по каждому клиенту. Разбить на Green/Yellow/Red. Уйти от убыточных или поднять цену.</p>
+                    <p><strong>Цель:</strong> Освободить 10-15% ресурса команды для прибыльных клиентов</p>
+                    <p><strong>Срок:</strong> 2 недели</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Team Audit Preparation -->
+        <div class="section">
+            <h2>5.5. Подготовка к аудиту команды: чек-лист</h2>
+
+            <p style="margin-bottom: 16px;">
+                Без списка людей и ролей невозможно понять, где конкретно резать расходы.
+                Ниже — формат данных и методика анализа.
+            </p>
+
+            <h3>Шаг 1: Собрать данные по команде</h3>
+
+            <div class="highlight-box">
+                <strong>📊 ФОРМАТ ТАБЛИЦЫ (Excel/Google Sheets):</strong>
+                <table style="margin-top: 12px; font-size: 13px;">
+                    <thead>
+                        <tr>
+                            <th>ФИО</th>
+                            <th>Должность</th>
+                            <th>Департамент</th>
+                            <th>Руководитель</th>
+                            <th>ЗП/мес (₽)</th>
+                            <th>Дата найма</th>
+                            <th>Занятость</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Иванов И.И.</td>
+                            <td>Email-маркетолог</td>
+                            <td>Производство</td>
+                            <td>Петров П.П.</td>
+                            <td>80 000</td>
+                            <td>2023-05-15</td>
+                            <td>Full-time</td>
+                        </tr>
+                        <tr style="background: #fef7f7;">
+                            <td>Сидорова С.С.</td>
+                            <td>HR-менеджер</td>
+                            <td>HR</td>
+                            <td>Иванов И.И. (CEO)</td>
+                            <td>120 000</td>
+                            <td>2022-08-01</td>
+                            <td>Full-time</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p style="margin-top: 12px; font-size: 13px; color: #5f6368;">
+                    <strong>Департаменты:</strong> Производство, Топменеджмент, АУП, HR, Sales, Маркетинг, Офис/IT
+                </p>
+            </div>
+
+            <h3>Шаг 2: Категоризировать каждую роль</h3>
+
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Категория</th>
+                        <th>Описание</th>
+                        <th>Действие</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="background: #e6f9ed;">
+                        <td><strong>🟢 CRITICAL</strong></td>
+                        <td>Без этого человека бизнес останавливается в течение 1-2 недель.<br>
+                        Пример: CEO, CFO, руководители производства, ключевые account managers</td>
+                        <td><strong>Сохранить.</strong> Возможно оптимизировать ЗП.</td>
+                    </tr>
+                    <tr style="background: #fef7e0;">
+                        <td><strong>🟡 IMPORTANT</strong></td>
+                        <td>Важная роль, но можно заменить на junior или аутсорс.<br>
+                        Пример: бухгалтер, HR, маркетолог, некоторые менеджеры</td>
+                        <td><strong>Оптимизировать.</strong> Замена на дешевле/аутсорс.</td>
+                    </tr>
+                    <tr style="background: #f0f7ff;">
+                        <td><strong>🔵 NICE-TO-HAVE</strong></td>
+                        <td>Полезная роль, но бизнес без неё выживет.<br>
+                        Пример: внутренний тренер, extra HR, офис-менеджер, часть маркетинга</td>
+                        <td><strong>Рассмотреть увольнение</strong> или переход на part-time.</td>
+                    </tr>
+                    <tr style="background: #fce8e6;">
+                        <td><strong>🔴 REDUNDANT</strong></td>
+                        <td>Дублирующая роль, низкая загрузка, или функция уже не нужна.<br>
+                        Пример: 2 HR на 80 чел, дублирующие менеджеры, legacy роли</td>
+                        <td><strong>Уволить.</strong> Сразу.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Шаг 3: Вопросы для каждой роли</h3>
+
+            <div class="warning-box">
+                <strong>🔍 ДЛЯ КАЖДОГО СОТРУДНИКА ОТВЕТИТЬ:</strong>
+                <ol style="margin-left: 20px; margin-top: 8px;">
+                    <li style="margin-bottom: 8px;"><strong>Чем конкретно занят?</strong> Какие задачи делает каждый день/неделю?</li>
+                    <li style="margin-bottom: 8px;"><strong>Какой результат приносит?</strong> Можно ли измерить? (Revenue, экономия, скорость, качество)</li>
+                    <li style="margin-bottom: 8px;"><strong>Что будет, если его убрать?</strong> Кто подхватит задачи? Сколько времени займёт?</li>
+                    <li style="margin-bottom: 8px;"><strong>Можно ли дешевле?</strong> Junior вместо senior? Аутсорс вместо in-house? Part-time вместо full-time?</li>
+                    <li style="margin-bottom: 8px;"><strong>Загружен ли на 100%?</strong> Если нет — сколько свободного времени? Можно ли объединить роли?</li>
+                </ol>
+            </div>
+
+            <h3>Шаг 4: Целевые показатели после оптимизации</h3>
+
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Категория</th>
+                        <th>Текущее</th>
+                        <th>Целевое</th>
+                        <th>Экономия</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>ЗП АУП (% выручки)</strong></td>
+                        <td style="color: #ea4335;">17.1%</td>
+                        <td style="color: #34a853;">8-12%</td>
+                        <td style="color: #34a853;">0.7-1.3M₽/мес</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ЗП топменеджмента</strong></td>
+                        <td style="color: #ea4335;">9.8%</td>
+                        <td style="color: #34a853;">5-7%</td>
+                        <td style="color: #34a853;">0.3-0.6M₽/мес</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Административные расходы</strong></td>
+                        <td style="color: #ea4335;">26.5%</td>
+                        <td style="color: #34a853;">15-18%</td>
+                        <td style="color: #34a853;">1.0-1.3M₽/мес</td>
+                    </tr>
+                    <tr style="border-top: 2px solid #e8eaed;">
+                        <td><strong>ИТОГО экономия</strong></td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td style="font-weight: 600; color: #34a853;">1.3-1.8M₽/мес</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="success-box">
+                <strong>🎯 РЕЗУЛЬТАТ:</strong> Экономия 1.3-1.8M₽/мес = Net margin 5% → 16-18% ✅
+                <br><br>
+                <strong>СЛЕДУЮЩИЙ ШАГ:</strong> Предоставить список людей → провести анализ → составить план оптимизации
+            </div>
+        </div>
+
+        <!-- Feasibility Check -->
+        <div class="section">
+            <h2>6. Реализуемость трансформации: GO или NO-GO?</h2>
+
+            <div class="danger-box">
+                <strong>⛔ ВЕРДИКТ: ТРАНСФОРМАЦИЯ НЕВОЗМОЖНА БЕЗ СТАБИЛИЗАЦИИ</strong>
+                <p style="margin-top: 12px;">
+                    При чистой прибыли <strong>580k₽/мес</strong> (6.9M₽/год) нет финансового запаса для трансформации.
+                    Любое падение выручки на 5-10% = убыток.
+                </p>
+            </div>
+
+            <h3>Почему трансформация сейчас опасна:</h3>
+
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Фактор</th>
+                        <th>Требование для GO</th>
+                        <th>Текущее состояние</th>
+                        <th>Статус</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Net Margin</td>
+                        <td>>15%</td>
+                        <td style="color: #ea4335;">5%</td>
+                        <td style="color: #ea4335;">❌ NO-GO</td>
+                    </tr>
+                    <tr>
+                        <td>Runway (резервы)</td>
+                        <td>>6 мес операционных расходов</td>
+                        <td>Нужно уточнить</td>
+                        <td style="color: #fbbc04;">⚠️ ПРОВЕРИТЬ</td>
+                    </tr>
+                    <tr>
+                        <td>Прибыль/мес для инвестиций</td>
+                        <td>>2M₽/мес</td>
+                        <td style="color: #ea4335;">0.6M₽/мес</td>
+                        <td style="color: #ea4335;">❌ NO-GO</td>
+                    </tr>
+                    <tr>
+                        <td>Sales темп</td>
+                        <td>8-10 сделок/мес</td>
+                        <td style="color: #ea4335;">4 сделки/мес</td>
+                        <td style="color: #ea4335;">❌ NO-GO</td>
+                    </tr>
+                    <tr>
+                        <td>Revenue/чел</td>
+                        <td>>200k₽/мес</td>
+                        <td style="color: #fbbc04;">139k₽/мес</td>
+                        <td style="color: #fbbc04;">⚠️ НИЗКО</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Сценарий worst-case при трансформации сейчас:</h3>
+
+            <div class="danger-box" style="font-family: monospace; font-size: 13px; line-height: 1.8;">
+<strong>Первые 6 месяцев трансформации:</strong>
+- Теряем 20% клиентов (не переходят на пакеты)
+- Revenue: 11.6M → 9.3M₽/мес (-20%)
+- Costs: 6.6M (не падают сразу)
+- Инвестиции: +500k₽/мес (инструменты, hiring)
+
+<strong>Новый margin:</strong>
+Revenue: 9.3M₽/мес
+Costs: -7.1M₽/мес (старые + инвестиции)
+Валовая прибыль: 2.2M₽/мес (было 5M)
+Net profit: <strong>УБЫТОК -1.5M₽/мес</strong>
+
+<strong>Убыток за 6 мес: -9M₽</strong>
+            </div>
+
+            <div class="warning-box">
+                <strong>ВЫВОД:</strong> Без резервов 15-20M₽ или кредитной линии трансформация приведёт к убыткам и может сломать бизнес.
+            </div>
+        </div>
+
+        <!-- Action Plan -->
+        <div class="section">
+            <h2>7. План действий: СНАЧАЛА стабилизация, ПОТОМ трансформация</h2>
+
+            <h3>Phase 0: STABILIZE (0-6 мес) — КРИТИЧНО</h3>
+
+            <div class="success-box">
+                <strong>Цель:</strong> Net margin 5% → 15-20% за 6 месяцев
+            </div>
+
+            <p><strong>Действия:</strong></p>
+            <ul>
+                <li><strong>Неделя 1-2:</strong> Аудит операционных расходов (52M₽/год). Разбивка по категориям.</li>
+                <li><strong>Неделя 3-4:</strong> Client profitability audit. Уйти от Red-клиентов или поднять цену +30-50%.</li>
+                <li><strong>Месяц 2:</strong> Time tracking аудит. Автоматизация reporting → освободить 20-30% времени.</li>
+                <li><strong>Месяц 2-3:</strong> Сократить операционные расходы на 1-1.5M₽/мес (цель: с 4.3M до 3M₽).</li>
+                <li><strong>Месяц 3-6:</strong> Повысить эффективность команды. Revenue/чел 139k → 180-200k₽.</li>
+            </ul>
+
+            <p><strong>Результат Phase 0:</strong></p>
+            <div style="background: #e6f9ed; padding: 12px; border-radius: 6px; font-family: monospace; font-size: 13px; margin: 12px 0;">
+Revenue: 11.6M → 13M₽/мес (+12% через эффективность)
+Операционные расходы: 4.3M → 3M₽/мес (-30% оптимизация)
+Валовая прибыль: 5M → 5.5M₽/мес
+<strong>Net profit: 0.6M → 2.5M₽/мес
+Net margin: 5% → 19% ✅</strong>
+            </div>
+
+            <h3>Phase 1: PREPARE (мес 6-12)</h3>
+
+            <p><strong>Только после достижения net margin >15%:</strong></p>
+            <ul>
+                <li>Создать резервный фонд 15-20M₽ (из прибыли 2.5M/мес за 6-8 мес)</li>
+                <li>Pilot новой модели с 3-5 клиентами (пакеты, subscription)</li>
+                <li>Ускорить sales до 8-10 сделок/мес</li>
+                <li>Продуктизировать ключевые процессы (30-40% автоматизации)</li>
+            </ul>
+
+            <h3>Phase 2: TRANSFORM (мес 12-24)</h3>
+
+            <p><strong>Только с резервами 15-20M₽ и margin >15%:</strong></p>
+            <ul>
+                <li>Переход на пакетную/subscription модель</li>
+                <li>Масштабирование до 40+ клиентов</li>
+                <li>Оптимизация команды 83 → 60-65 чел</li>
+                <li>Revenue/чел 139k → 250-300k₽</li>
+            </ul>
+        </div>
+
+        <!-- Final Verdict -->
+        <div class="section">
+            <h2>8. Главные выводы</h2>
+
+            <div class="danger-box">
+                <h3 style="margin: 0 0 12px 0; color: #c5221f;">🚨 КРИТИЧНО</h3>
+                <ol style="margin-left: 20px;">
+                    <li style="margin-bottom: 8px;"><strong>Бизнес НЕ здоровый.</strong> Net margin 5% — это уровень выживания. Любая проблема = убыток.</li>
+                    <li style="margin-bottom: 8px;"><strong>План по прибыли провален на 87%.</strong> 6.9M вместо 53.8M — нужно понять почему.</li>
+                    <li style="margin-bottom: 8px;"><strong>Операционка съедает 37% выручки</strong> (норма 20-30%). Главная причина низкой прибыли.</li>
+                    <li style="margin-bottom: 8px;"><strong>Трансформация невозможна сейчас.</strong> Нет финансового запаса. Риск убытков -9M₽ за 6 мес.</li>
+                </ol>
+            </div>
+
+            <div class="warning-box">
+                <h3 style="margin: 0 0 12px 0; color: #b45309;">⚠️ ПАРАДОКСЫ</h3>
+                <ul>
+                    <li>✅ Продажи в рублях: 136% плана (умеют продавать дорого)</li>
+                    <li>❌ Продажи в штуках: 41% плана (мало новых клиентов)</li>
+                    <li>✅ Gross margin 43% (производство эффективно)</li>
+                    <li>❌ Net margin 5% (операционка неэффективна)</li>
+                </ul>
+            </div>
+
+            <div class="success-box">
+                <h3 style="margin: 0 0 12px 0; color: #137333;">✅ ЧТО ДЕЛАТЬ</h3>
+                <p style="margin-bottom: 12px;"><strong>Приоритет #1:</strong> СТАБИЛИЗАЦИЯ, не трансформация.</p>
+                <ol style="margin-left: 20px;">
+                    <li style="margin-bottom: 8px;">Аудит операционных расходов → сократить 1-1.5M₽/мес</li>
+                    <li style="margin-bottom: 8px;">Client profitability → уйти от убыточных</li>
+                    <li style="margin-bottom: 8px;">Повысить эффективность → revenue/чел 139k → 180-200k₽</li>
+                    <li style="margin-bottom: 8px;">Цель: <strong>Net margin 5% → 15-20% за 6 месяцев</strong></li>
+                </ol>
+                <p style="margin-top: 12px; font-weight: 600;">
+                    Только после стабилизации margin >15% и создания резервов 15-20M₽ можно говорить о трансформации бизнес-модели.
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
