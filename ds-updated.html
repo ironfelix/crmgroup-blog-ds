@@ -400,34 +400,58 @@ a { color: var(--red); text-decoration: none; }
 
 .experts-section { margin-top: 24px; max-width: var(--measure); }
 .experts-section__title {
-  font-size: 12px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.8px;
-  color: var(--gray);
-  margin-bottom: 14px;
+  font-size: 12px; font-weight: 600; text-transform: uppercase;
+  letter-spacing: 0.8px; color: var(--gray); margin-bottom: 14px;
 }
-.experts-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-  gap: 12px;
-}
-.expert-card {
-  background: #fff;
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 14px 12px 12px;
-  text-align: center;
-}
-.expert-card img {
-  width: 52px;
-  height: 52px;
-  border-radius: 50%;
-  object-fit: cover;
-  margin-bottom: 8px;
-}
+.experts-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 12px; }
+.expert-card { background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 14px 12px 12px; text-align: center; }
+.expert-card img { width: 52px; height: 52px; border-radius: 50%; object-fit: cover; margin-bottom: 8px; }
 .expert-card__name { font-weight: 600; font-size: 13px; line-height: 1.3; }
 .expert-card__post { font-size: 11.5px; color: #8a8a8a; margin-top: 3px; line-height: 1.4; }
+
+/* ─── Contributors v2 (Mindbox-style, unified) ─── */
+.contributors {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 0;
+  align-items: center;
+  max-width: var(--measure);
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+}
+.contributors__person {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 16px 8px 0;
+  border-right: 1px solid var(--border);
+  margin-right: 16px;
+}
+.contributors__person:last-child {
+  border-right: none;
+  margin-right: 0;
+}
+.contributors__photo {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+.contributors__name {
+  font-size: 13px;
+  font-weight: 600;
+  color: #1a1a1a;
+  line-height: 1.3;
+  white-space: nowrap;
+}
+.contributors__role {
+  font-size: 11.5px;
+  color: #8a8a8a;
+  line-height: 1.3;
+  margin-top: 1px;
+  white-space: nowrap;
+}
 
 .social-share {
   display: flex;
@@ -898,7 +922,55 @@ document.addEventListener('DOMContentLoaded', () => {
     </div>
 
     <div class="preview" style="margin-top:12px;">
-      <p style="font-size:12px;color:#aaa;margin-bottom:16px;">Карточки автора и редактора</p>
+      <p style="font-size:12px;color:#aaa;margin-bottom:16px;">✦ Contributors v2 — единый блок, без коробок <span style="background:#e8f5e9;color:#2e7d32;padding:2px 8px;border-radius:4px;font-weight:600;">новый</span></p>
+      <div class="contributors">
+        <div class="contributors__person">
+          <img class="contributors__photo" src="https://crmgroup.ru/wp-content/uploads/2024/08/artem-sviridov.jpg" alt="Артём Свиридов">
+          <div>
+            <div class="contributors__name">Артём Свиридов</div>
+            <div class="contributors__role">контент-маркетолог MONK</div>
+          </div>
+        </div>
+        <div class="contributors__person">
+          <img class="contributors__photo" src="https://crmgroup.ru/wp-content/uploads/2023/03/Marina-Vlasova.png" alt="Марина Власова">
+          <div>
+            <div class="contributors__name">Марина Власова</div>
+            <div class="contributors__role">шеф-редактор CRM-group</div>
+          </div>
+        </div>
+        <div class="contributors__person">
+          <img class="contributors__photo" src="https://crmgroup.ru/wp-content/uploads/2023/03/Valera-Kurakin.png" alt="Валерий Куракин">
+          <div>
+            <div class="contributors__name">Валерий Куракин</div>
+            <div class="contributors__role">руководитель отдела аналитики</div>
+          </div>
+        </div>
+        <div class="contributors__person">
+          <img class="contributors__photo" src="https://crmgroup.ru/wp-content/uploads/2023/10/Александр-Волков_1.png" alt="Александр Волков">
+          <div>
+            <div class="contributors__name">Александр Волков</div>
+            <div class="contributors__role">руководитель Martech-направления</div>
+          </div>
+        </div>
+        <div class="contributors__person">
+          <img class="contributors__photo" src="https://crmgroup.ru/wp-content/uploads/2024/08/sobolevskyi.jpg" alt="Сергей Соболевский">
+          <div>
+            <div class="contributors__name">Сергей Соболевский</div>
+            <div class="contributors__role">ведущий менеджер проектов</div>
+          </div>
+        </div>
+        <div class="contributors__person">
+          <img class="contributors__photo" src="https://crmgroup.ru/wp-content/uploads/2024/08/ivan_firsov1.jpg" alt="Иван Фирсов">
+          <div>
+            <div class="contributors__name">Иван Фирсов</div>
+            <div class="contributors__role">бизнес-коуч, Фанаты сервиса</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="preview" style="margin-top:12px;opacity:0.5;">
+      <p style="font-size:12px;color:#aaa;margin-bottom:16px;">Старый вариант — автор + редактор отдельно <span style="background:#fce4ec;color:#c62828;padding:2px 8px;border-radius:4px;font-weight:600;">deprecated</span></p>
       <div style="display:flex;gap:12px;flex-wrap:wrap;">
         <div class="author-block" style="flex:1;min-width:220px;">
           <img src="https://crmgroup.ru/wp-content/uploads/2024/08/artem-sviridov.jpg" alt="Артём Свиридов">
@@ -917,30 +989,26 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>
         </div>
       </div>
-    </div>
-
-    <div class="preview" style="margin-top:12px;">
-      <p style="font-size:12px;color:#aaa;margin-bottom:16px;">Блок экспертов</p>
-      <div class="experts-section" style="margin-top:0;">
+      <div class="experts-section" style="margin-top:16px;">
         <div class="experts-section__title">Эксперты статьи</div>
         <div class="experts-grid">
           <div class="expert-card">
-            <img src="https://crmgroup.ru/wp-content/uploads/2023/03/Valera-Kurakin.png" alt="Валерий Куракин">
+            <img src="https://crmgroup.ru/wp-content/uploads/2023/03/Valera-Kurakin.png" alt="">
             <div class="expert-card__name">Валерий Куракин</div>
             <div class="expert-card__post">руководитель отдела аналитики</div>
           </div>
           <div class="expert-card">
-            <img src="https://crmgroup.ru/wp-content/uploads/2023/10/Александр-Волков_1.png" alt="Александр Волков">
+            <img src="https://crmgroup.ru/wp-content/uploads/2023/10/Александр-Волков_1.png" alt="">
             <div class="expert-card__name">Александр Волков</div>
             <div class="expert-card__post">руководитель Martech-направления</div>
           </div>
           <div class="expert-card">
-            <img src="https://crmgroup.ru/wp-content/uploads/2024/08/sobolevskyi.jpg" alt="Сергей Соболевский">
+            <img src="https://crmgroup.ru/wp-content/uploads/2024/08/sobolevskyi.jpg" alt="">
             <div class="expert-card__name">Сергей Соболевский</div>
             <div class="expert-card__post">ведущий менеджер проектов</div>
           </div>
           <div class="expert-card">
-            <img src="https://crmgroup.ru/wp-content/uploads/2024/08/ivan_firsov1.jpg" alt="Иван Фирсов">
+            <img src="https://crmgroup.ru/wp-content/uploads/2024/08/ivan_firsov1.jpg" alt="">
             <div class="expert-card__name">Иван Фирсов</div>
             <div class="expert-card__post">бизнес-коуч, Фанаты сервиса</div>
           </div>
