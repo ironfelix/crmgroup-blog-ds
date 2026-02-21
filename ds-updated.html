@@ -372,7 +372,7 @@ a { color: var(--red); text-decoration: none; }
     <div class="ds-topbar-links">
       <a href="index.html">← Исходная DS</a>
       <a href="draft-crm-metrics.html" class="primary">Пример статьи →</a>
-      <a href="css/wp-additional-v4.css">WP CSS v4 ↓</a>
+      <a href="css/wp-custom.css">WP CSS (wp-custom.css) ↓</a>
     </div>
   </div>
 
@@ -826,10 +826,10 @@ document.addEventListener('DOMContentLoaded', () => {
     <div class="ds-section-label">WP Additional CSS v4 <span class="badge badge-new">production-ready</span></div>
     <div class="preview">
       <p style="font-size:13px;color:#666;margin-bottom:10px;">
-        Готовый файл для вставки в WP: <a href="css/wp-additional-v4.css" style="font-weight:700;">css/wp-additional-v4.css</a>
+        Используем существующий файл: <a href="css/wp-custom.css" style="font-weight:700;">css/wp-custom.css</a>
       </p>
       <pre class="change-code" style="white-space:pre-wrap;max-height:360px;overflow:auto;">
-/* quick extract (full version in css/wp-additional-v4.css) */
+/* v4 override block (append to css/wp-custom.css) */
 .single-blog .section-content,
 .single-blog .section-content p,
 .single-blog .section-content li,
@@ -860,7 +860,7 @@ document.addEventListener('DOMContentLoaded', () => {
 }
       </pre>
     </div>
-    <div class="note">Полная версия: css/wp-additional-v4.css (238 строк, синхронизирована с CRM_DESIGN_SYSTEM.md v4).</div>
+    <div class="note">Новый файл не создаём: v4-override добавляется в конец css/wp-custom.css.</div>
   </section>
 
   <!-- ─── SECTION: Пример страницы ─────────────────────────── -->
