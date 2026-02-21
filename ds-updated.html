@@ -350,6 +350,14 @@ a { color: var(--red); text-decoration: none; }
 }
 @media(max-width:680px){ .article-card { padding: 24px 20px; } }
 
+.split-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; }
+.source-list { margin: 8px 0 0 18px; color: #444; line-height: 1.6; }
+.source-list li + li { margin-top: 6px; }
+.anchor-map { columns: 2; column-gap: 24px; margin: 8px 0 0 0; list-style: none; }
+.anchor-map li { break-inside: avoid; margin-bottom: 8px; color: #444; }
+.anchor-map code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; background: #f5f5f5; padding: 1px 6px; border-radius: 6px; }
+@media(max-width:680px){ .anchor-map { columns: 1; } }
+
 </style>
 </head>
 <body>
@@ -358,12 +366,13 @@ a { color: var(--red); text-decoration: none; }
   <!-- Topbar -->
   <div class="ds-topbar">
     <div>
-      <h1>CRM-group Blog — Обновлённая дизайн-система <span class="version-tag">UPD</span></h1>
-      <p>Все 12 рекомендаций типографа и UX — применены. Февраль 2026.</p>
+      <h1>CRM-group Blog — Обновлённая дизайн-система <span class="version-tag">V4</span></h1>
+      <p>Production update: боевой TOC, структура anchor_1…anchor_9, FAQ + schema, Additional CSS v4. Февраль 2026.</p>
     </div>
     <div class="ds-topbar-links">
       <a href="index.html">← Исходная DS</a>
       <a href="draft-crm-metrics.html" class="primary">Пример статьи →</a>
+      <a href="css/wp-additional-v4.css">WP CSS v4 ↓</a>
     </div>
   </div>
 
@@ -373,18 +382,20 @@ a { color: var(--red); text-decoration: none; }
     <a href="#tokens">Токены</a>
     <a href="#typo">Типографика</a>
     <a href="#toc">Оглавление</a>
+    <a href="#structure">Структура</a>
     <a href="#comment">Комментарий</a>
     <a href="#faq">FAQ / Нейро</a>
     <a href="#progress">Прогресс</a>
     <a href="#table">Таблицы</a>
     <a href="#sidenote">Читайте также</a>
     <a href="#other">Остальные блоки</a>
+    <a href="#wpcss">WP CSS v4</a>
     <a href="#page">Пример страницы</a>
   </nav>
 
   <!-- ─── SECTION: Что изменилось ──────────────────────────── -->
   <section class="ds-section" id="changes">
-    <div class="ds-section-label">⚠️ Что изменилось <span class="badge badge-upd">12 правок</span></div>
+    <div class="ds-section-label">⚠️ Что изменилось <span class="badge badge-upd">14 правок</span></div>
 
     <div class="changes-grid">
 
@@ -459,6 +470,20 @@ a { color: var(--red); text-decoration: none; }
         <div class="change-card__title">TOC с active state</div>
         <div class="change-card__desc">navigation-page показывал разделы, но не подсвечивал текущий. Теперь IntersectionObserver добавляет класс .active нужной ссылке.</div>
         <div class="change-code">.nav-page__link.active {<br>  font-weight: 700;<br>  border-left: 2px solid red;<br>}</div>
+      </div>
+
+      <div class="change-card major">
+        <div class="change-card__priority">🟡 Важно</div>
+        <div class="change-card__title">Боевой TOC (content_hub)</div>
+        <div class="change-card__desc">Вместо demo-only варианта зафиксирован production-паттерн: правый sticky TOC + mobile TOC + подсветка активного раздела по якорям.</div>
+        <div class="change-code">Desktop: .singlepost .sticky-block .navigation<br>Mobile: details.mobile-toc<br>Active: IntersectionObserver по [id^="anchor_"]</div>
+      </div>
+
+      <div class="change-card major">
+        <div class="change-card__priority">🟡 Важно</div>
+        <div class="change-card__title">Контракт статьи anchor_1...anchor_9</div>
+        <div class="change-card__desc">Новая версия учитывает расширенную структуру из draft-wp-metrics-v2: связки метрик, FAQ-блок и финальный консультационный CTA.</div>
+        <div class="change-code">anchors: 1..9<br>stable blocks: block-comment, block-sidenote, block-result, wp-block-table</div>
       </div>
 
       <div class="change-card minor">
@@ -567,20 +592,68 @@ a { color: var(--red); text-decoration: none; }
 
   <!-- ─── SECTION: Оглавление ───────────────────────────────── -->
   <section class="ds-section" id="toc">
-    <div class="ds-section-label">Оглавление (TOC) <span class="badge badge-upd">active state</span></div>
+    <div class="ds-section-label">Оглавление (TOC) <span class="badge badge-upd">production pattern</span></div>
     <div class="preview">
-      <div class="art">
-        <div class="nav-page" style="max-width:500px;">
-          <div class="nav-page__label">Содержание статьи</div>
-          <a href="#" class="nav-page__link" onclick="return false;">LTV — пожизненная ценность клиента</a>
-          <a href="#" class="nav-page__link active" onclick="return false;">RR — коэффициент удержания</a>
-          <a href="#" class="nav-page__link" onclick="return false;">Churn Rate — коэффициент оттока</a>
-          <a href="#" class="nav-page__link" onclick="return false;">AOV — средний чек</a>
-          <a href="#" class="nav-page__link" onclick="return false;">NPS — индекс лояльности</a>
+      <div class="split-2">
+        <div>
+          <p style="font-size:13px;color:#666;margin-bottom:10px;">Desktop (боевой сайдбар темы)</p>
+          <div class="change-code">
+.single-blog .singlepost .sticky-block .navigation
+.single-blog .singlepost .sticky-block .navigation__item
+.single-blog .singlepost .sticky-block .navigation__item.active {
+  border-left: 2px solid #c01020;
+}
+          </div>
+          <div class="change-code" style="margin-top:10px;">
+anchors: #anchor_1 ... #anchor_9
+observer target: [id^="anchor_"]
+          </div>
+        </div>
+        <div>
+          <p style="font-size:13px;color:#666;margin-bottom:10px;">Mobile TOC (внутри контента)</p>
+          <div class="change-code">
+&lt;details class="mobile-toc"&gt;
+  &lt;summary&gt;Содержание статьи&lt;/summary&gt;
+  &lt;ul class="mobile-toc-list"&gt;...&lt;/ul&gt;
+&lt;/details&gt;
+          </div>
+          <div class="change-code" style="margin-top:10px;">
+IntersectionObserver:
+активирует ссылку, где href="#anchor_N",
+когда текущий раздел в viewport.
+          </div>
         </div>
       </div>
     </div>
-    <div class="note">Текущий раздел подсвечивается через IntersectionObserver. JS-код — в примере статьи.</div>
+    <div class="note">База для production TOC: draft-crm-metrics.html + структура из draft-wp-metrics-v2.txt</div>
+  </section>
+
+  <!-- ─── SECTION: Структура статьи ─────────────────────────── -->
+  <section class="ds-section" id="structure">
+    <div class="ds-section-label">Структура статьи <span class="badge badge-upd">anchor contract</span></div>
+    <div class="preview">
+      <p style="font-size:13px;color:#666;">v4 фиксирует расширенную структуру статьи как обязательный контракт для новых публикаций:</p>
+      <ul class="anchor-map">
+        <li><code>anchor_1</code> LTV</li>
+        <li><code>anchor_2</code> Retention Rate</li>
+        <li><code>anchor_3</code> Churn Rate</li>
+        <li><code>anchor_4</code> AOV</li>
+        <li><code>anchor_5</code> NPS</li>
+        <li><code>anchor_6</code> Связи метрик</li>
+        <li><code>anchor_7</code> Инструменты роста</li>
+        <li><code>anchor_8</code> FAQ + Schema</li>
+        <li><code>anchor_9</code> Бесплатная консультация</li>
+      </ul>
+      <div class="change-code" style="margin-top:10px;">
+stable blocks:
+- acf/block-content-list
+- block-comment + block-comment__autor
+- acf/block-sidenote (несколько в статье)
+- block-result / block-result__heading
+- wp-block-table
+      </div>
+    </div>
+    <div class="note">Source: draft-wp-metrics-v2.txt (самый свежий рабочий черновик структуры).</div>
   </section>
 
   <!-- ─── SECTION: Комментарий ─────────────────────────────── -->
@@ -696,7 +769,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <a href="#" onclick="return false;">Как правильно считать доходность в CRM-маркетинге</a>
       </div>
     </div>
-    <div class="note">bg: прозрачный · left-border: 3px #dc1327 · лейбл: 11px 700 uppercase #999 · ссылка: 16px #dc1327</div>
+    <div class="note">bg: прозрачный · left-border: 3px #c01020 · лейбл: 11px 700 uppercase #999 · ссылка: 16px #c01020</div>
   </section>
 
 
@@ -719,7 +792,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="stat-card"><div class="stat-card__number">30</div><div class="stat-card__label">статей проанализировано</div></div>
         <div class="stat-card"><div class="stat-card__number">426</div><div class="stat-card__label">уникальных CSS-классов</div></div>
         <div class="stat-card"><div class="stat-card__number">156</div><div class="stat-card__label">flexible-spacer блоков</div></div>
-        <div class="stat-card"><div class="stat-card__number">12</div><div class="stat-card__label">правок применено</div></div>
+        <div class="stat-card"><div class="stat-card__number">14</div><div class="stat-card__label">правок применено</div></div>
       </div>
     </div>
 
@@ -746,6 +819,48 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
       </div>
     </div>
+  </section>
+
+  <!-- ─── SECTION: WP Additional CSS ───────────────────────── -->
+  <section class="ds-section" id="wpcss">
+    <div class="ds-section-label">WP Additional CSS v4 <span class="badge badge-new">production-ready</span></div>
+    <div class="preview">
+      <p style="font-size:13px;color:#666;margin-bottom:10px;">
+        Готовый файл для вставки в WP: <a href="css/wp-additional-v4.css" style="font-weight:700;">css/wp-additional-v4.css</a>
+      </p>
+      <pre class="change-code" style="white-space:pre-wrap;max-height:360px;overflow:auto;">
+/* quick extract (full version in css/wp-additional-v4.css) */
+.single-blog .section-content,
+.single-blog .section-content p,
+.single-blog .section-content li,
+.single-blog .section-content td {
+  font-size: 17px;
+  line-height: 1.58;
+  color: #1a1a1a;
+}
+.single-blog .section-content a { color: #c01020 !important; }
+.single-blog .section-content li::marker { color: #c01020; opacity: .75; }
+
+.single-blog .section-content h3.wp-block-heading {
+  font-size: 17px !important;
+  font-weight: 600 !important;
+  color: #3d3d3d !important;
+  border-left: 2px solid #e8e8e8 !important;
+  padding-left: 12px !important;
+}
+
+.single-blog .singlepost .sticky-block .navigation__item.active {
+  border-left: 2px solid #c01020 !important;
+  font-weight: 600 !important;
+}
+
+.single-blog .section-content [itemtype="https://schema.org/FAQPage"] summary::after {
+  content: '+' !important;
+  color: #c01020 !important;
+}
+      </pre>
+    </div>
+    <div class="note">Полная версия: css/wp-additional-v4.css (238 строк, синхронизирована с CRM_DESIGN_SYSTEM.md v4).</div>
   </section>
 
   <!-- ─── SECTION: Пример страницы ─────────────────────────── -->
