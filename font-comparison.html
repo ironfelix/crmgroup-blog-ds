@@ -419,17 +419,34 @@ h1.page-title {
 <div class="verdict">
   <h2>Вердикт типографа</h2>
   <p><strong>TTSmalls as-is (тема)</strong> — нечитабелен из-за line-height: normal (~1.2) при 18px. Строки слипаются. Кириллические буквы с высокими выносными элементами (б, д, ф) цепляют нижнюю строку.</p>
-  <p><strong>TTSmalls optimized</strong> — читабельность на уровне Inter после настройки:</p>
+  <p><strong>TTSmalls optimized (ВЫБРАН для хаба)</strong> — читабельность на уровне Inter после настройки:</p>
   <ul>
-    <li>Size: 18px &rarr; 16px (TTSmalls крупнее Inter при одинаковом px)</li>
-    <li>Line-height: normal &rarr; 1.62 (чуть больше Inter из-за конструкции шрифта)</li>
-    <li>Letter-spacing: 0 &rarr; 0.005em (TTSmalls плотнее Inter)</li>
-    <li>Font smoothing: subpixel &rarr; antialiased (убирает "раздутость" на macOS)</li>
+    <li>Size: body 17px, desc 17px (TTSmalls крупнее Inter при одинаковом px)</li>
+    <li>Line-height: normal &rarr; 1.65 (больше Inter 1.58 из-за конструкции шрифта)</li>
+    <li>Letter-spacing: 0 &rarr; 0.008em (TTSmalls плотнее Inter)</li>
+    <li>Font smoothing: <strong>auto (subpixel)</strong>, НЕ antialiased &mdash; TTSmalls-400 слишком тонкий с antialiased</li>
+    <li>Headings: TTRuns 700, letter-spacing -0.03em, line-height 1.15</li>
+    <li>Card headings: line-height 1.35, letter-spacing -0.01em</li>
+    <li>Meta text (author, categories): font-weight 500 (Medium) для плотности</li>
+    <li>text-wrap: balance на заголовках, pretty на описаниях</li>
   </ul>
-  <p><strong>Inter</strong> — уже настроен, проверен, бесплатен. Единообразен со статьями.</p>
-  <p style="margin-top: 16px; padding: 12px; background: #fffde8; border-radius: 8px;">
-    <strong>Рекомендация:</strong> Оба варианта работают. Но если выбрать TTSmalls optimized для хаба — появится визуальный "скачок" шрифта при переходе хаб &rarr; статья (TTSmalls &rarr; Inter). Inter единообразнее. TTSmalls более "фирменный" (уникальный look).
+  <p><strong>Inter (ВЫБРАН для статей)</strong> — DS v6: 17px, line-height 1.58, Inter.</p>
+
+  <p style="margin-top: 16px; padding: 12px; background: #e8f5e9; border-radius: 8px;">
+    <strong>Решение (2026-02-22):</strong> Хаб /blog/ &rarr; TTSmalls/TTRuns optimized (фирменный шрифт темы).
+    Статьи .single-blog &rarr; Inter (DS v6). Визуальный "скачок" при переходе хаб&rarr;статья незаметен,
+    т.к. хаб = карточки/навигация, статья = длинное чтение &mdash; разный контекст.
   </p>
+
+  <h3 style="margin-top: 24px;">Дополнительные решения (2026-02-22)</h3>
+  <ul>
+    <li><strong>Line-clamp 3</strong> на .article-desc &mdash; описания обрезаются, карточки выравниваются по высоте</li>
+    <li><strong>Equal-height cards</strong> &mdash; flex column + margin-top:auto на .button-read</li>
+    <li><strong>Чекбоксы 18x18px</strong> вместо 12x12 &mdash; больше touch target, border-radius 3px</li>
+    <li><strong>Валидация без дёрганья</strong> &mdash; .wpcf7-not-valid-tip position:absolute</li>
+    <li><strong>Висячие предлоги</strong> &mdash; &amp;nbsp; в WP excerpts (CSS text-wrap не решает для русских предлогов)</li>
+    <li><strong>Мобилка без картинки</strong> &mdash; слайдер: вертикальный центр, gradient background, font-size 36px</li>
+  </ul>
 </div>
 
 </div>

@@ -385,6 +385,8 @@ ol.wp-block-list li::marker{color:var(--red);font-weight:700}
   <a href="#blocks-stat">Статистика блоков</a>
   <a href="#articles">30 статей</a>
   <a href="#recs">Рекомендации UX</a>
+  <a href="#hub-typography">Hub типографика</a>
+  <a href="#hub-components">Hub компоненты</a>
 </nav>
 
 <!-- ══════════════════════════════════════════════════════════
@@ -987,6 +989,78 @@ ol.wp-block-list li::marker{color:var(--red);font-weight:700}
     <div class="note" style="margin-top:8px">Слева: 16px lh1.7 #dc1327 ширина 780px · Справа: 17px lh1.58 #c01020 ширина 580px — заметна разница в читаемости</div>
   </div>
 
+</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     BLOG HUB TYPOGRAPHY (2026-02-22)
+═══════════════════════════════════════════════════════════ -->
+<div class="ds-section" id="hub-typography">
+  <div class="ds-section-label">Blog Hub /blog/ — Типографика <span class="badge" style="background:#e8f5e9;color:#2e7d32">TTSmalls/TTRuns</span></div>
+  <div class="preview" style="padding:24px">
+    <p style="font-size:14px;color:#555;margin-bottom:20px;line-height:1.6">
+      Хаб /blog/ использует <strong>TTSmalls/TTRuns</strong> (фирменный шрифт темы content_hub) с оптимизированной типографикой.
+      Статьи (.single-blog) используют <strong>Inter</strong> (DS v6).
+      <a href="font-comparison.html" style="color:#c01020">Сравнение шрифтов &rarr;</a>
+    </p>
+
+    <table class="comparison-table" style="margin-bottom:20px">
+      <thead><tr><th>Параметр</th><th>Hub (TTSmalls)</th><th>Articles (Inter)</th></tr></thead>
+      <tbody>
+        <tr><td>Font family</td><td>TTSmalls 400/500, TTRuns 700</td><td>Inter 400/500/600/700</td></tr>
+        <tr><td>Body font-size</td><td>17px</td><td>17px</td></tr>
+        <tr><td>Line-height</td><td>1.65</td><td>1.58</td></tr>
+        <tr><td>Letter-spacing</td><td>0.008em</td><td>0</td></tr>
+        <tr><td>Font smoothing</td><td class="highlight">auto (subpixel)</td><td>auto</td></tr>
+        <tr><td>Heading font</td><td>TTRuns 700</td><td>Inter 700</td></tr>
+        <tr><td>Heading letter-spacing</td><td>-0.03em</td><td>-0.4px</td></tr>
+        <tr><td>Heading text-wrap</td><td class="highlight">balance</td><td>balance</td></tr>
+        <tr><td>Desc text-wrap</td><td>pretty</td><td>—</td></tr>
+        <tr><td>Desc line-clamp</td><td class="highlight">3 строки</td><td>—</td></tr>
+      </tbody>
+    </table>
+
+    <div class="note">font-smoothing: antialiased делает TTSmalls-400 слишком тонким. Используем subpixel (auto).</div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     BLOG HUB COMPONENTS (2026-02-22)
+═══════════════════════════════════════════════════════════ -->
+<div class="ds-section" id="hub-components">
+  <div class="ds-section-label">Blog Hub — Компоненты <span class="badge" style="background:#e3f2fd;color:#1565c0">NEW</span></div>
+  <div class="preview" style="padding:24px">
+
+    <h3 style="font-size:15px;font-weight:700;margin-bottom:16px">Карточка статьи (.article)</h3>
+    <div style="background:#f8f8f8;border-radius:8px;padding:16px;margin-bottom:20px;font-size:13px;font-family:monospace;line-height:2;color:#334155">
+      .article { display:flex; flex-direction:column }<br>
+      .article-info { date + category + reading-time }<br>
+      .article-heading { _h3 + a link, line-height:1.35 }<br>
+      .article-desc { <strong>line-clamp:3</strong>, 17px, #4a4a4a, text-wrap:pretty }<br>
+      .button-read { margin-top:auto &rarr; all cards equal height }
+    </div>
+
+    <h3 style="font-size:15px;font-weight:700;margin-bottom:16px">Чекбоксы формы (._form-checkbox)</h3>
+    <div style="background:#f8f8f8;border-radius:8px;padding:16px;margin-bottom:20px;font-size:13px;font-family:monospace;line-height:2;color:#334155">
+      input[type=checkbox] { display:none } /* hidden by theme */<br>
+      input + span::before { <strong>18x18px</strong> (was 12x12), border-radius:3px, border:1.5px solid #ccc }<br>
+      input:checked + span::before { background:#c01020, border-color:#c01020 }<br>
+      .wpcf7-not-valid-tip { <strong>position:absolute</strong> &rarr; no layout shift }
+    </div>
+
+    <h3 style="font-size:15px;font-weight:700;margin-bottom:16px">Слайдер без картинки (mobile)</h3>
+    <div style="background:#f8f8f8;border-radius:8px;padding:16px;margin-bottom:12px;font-size:13px;font-family:monospace;line-height:2;color:#334155">
+      .new_article__text { justify-content:center; padding:40px 28px }<br>
+      background: linear-gradient(135deg, #f8f4f0, #f2f2f2 40%, #f0eaea)<br>
+      .new_article__title { font-size:<strong>36px</strong>; line-height:1.15 }<br>
+      .button-read { font-weight:600; font-size:16px; margin-top:auto }
+    </div>
+
+    <h3 style="font-size:15px;font-weight:700;margin-bottom:16px">Висячие предлоги</h3>
+    <p style="font-size:13px;color:#555;line-height:1.6">
+      CSS <code>text-wrap: pretty/balance</code> НЕ убирает русские предлоги ("в", "и", "к") в середине строки.
+      Единственный способ: <code>&amp;nbsp;</code> в HTML-контенте. WP excerpts обновляются через REST API.
+    </p>
+  </div>
 </div>
 
 </div><!-- /ds-wrap -->
