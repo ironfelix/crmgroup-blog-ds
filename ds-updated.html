@@ -233,15 +233,14 @@ a { color: var(--red); text-decoration: none; }
 .autor-name { font-size: 14px; font-weight: 700; }
 .autor-post { font-size: 13px; color: var(--gray); margin-top: 1px; }
 
-/* Tables — hover + responsive */
+/* Tables — нейтральный заголовок + hover + responsive */
 .table-wrap { overflow-x: auto; margin: var(--s3) 0; border-radius: 8px; box-shadow: 0 0 0 1px var(--border); max-width: var(--measure); }
 .table-wrap table { width: 100%; border-collapse: collapse; font-size: 15px; background: #fff; }
-.table-wrap thead tr { background: var(--red); color: #fff; }
-.table-wrap thead th { padding: 11px 16px; text-align: left; font-weight: 600; font-size: 13.5px; }
-.table-wrap tbody td { padding: 10px 16px; border-bottom: 1px solid #f0f0f0; vertical-align: top; }
+.table-wrap thead th { background: #f4f3ef; color: var(--black); padding: 12px 16px; text-align: left; font-weight: 600; font-size: 13.5px; border-bottom: 2px solid #e4e2dc; }
+.table-wrap tbody td { padding: 12px 16px; border-bottom: 1px solid #e4e2dc; vertical-align: top; color: #444; }
+.table-wrap tbody td:first-child { font-weight: 600; color: var(--black); }
 .table-wrap tbody tr:last-child td { border-bottom: none; }
-/* ↓ новое: hover на строках */
-.table-wrap tbody tr:hover td { background: rgba(192,16,32,.04); }
+.table-wrap tbody tr:hover td { background: #fafaf8; }
 
 /* Buttons */
 .btn-row { display: flex; flex-wrap: wrap; gap: 12px; margin: var(--s2) 0; }
@@ -1029,25 +1028,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
   <!-- ─── SECTION: Таблицы ──────────────────────────────────── -->
   <section class="ds-section" id="table">
-    <div class="ds-section-label">Таблицы <span class="badge badge-upd">hover + responsive</span></div>
+    <div class="ds-section-label">Таблицы <span class="badge badge-upd">нейтральный заголовок + hover</span></div>
     <div class="preview">
       <div class="art">
         <div class="table-wrap">
           <table>
             <thead>
-              <tr><th>Коэффициент NPS</th><th>Как интерпретировать</th></tr>
+              <tr><th>Параметр</th><th>Email-маркетинг</th><th>CRM-маркетинг</th><th>CVM</th></tr>
             </thead>
             <tbody>
-              <tr><td><strong>80–100%</strong></td><td>Идеально. Компании с таким NPS — лучшие в нише.</td></tr>
-              <tr><td><strong>50–80%</strong></td><td>Отлично. NPS Netflix 2022 — 68%, Starbucks — 77%.</td></tr>
-              <tr><td><strong>20–50%</strong></td><td>Хорошо. Большинство стабильных компаний.</td></tr>
-              <tr><td><strong>0–20%</strong></td><td>Неплохо. Положительный — уже показатель успеха.</td></tr>
+              <tr><td>Ключевая метрика</td><td>Open Rate, CTR</td><td>Retention Rate, LTV</td><td>CLV, ARPU, Churn Rate</td></tr>
+              <tr><td>Персонализация</td><td>Переменные и RFM-сегменты</td><td>RFM + триггеры по событиям</td><td>Предиктивная, 1:1 на ML</td></tr>
+              <tr><td>Охват каналов</td><td>Email</td><td>Email, SMS, push</td><td>Все каналы, ML-оркестрация</td></tr>
+              <tr><td>ROI</td><td>36 руб. на 1 руб.</td><td>8–10 руб. на 1 руб.</td><td>+15–25% CLV</td></tr>
             </tbody>
           </table>
         </div>
       </div>
     </div>
-    <div class="note">overflow-x: auto на обёртке + hover rgba(192,16,32,.04) на tr</div>
+    <div class="note">
+      Заголовок: #f4f3ef (нейтральный серый), НЕ красный. Первая колонка: font-weight 600. Hover: #fafaf8.<br>
+      Работает и с .table-wrapper (старые статьи), и с .wp-block-table (WP Gutenberg). is-style-stripes сбрасывается.
+    </div>
   </section>
 
   <!-- ─── SECTION: Читайте также ──────────────────────────── -->
