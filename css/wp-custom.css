@@ -1,6 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
 
 /* ====================================================
+   P0 CHANGELOG (2026-02-22)
+   Бэкап: css/wp-custom-v6-backup-2026-02-22.css
+   Откат: cp css/wp-custom-v6-backup-2026-02-22.css css/wp-custom.css
+   ---
+   P0.1: #dc1327 → #c01020 (весь файл), hover #b80f1f → #b10e1d
+         rgba(220,19,39) → rgba(192,16,32)
+   P0.2: Blog hub font override → Inter (блок перед HEADER MENU)
+   P0.3: line-height 1.78 → 1.58 (уже в v4 overrides, строка ~979)
+   ==================================================== */
+
+/* ====================================================
    СУЩЕСТВУЮЩИЙ CSS САЙТА (не трогаем)
    ==================================================== */
 html, body { overflow-x: hidden; }
@@ -24,16 +35,13 @@ body.single-blog {
   -moz-osx-font-smoothing: grayscale !important;
 }
 
-/* ── Layout: 120px слева и справа, симметрично ── */
-.single-blog .column:nth-of-type(1) { display: none !important; }
-.single-blog .column:nth-of-type(2) {
-  max-width: 784px !important; min-width: 0 !important;
-  flex-grow: 1 !important; width: 100% !important;
-  margin-left: 120px !important; padding-left: 0 !important;
-}
-.single-blog .column:nth-of-type(3) {
-  width: 280px !important; min-width: 280px !important;
-  flex-shrink: 0 !important; margin-right: 120px !important;
+/* ── Layout: скрываем ghost-колонку, базовые отступы ── */
+.single-blog .column.footnotes-sidebar { display: none !important; }
+/* Статейная колонка — прямой потомок container-columns (не матчит sticky-block) */
+body.single-blog .singlepost .container-columns > .column {
+  flex-grow: 1 !important; min-width: 0 !important;
+  margin-left: 120px !important; margin-right: 120px !important;
+  padding: 0 !important; width: 100% !important; max-width: 100% !important;
 }
 
 /* ── Скрываем in-content оглавление (спейсеры внутри navigation-page скрываются вместе с ним) ── */
@@ -60,18 +68,18 @@ body.single-blog {
 
 /* ── Ссылки в тексте статьи ── */
 .single-blog .section-content a:not([class]) {
-  color: #dc1327 !important;
+  color: #c01020 !important;
   text-decoration: underline !important;
-  text-decoration-color: rgba(220,19,39,0.3) !important;
+  text-decoration-color: rgba(192,16,32,0.3) !important;
 }
 .single-blog .section-content a:not([class]):hover {
-  text-decoration-color: #dc1327 !important;
+  text-decoration-color: #c01020 !important;
 }
 
 /* ── Blockquote ── */
 .single-blog .section-content blockquote,
 .single-blog .section-content .wp-block-quote {
-  border-left: 3px solid #dc1327 !important;
+  border-left: 3px solid #c01020 !important;
   background: #fffbf5 !important;
   margin: 28px 0 !important; padding: 16px 22px !important;
   border-radius: 0 8px 8px 0 !important;
@@ -111,7 +119,7 @@ body.single-blog {
   position: static !important; transform: none !important; left: auto !important;
   max-width: 68ch !important; background: transparent !important;
   background-color: transparent !important; border: none !important;
-  border-left: 3px solid #dc1327 !important; border-radius: 0 4px 4px 0 !important;
+  border-left: 3px solid #c01020 !important; border-radius: 0 4px 4px 0 !important;
   padding: 10px 16px !important; margin: 8px 0 24px !important;
   font-family: Inter, sans-serif !important;
 }
@@ -121,7 +129,7 @@ body.single-blog {
   display: block !important; font-family: Inter, sans-serif !important;
 }
 .single-blog .section-content .block-sidenote a {
-  font-size: 16px !important; color: #dc1327 !important; font-weight: 400 !important;
+  font-size: 16px !important; color: #c01020 !important; font-weight: 400 !important;
   text-decoration: none !important; line-height: 1.5 !important;
 }
 .single-blog .section-content .block-sidenote a:hover { text-decoration: underline !important; }
@@ -432,19 +440,33 @@ body.single-blog {
 }
 .single-blog .singlepost .sticky-block .navigation__item::before {
   content: counter(toc-num, decimal-leading-zero); display: inline-block; min-width: 22px;
-  font-weight: 600; color: rgba(220,19,39,0.6); font-size: 12px;
+  font-weight: 600; color: rgba(192,16,32,0.6); font-size: 12px;
   margin-right: 4px; font-family: Inter, sans-serif;
 }
 .single-blog .singlepost .sticky-block .navigation__item:hover,
 .single-blog .singlepost .sticky-block .navigation__item.active {
-  background: #fff5f5 !important; color: #dc1327 !important; border-left: none !important;
+  background: #fff5f5 !important; color: #c01020 !important; border-left: none !important;
 }
 .single-blog .singlepost .sticky-block .navigation::after {
   content: 'Получить аудит CRM →'; display: block; margin-top: 16px;
-  background: #dc1327; color: #fff; text-align: center; padding: 12px 16px;
+  background: #c01020; color: #fff; text-align: center; padding: 12px 16px;
   border-radius: 8px; font-size: 14px; font-weight: 600;
   font-family: Inter, -apple-system, sans-serif; cursor: pointer;
 }
+/* Скрываем ::after если есть JS-версия с контекстным текстом */
+.single-blog .singlepost .sticky-block .navigation.has-custom-cta::after {
+  display: none !important;
+}
+/* Контекстная CTA-кнопка (инжектится через JS в каждом посте) */
+.single-blog .singlepost .sidebar-cta {
+  display: block !important; margin-top: 16px !important;
+  background: #c01020 !important; color: #fff !important;
+  text-align: center !important; padding: 12px 16px !important;
+  border-radius: 8px !important; font-size: 13px !important; font-weight: 600 !important;
+  line-height: 1.4 !important; font-family: Inter, -apple-system, sans-serif !important;
+  text-decoration: none !important; transition: background .15s !important;
+}
+.single-blog .singlepost .sidebar-cta:hover { background: #b10e1d !important; }
 
 /* ── Subscription — скрыта ── */
 .single-blog .singlepost .sticky-block .subscription { display: none !important; }
@@ -464,7 +486,7 @@ body.single-blog {
 }
 /* Стиль числа: красный жирный, без фона */
 .single-blog .section-content .num-list li mark {
-  background: transparent !important; color: #dc1327 !important;
+  background: transparent !important; color: #c01020 !important;
   font-weight: 700 !important; font-style: normal !important;
 }
 
@@ -472,7 +494,7 @@ body.single-blog {
 #crm-faq details { border: 1px solid #e4e2dc; border-radius: 10px; margin-bottom: 8px; overflow: hidden; }
 #crm-faq summary { display: flex; justify-content: space-between; align-items: center; padding: 14px 18px; cursor: pointer; font-weight: 600; font-size: 15px !important; list-style: none; gap: 12px; font-family: Inter, system-ui, sans-serif; color: #1a1a1a; }
 #crm-faq summary::-webkit-details-marker { display: none; }
-#crm-faq summary::after { content: '+'; font-size: 22px; font-weight: 300; color: #dc1327; flex-shrink: 0; transition: transform .2s; }
+#crm-faq summary::after { content: '+'; font-size: 22px; font-weight: 300; color: #c01020; flex-shrink: 0; transition: transform .2s; }
 #crm-faq details[open] summary::after { transform: rotate(45deg); }
 #crm-faq .fb { padding: 14px 18px 16px; font-size: 15px !important; line-height: 1.7; color: #555; border-top: 1px solid #e4e2dc; font-family: Inter, system-ui, sans-serif; }
 
@@ -503,13 +525,13 @@ body.single-blog {
 }
 .reading-progress__bar {
   height: 100%; width: 0;
-  background: #dc1327; transition: width 0.1s linear;
+  background: #c01020; transition: width 0.1s linear;
 }
 
 /* ── Чекбоксы в форме подписки ── */
 .single-blog .form-consent { width: 100%; margin-top: 10px; display: flex; flex-direction: column; gap: 6px; }
 .single-blog .form-consent label { display: flex; align-items: flex-start; gap: 8px; font-size: 12px; opacity: 0.65; line-height: 1.5; cursor: pointer; color: #fff; }
-.single-blog .form-consent input[type="checkbox"] { margin-top: 2px; flex-shrink: 0; width: 14px; height: 14px; accent-color: #dc1327; }
+.single-blog .form-consent input[type="checkbox"] { margin-top: 2px; flex-shrink: 0; width: 14px; height: 14px; accent-color: #c01020; }
 .single-blog .form-consent a { color: rgba(255,255,255,0.75); text-decoration: underline; }
 
 /* ── Header: скрыть баннер ── */
@@ -531,7 +553,7 @@ body.single-blog .container-min.top-page .bread-crumbs {
   margin: 0 0 8px 0 !important; padding: 0 !important; line-height: 1.5 !important;
 }
 body.single-blog .container-min.top-page .bread-crumbs a { color: #8a8a8a !important; text-decoration: none !important; }
-body.single-blog .container-min.top-page .bread-crumbs a:hover { color: #dc1327 !important; }
+body.single-blog .container-min.top-page .bread-crumbs a:hover { color: #c01020 !important; }
 
 /* ── Header: дата (order 2) ── */
 body.single-blog .container-min.top-page .date-post {
@@ -565,15 +587,16 @@ body.single-blog .container-min.top-page .main-heading {
 }
 #anchor_9 p { color: rgba(255,255,255,0.72) !important; margin-top: 8px !important; }
 #anchor_9 .block-result { background: transparent !important; padding: 0 !important; margin-top: 24px !important; }
+body.single-blog .section-content .wp-block-group.block-result { margin-bottom: 40px !important; }
 #anchor_9 .block-result .wp-block-heading { border-top: none !important; padding-top: 0 !important; margin-top: 0 !important; }
 #anchor_9 .block-result a {
-  display: inline-block !important; background: #dc1327 !important;
+  display: inline-block !important; background: #c01020 !important;
   color: #fff !important; padding: 12px 26px !important;
   border-radius: 8px !important; text-decoration: none !important;
   font-weight: 600 !important; font-size: 15px !important;
   transition: background .15s !important;
 }
-#anchor_9 .block-result a:hover { background: #b80f1f !important; }
+#anchor_9 .block-result a:hover { background: #b10e1d !important; }
 
 /* ── Форма подписки внизу статьи (block-form) ── */
 .single-blog .section-content .block-form {
@@ -621,19 +644,19 @@ body.single-blog .container-min.top-page .main-heading {
   transition: border-color .15s !important;
 }
 .single-blog .section-content .block-form .form-field:focus {
-  outline: none !important; border-color: #dc1327 !important;
-  box-shadow: 0 0 0 3px rgba(220,19,39,.1) !important;
+  outline: none !important; border-color: #c01020 !important;
+  box-shadow: 0 0 0 3px rgba(192,16,32,.1) !important;
 }
 .single-blog .section-content .block-form .form-button {
   flex-shrink: 0 !important;
-  background: #dc1327 !important; color: #ffffff !important;
+  background: #c01020 !important; color: #ffffff !important;
   padding: 13px 28px !important; border-radius: 8px !important;
   border: none !important; font-weight: 600 !important;
   font-size: 15px !important; font-family: Inter, sans-serif !important;
   cursor: pointer !important; white-space: nowrap !important;
   transition: background .15s !important; line-height: 1.4 !important;
 }
-.single-blog .section-content .block-form .form-button:hover { background: #b80f1f !important; }
+.single-blog .section-content .block-form .form-button:hover { background: #b10e1d !important; }
 /* Спиннер CF7 — убрать из потока */
 .single-blog .section-content .block-form .wpcf7-spinner { display: none !important; }
 /* Чекбокс согласия */
@@ -645,9 +668,9 @@ body.single-blog .container-min.top-page .main-heading {
 }
 .single-blog .section-content .block-form .form-checkbox input[type="checkbox"] {
   margin-top: 2px !important; flex-shrink: 0 !important;
-  width: 14px !important; height: 14px !important; accent-color: #dc1327 !important;
+  width: 14px !important; height: 14px !important; accent-color: #c01020 !important;
 }
-.single-blog .section-content .block-form .form-checkbox a { color: #dc1327 !important; }
+.single-blog .section-content .block-form .form-checkbox a { color: #c01020 !important; }
 /* Успешная отправка */
 .single-blog .section-content .block-form .form-sent h3 {
   color: #1a1a1a !important; font-size: 20px !important; margin-bottom: 8px !important;
@@ -664,16 +687,17 @@ body.single-blog .container-min.top-page .main-heading {
   cursor: pointer; font-weight: 600; font-size: 15px;
   list-style: none; display: flex; justify-content: space-between; align-items: center;
   color: #1a1a1a; font-family: Inter, sans-serif;
+  min-height: 44px; /* touch target ≥44px (Apple HIG / WCAG 2.5.5) */
 }
 .mobile-toc summary::-webkit-details-marker { display: none; }
-.mobile-toc summary::after { content: '↓'; color: #dc1327; font-weight: 400; font-size: 17px; }
+.mobile-toc summary::after { content: '↓'; color: #c01020; font-weight: 400; font-size: 17px; }
 .mobile-toc[open] summary::after { content: '↑'; }
 .mobile-toc-list {
   list-style: none; margin: 12px 0 0; padding: 0; counter-reset: toc-mobile;
 }
 .mobile-toc-list li { margin-bottom: 2px; }
 .mobile-toc-list a {
-  display: block; padding: 7px 10px; border-radius: 8px;
+  display: block; padding: 12px 10px; border-radius: 8px; /* 12px: touch target ≥44px */
   font-size: 13.5px; color: #5a5a5a; text-decoration: none;
   font-family: Inter, sans-serif; line-height: 1.4;
   counter-increment: toc-mobile;
@@ -681,16 +705,15 @@ body.single-blog .container-min.top-page .main-heading {
 .mobile-toc-list a::before {
   content: counter(toc-mobile) ".";
   display: inline-block; min-width: 22px;
-  font-weight: 600; color: #dc1327; font-size: 12px; margin-right: 4px;
+  font-weight: 600; color: #c01020; font-size: 12px; margin-right: 4px;
 }
-.mobile-toc-list a:hover { background: #fff5f5; color: #dc1327; }
+.mobile-toc-list a:hover { background: #fff5f5; color: #c01020; }
 
 /* ── Адаптив ── */
 
 /* 1200px: уменьшаем боковые отступы, хедер синхронно */
 @media (max-width: 1200px) {
-  .single-blog .column:nth-of-type(2) { margin-left: 40px !important; }
-  .single-blog .column:nth-of-type(3) { margin-right: 40px !important; }
+  body.single-blog .singlepost .container-columns > .column { margin-left: 40px !important; margin-right: 40px !important; }
   body.single-blog .container-min.top-page { margin-left: 40px !important; }
 }
 
@@ -700,13 +723,19 @@ body.single-blog .container-min.top-page .main-heading {
   .mobile-toc { display: block; }
 
   /* Колонки */
-  .single-blog .column:nth-of-type(2) {
+  body.single-blog .singlepost .container-columns {
+    display: block !important;
+  }
+  body.single-blog .singlepost .container-columns > .column {
     margin-left: 0 !important;
+    margin-right: 0 !important;
     padding: 0 24px !important;
     width: 100% !important;
     max-width: 100% !important;
+    display: block !important;
   }
-  .single-blog .column:nth-of-type(3) {
+  body.single-blog .singlepost .column.sticky-block,
+  body.single-blog .singlepost .column.footnotes-sidebar {
     display: none !important;
   }
 
@@ -776,7 +805,7 @@ body.single-blog .container-min.top-page .main-heading {
 
 /* 640px: телефон */
 @media (max-width: 640px) {
-  .single-blog .column:nth-of-type(2) { padding: 0 16px !important; }
+  body.single-blog .singlepost .container-columns > .column { padding: 0 16px !important; }
 
   body.single-blog .container-min.top-page {
     padding-left: 16px !important;
@@ -863,6 +892,23 @@ body.single-blog .footer .copyright {
 }
 
 /* ================================================================
+   FIX sticky: два scroll-контейнера мешают position:sticky
+   1. Тема: .wrapper { overflow: hidden } → clip, чтобы не создавать scroll-контейнер
+   2. Popmechanic: ставит body { overflow-x: hidden } → body становится scroll-контейнером,
+      sticky прикрепляется к body а не к viewport, и не активируется.
+   Оба сбрасываем через overflow-x: clip (не создаёт scroll-контейнер).
+   ================================================================ */
+body.single-blog .wrapper {
+  overflow-x: clip !important;
+  overflow-y: visible !important;
+}
+body.single-blog {
+  overflow-x: clip !important;
+  overflow-y: visible !important;
+}
+
+
+/* ================================================================
    ШАПКА — тёмная на страницах статей (рамка: тёмный хедер + тёмный футер)
    Реальный класс темы: .header (не .top-menu / .site-header)
    Блог страница имеет .--white на body → переопределяем
@@ -903,7 +949,7 @@ body.single-blog .header-menu-ul .services-menu .services-menu-div * {
 
 /* CTA кнопка "Оставить заявку" (.to-form.button) — остаётся красной */
 body.single-blog .header .content .to-form.button {
-  background: var(--color-accent-red, #dc1327) !important;
+  background: var(--color-accent-red, #c01020) !important;
   color: #fff !important;
 }
 
@@ -919,12 +965,14 @@ body.single-blog .header .content .to-form.button {
 }
 
 /* Якорные ссылки в TOC: плавный скролл */
-html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
 
 /* Акцент на активной секции TOC */
 .single-blog .singlepost .sticky-block .navigation__item.active {
   background: #fff0f0 !important;
-  color: #dc1327 !important;
+  color: #c01020 !important;
   font-weight: 600 !important;
 }
 
@@ -1012,83 +1060,76 @@ body.single-blog { background: #f5f5f5 !important; }
 }
 
 /* ================================================================
-   BUGFIXES (2026-02-21)
-   1) Эксперты: выравнивание иконка/подписи по референсу
-   2) TOC: правый sticky-сайдбар не уезжает вниз
-   3) Форма: убираем лишний верхний отступ перед заголовком
+   FINAL CLEAN FIXES (2026-02-21)
+   - removed duplicate/conflicting bugfix blocks
+   - one source of truth for experts + TOC + form heading gap
    ================================================================ */
 
-/* 1) Experts spacing */
-.single-blog .section-content .block-expert__photo,
-.single-blog .section-content .block-expert__photo figure,
-.single-blog .section-content .block-expert__photo .wp-block-image {
+/* 1) Experts: make WP .block-experts visually equal to DS expert cards */
+.single-blog .section-content .block-experts {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)) !important;
+  gap: 12px !important;
+  max-width: 68ch !important;
+  margin: 32px 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+}
+.single-blog .section-content .block-experts > .block-experts__heading,
+.single-blog .section-content .block-experts > p.block-experts__heading {
+  grid-column: 1 / -1 !important;
+  margin: 0 0 14px !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.8px !important;
+  text-transform: uppercase !important;
+  color: #8a8a8a !important;
+  font-family: Inter, -apple-system, sans-serif !important;
+}
+.single-blog .section-content .block-experts .block-expert {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  min-height: 100% !important;
+  padding: 14px 12px 12px !important;
+  border: 1px solid #e4e2dc !important;
+  border-radius: 12px !important;
+  background: #fff !important;
+  text-align: center !important;
+}
+.single-blog .section-content .block-experts .block-expert__photo,
+.single-blog .section-content .block-experts .block-expert__photo figure,
+.single-blog .section-content .block-experts .block-expert__photo .wp-block-image {
   margin: 0 0 8px !important;
   line-height: 0 !important;
 }
-.single-blog .section-content .block-expert__photo img {
+.single-blog .section-content .block-experts .block-expert__photo img {
+  width: 52px !important;
+  height: 52px !important;
+  border-radius: 50% !important;
+  object-fit: cover !important;
   margin: 0 auto !important;
 }
-.single-blog .section-content .block-expert p {
-  margin: 0 !important;
-}
-.single-blog .section-content .block-expert p.block-expert__name {
+.single-blog .section-content .block-experts .block-expert__name {
   margin: 0 0 3px !important;
+  font-size: 13px !important;
+  line-height: 1.3 !important;
+  font-weight: 600 !important;
+  color: #1a1a1a !important;
+  font-family: Inter, -apple-system, sans-serif !important;
 }
-.single-blog .section-content .block-expert p.block-expert__post {
+.single-blog .section-content .block-experts .block-expert__post {
   margin: 0 !important;
+  font-size: 11.5px !important;
+  line-height: 1.4 !important;
+  color: #8a8a8a !important;
+  font-family: Inter, -apple-system, sans-serif !important;
 }
 
-/* 2) Desktop TOC layout hard-fix (safe for content_hub structure) */
-@media (min-width: 901px) {
-  .single-blog .container-columns {
-    display: flex !important;
-    flex-wrap: nowrap !important;
-    align-items: flex-start !important;
-  }
-
-  .single-blog .container-columns > .column:nth-of-type(2) {
-    min-width: 0 !important;
-    flex: 1 1 auto !important;
-  }
-
-  .single-blog .container-columns > .column:nth-of-type(3),
-  .single-blog .container-columns > .column.sticky-block {
-    width: 280px !important;
-    min-width: 280px !important;
-    flex: 0 0 280px !important;
-    align-self: flex-start !important;
-  }
-
-  .single-blog .container-columns > .column.sticky-block {
-    position: sticky !important;
-    top: 76px !important;
-  }
-}
-
-/* 2b) Fallback: если theme не рендерит .column.sticky-block, фиксируем TOC справа */
-@media (min-width: 1100px) {
-  .single-blog main.singlepost ul.navigation {
-    position: fixed !important;
-    top: 96px !important;
-    right: 24px !important;
-    width: 280px !important;
-    max-height: calc(100vh - 120px) !important;
-    overflow: auto !important;
-    z-index: 120 !important;
-  }
-
-  /* Если сайдбар всё же есть — возвращаем обычный sticky flow */
-  .single-blog main.singlepost .column.sticky-block ul.navigation {
-    position: static !important;
-    top: auto !important;
-    right: auto !important;
-    width: auto !important;
-    max-height: none !important;
-    overflow: visible !important;
-  }
-}
-
-/* 3) Newsletter/form heading top-gap */
+/* 2) Newsletter/form heading top-gap */
 .single-blog .section-content .block-form {
   padding-top: 24px !important;
 }
@@ -1104,4 +1145,410 @@ body.single-blog { background: #f5f5f5 !important; }
   margin-top: 0 !important;
   padding-top: 0 !important;
   border-top: none !important;
+}
+
+/* ================================================================
+   LAYOUT PARITY FIX (draft/wp preview parity)
+   - menu stays in right sidebar on desktop
+   - symmetric left/right offsets by viewport (no fixed 120px)
+   - no fixed-position TOC
+   ================================================================ */
+@media (min-width: 1201px) {
+  body.single-blog {
+    --crm-content-w: 784px;
+    --crm-sidebar-w: 280px;
+    --crm-gap: 48px;
+    --crm-shell: max(24px, calc((100vw - (var(--crm-content-w) + var(--crm-sidebar-w) + var(--crm-gap))) / 2));
+  }
+
+  body.single-blog .singlepost .container-columns {
+    display: grid !important;
+    grid-template-columns: minmax(0, var(--crm-content-w)) var(--crm-sidebar-w) !important;
+    column-gap: var(--crm-gap) !important;
+    align-items: start !important;
+    justify-content: start !important;
+    padding-left: var(--crm-shell) !important;
+    padding-right: var(--crm-shell) !important;
+    box-sizing: border-box !important;
+  }
+
+  body.single-blog .singlepost .container-columns > .column.footnotes-sidebar {
+    display: none !important;
+  }
+
+  body.single-blog .singlepost .container-columns > .column:nth-of-type(2) {
+    grid-column: 1 !important;
+    max-width: var(--crm-content-w) !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  body.single-blog .singlepost .container-columns > .column.sticky-block {
+    grid-column: 2 !important;
+    display: block !important;
+    width: var(--crm-sidebar-w) !important;
+    min-width: var(--crm-sidebar-w) !important;
+    margin: 0 !important;
+    position: sticky !important;
+    top: 96px !important;
+    align-self: start !important;
+    height: max-content !important;
+    overflow: visible !important;
+  }
+
+  /* ul.navigation — нормальный поток внутри sticky-block (no nested sticky) */
+  body.single-blog .singlepost .container-columns > .column.sticky-block ul.navigation {
+    position: static !important;
+    top: auto !important;
+    right: auto !important;
+    left: auto !important;
+    width: 100% !important;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+
+  body.single-blog .singlepost .container-columns > .column.sticky-block .subscription {
+    display: none !important;
+  }
+
+  body.single-blog .container-min.top-page {
+    margin-left: var(--crm-shell) !important;
+    margin-right: auto !important;
+    max-width: var(--crm-content-w) !important;
+    width: calc(100% - var(--crm-shell) * 2) !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+}
+
+/* ================================================================
+   EXPERTS PIXEL PARITY (DS)
+   - exact rhythm from ds-updated.html
+   - force full-row placement inside .block-autors-row
+   ================================================================ */
+.single-blog .section-content .block-autors-row > .block-experts {
+  flex: 1 1 100% !important;
+  width: 100% !important;
+  max-width: 68ch !important;
+}
+
+.single-blog .section-content .block-experts {
+  margin-top: 24px !important;
+  margin-bottom: 0 !important;
+  gap: 12px !important;
+}
+
+.single-blog .section-content .block-experts > .block-experts__heading,
+.single-blog .section-content .block-experts > p.block-experts__heading {
+  margin-bottom: 14px !important;
+}
+
+.single-blog .section-content .block-experts .block-expert__photo,
+.single-blog .section-content .block-experts .block-expert__photo figure,
+.single-blog .section-content .block-experts .block-expert__photo .wp-block-image {
+  margin: 0 0 8px !important;
+}
+
+.single-blog .section-content .block-experts .block-expert__name {
+  margin: 0 !important;
+}
+
+.single-blog .section-content .block-experts .block-expert__post {
+  margin-top: 3px !important;
+}
+
+/* experts final parity: same card height/flow as DS */
+.single-blog .section-content .block-experts {
+  align-items: stretch !important;
+}
+
+.single-blog .section-content .block-experts .block-expert {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  box-sizing: border-box !important;
+  height: 190px !important;
+  min-height: 190px !important;
+  padding: 12px 10px 9px !important;
+}
+
+.single-blog .section-content .block-experts .block-expert__photo,
+.single-blog .section-content .block-experts .block-expert__photo figure,
+.single-blog .section-content .block-experts .block-expert__photo .wp-block-image {
+  margin: 0 0 8px !important;
+  line-height: 0 !important;
+}
+
+.single-blog .section-content .block-experts .block-expert__name {
+  margin: 0 0 3px !important;
+}
+
+.single-blog .section-content .block-experts .block-expert__post {
+  margin: 0 !important;
+  min-height: 58px !important;
+}
+
+/* ================================================================
+   MOBILE TYPOGRAPHY — финальный блок (ДОЛЖЕН БЫТЬ ПОСЛЕДНИМ в файле)
+   v4-правила без media query стоят выше по source order и перебивают
+   640px/900px блоки. Этот блок идёт после всего — выигрывает каскад.
+   ================================================================ */
+@media (max-width: 900px) {
+  .single-blog .section-content h2.wp-block-heading {
+    font-size: 22px !important;
+  }
+}
+
+@media (max-width: 640px) {
+  /* Body text: 16px (не 17px из v4) */
+  .single-blog .section-content,
+  .single-blog .section-content p,
+  .single-blog .section-content li,
+  .single-blog .section-content td {
+    font-size: 16px !important;
+    line-height: 1.72 !important;
+  }
+  /* h2: 20px на телефоне (не 24px из v4) */
+  .single-blog .section-content h2.wp-block-heading {
+    font-size: 20px !important;
+  }
+}
+
+/* hover-анимации только для устройств с мышью */
+@media (hover: none) {
+  .single-blog .section-content .block-picture:hover {
+    box-shadow: none !important;
+    transform: none !important;
+  }
+}
+
+/* ================================================================
+   P0.2 — BLOG HUB FONT PARITY (2026-02-22)
+   Хаб /blog/ использует TTRuns/TTSmalls (тема), статья — Inter (DS).
+   Переводим хаб на Inter для единства при переходе хаб → статья.
+   Откат: удалить этот блок целиком.
+   ================================================================ */
+
+/* Базовый шрифт хаба */
+#blog,
+#blog p,
+#blog li,
+#blog span,
+#blog a {
+  font-family: Inter, -apple-system, BlinkMacSystemFont, sans-serif !important;
+}
+
+/* Заголовки карточек статей (были TTRuns-600/700) */
+#blog ._h3,
+#blog .article h3,
+#blog .materials h3,
+#blog .material h3 {
+  font-family: Inter, -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-weight: 700 !important;
+}
+
+/* Слайдер "Новая статья" — заголовок */
+.new_article ._h3,
+.new_article h3 {
+  font-family: Inter, -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-weight: 700 !important;
+}
+
+/* Мета-инфо (дата, автор, категория) */
+#blog .info,
+#blog .info span,
+#blog .article .info {
+  font-family: Inter, -apple-system, BlinkMacSystemFont, sans-serif !important;
+}
+
+/* Кнопка "Читать" */
+#blog .button-read,
+#blog .button-read span {
+  font-family: Inter, -apple-system, BlinkMacSystemFont, sans-serif !important;
+}
+
+/* Пагинация */
+#blog .pagination,
+#blog .pagination a,
+#blog .pagination span {
+  font-family: Inter, -apple-system, BlinkMacSystemFont, sans-serif !important;
+}
+
+/* Боковая навигация категорий */
+#blog .sidebar-categories,
+#blog .sidebar-categories a,
+#blog .categories-list,
+#blog .categories-list a {
+  font-family: Inter, -apple-system, BlinkMacSystemFont, sans-serif !important;
+}
+
+/* ====================================================
+   HEADER MENU — глобальные правки
+   ==================================================== */
+
+/* Скрыть "Календарь" везде */
+.header-menu-ul li:has(a[href='/calendar/']) { display: none !important; }
+
+/* ====================================================
+   ГЛАВНАЯ — Блок "Новая статья" (swiper)
+   ==================================================== */
+
+/* Скрыть блок автора/картинки если img пуст или отсутствует */
+.new_article__author:has(img[src=""]),
+.new_article__author:has(img:not([src])),
+.new_article__author:has(.new_article__author-photo:empty) {
+  display: none !important;
+}
+
+/* Слайд без картинки: текстовый блок занимает всю ширину (десктоп) */
+.new_article:has(.new_article__author-photo:empty) .new_article__text,
+.new_article:has(img[src=""]) .new_article__text,
+.new_article:has(img:not([src])) .new_article__text {
+  width: 100% !important;
+}
+
+/* Мобилка: убираем фиксированный height: calc(100% - 375px) */
+@media (max-width: 990px) {
+  .new_article:has(.new_article__author-photo:empty) .new_article__text,
+  .new_article:has(img[src=""]) .new_article__text,
+  .new_article:has(img:not([src])) .new_article__text {
+    height: auto !important;
+    min-height: 280px !important;
+  }
+}
+
+/* Скрыть пустой card-article__visual целиком (главная) */
+.card-article__visual:has(img[src=""]),
+.card-article__visual:has(img[data-src=""]:not([src])),
+.card-article__visual:has(img:not([src])) {
+  display: none !important;
+}
+
+/* ====================================================
+   CVM-СТАТЬЯ — Тултипы (.explain / .explain-card)
+   Проблема: на мобилке тултипы вылезают за экран и перекрывают текст
+   Решение: bottom-sheet позиционирование на ≤768px
+   ==================================================== */
+
+/* Десктоп: ограничить ширину чтобы не вылезал за экран */
+.single-blog .explain-card {
+  max-width: min(290px, calc(100vw - 32px)) !important;
+}
+
+@media (max-width: 768px) {
+  /* Мобилка: тултип раскрывается inline под термином (в потоке текста) */
+  .single-blog .explain-card {
+    position: relative !important;
+    left: auto !important;
+    top: auto !important;
+    display: none;
+    width: 100% !important;
+    max-width: none !important;
+    margin: 8px 0 4px !important;
+    padding: 14px 16px !important;
+    font-size: 14px !important;
+    line-height: 1.5 !important;
+    border-radius: 10px !important;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.10) !important;
+    pointer-events: auto !important;
+  }
+
+  .single-blog .explain:hover .explain-card,
+  .single-blog .explain:focus-within .explain-card {
+    display: block !important;
+  }
+}
+
+/* ====================================================
+   CVM-СТАТЬЯ — Кейс-блоки (.cvm-ru-cases)
+   Проблема: на мобилке карточки скомканы, result-блок жмётся
+   ==================================================== */
+
+/* Цвет: inline-стили статьи используют #dc1327, унифицируем */
+.single-blog .cvm-ru-card {
+  border-left-color: #c01020 !important;
+}
+.single-blog .cvm-ru-num,
+.single-blog .cvm-ru-badge,
+.single-blog .cvm-stat {
+  color: #c01020 !important;
+}
+.single-blog .cvm-ru-result {
+  border-color: rgba(192,16,32,0.18) !important;
+}
+.single-blog .cvm-ru-badge {
+  background: rgba(192,16,32,0.07) !important;
+}
+.single-blog .cvm-world-list li::before {
+  color: #c01020 !important;
+}
+
+/* Тултипы внутри кейсов — тот же dashed red */
+.single-blog .explain {
+  border-bottom-color: #c01020 !important;
+}
+
+@media (max-width: 640px) {
+  /* Больше воздуха между карточками */
+  .single-blog .cvm-ru-cases {
+    gap: 18px !important;
+    margin: 16px 0 24px !important;
+  }
+
+  /* Карточки: больше внутреннего отступа */
+  .single-blog .cvm-ru-card {
+    padding: 16px 16px !important;
+  }
+
+  /* Имя компании крупнее */
+  .single-blog .cvm-ru-name {
+    font-size: 16px !important;
+  }
+
+  /* Описание: чуть крупнее для читаемости */
+  .single-blog .cvm-ru-desc {
+    font-size: 15px !important;
+    line-height: 1.58 !important;
+  }
+
+  /* Result-блок: вертикальная раскладка вместо строчной */
+  .single-blog .cvm-ru-result {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 4px !important;
+    padding: 10px 14px !important;
+  }
+
+  /* Число побольше */
+  .single-blog .cvm-ru-num {
+    font-size: 24px !important;
+  }
+
+  /* Подпись и источник — блочные */
+  .single-blog .cvm-ru-lbl {
+    font-size: 13px !important;
+    line-height: 1.4 !important;
+  }
+  .single-blog .cvm-ru-src {
+    display: block !important;
+    margin-left: 0 !important;
+    margin-top: 2px !important;
+    font-size: 11px !important;
+  }
+
+  /* Бейдж: чуть больше отступ сверху */
+  .single-blog .cvm-ru-badge {
+    margin-top: 6px !important;
+    font-size: 12.5px !important;
+  }
+
+  /* World-list: чуть крупнее */
+  .single-blog .cvm-world-list li {
+    font-size: 15px !important;
+    padding: 12px 0 12px 20px !important;
+  }
 }

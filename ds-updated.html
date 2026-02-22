@@ -482,6 +482,21 @@ a { color: var(--red); text-decoration: none; }
 }
 @media(max-width:680px){ .article-card { padding: 24px 20px; } }
 
+/* ─── Tooltip preview ───────────────────────────────────── */
+.crm-term {
+  border-bottom: 2px dotted #8a8a8a; cursor: help; color: inherit;
+  text-decoration: none; position: relative; display: inline-block;
+}
+.crm-tip {
+  background: #1a1a1a; color: #fff; font-size: 13.5px; line-height: 1.55;
+  padding: 10px 14px; border-radius: 8px; max-width: 260px;
+  box-shadow: 0 4px 24px rgba(0,0,0,.35); z-index: 10;
+}
+.crm-tip::after {
+  content: ''; position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
+  border: 6px solid transparent; border-top-color: #1a1a1a;
+}
+
 .split-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; }
 .source-list { margin: 8px 0 0 18px; color: #444; line-height: 1.6; }
 .source-list li + li { margin-top: 6px; }
@@ -498,8 +513,8 @@ a { color: var(--red); text-decoration: none; }
   <!-- Topbar -->
   <div class="ds-topbar">
     <div>
-      <h1>CRM-group Blog — Обновлённая дизайн-система <span class="version-tag">V4</span></h1>
-      <p>Production update: боевой TOC, структура anchor_1…anchor_9, FAQ + schema, Additional CSS v4. Февраль 2026.</p>
+      <h1>CRM-group Blog — Обновлённая дизайн-система <span class="version-tag">V5</span></h1>
+      <p>Full audit update: P0.1-P0.3 done, tooltips, CVM cases, FAQ, experts, empty-image handling, blog hub Inter. Февраль 2026.</p>
     </div>
     <div class="ds-topbar-links">
       <a href="index.html">← Исходная DS</a>
@@ -517,17 +532,21 @@ a { color: var(--red); text-decoration: none; }
     <a href="#structure">Структура</a>
     <a href="#comment">Комментарий</a>
     <a href="#faq">FAQ / Нейро</a>
+    <a href="#tooltip">Тултипы</a>
+    <a href="#cvm-cases">CVM кейсы</a>
     <a href="#progress">Прогресс</a>
     <a href="#table">Таблицы</a>
     <a href="#sidenote">Читайте также</a>
+    <a href="#hub-font">Хаб: Inter</a>
+    <a href="#empty-img">Пустые картинки</a>
     <a href="#other">Остальные блоки</a>
-    <a href="#wpcss">WP CSS v4</a>
+    <a href="#wpcss">WP CSS v5</a>
     <a href="#page">Пример страницы</a>
   </nav>
 
   <!-- ─── SECTION: Что изменилось ──────────────────────────── -->
   <section class="ds-section" id="changes">
-    <div class="ds-section-label">⚠️ Что изменилось <span class="badge badge-upd">14 правок</span></div>
+    <div class="ds-section-label">Что изменилось <span class="badge badge-upd">20 правок</span></div>
 
     <div class="changes-grid">
 
@@ -623,6 +642,41 @@ a { color: var(--red); text-decoration: none; }
         <div class="change-card__title">Reading progress bar</div>
         <div class="change-card__desc">Прогресс-бар фиксируется под шапкой сайта. Уменьшает показатель отказов: читатель видит сколько осталось и продолжает читать.</div>
         <div class="change-code">position: fixed; top: 0;<br>height: 3px; background: var(--red);</div>
+      </div>
+
+      <div class="change-card major">
+        <div class="change-card__priority">🟡 Важно</div>
+        <div class="change-card__title">Tooltip-система (.explain / .explain-card)</div>
+        <div class="change-card__desc">Инлайновые глоссарные тултипы для терминов. На десктопе — абсолютное позиционирование, на мобилке — inline expand (position: relative) вместо fixed, чтобы не вылезать за экран.</div>
+        <div class="change-code">.explain-card { max-width: min(290px, 100vw-32px) }<br>@media ≤768px { position: relative !important }</div>
+      </div>
+
+      <div class="change-card major">
+        <div class="change-card__priority">🟡 Важно</div>
+        <div class="change-card__title">CVM кейс-карточки (.cvm-ru-cases)</div>
+        <div class="change-card__desc">Карточки компаний с метриками, бейджами и результатами. Цвет унифицирован с #c01020. На мобилке result-блок переходит в вертикальную раскладку.</div>
+        <div class="change-code">.cvm-ru-card { border-left: #c01020 }<br>.cvm-ru-num { color: #c01020 }<br>@media ≤640px { flex-direction: column }</div>
+      </div>
+
+      <div class="change-card minor">
+        <div class="change-card__priority">🟢 Улучшение</div>
+        <div class="change-card__title">Пустые картинки — CSS :has()</div>
+        <div class="change-card__desc">Автоматически скрывает блоки с пустыми или отсутствующими изображениями на хабе и главной странице. Устраняет визуальные дыры.</div>
+        <div class="change-code">.new_article__author:has(img[src=""]) { display: none }<br>.card-article__visual:has(img:not([src])) { display: none }</div>
+      </div>
+
+      <div class="change-card crit">
+        <div class="change-card__priority">🔴 Критично</div>
+        <div class="change-card__title">Blog hub — Inter (P0.2)</div>
+        <div class="change-card__desc">Хаб /blog/ переведён с TTRuns/TTSmalls на Inter для единства при переходе хаб → статья. Главный визуальный скачок устранён.</div>
+        <div class="change-code">#blog, #blog ._h3, #blog .info {<br>  font-family: Inter !important;<br>}</div>
+      </div>
+
+      <div class="change-card minor">
+        <div class="change-card__priority">🟢 Улучшение</div>
+        <div class="change-card__title">World cases list (.cvm-world-list)</div>
+        <div class="change-card__desc">Список мировых кейсов с красными стрелками-маркерами и подсветкой статистик. Мобильная адаптация шрифтов.</div>
+        <div class="change-code">.cvm-world-list li::before { color: #c01020 }<br>.cvm-stat { color: #c01020 }</div>
       </div>
 
     </div>
@@ -839,6 +893,110 @@ stable blocks:
     <div class="note">Schema.org разметка itemscope/itemprop обязательна — без неё FAQ не попадает в сниппеты Яндекс.Нейро</div>
   </section>
 
+  <!-- ─── SECTION: Тултипы (.explain / .explain-card) ─────── -->
+  <section class="ds-section" id="tooltip">
+    <div class="ds-section-label">Тултипы — .explain / .explain-card <span class="badge badge-new">новый</span></div>
+    <div class="preview">
+      <p style="font-size:13px;color:#666;margin-bottom:16px;">Два вида тултипов в статьях:</p>
+
+      <div class="split-2">
+        <div>
+          <p style="font-size:12px;color:#aaa;margin-bottom:10px;">1. Glossary tooltip (.crm-term / .crm-tip) — для статьи CRM-метрик</p>
+          <div class="change-code">
+.crm-term {
+  border-bottom: 2px dotted #8a8a8a;
+  cursor: help; color: inherit;
+}
+.crm-tip {
+  position: fixed; background: #1a1a1a;
+  color: #fff; font-size: 13.5px;
+  padding: 10px 14px; border-radius: 8px;
+  max-width: 260px; z-index: 99999;
+  box-shadow: 0 4px 24px rgba(0,0,0,.35);
+}
+.crm-tip.on { opacity: 1; pointer-events: auto; }
+          </div>
+        </div>
+        <div>
+          <p style="font-size:12px;color:#aaa;margin-bottom:10px;">2. Inline expand (.explain / .explain-card) — для CVM-статьи</p>
+          <div class="change-code">
+/* Десктоп: абсолютное позиционирование */
+.explain-card {
+  max-width: min(290px, calc(100vw - 32px));
+}
+
+/* Мобилка (≤768px): inline под термином */
+.explain-card {
+  position: relative !important;
+  left: auto !important; top: auto !important;
+  width: 100% !important;
+  margin: 8px 0 4px; padding: 14px 16px;
+  border-radius: 10px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+}
+.explain:hover .explain-card { display: block; }
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:20px;">
+        <p style="font-size:12px;color:#aaa;margin-bottom:10px;">Live preview (glossary tooltip):</p>
+        <div class="art" style="position:relative;">
+          <p>LTV (Customer Lifetime Value) показывает общую прибыль от одного клиента. Для расчёта нужен <span class="crm-term" style="position:relative;display:inline-block;">ARPU<span class="crm-tip" style="position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);display:block;opacity:1;pointer-events:auto;white-space:normal;width:max-content;max-width:260px;line-height:1.5;font-size:13.5px;">ARPU (Average Revenue Per User) — средний доход от одного клиента за период.</span></span> и средняя продолжительность взаимодействия.</p>
+        </div>
+      </div>
+    </div>
+    <div class="note">Desktop: position fixed + JS. Mobile (≤768px): position relative, inline expand. Стрелка ::after с border-trick.</div>
+  </section>
+
+  <!-- ─── SECTION: CVM кейс-карточки ──────────────────────── -->
+  <section class="ds-section" id="cvm-cases">
+    <div class="ds-section-label">CVM кейс-карточки — .cvm-ru-cases / .cvm-world-list <span class="badge badge-new">новый</span></div>
+    <div class="preview">
+      <p style="font-size:13px;color:#666;margin-bottom:16px;">Компоненты для статей про CVM (Customer Value Management):</p>
+
+      <div class="split-2">
+        <div>
+          <p style="font-size:12px;color:#aaa;margin-bottom:10px;">CVM Russia card (.cvm-ru-card)</p>
+          <div style="border-left:3px solid #c01020;background:#fff;border:1px solid #e4e2dc;border-left:3px solid #c01020;border-radius:0 12px 12px 0;padding:16px 18px;margin-bottom:12px;">
+            <div style="font-weight:700;font-size:16px;color:#1a1a1a;margin-bottom:4px;">Тинькофф Банк</div>
+            <div style="font-size:14px;color:#555;line-height:1.55;margin-bottom:10px;">Персонализация через ML-модели. Каждый клиент видит уникальное предложение на главном экране.</div>
+            <div style="display:flex;align-items:baseline;gap:8px;background:rgba(192,16,32,0.04);border:1px solid rgba(192,16,32,0.18);border-radius:8px;padding:8px 12px;margin-bottom:8px;">
+              <span style="font-size:28px;font-weight:700;color:#c01020;">+34%</span>
+              <span style="font-size:13px;color:#555;">конверсия в целевое действие</span>
+            </div>
+            <span style="display:inline-block;font-size:12px;color:#c01020;background:rgba(192,16,32,0.07);padding:3px 10px;border-radius:20px;font-weight:600;">AI / ML</span>
+          </div>
+          <div class="change-code" style="margin-top:8px;">
+.cvm-ru-card { border-left: 3px solid #c01020 }
+.cvm-ru-num { font-size: 28px; color: #c01020 }
+.cvm-ru-result { border: 1px solid rgba(192,16,32,.18) }
+.cvm-ru-badge { bg: rgba(192,16,32,.07); color: #c01020 }
+          </div>
+        </div>
+        <div>
+          <p style="font-size:12px;color:#aaa;margin-bottom:10px;">World cases list (.cvm-world-list)</p>
+          <div style="max-width:400px;">
+            <div style="padding:12px 0 12px 20px;border-bottom:1px solid #e4e2dc;font-size:15px;color:#1a1a1a;line-height:1.55;position:relative;">
+              <span style="position:absolute;left:0;color:#c01020;font-weight:600;">&#8594;</span>
+              <strong>Amazon</strong> — рекомендательный движок генерирует <span style="color:#c01020;font-weight:600;">35% выручки</span>
+            </div>
+            <div style="padding:12px 0 12px 20px;border-bottom:1px solid #e4e2dc;font-size:15px;color:#1a1a1a;line-height:1.55;position:relative;">
+              <span style="position:absolute;left:0;color:#c01020;font-weight:600;">&#8594;</span>
+              <strong>Netflix</strong> — персонализация экономит <span style="color:#c01020;font-weight:600;">$1B/год</span> на оттоке
+            </div>
+          </div>
+          <div class="change-code" style="margin-top:12px;">
+.cvm-world-list li::before { color: #c01020 }
+.cvm-stat { color: #c01020; font-weight: 600 }
+/* Mobile ≤640px: font-size 15px, padding 12px */
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="note">Все цвета CVM-компонентов унифицированы с #c01020 (было #dc1327 в inline-стилях).</div>
+  </section>
+
   <!-- ─── SECTION: Прогресс чтения ─────────────────────────── -->
   <section class="ds-section" id="progress">
     <div class="ds-section-label">Прогресс чтения <span class="badge badge-new">новый</span></div>
@@ -904,6 +1062,90 @@ document.addEventListener('DOMContentLoaded', () => {
     <div class="note">bg: прозрачный · left-border: 3px #c01020 · лейбл: 11px 700 uppercase #999 · ссылка: 16px #c01020</div>
   </section>
 
+
+  <!-- ─── SECTION: Blog hub Inter font ──────────────────────── -->
+  <section class="ds-section" id="hub-font">
+    <div class="ds-section-label">Хаб /blog/ — переход на Inter (P0.2) <span class="badge badge-new">новый</span></div>
+    <div class="preview">
+      <p style="font-size:13px;color:#666;margin-bottom:16px;">
+        Главная причина визуального разрыва между хабом и статьёй — разные шрифты. P0.2 переводит хаб на Inter через wp-custom.css.
+      </p>
+
+      <div class="ba-wrap">
+        <div class="ba-box before-box">
+          <div style="padding:6px 16px;background:#fee2e2;"><span class="ba-label before" style="margin:0;">До (P0.2)</span> <span style="font-size:11px;color:#888;">TTRuns / TTSmalls</span></div>
+          <div class="ba-inner" style="font-family:'TTRuns-600',sans-serif;">
+            <div style="font-size:32px;font-weight:700;margin-bottom:8px;">Заголовок карточки</div>
+            <div style="font-size:18px;margin-bottom:4px;">Описание статьи на хабе</div>
+            <div style="font-size:16px;color:#595959;">CRM-маркетинг &middot; 15 августа 2024</div>
+          </div>
+        </div>
+        <div class="ba-box after-box">
+          <div style="padding:6px 16px;background:#dcfce7;"><span class="ba-label after" style="margin:0;">После (P0.2)</span> <span style="font-size:11px;color:#888;">Inter</span></div>
+          <div class="ba-inner" style="font-family:Inter,sans-serif;">
+            <div style="font-size:32px;font-weight:700;margin-bottom:8px;">Заголовок карточки</div>
+            <div style="font-size:18px;margin-bottom:4px;">Описание статьи на хабе</div>
+            <div style="font-size:16px;color:#595959;">CRM-маркетинг &middot; 15 августа 2024</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="change-code" style="margin-top:16px;">
+/* P0.2 BLOG HUB FONT PARITY */
+#blog, #blog p, #blog li, #blog span, #blog a {
+  font-family: Inter, -apple-system, sans-serif !important;
+}
+#blog ._h3, #blog .article h3, #blog .material h3 {
+  font-family: Inter, -apple-system, sans-serif !important;
+  font-weight: 700 !important;
+}
+#blog .info, #blog .button-read, #blog .pagination,
+#blog .categories-list, #blog .sidebar-categories {
+  font-family: Inter, -apple-system, sans-serif !important;
+}
+      </div>
+    </div>
+    <div class="note">H1 hero и slider title остаются на TTRuns (тема, не перекрыты). Откат: удалить блок P0.2 из wp-custom.css.</div>
+  </section>
+
+  <!-- ─── SECTION: Пустые картинки ────────────────────────── -->
+  <section class="ds-section" id="empty-img">
+    <div class="ds-section-label">Пустые картинки — CSS :has() <span class="badge badge-new">новый</span></div>
+    <div class="preview">
+      <p style="font-size:13px;color:#666;margin-bottom:16px;">
+        CSS :has() автоматически скрывает блоки с пустыми или отсутствующими изображениями на хабе и главной странице. Без JS.
+      </p>
+
+      <div class="change-code">
+/* Скрыть блок автора если img пуст или отсутствует */
+.new_article__author:has(img[src=""]),
+.new_article__author:has(img:not([src])),
+.new_article__author:has(.new_article__author-photo:empty) {
+  display: none !important;
+}
+
+/* Слайд без картинки: текстовый блок на всю ширину */
+.new_article:has(.new_article__author-photo:empty) .new_article__text,
+.new_article:has(img[src=""]) .new_article__text {
+  width: 100% !important;
+}
+
+/* Скрыть пустой card-article__visual (главная) */
+.card-article__visual:has(img[src=""]),
+.card-article__visual:has(img:not([src])) {
+  display: none !important;
+}
+
+/* Мобилка: убираем фиксированный height */
+@media (max-width: 990px) {
+  .new_article:has(.new_article__author-photo:empty) .new_article__text {
+    height: auto !important; min-height: 280px !important;
+  }
+}
+      </div>
+    </div>
+    <div class="note">CSS :has() поддерживается в Chrome 105+, Safari 15.4+, Firefox 121+. Для старых браузеров — graceful degradation (блок остаётся видимым).</div>
+  </section>
 
   <!-- ─── SECTION: Остальные блоки ─────────────────────────── -->
   <section class="ds-section" id="other">
@@ -1070,46 +1312,52 @@ document.addEventListener('DOMContentLoaded', () => {
 
   <!-- ─── SECTION: WP Additional CSS ───────────────────────── -->
   <section class="ds-section" id="wpcss">
-    <div class="ds-section-label">WP Additional CSS v4 <span class="badge badge-new">production-ready</span></div>
+    <div class="ds-section-label">WP Additional CSS v5 <span class="badge badge-new">production-ready</span></div>
     <div class="preview">
       <p style="font-size:13px;color:#666;margin-bottom:10px;">
         Используем существующий файл: <a href="css/wp-custom.css" style="font-weight:700;">css/wp-custom.css</a>
       </p>
-      <pre class="change-code" style="white-space:pre-wrap;max-height:360px;overflow:auto;">
-/* v4 override block (append to css/wp-custom.css) */
-.single-blog .section-content,
-.single-blog .section-content p,
-.single-blog .section-content li,
-.single-blog .section-content td {
-  font-size: 17px;
-  line-height: 1.58;
-  color: #1a1a1a;
-}
-.single-blog .section-content a { color: #c01020 !important; }
+      <pre class="change-code" style="white-space:pre-wrap;max-height:480px;overflow:auto;">
+/* wp-custom.css — ключевые блоки (полный файл: css/wp-custom.css) */
+
+/* P0.1: #dc1327 → #c01020 (весь файл) */
+/* P0.2: Blog hub → Inter */
+/* P0.3: line-height 1.78 → 1.58 */
+
+/* v4 overrides: типографика */
+.single-blog .section-content { font-size: 17px; line-height: 1.58; }
 .single-blog .section-content li::marker { color: #c01020; opacity: .75; }
-
 .single-blog .section-content h3.wp-block-heading {
-  font-size: 19px !important;
-  font-weight: 700 !important;
-  line-height: 1.32 !important;
-  color: #242424 !important;
-  border-left: 3px solid #d7d3ca !important;
-  padding-left: 14px !important;
-  margin-bottom: 10px !important;
+  font-size: 19px; font-weight: 700; line-height: 1.32;
+  color: #242424; border-left: 3px solid #d7d3ca; padding-left: 14px;
 }
 
-.single-blog .singlepost .sticky-block .navigation__item.active {
-  border-left: 2px solid #c01020 !important;
-  font-weight: 600 !important;
+/* TOC active state */
+.navigation__item.active { background: #fff0f0; color: #c01020; }
+
+/* FAQ */
+#crm-faq summary::after { content: '+'; color: #c01020; }
+#crm-faq details[open] summary::after { transform: rotate(45deg); }
+
+/* Tooltip (.explain / .explain-card) */
+.explain-card { max-width: min(290px, calc(100vw - 32px)); }
+@media (max-width: 768px) {
+  .explain-card { position: relative; width: 100%; }
 }
 
-.single-blog .section-content [itemtype="https://schema.org/FAQPage"] summary::after {
-  content: '+' !important;
-  color: #c01020 !important;
-}
+/* CVM cases */
+.cvm-ru-card { border-left-color: #c01020; }
+.cvm-ru-num, .cvm-ru-badge, .cvm-stat { color: #c01020; }
+
+/* Empty image handling */
+.new_article__author:has(img[src=""]) { display: none; }
+.card-article__visual:has(img[src=""]) { display: none; }
+
+/* Blog hub → Inter (P0.2) */
+#blog, #blog ._h3 { font-family: Inter, sans-serif !important; }
       </pre>
     </div>
-    <div class="note">Новый файл не создаём: v4-override добавляется в конец css/wp-custom.css.</div>
+    <div class="note">Все стили в одном файле: css/wp-custom.css (~1555 строк). Блоки: CRM DS v6, v4 overrides, P0.1-P0.3, CVM, tooltips, empty-img, hub font.</div>
   </section>
 
   <!-- ─── SECTION: Пример страницы ─────────────────────────── -->
