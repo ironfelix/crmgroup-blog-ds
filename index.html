@@ -1047,13 +1047,30 @@ ol.wp-block-list li::marker{color:var(--red);font-weight:700}
       .wpcf7-not-valid-tip { <strong>position:absolute</strong> &rarr; no layout shift }
     </div>
 
-    <h3 style="font-size:15px;font-weight:700;margin-bottom:16px">Слайдер без картинки (mobile)</h3>
-    <div style="background:#f8f8f8;border-radius:8px;padding:16px;margin-bottom:12px;font-size:13px;font-family:monospace;line-height:2;color:#334155">
-      .new_article__text { justify-content:center; padding:40px 28px }<br>
-      background: linear-gradient(135deg, #f8f4f0, #f2f2f2 40%, #f0eaea)<br>
-      .new_article__title { font-size:<strong>36px</strong>; line-height:1.15 }<br>
-      .button-read { font-weight:600; font-size:16px; margin-top:auto }
+    <h3 style="font-size:15px;font-weight:700;margin-bottom:16px">Слайдер без картинки — Editorial Dark <span style="background:#e8f5e9;color:#2e7d32;font-size:10px;padding:2px 8px;border-radius:10px;font-weight:600">ACTIVE</span></h3>
+    <p style="font-size:13px;color:#555;margin-bottom:12px">Когда нет featured image, слайд становится тёмной "обложкой". Заголовок = визуал.
+      <a href="no-image-slide-concept.html" style="color:#c01020">Все 3 концепта &rarr;</a></p>
+    <div style="background:#1a1a1a;border-radius:12px;padding:24px;margin-bottom:8px;position:relative;overflow:hidden">
+      <div style="position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#c01020 0%,#c01020 30%,transparent)"></div>
+      <p style="color:rgba(255,255,255,0.4);font-size:12px;margin-bottom:12px">22.02.26 &middot; читать 11-18 минут</p>
+      <h3 style="color:#fff;font-family:TTRuns,sans-serif;font-size:28px;font-weight:700;line-height:1.1;margin-bottom:16px">CVM что это в&nbsp;маркетинге: полный гайд 2026</h3>
+      <span style="color:#c01020;font-weight:600;font-size:14px">Читать статью &nearr;</span>
     </div>
+    <div style="background:#f8f8f8;border-radius:8px;padding:16px;margin-bottom:12px;font-size:13px;font-family:monospace;line-height:2;color:#334155">
+      background: <strong>#1a1a1a</strong>, color: #fff<br>
+      ::before { height:4px; background: linear-gradient(90deg, #c01020 30%, transparent) }<br>
+      .new_article__title { font-size:<strong>42px</strong> (desktop) / <strong>36px</strong> (mobile); color:#fff }<br>
+      .button-read { color:#c01020; font-weight:600 }<br>
+      .new_article__info * { color:rgba(255,255,255,0.4) }
+    </div>
+    <details style="margin-bottom:12px">
+      <summary style="font-size:13px;font-weight:600;color:#888;cursor:pointer">Альтернативные концепты (B, C)</summary>
+      <div style="padding:12px 0;font-size:13px;color:#555;line-height:1.8">
+        <strong>B — Gradient Brand:</strong> linear-gradient(155deg, #1a1a1a, #2d1215 50%, #4a1a1f). Красная CTA-кнопка с заливкой. Нужно описание в HTML (нет).<br>
+        <strong>C — Magazine Typo:</strong> Светлый фон, ::before { content:"CVM"; font-size:160px; opacity:0.04 }. Журнальная эстетика.<br>
+        Прототип: <a href="no-image-slide-concept.html" style="color:#c01020">no-image-slide-concept.html</a>
+      </div>
+    </details>
 
     <h3 style="font-size:15px;font-weight:700;margin-bottom:16px">Висячие предлоги</h3>
     <p style="font-size:13px;color:#555;line-height:1.6">
