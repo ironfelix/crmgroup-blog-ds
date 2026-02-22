@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CRM-group Blog — Design System v2</title>
+<title>CRM-group Blog — Design System v3</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 
@@ -12,9 +12,20 @@
 
 /* ─── DS TOKENS ─────────────────────────────────────────── */
 :root{
-  --red:#dc1327; --red-light:#fedddd; --warm:#fff9f0;
-  --black:#1a1a1a; --gray:#999; --border:#e8e8e8;
+  /* Бренд — красный #c01020 (WCAG AA 7.2:1 на белом) */
+  --red:#c01020; --red-light:#fde8e8; --warm:#fff9f0;
+  --black:#1a1a1a; --gray:#888; --border:#e4e4e4;
   --white:#fff;
+
+  /* Типографика: 17px/1.58, ширина строки 660px */
+  --fs-body:17px; --lh-body:1.58; --measure:660px;
+
+  /* Система отступов 8px */
+  --s1:8px; --s2:16px; --s3:24px; --s4:40px; --s5:64px;
+
+  /* DS shell */
+  --ds-bg:#f0f0f0; --ds-card:#fff; --ds-border:#e8e8e8; --ds-label:#aaa;
+
   /* Рекомендуемые улучшения */
   --rec-bg:#f8f9fa; --rec-text:#2d3748; --rec-accent:#2563eb;
   --rec-green:#16a34a; --rec-warn:#d97706;
@@ -99,17 +110,23 @@ a{color:var(--red);text-decoration:none}
 .navigation-page .anchor:hover{text-decoration:underline}
 
 /* ─── BLOCK-COMMENT ──────────────────────────────────────── */
-.wp-block-group.block-comment{
-  background:var(--warm);padding:24px 28px;border-radius:8px;margin:28px 0;
+.block-comment{
+  background:var(--warm);padding:var(--s3) var(--s4);
+  border-radius:8px;margin:var(--s4) 0;max-width:var(--measure);
 }
-.block-comment__text p{font-size:16px;line-height:1.7;margin:0}
+.wp-block-group.block-comment{
+  background:var(--warm);padding:var(--s3) var(--s4);
+  border-radius:8px;margin:var(--s4) 0;max-width:var(--measure);
+}
+.block-comment__text p{font-size:16px;line-height:1.65;margin:0}
+.block-comment__text p+p{margin-top:12px}
 .block-comment__autor{
   display:flex;align-items:center;gap:14px;
-  margin-top:16px;padding-top:14px;border-top:1px solid rgba(0,0,0,.08);
+  margin-top:var(--s2);padding-top:var(--s2);border-top:1px solid rgba(0,0,0,.08);
 }
-.autor-photo img{width:44px;height:44px;border-radius:50%;object-fit:cover;display:block}
-.autor-name{font-size:14px;font-weight:700;margin-bottom:2px!important}
-.autor-post{font-size:13px;color:var(--gray);margin:0!important}
+.autor-photo img{width:44px;height:44px;border-radius:50%;object-fit:cover}
+.autor-name{font-size:14px;font-weight:700}
+.autor-post{font-size:13px;color:var(--gray);margin-top:1px}
 
 /* ─── BLOCK-RESULT ───────────────────────────────────────── */
 .block-result{background:var(--warm);padding:24px 28px;border-radius:8px;margin:28px 0}
@@ -229,6 +246,94 @@ ol.wp-block-list li::marker{color:var(--red);font-weight:700}
 .ba-box.after-box{border-color:#86efac}
 
 @media(max-width:680px){.ba-wrap{grid-template-columns:1fr}.rec-grid{grid-template-columns:1fr}}
+
+/* ─── NEW COMPONENTS (v3 additions) ─────────────────────── */
+
+/* Breadcrumbs */
+.bread-crumbs{font-size:13px;color:#8a8a8a;line-height:1.5;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;margin-bottom:16px}
+.bread-crumbs a{color:#8a8a8a;text-decoration:none}
+.bread-crumbs a:hover{color:#c01020}
+.bread-crumbs .sep{margin:0 6px;color:#ccc}
+
+/* Article Card */
+.article-card{border:1px solid #e4e2dc;border-radius:12px;overflow:hidden;background:#fff;transition:box-shadow .15s,transform .15s}
+.article-card:hover{box-shadow:0 4px 20px rgba(0,0,0,.10);transform:translateY(-1px)}
+.article-card__img{width:100%;height:180px;object-fit:cover;display:block}
+.article-card__body{padding:16px 20px 20px}
+.article-card__meta{font-size:13px;color:#8a8a8a;margin-bottom:8px}
+.article-card__title{font-size:17px;font-weight:700;color:var(--black);line-height:1.35;margin-bottom:8px}
+.article-card__title:hover{color:#c01020}
+.article-card__desc{font-size:14px;color:#5a5a5a;line-height:1.5}
+.article-cards-row{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+@media(max-width:680px){.article-cards-row{grid-template-columns:1fr}}
+
+/* Pagination */
+.pagination{display:flex;align-items:center;justify-content:center;gap:4px;margin:32px 0}
+.page-num{width:40px;height:40px;display:flex;align-items:center;justify-content:center;border-radius:4px;font-size:16px;color:#595959;text-decoration:none;transition:all .15s}
+.page-num:hover{border:1px solid #cbcbcb}
+.page-num.current{color:#fff;background:#595959}
+.page-num.dots{pointer-events:none}
+
+/* Code Block */
+.code-block{background:#1a1a1a;color:#e0e0e0;border-radius:10px;padding:20px 24px;font-family:'Fira Code',Consolas,monospace;font-size:14px;line-height:1.7;overflow-x:auto;margin:24px 0}
+.code-block .kw{color:#c792ea}
+.code-block .str{color:#c3e88d}
+.code-block .cm{color:#546e7a;font-style:italic}
+.code-block .fn{color:#82aaff}
+
+/* Accordion / FAQ */
+.faq-section details{border:1px solid #e4e2dc;border-radius:10px;margin-bottom:8px;overflow:hidden}
+.faq-section summary{padding:14px 18px;font-weight:600;font-size:15px;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center}
+.faq-section summary::-webkit-details-marker{display:none}
+.faq-section summary::after{content:'+';font-size:22px;color:#c01020;transition:transform .2s}
+.faq-section details[open] summary::after{transform:rotate(45deg)}
+.faq-section .faq-answer{padding:14px 18px 16px;font-size:15px;line-height:1.7;color:#555;border-top:1px solid #e4e2dc}
+
+/* Reading Progress */
+.progress-demo{position:relative;height:3px;background:rgba(0,0,0,.06);border-radius:2px;overflow:hidden;margin:12px 0}
+.progress-demo__bar{height:100%;width:65%;background:#c01020;border-radius:2px}
+
+/* Tooltip */
+.crm-term{border-bottom:2px dotted #8a8a8a;cursor:help;position:relative}
+.crm-tip{position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);background:#1a1a1a;color:#fff;font-size:13.5px;padding:10px 14px;border-radius:8px;max-width:260px;box-shadow:0 4px 24px rgba(0,0,0,.35);white-space:normal;z-index:10;line-height:1.5}
+.crm-tip::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:#1a1a1a}
+
+/* Mobile TOC */
+.mobile-toc{background:#fff;border:1px solid #e4e2dc;border-radius:12px;padding:16px 18px;margin-bottom:28px}
+.mobile-toc summary{font-weight:600;font-size:15px;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;min-height:44px}
+.mobile-toc summary::-webkit-details-marker{display:none}
+.mobile-toc summary::after{content:'↓';color:#c01020;font-size:16px}
+.mobile-toc[open] summary::after{content:'↑'}
+.mobile-toc__list{margin-top:12px;display:flex;flex-direction:column;gap:2px}
+.mobile-toc__link{display:block;padding:8px 12px;font-size:13.5px;color:#5a5a5a;text-decoration:none;border-radius:8px;transition:background .15s}
+.mobile-toc__link:hover{background:#fff5f5;color:#c01020}
+
+/* Block Picture */
+.block-picture{background:#fff;border:1px solid #e4e2dc;border-radius:12px;padding:20px;margin:24px 0;max-width:68ch;transition:box-shadow .15s,transform .15s}
+.block-picture:hover{box-shadow:0 4px 20px rgba(0,0,0,.10);transform:translateY(-1px)}
+.block-picture img{max-width:100%;height:auto;border-radius:8px;display:block}
+.block-picture figcaption{font-size:13px;color:#8a8a8a;text-align:center;margin-top:8px;line-height:1.5}
+
+/* Author Block */
+.block-autor{display:grid;grid-template-columns:52px 1fr;column-gap:14px;background:#fff;border:1px solid #e4e2dc;border-radius:12px;padding:20px;margin:24px 0}
+.block-autor__label{grid-column:1/-1;font-size:11px;text-transform:uppercase;letter-spacing:.8px;color:#8a8a8a;margin-bottom:10px;font-weight:600}
+.block-autor img{width:52px;height:52px;border-radius:50%;object-fit:cover}
+.block-autor__name{font-size:15px;font-weight:600;color:var(--black)}
+.block-autor__role{font-size:13px;color:#5a5a5a}
+
+/* Experts Grid */
+.block-experts{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:12px;margin:24px 0}
+.block-expert{height:190px;padding:12px 10px 9px;border:1px solid #e4e2dc;border-radius:12px;background:#fff;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px}
+.block-expert img{width:52px;height:52px;border-radius:50%;object-fit:cover}
+.block-expert__name{font-size:13px;font-weight:600;color:var(--black);line-height:1.3}
+.block-expert__role{font-size:11.5px;color:#8a8a8a;line-height:1.4}
+
+/* Site vs Blog comparison */
+.comparison-table{width:100%;border-collapse:collapse;font-size:14px}
+.comparison-table th{padding:12px 16px;text-align:left;background:#f4f3ef;font-weight:600;border-bottom:2px solid #e4e2dc}
+.comparison-table td{padding:10px 16px;border-bottom:1px solid #e4e2dc;vertical-align:top}
+.comparison-table tr:hover td{background:#fafaf8}
+.comparison-table .highlight{background:#fff5f5;font-weight:600;color:#c01020}
 </style>
 </head>
 <body>
@@ -237,8 +342,8 @@ ol.wp-block-list li::marker{color:var(--red);font-weight:700}
 <!-- TOPBAR -->
 <div class="ds-topbar">
   <div>
-    <h1>CRM-group Blog — Design System v2</h1>
-    <p>На основе 30 статей · crmgroup.ru · Февраль 2026</p>
+    <h1>CRM-group Blog — Design System v3</h1>
+    <p>На основе 30 статей · crmgroup.ru · Февраль 2026 · <span style="color:#c01020;font-weight:600">Красный #c01020</span></p>
   </div>
   <div class="ds-topbar-meta" style="display:flex;flex-direction:column;align-items:flex-end;gap:10px;">
     <div>
@@ -246,9 +351,6 @@ ol.wp-block-list li::marker{color:var(--red);font-weight:700}
       426 уникальных CSS-классов<br>
       <a href="https://crmgroup.ru/blog/" target="_blank" style="color:#888;font-size:12px">→ Перейти в блог</a>
     </div>
-    <a href="ds-updated.html" style="display:inline-flex;align-items:center;gap:8px;background:#c01020;color:#fff;font-size:13px;font-weight:700;padding:9px 18px;border-radius:8px;text-decoration:none;transition:opacity .15s;" onmouseover="this.style.opacity='.85'" onmouseout="this.style.opacity='1'">
-      ✅ Обновлённая версия →
-    </a>
   </div>
 </div>
 
@@ -267,10 +369,22 @@ ol.wp-block-list li::marker{color:var(--red);font-weight:700}
   <a href="#stats">Статистика</a>
   <a href="#form">Форма</a>
   <a href="#neuro">Яндекс.Нейро</a>
+  <a href="#breadcrumbs">Хлебные крошки</a>
+  <a href="#article-card">Карточка статьи</a>
+  <a href="#pagination">Пагинация</a>
+  <a href="#code">Код</a>
+  <a href="#accordion">Аккордеон</a>
+  <a href="#progress">Прогресс-бар</a>
+  <a href="#tooltip">Тултип</a>
+  <a href="#mobile-toc">Мобильный TOC</a>
+  <a href="#block-picture">Изображения</a>
+  <a href="#author">Автор</a>
+  <a href="#experts">Эксперты</a>
+  <a href="#site-vs-blog">Сайт vs Блог</a>
   <a href="#fullpage">Пример страницы</a>
   <a href="#blocks-stat">Статистика блоков</a>
   <a href="#articles">30 статей</a>
-  <a href="#recs">⚠️ Рекомендации UX</a>
+  <a href="#recs">Рекомендации UX</a>
 </nav>
 
 <!-- ══════════════════════════════════════════════════════════
@@ -280,8 +394,8 @@ ol.wp-block-list li::marker{color:var(--red);font-weight:700}
   <div class="ds-section-label">Цветовая палитра <span class="badge badge-all">все статьи</span></div>
   <div class="preview">
     <div class="palette">
-      <div class="swatch-wrap"><div class="swatch" style="background:#dc1327"></div><div class="sw-name">Red</div><div class="sw-hex">#dc1327</div><div class="sw-use">CTA, ссылки, кнопки</div></div>
-      <div class="swatch-wrap"><div class="swatch" style="background:#fedddd;border-color:#f0c0c0"></div><div class="sw-name">Red Light</div><div class="sw-hex">#fedddd</div><div class="sw-use">Соцсети, акцент bg</div></div>
+      <div class="swatch-wrap"><div class="swatch" style="background:#c01020"></div><div class="sw-name">Red</div><div class="sw-hex">#c01020</div><div class="sw-use">CTA, ссылки, кнопки</div></div>
+      <div class="swatch-wrap"><div class="swatch" style="background:#fde8e8;border-color:#f0c0c0"></div><div class="sw-name">Red Light</div><div class="sw-hex">#fde8e8</div><div class="sw-use">Соцсети, акцент bg</div></div>
       <div class="swatch-wrap"><div class="swatch" style="background:#fff9f0;border-color:#eee"></div><div class="sw-name">Warm</div><div class="sw-hex">#fff9f0</div><div class="sw-use">Комментарии, CTA</div></div>
       <div class="swatch-wrap"><div class="swatch" style="background:#1a1a1a"></div><div class="sw-name">Black</div><div class="sw-hex">#1a1a1a</div><div class="sw-use">Текст, форма</div></div>
       <div class="swatch-wrap"><div class="swatch" style="background:#999999"></div><div class="sw-name">Gray</div><div class="sw-hex">#999999</div><div class="sw-use">Вторичный текст</div></div>
@@ -323,7 +437,7 @@ ol.wp-block-list li::marker{color:var(--red);font-weight:700}
         <p data-anchor="anchor_4"><span class="anchor">Где найти</span></p>
       </div>
     </div>
-    <div class="note">.navigation-page · bg #fff9f0 · border-left 3px #dc1327 · anchors data-anchor="anchor_N"</div>
+    <div class="note">.navigation-page · bg #fff9f0 · border-left 3px #c01020 · anchors data-anchor="anchor_N"</div>
   </div>
 </div>
 
@@ -331,36 +445,25 @@ ol.wp-block-list li::marker{color:var(--red);font-weight:700}
      BLOCK-COMMENT
 ═══════════════════════════════════════════════════════════ -->
 <div class="ds-section" id="comment">
-  <div class="ds-section-label">Экспертный комментарий — .block-comment <span class="badge badge-all">30/30 статей</span></div>
+  <div class="ds-section-label">Комментарий эксперта <span class="badge badge-all">все статьи</span></div>
   <div class="preview">
-    <!-- Без автора -->
-    <div class="wp-block-group block-comment has-background" style="background-color:#fff9f0">
-      <div class="wp-block-group__inner-container">
+    <div class="art">
+      <div class="block-comment">
         <div class="block-comment__text">
-          <p><strong>Для агентства репутация — это всё.</strong> Мы не можем позволить себе провалить проект клиента, потому что доход напрямую зависит от измеримого результата.</p>
-        </div>
-      </div>
-    </div>
-    <div class="note">Вариант без автора · bg #fff9f0 · padding 24/28 · border-radius 8px</div>
-  </div>
-  <div class="preview">
-    <!-- С автором -->
-    <div class="wp-block-group block-comment has-background" style="background-color:#fff9f0">
-      <div class="wp-block-group__inner-container">
-        <div class="block-comment__text">
-          <p>Хороший CRM-маркетолог думает не письмами, а жизненным циклом клиента. Его главный вопрос: «что происходит с человеком между касаниями?»</p>
+          <p>Главная трудность с подсчётом LTV — определиться, на каком интервале это делать. По определению, надо считать весь срок жизни клиента.</p>
+          <p>Но представим ситуацию: клиент регулярно покупал, а потом вдруг перестал. Мы посчитали его LTV. Через год он вернулся — нужно ли пересчитывать?</p>
         </div>
         <div class="block-comment__autor">
-          <div class="autor-photo"><img src="https://crmgroup.ru/wp-content/uploads/2024/07/sergey-semikin.jpg" alt="Сергей Семикин"></div>
+          <div class="autor-photo"><img src="https://crmgroup.ru/wp-content/uploads/2023/03/Valera-Kurakin.png" alt="Валерий Куракин" style="width:44px;height:44px;border-radius:50%;"></div>
           <div>
-            <p class="autor-name">Сергей Семикин</p>
-            <p class="autor-post">Ведущий менеджер по развитию, CRM-group</p>
+            <div class="autor-name">Валерий Куракин</div>
+            <div class="autor-post">руководитель отдела аналитики</div>
           </div>
         </div>
       </div>
     </div>
-    <div class="note">Вариант с автором · .autor-photo 44px круглое · .autor-name 14px 700 · .autor-post 13px #999</div>
   </div>
+  <div class="note">line-height эксперт-блока — 1.65 (исключение из общего 1.58 — цитата требует чуть больше воздуха)</div>
 </div>
 
 <!-- ══════════════════════════════════════════════════════════
@@ -372,11 +475,11 @@ ol.wp-block-list li::marker{color:var(--red);font-weight:700}
     <div class="block-result wp-block-group has-background" style="background-color:#fff9f0">
       <div class="wp-block-group__inner-container">
         <h3 class="wp-block-heading block-result__heading">
-          <a style="color:#dc1327;font-weight:700" href="#">Оставьте заявку</a>. Проведём бесплатную консультацию и подберём решение под ваши задачи.
+          <a style="color:#c01020;font-weight:700" href="#">Оставьте заявку</a>. Проведём бесплатную консультацию и подберём решение под ваши задачи.
         </h3>
       </div>
     </div>
-    <div class="note">.block-result · bg #fff9f0 · ссылка-якорь #dc1327 · 19px · font-weight 400 · lh 1.5</div>
+    <div class="note">.block-result · bg #fff9f0 · ссылка-якорь #c01020 · 19px · font-weight 400 · lh 1.5</div>
   </div>
 </div>
 
@@ -397,7 +500,7 @@ ol.wp-block-list li::marker{color:var(--red);font-weight:700}
         </tbody>
       </table>
     </figure>
-    <div class="note">thead: bg #dc1327 white · tbody even: rgba(0,0,0,.025) · td padding 10/16</div>
+    <div class="note">thead: bg #c01020 white · tbody even: rgba(0,0,0,.025) · td padding 10/16</div>
   </div>
 </div>
 
@@ -463,7 +566,7 @@ ol.wp-block-list li::marker{color:var(--red);font-weight:700}
         </ol>
       </div>
     </div>
-    <div class="note">marker: #dc1327 · 16px · lh 1.65 · pl 22px · mb 7px per item</div>
+    <div class="note">marker: #c01020 · 16px · lh 1.65 · pl 22px · mb 7px per item</div>
   </div>
 </div>
 
@@ -478,7 +581,7 @@ ol.wp-block-list li::marker{color:var(--red);font-weight:700}
       <div class="wp-block-button btn-outline"><a class="wp-block-button__link" href="#">Смотреть кейсы</a></div>
       <div class="wp-block-button btn-ghost"><a class="wp-block-button__link" href="#">Подробнее</a></div>
     </div>
-    <div class="note">primary: bg #dc1327 · outline: border #dc1327 · ghost: bg #fedddd · padding 13/26 · border-radius 6px</div>
+    <div class="note">primary: bg #c01020 · outline: border #c01020 · ghost: bg #fde8e8 · padding 13/26 · border-radius 6px</div>
   </div>
 </div>
 
@@ -508,7 +611,7 @@ ol.wp-block-list li::marker{color:var(--red);font-weight:700}
       <div class="stat-card"><div class="stat-card__number">50+</div><div class="stat-card__label">проектов в портфеле</div></div>
       <div class="stat-card"><div class="stat-card__number">78%</div><div class="stat-card__label">клиентов продлевают контракт</div></div>
     </div>
-    <div class="note">bg #fff9f0 · число 30px #dc1327 · лейбл 12px #999 · br 10px</div>
+    <div class="note">bg #fff9f0 · число 30px #c01020 · лейбл 12px #888 · br 10px</div>
   </div>
 </div>
 
@@ -527,7 +630,7 @@ ol.wp-block-list li::marker{color:var(--red);font-weight:700}
       </div>
     </div>
   </div>
-  <div class="note">bg #1a1a1a · h2 21px white · input + кнопка в ряд · btn bg #dc1327</div>
+  <div class="note">bg #1a1a1a · h2 21px white · input + кнопка в ряд · btn bg #c01020</div>
 </div>
 
 <!-- ══════════════════════════════════════════════════════════
@@ -646,7 +749,7 @@ ol.wp-block-list li::marker{color:var(--red);font-weight:700}
       </div>
       <div class="block-result wp-block-group has-background" style="background-color:#fff9f0">
         <div class="wp-block-group__inner-container">
-          <h3 class="wp-block-heading block-result__heading"><a style="color:#dc1327;font-weight:700" href="#">Оставьте заявку</a> — обсудим нужен ли вам CRM-маркетолог или достаточно агентства.</h3>
+          <h3 class="wp-block-heading block-result__heading"><a style="color:#c01020;font-weight:700" href="#">Оставьте заявку</a> — обсудим нужен ли вам CRM-маркетолог или достаточно агентства.</h3>
         </div>
       </div>
       <!-- Neuro FAQ -->
@@ -670,7 +773,7 @@ ol.wp-block-list li::marker{color:var(--red);font-weight:700}
   <div class="ds-section-label">Статистика блоков — 30 статей</div>
   <div class="preview">
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:24px">
-<div style="background:#f8f8f8;border-radius:8px;padding:14px 18px"><div style="font-size:24px;font-weight:700;color:#dc1327">30</div><div style="font-size:12px;color:#888;margin-top:2px">.navigation-page</div></div><div style="background:#f8f8f8;border-radius:8px;padding:14px 18px"><div style="font-size:24px;font-weight:700;color:#dc1327">30</div><div style="font-size:12px;color:#888;margin-top:2px">.wp-block-image</div></div><div style="background:#f8f8f8;border-radius:8px;padding:14px 18px"><div style="font-size:24px;font-weight:700;color:#dc1327">30</div><div style="font-size:12px;color:#888;margin-top:2px">.block-form</div></div><div style="background:#f8f8f8;border-radius:8px;padding:14px 18px"><div style="font-size:24px;font-weight:700;color:#dc1327">30</div><div style="font-size:12px;color:#888;margin-top:2px">.has-background</div></div><div style="background:#f8f8f8;border-radius:8px;padding:14px 18px"><div style="font-size:24px;font-weight:700;color:#dc1327">29</div><div style="font-size:12px;color:#888;margin-top:2px">.social-networks</div></div><div style="background:#f8f8f8;border-radius:8px;padding:14px 18px"><div style="font-size:24px;font-weight:700;color:#dc1327">29</div><div style="font-size:12px;color:#888;margin-top:2px">.wp-block-buttons</div></div><div style="background:#f8f8f8;border-radius:8px;padding:14px 18px"><div style="font-size:24px;font-weight:700;color:#dc1327">29</div><div style="font-size:12px;color:#888;margin-top:2px">.wp-block-list</div></div><div style="background:#f8f8f8;border-radius:8px;padding:14px 18px"><div style="font-size:24px;font-weight:700;color:#dc1327">28</div><div style="font-size:12px;color:#888;margin-top:2px">.wp-block-columns</div></div><div style="background:#f8f8f8;border-radius:8px;padding:14px 18px"><div style="font-size:24px;font-weight:700;color:#dc1327">19</div><div style="font-size:12px;color:#888;margin-top:2px">.block-comment</div></div><div style="background:#f8f8f8;border-radius:8px;padding:14px 18px"><div style="font-size:24px;font-weight:700;color:#dc1327">19</div><div style="font-size:12px;color:#888;margin-top:2px">.autor-name</div></div><div style="background:#f8f8f8;border-radius:8px;padding:14px 18px"><div style="font-size:24px;font-weight:700;color:#dc1327">18</div><div style="font-size:12px;color:#888;margin-top:2px">.block-result</div></div><div style="background:#f8f8f8;border-radius:8px;padding:14px 18px"><div style="font-size:24px;font-weight:700;color:#dc1327">14</div><div style="font-size:12px;color:#888;margin-top:2px">.wp-block-table</div></div><div style="background:#f8f8f8;border-radius:8px;padding:14px 18px"><div style="font-size:24px;font-weight:700;color:#dc1327">0</div><div style="font-size:12px;color:#888;margin-top:2px">.wp-block-quote</div></div><div style="background:#f8f8f8;border-radius:8px;padding:14px 18px"><div style="font-size:24px;font-weight:700;color:#dc1327">0</div><div style="font-size:12px;color:#888;margin-top:2px">.stats-pattern</div></div>
+<div style="background:#f8f8f8;border-radius:8px;padding:14px 18px"><div style="font-size:24px;font-weight:700;color:#c01020">30</div><div style="font-size:12px;color:#888;margin-top:2px">.navigation-page</div></div><div style="background:#f8f8f8;border-radius:8px;padding:14px 18px"><div style="font-size:24px;font-weight:700;color:#c01020">30</div><div style="font-size:12px;color:#888;margin-top:2px">.wp-block-image</div></div><div style="background:#f8f8f8;border-radius:8px;padding:14px 18px"><div style="font-size:24px;font-weight:700;color:#c01020">30</div><div style="font-size:12px;color:#888;margin-top:2px">.block-form</div></div><div style="background:#f8f8f8;border-radius:8px;padding:14px 18px"><div style="font-size:24px;font-weight:700;color:#c01020">30</div><div style="font-size:12px;color:#888;margin-top:2px">.has-background</div></div><div style="background:#f8f8f8;border-radius:8px;padding:14px 18px"><div style="font-size:24px;font-weight:700;color:#c01020">29</div><div style="font-size:12px;color:#888;margin-top:2px">.social-networks</div></div><div style="background:#f8f8f8;border-radius:8px;padding:14px 18px"><div style="font-size:24px;font-weight:700;color:#c01020">29</div><div style="font-size:12px;color:#888;margin-top:2px">.wp-block-buttons</div></div><div style="background:#f8f8f8;border-radius:8px;padding:14px 18px"><div style="font-size:24px;font-weight:700;color:#c01020">29</div><div style="font-size:12px;color:#888;margin-top:2px">.wp-block-list</div></div><div style="background:#f8f8f8;border-radius:8px;padding:14px 18px"><div style="font-size:24px;font-weight:700;color:#c01020">28</div><div style="font-size:12px;color:#888;margin-top:2px">.wp-block-columns</div></div><div style="background:#f8f8f8;border-radius:8px;padding:14px 18px"><div style="font-size:24px;font-weight:700;color:#c01020">19</div><div style="font-size:12px;color:#888;margin-top:2px">.block-comment</div></div><div style="background:#f8f8f8;border-radius:8px;padding:14px 18px"><div style="font-size:24px;font-weight:700;color:#c01020">19</div><div style="font-size:12px;color:#888;margin-top:2px">.autor-name</div></div><div style="background:#f8f8f8;border-radius:8px;padding:14px 18px"><div style="font-size:24px;font-weight:700;color:#c01020">18</div><div style="font-size:12px;color:#888;margin-top:2px">.block-result</div></div><div style="background:#f8f8f8;border-radius:8px;padding:14px 18px"><div style="font-size:24px;font-weight:700;color:#c01020">14</div><div style="font-size:12px;color:#888;margin-top:2px">.wp-block-table</div></div><div style="background:#f8f8f8;border-radius:8px;padding:14px 18px"><div style="font-size:24px;font-weight:700;color:#c01020">0</div><div style="font-size:12px;color:#888;margin-top:2px">.wp-block-quote</div></div><div style="background:#f8f8f8;border-radius:8px;padding:14px 18px"><div style="font-size:24px;font-weight:700;color:#c01020">0</div><div style="font-size:12px;color:#888;margin-top:2px">.stats-pattern</div></div>
     </div>
     <p style="font-size:13px;color:#999">Топ-40 CSS-классов по частоте использования</p>
     <div style="margin-top:16px">
@@ -772,10 +875,10 @@ ol.wp-block-list li::marker{color:var(--red);font-weight:700}
 
   <div class="rec-grid">
 
-    <div class="rec-card critical">
-      <div class="rec-priority">🔴 Критично</div>
+    <div class="rec-card critical" style="opacity:.5;position:relative">
+      <div class="rec-priority" style="color:#16a34a">✅ Сделано</div>
       <div class="rec-title">Слишком яркий красный на белом</div>
-      <div class="rec-desc">#dc1327 — насыщенный красный, создаёт вибрацию при длительном чтении. Особенно болезненно на маркерах списков и ссылках в теле текста. Глаза устают через 3–4 минуты.</div>
+      <div class="rec-desc">#dc1327 заменён на #c01020 (-15% яркость, WCAG AA 7.2:1). Маркеры списков с opacity .75.</div>
       <div class="rec-code">/* Было */ color: #dc1327;<br>/* Стало */ color: #c01020; /* -15% яркость */<br>/* Маркеры */ li::marker { color: #c01020; opacity: .75; }</div>
     </div>
 
