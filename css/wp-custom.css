@@ -12,6 +12,19 @@
    ==================================================== */
 
 /* ====================================================
+   GLOBAL COLOR OVERRIDE — единый красный акцент
+   Тема использует --color-accent-red: #FD3939 повсюду.
+   Переопределяем на DS-токен #c01020 (WCAG AA 7.2:1).
+   Это фиксит: кнопки, ссылки, hover, footer, header, breadcrumbs.
+   ==================================================== */
+:root {
+  --color-accent-red: #c01020 !important;
+  --button-bg: #c01020 !important;
+  --button-bg-hover: #a80e1c !important;
+  --input-button: #c01020 !important;
+}
+
+/* ====================================================
    СУЩЕСТВУЮЩИЙ CSS САЙТА (не трогаем)
    ==================================================== */
 html, body { overflow-x: hidden; }
@@ -311,21 +324,58 @@ body.single-blog .singlepost .container-columns > .column {
   line-height: 1.4 !important; font-family: Inter, sans-serif !important; margin: 0 !important;
 }
 
-/* ── Таблица ── */
-.single-blog .section-content .wp-block-table { margin-bottom: 32px !important; }
-.single-blog .section-content .table-wrapper { max-width: 68ch !important; }
-.single-blog .section-content .table-wrapper table { border-collapse: collapse !important; width: 100% !important; }
+/* ── Таблица (работает и с .table-wrapper, и с .wp-block-table) ── */
+.single-blog .section-content .wp-block-table,
+.single-blog .section-content .table-wrapper {
+  max-width: 68ch !important;
+  margin-bottom: 32px !important;
+}
+.single-blog .section-content .wp-block-table table,
+.single-blog .section-content .table-wrapper table {
+  border-collapse: collapse !important;
+  width: 100% !important;
+}
+.single-blog .section-content .wp-block-table thead th,
 .single-blog .section-content .table-wrapper thead th {
-  background: #f4f3ef !important; font-weight: 600 !important; padding: 12px 16px !important;
-  border-bottom: 2px solid #e4e2dc !important; font-size: 13.5px !important;
-  color: #1a1a1a !important; font-family: Inter, sans-serif !important; text-align: left !important;
+  background: #f4f3ef !important;
+  font-weight: 600 !important;
+  padding: 12px 16px !important;
+  border-bottom: 2px solid #e4e2dc !important;
+  font-size: 13.5px !important;
+  color: #1a1a1a !important;
+  font-family: Inter, sans-serif !important;
+  text-align: left !important;
 }
+.single-blog .section-content .wp-block-table tbody td,
 .single-blog .section-content .table-wrapper tbody td {
-  padding: 12px 16px !important; border-bottom: 1px solid #e4e2dc !important;
-  font-family: Inter, sans-serif !important; font-size: 15px !important;
+  padding: 12px 16px !important;
+  border-bottom: 1px solid #e4e2dc !important;
+  font-family: Inter, sans-serif !important;
+  font-size: 15px !important;
+  color: #444 !important;
 }
-.single-blog .section-content .table-wrapper tbody tr:last-child td { border-bottom: none !important; }
-.single-blog .section-content .table-wrapper tbody tr:hover td { background: #fafaf8 !important; }
+.single-blog .section-content .wp-block-table tbody tr:last-child td,
+.single-blog .section-content .table-wrapper tbody tr:last-child td {
+  border-bottom: none !important;
+}
+.single-blog .section-content .wp-block-table tbody tr:hover td,
+.single-blog .section-content .table-wrapper tbody tr:hover td {
+  background: #fafaf8 !important;
+}
+/* Сбрасываем is-style-stripes (серые полоски WP) — DS использует свои стили */
+.single-blog .section-content .wp-block-table.is-style-stripes tbody tr:nth-child(odd) {
+  background-color: transparent !important;
+}
+.single-blog .section-content .wp-block-table.is-style-stripes td,
+.single-blog .section-content .wp-block-table.is-style-stripes th {
+  border-color: transparent !important;
+}
+/* Первая колонка таблицы (параметр) — жирная, как заголовок строки */
+.single-blog .section-content .wp-block-table tbody td:first-child,
+.single-blog .section-content .table-wrapper tbody td:first-child {
+  font-weight: 600 !important;
+  color: #1a1a1a !important;
+}
 
 /* ── Пара автор+редактор в строку ── */
 .single-blog .section-content .block-autors-row {
@@ -729,7 +779,7 @@ body.single-blog .section-content .wp-block-group.block-result { margin-bottom: 
   body.single-blog .singlepost .container-columns > .column {
     margin-left: 0 !important;
     margin-right: 0 !important;
-    padding: 0 24px !important;
+    padding: 0 !important;
     width: 100% !important;
     max-width: 100% !important;
     display: block !important;
@@ -739,12 +789,12 @@ body.single-blog .section-content .wp-block-group.block-result { margin-bottom: 
     display: none !important;
   }
 
-  /* Хедер (H1, хлебные крошки, дата) */
+  /* Хедер (H1, хлебные крошки, дата) — не внутри .container, нужен свой padding */
   body.single-blog .container-min.top-page {
     margin-left: 0 !important;
     max-width: 100% !important;
-    padding-left: 24px !important;
-    padding-right: 24px !important;
+    padding-left: 30px !important;
+    padding-right: 30px !important;
     padding-top: 16px !important;
     box-sizing: border-box !important;
   }
@@ -785,15 +835,28 @@ body.single-blog .section-content .wp-block-group.block-result { margin-bottom: 
   .single-blog .section-content .block-autor + .block-autor { margin-top: 8px !important; }
 
   /* Таблицы: горизонтальный скролл + отступ снизу */
-  .single-blog .section-content .wp-block-table {
+  .single-blog .section-content .wp-block-table,
+  .single-blog .section-content .table-wrapper {
     overflow-x: auto !important;
     -webkit-overflow-scrolling: touch !important;
     margin-left: 0 !important;
     margin-right: 0 !important;
     margin-bottom: 28px !important;
+    max-width: 100% !important;
   }
-  .single-blog .section-content .wp-block-table table {
+  .single-blog .section-content .wp-block-table table,
+  .single-blog .section-content .table-wrapper table {
     min-width: 480px !important;
+  }
+  .single-blog .section-content .wp-block-table thead th,
+  .single-blog .section-content .table-wrapper thead th {
+    font-size: 12px !important;
+    padding: 10px 12px !important;
+  }
+  .single-blog .section-content .wp-block-table tbody td,
+  .single-blog .section-content .table-wrapper tbody td {
+    font-size: 13.5px !important;
+    padding: 10px 12px !important;
   }
 
   /* block-experts: 2 колонки на планшете */
@@ -803,9 +866,17 @@ body.single-blog .section-content .wp-block-group.block-result { margin-bottom: 
   }
 }
 
-/* 640px: телефон */
+/* 640px: телефон
+   Тема ставит .container { padding: 0 20px } при ≤425px, 30px при 426-640px.
+   Column padding НЕ нужен — он дублирует .container и сужает контент.
+   Было: 20+16=36px на сторону → 303px контента на iPhone (слишком узко).
+   Стало: 16px на сторону → 343px контента (45-48 символов, комфорт). */
 @media (max-width: 640px) {
-  body.single-blog .singlepost .container-columns > .column { padding: 0 16px !important; }
+  body.single-blog .singlepost .container {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+  body.single-blog .singlepost .container-columns > .column { padding: 0 !important; }
 
   body.single-blog .container-min.top-page {
     padding-left: 16px !important;
@@ -1326,63 +1397,98 @@ body.single-blog { background: #f5f5f5 !important; }
 }
 
 /* ================================================================
-   P0.2 — BLOG HUB FONT PARITY (2026-02-22)
-   Хаб /blog/ использует TTRuns/TTSmalls (тема), статья — Inter (DS).
-   Переводим хаб на Inter для единства при переходе хаб → статья.
-   Откат: удалить этот блок целиком.
+   P0.2 — BLOG HUB TYPOGRAPHY (2026-02-22)
+   Хаб /blog/ остаётся на TTSmalls/TTRuns (фирменный шрифт),
+   но с оптимизированной типографикой для читабельности кириллицы.
+   Статьи (.single-blog) — Inter (DS v6).
+   Сравнение: font-comparison.html в repo.
    ================================================================ */
 
-/* Базовый шрифт хаба */
+/* Глобальный font-smoothing для хаба — убирает "раздутость" TT на macOS */
+#blog {
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+}
+
+/* Body-текст: TTSmalls с нормальным line-height (тема ставит ~1.2 = нечитабельно) */
 #blog,
 #blog p,
 #blog li,
 #blog span,
 #blog a {
-  font-family: Inter, -apple-system, BlinkMacSystemFont, sans-serif !important;
+  line-height: 1.62 !important;
+  letter-spacing: 0.005em !important;
 }
 
-/* Заголовки карточек статей (были TTRuns-600/700) */
+/* Описания статей */
+#blog .article-desc {
+  font-size: 16px !important;
+  line-height: 1.62 !important;
+  letter-spacing: 0.005em !important;
+  color: #5a5a5a !important;
+}
+
+/* Мета-инфо (дата, автор, категория) — чуть разреженнее */
+#blog .info,
+#blog .info span,
+#blog .article .info,
+#blog .articles-categories__item {
+  letter-spacing: 0.01em !important;
+}
+
+/* Заголовки: TTRuns 700 с отрицательным трекингом для кириллицы */
+#blog ._h1--big,
+#blog ._h1,
+#blog ._h2,
 #blog ._h3,
 #blog .article h3,
 #blog .materials h3,
 #blog .material h3 {
-  font-family: Inter, -apple-system, BlinkMacSystemFont, sans-serif !important;
   font-weight: 700 !important;
+  letter-spacing: -0.03em !important;
+  line-height: 1.15 !important;
 }
 
-/* Слайдер "Новая статья" — заголовок */
+/* Слайдер "Новая статья" — заголовок (использует ._h1) */
+.new_article ._h1,
 .new_article ._h3,
 .new_article h3 {
-  font-family: Inter, -apple-system, BlinkMacSystemFont, sans-serif !important;
   font-weight: 700 !important;
+  letter-spacing: -0.03em !important;
+  line-height: 1.15 !important;
 }
 
-/* Мета-инфо (дата, автор, категория) */
-#blog .info,
-#blog .info span,
-#blog .article .info {
-  font-family: Inter, -apple-system, BlinkMacSystemFont, sans-serif !important;
+/* Карточки — заголовки чуть мельче, line-height побольше */
+#blog .material h3,
+#blog .article h3 {
+  line-height: 1.35 !important;
+  letter-spacing: -0.01em !important;
 }
 
-/* Кнопка "Читать" */
-#blog .button-read,
-#blog .button-read span {
-  font-family: Inter, -apple-system, BlinkMacSystemFont, sans-serif !important;
+/* ====================================================
+   BLOG HUB — Типографика форм
+   ==================================================== */
+
+/* Чекбокс формы подписки — тема ставит display:block, ломая выравнивание */
+#blog ._form-checkbox span.wpcf7-list-item-label,
+#blog ._form-checkbox label {
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 0 !important;
+  font-size: 12px !important;
+  line-height: 1.5 !important;
+  color: #8a8a8a !important;
+}
+#blog ._form-checkbox input[type="checkbox"] {
+  flex-shrink: 0 !important;
+  margin-top: 2px !important;
+  margin-right: 6px !important;
 }
 
-/* Пагинация */
-#blog .pagination,
-#blog .pagination a,
-#blog .pagination span {
-  font-family: Inter, -apple-system, BlinkMacSystemFont, sans-serif !important;
-}
-
-/* Боковая навигация категорий */
-#blog .sidebar-categories,
-#blog .sidebar-categories a,
-#blog .categories-list,
-#blog .categories-list a {
-  font-family: Inter, -apple-system, BlinkMacSystemFont, sans-serif !important;
+/* Ссылка "условиями обработки" в чекбоксе */
+#blog ._form-checkbox .wpcf7-list-item-label a,
+#blog .subsc-form .wpcf7-list-item-label a {
+  color: #c01020 !important;
 }
 
 /* ====================================================
@@ -1410,13 +1516,21 @@ body.single-blog { background: #f5f5f5 !important; }
   width: 100% !important;
 }
 
-/* Мобилка: убираем фиксированный height: calc(100% - 375px) */
+/* Мобилка: без картинки — текст наверх, без серого спейса */
 @media (max-width: 990px) {
+  /* Перевернуть flex обратно (тема ставит column-reverse: картинка сверху, текст снизу).
+     Без картинки текст уходит вниз и сверху 375px пустого серого пространства. */
+  .new_article:has(.new_article__author-photo:empty),
+  .new_article:has(img[src=""]),
+  .new_article:has(img:not([src])) {
+    flex-direction: column !important;
+  }
+
   .new_article:has(.new_article__author-photo:empty) .new_article__text,
   .new_article:has(img[src=""]) .new_article__text,
   .new_article:has(img:not([src])) .new_article__text {
-    height: auto !important;
-    min-height: 280px !important;
+    height: 100% !important;
+    border-radius: 12px !important;
   }
 }
 
@@ -1425,6 +1539,25 @@ body.single-blog { background: #f5f5f5 !important; }
 .card-article__visual:has(img[data-src=""]:not([src])),
 .card-article__visual:has(img:not([src])) {
   display: none !important;
+}
+
+/* Скрыть пустое фото в сетке "Все статьи" (article-author__photo) */
+#blog .article-author:has(img[src=""]),
+#blog .article-author:has(img:not([src])),
+#blog .article-author:has(.article-author__photo:empty) {
+  display: none !important;
+}
+
+/* Чекбокс в форме подписки — старый #dc1327 → #c01020 */
+#blog ._form-checkbox input:checked + span::before {
+  background: #c01020 !important;
+}
+
+/* Breadcrumbs — хардкод #fd3939 → #c01020 */
+#breadcrumbs a,
+.--white #breadcrumbs a,
+.top-page .bread-crumbs span:not(.breadcrumb_last) {
+  color: #c01020 !important;
 }
 
 /* ====================================================
