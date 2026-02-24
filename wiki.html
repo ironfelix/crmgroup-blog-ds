@@ -1,0 +1,1522 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CRM Group — Project Wiki</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #fafafa;
+  --surface: #ffffff;
+  --text: #1a1a1a;
+  --muted: #666;
+  --border: #e4e4e4;
+  --red: #c01020;
+  --red-light: #fde8e8;
+  --blue: #1a5ccc;
+  --blue-light: #e8f0ff;
+  --green: #0e7a3a;
+  --green-light: #e8f8ee;
+  --yellow-light: #fffbe6;
+  --code-bg: #f4f4f4;
+  --sidebar-w: 280px;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  font-family: Inter, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--text);
+  background: var(--bg);
+}
+
+/* ── Sidebar ── */
+.sidebar {
+  position: fixed;
+  top: 0; left: 0;
+  width: var(--sidebar-w);
+  height: 100vh;
+  overflow-y: auto;
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  padding: 24px 16px;
+  z-index: 100;
+}
+.sidebar h2 {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--red);
+  margin-bottom: 16px;
+  letter-spacing: 0.02em;
+}
+.sidebar nav a {
+  display: block;
+  padding: 6px 12px;
+  margin: 2px 0;
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 13px;
+  border-radius: 6px;
+  transition: all .15s;
+}
+.sidebar nav a:hover,
+.sidebar nav a.active {
+  background: var(--red-light);
+  color: var(--red);
+  font-weight: 500;
+}
+.sidebar nav .section-title {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #aaa;
+  margin-top: 18px;
+  margin-bottom: 4px;
+  padding: 0 12px;
+}
+
+/* ── Main Content ── */
+.main {
+  margin-left: var(--sidebar-w);
+  padding: 40px 48px;
+  max-width: 960px;
+}
+h1 {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+h1 + .subtitle {
+  color: var(--muted);
+  font-size: 14px;
+  margin-bottom: 40px;
+}
+h2 {
+  font-size: 22px;
+  font-weight: 700;
+  margin-top: 56px;
+  margin-bottom: 20px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--border);
+}
+h3 {
+  font-size: 17px;
+  font-weight: 600;
+  margin-top: 32px;
+  margin-bottom: 12px;
+  color: #333;
+}
+h4 {
+  font-size: 15px;
+  font-weight: 600;
+  margin-top: 20px;
+  margin-bottom: 8px;
+}
+p { margin-bottom: 12px; }
+p + p { margin-top: 0; }
+
+/* ── Tables ── */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0 24px;
+  font-size: 14px;
+}
+th, td {
+  padding: 10px 14px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+th {
+  background: var(--code-bg);
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+td code {
+  background: var(--code-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 13px;
+}
+
+/* ── Code blocks ── */
+pre {
+  background: #1a1a1a;
+  color: #e0e0e0;
+  padding: 16px 20px;
+  border-radius: 10px;
+  overflow-x: auto;
+  font-size: 13px;
+  line-height: 1.6;
+  margin: 12px 0 20px;
+}
+pre code { background: none; padding: 0; color: inherit; }
+code {
+  font-family: "SF Mono", "Fira Code", Menlo, monospace;
+  font-size: 13px;
+}
+.cmd {
+  color: #7ec87e;
+}
+.comment {
+  color: #777;
+}
+.str {
+  color: #e8a838;
+}
+
+/* ── Callouts ── */
+.callout {
+  padding: 16px 20px;
+  border-radius: 10px;
+  margin: 16px 0 20px;
+  font-size: 14px;
+}
+.callout-red {
+  background: var(--red-light);
+  border-left: 4px solid var(--red);
+}
+.callout-blue {
+  background: var(--blue-light);
+  border-left: 4px solid var(--blue);
+}
+.callout-green {
+  background: var(--green-light);
+  border-left: 4px solid var(--green);
+}
+.callout-yellow {
+  background: var(--yellow-light);
+  border-left: 4px solid #c9a500;
+}
+.callout strong {
+  display: block;
+  margin-bottom: 4px;
+}
+
+/* ── Lists ── */
+ul, ol { padding-left: 24px; margin: 8px 0 16px; }
+li { margin: 4px 0; }
+li code { font-size: 13px; }
+
+/* ── Tags/badges ── */
+.badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.badge-red { background: var(--red-light); color: var(--red); }
+.badge-blue { background: var(--blue-light); color: var(--blue); }
+.badge-green { background: var(--green-light); color: var(--green); }
+
+/* ── Color swatches ── */
+.swatch-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 12px 0 20px;
+}
+.swatch {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 14px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+.swatch-color {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  border: 1px solid rgba(0,0,0,0.1);
+}
+.swatch-label {
+  font-size: 13px;
+}
+.swatch-label strong {
+  display: block;
+  font-size: 12px;
+}
+
+/* ── File tree ── */
+.file-tree {
+  font-family: "SF Mono", Menlo, monospace;
+  font-size: 13px;
+  line-height: 1.8;
+  padding: 16px 20px;
+  background: var(--code-bg);
+  border-radius: 10px;
+  margin: 12px 0 20px;
+  overflow-x: auto;
+}
+.file-tree .dir { color: var(--blue); font-weight: 600; }
+.file-tree .file { color: var(--text); }
+.file-tree .desc { color: var(--muted); font-style: italic; }
+
+/* ── Responsive ── */
+@media (max-width: 800px) {
+  .sidebar { display: none; }
+  .main { margin-left: 0; padding: 24px 20px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════
+     SIDEBAR NAVIGATION
+     ═══════════════════════════════════════════════════════ -->
+<aside class="sidebar">
+  <h2>CRM Group Wiki</h2>
+  <nav>
+    <div class="section-title">Обзор</div>
+    <a href="#overview">О проекте</a>
+    <a href="#files">Файловая структура</a>
+    <a href="#access">Доступы</a>
+
+    <div class="section-title">WordPress</div>
+    <a href="#theme">Тема content_hub</a>
+    <a href="#posts">Посты и REST API</a>
+    <a href="#mu-plugin">mu-plugin (PHP)</a>
+    <a href="#autoptimize">Autoptimize / кэш</a>
+
+    <div class="section-title">Дизайн-система</div>
+    <a href="#ds-docs">DS документация</a>
+    <a href="#ds-tokens">Токены (цвета, типо)</a>
+    <a href="#ds-components">Компоненты</a>
+    <a href="#font-comparison">Сравнение шрифтов</a>
+    <a href="#css-architecture">CSS архитектура</a>
+
+    <div class="section-title">Blog Hub</div>
+    <a href="#slider">Слайдер (Swiper)</a>
+    <a href="#editorial-dark">Editorial Dark</a>
+    <a href="#article-grid">Сетка статей</a>
+
+    <div class="section-title">Статьи</div>
+    <a href="#article-layout">Layout статьи</a>
+    <a href="#toc">TOC / Sidebar</a>
+    <a href="#cvm-components">Переисп. компоненты</a>
+
+    <div class="section-title">Деплой</div>
+    <a href="#deploy-css">Деплой CSS (FTP)</a>
+    <a href="#deploy-php">Деплой PHP (FTP)</a>
+    <a href="#deploy-content">Деплой контента</a>
+
+    <div class="section-title">Контент</div>
+    <a href="#writing-rules">Правила написания</a>
+    <a href="#article-markup">Вёрстка с нейровыдачей</a>
+    <a href="#internal-linking">Внутренняя линковка</a>
+    <a href="#seo">SEO и карта постов</a>
+
+    <div class="section-title">Прототипы</div>
+    <a href="#og-images">OG Images</a>
+    <a href="#no-image-concepts">Editorial Dark концепты</a>
+
+    <div class="section-title">Паттерны и Баги</div>
+    <a href="#patterns">Паттерны</a>
+    <a href="#known-issues">Известные баги</a>
+    <a href="#changelog">Changelog</a>
+  </nav>
+</aside>
+
+<!-- ═══════════════════════════════════════════════════════
+     MAIN CONTENT
+     ═══════════════════════════════════════════════════════ -->
+<main class="main">
+
+<h1 id="overview">CRM Group — Project Wiki</h1>
+<p class="subtitle">crmgroup.ru &mdash; корпоративный блог CRM-агентства &nbsp;|&nbsp; Обновлено: 2026-02-23</p>
+
+<p>Этот документ содержит полную техническую документацию проекта: структуру файлов, доступы, архитектуру CSS, WordPress-специфику, деплой и известные баги. Предназначен как единый справочник для разработчиков и AI-агентов.</p>
+
+<div class="callout callout-blue">
+  <strong>Ключевые URLs</strong>
+  Сайт: <code>https://crmgroup.ru</code><br>
+  Блог: <code>https://crmgroup.ru/blog/</code><br>
+  Design System: <code>https://ironfelix.github.io/crmgroup-blog-ds/</code>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     FILE STRUCTURE
+     ═══════════════════════════════════════════════════════ -->
+<h2 id="files">Файловая структура</h2>
+
+<p>Рабочая директория: <code>/Users/ivanilin/Documents/ivanilin/01-crmgroup/</code></p>
+
+<div class="file-tree">
+<span class="dir">01-crmgroup/</span><br>
+├── <span class="dir">css/</span><br>
+│   ├── <span class="file">wp-custom.css</span> <span class="desc">— Source of truth, ~1833 строк (78KB)</span><br>
+│   ├── <span class="file">wp-custom-v6-backup-2026-02-22.css</span> <span class="desc">— Бэкап до P0</span><br>
+│   ├── <span class="file">styles.min.css</span> <span class="desc">— Копия темы (541KB)</span><br>
+│   ├── <span class="file">theme-styles.min.css</span> <span class="desc">— Копия темы</span><br>
+│   ├── <span class="file">wp-inline.css</span> <span class="desc">— Инлайн стили WP</span><br>
+│   ├── <span class="file">css_backup.css</span> <span class="desc">— Старый бэкап</span><br>
+│   ├── <span class="file">crm-tooltip.js</span> <span class="desc">— JS тултипов</span><br>
+│   └── <span class="file">autoptimize-bd.css</span>, <span class="file">carousel.min.css</span><br>
+├── <span class="dir">docs/</span><br>
+│   └── <span class="file">DESIGN_SYSTEM_AUDIT.md</span> <span class="desc">— Аудит DS: P0/P1/P2</span><br>
+├── <span class="dir">blog-hub-redesign/</span><br>
+│   ├── <span class="file">current.html</span> <span class="desc">— Текущий вид /blog/</span><br>
+│   ├── <span class="file">redesign.html</span> <span class="desc">— Предложенный редизайн</span><br>
+│   └── <span class="file">RECOMMENDATIONS.md</span> <span class="desc">— Рекомендации по UX</span><br>
+├── <span class="dir">fonts/</span><br>
+│   ├── <span class="dir">Inter/</span>, <span class="dir">TT_Runs/</span>, <span class="dir">TT_Smalls/</span> <span class="desc">— .woff2 файлы</span><br>
+├── <span class="dir">img/</span><br>
+│<br>
+├── <span class="file">crm-custom-styles.php</span> <span class="desc">— mu-plugin v1.2 (CSS + JS)</span><br>
+├── <span class="file">index.html</span> <span class="desc">— Design System v3 (GitHub Pages)</span><br>
+├── <span class="file">ds-updated.html</span> <span class="desc">— DS v6 расширенная</span><br>
+├── <span class="file">font-comparison.html</span> <span class="desc">— Сравнение Inter vs TTSmalls</span><br>
+├── <span class="file">no-image-slide-concept.html</span> <span class="desc">— 3 концепта Editorial Dark</span><br>
+│<br>
+├── <span class="file">CRM_DESIGN_SYSTEM.md</span> <span class="desc">— DS v5 доки</span><br>
+├── <span class="file">THEME_STRUCTURE.md</span> <span class="desc">— Структура темы + FTP</span><br>
+├── <span class="file">BLOGCRM_WRITING_RULES.md</span> <span class="desc">— Правила копирайтинга</span><br>
+├── <span class="file">README.md</span> <span class="desc">— Обзор + бизнес-анализ</span><br>
+├── <span class="file">seo-keywords.md</span> <span class="desc">— SEO стратегия</span><br>
+├── <span class="file">blog-posts-map.md</span> <span class="desc">— Карта всех постов</span><br>
+│<br>
+├── <span class="file">og-image-cvm.html</span> <span class="desc">— OG image 1200x630</span><br>
+├── <span class="file">og-preview.html</span> <span class="desc">— Превью карточек соцсетей</span><br>
+├── <span class="file">draft-crm-metrics.html</span> <span class="desc">— Референс-прототип статьи</span><br>
+├── <span class="file">cvm-lead-magnet.html</span> <span class="desc">— CVM лид-магнит</span><br>
+│<br>
+├── <span class="file">create_cvm_post.py</span> <span class="desc">— Создание CVM поста</span><br>
+├── <span class="file">update_cvm_post.py</span> <span class="desc">— Обновление CVM поста</span><br>
+│<br>
+├── <span class="file">crm-playbook-2026.html</span> <span class="desc">— CRM Playbook</span><br>
+├── <span class="file">crm-playbook-2026.md</span><br>
+├── <span class="file">crmgroup-real-analysis-2025.html</span> <span class="desc">— P&amp;L анализ</span><br>
+├── <span class="file">crmgroup-team-audit-2026.html</span> <span class="desc">— Аудит команды</span><br>
+├── <span class="file">crmgroup-strategy-*.html</span> <span class="desc">— Стратегии</span><br>
+├── <span class="file">crmgroup-business-recommendations.html</span><br>
+├── <span class="file">crmgroup-feasibility-analysis.html</span><br>
+├── <span class="file">crmgroup-design-system.html</span> <span class="desc">— Ранняя версия DS</span><br>
+└── <span class="file">crmgroup-blog-components.html</span> <span class="desc">— Legacy компоненты</span>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     ACCESS
+     ═══════════════════════════════════════════════════════ -->
+<h2 id="access">Доступы</h2>
+
+<h3>WordPress</h3>
+<table>
+  <tr><th>Параметр</th><th>Значение</th></tr>
+  <tr><td>WP Login</td><td><code>ekaterina.shapochkina@crmgroup.ru</code></td></tr>
+  <tr><td>App Password</td><td><code>Sx960tbW8UvlzXBr3z1kvC3m</code></td></tr>
+  <tr><td>REST API</td><td><code>GET/PUT /wp-json/wp/v2/blog/{ID}</code> с Basic auth</td></tr>
+  <tr><td>Custom post type</td><td><code>blog</code></td></tr>
+</table>
+
+<h3>FTP (деплой CSS и PHP)</h3>
+<table>
+  <tr><th>Параметр</th><th>Значение</th></tr>
+  <tr><td>Host</td><td><code>5.188.159.40</code></td></tr>
+  <tr><td>User</td><td><code>s.sychev</code></td></tr>
+  <tr><td>Password</td><td><code>mnesfcfqk2</code></td></tr>
+  <tr><td>Site root</td><td><code>/www/crmgroup.ru/</code></td></tr>
+  <tr><td>CSS path</td><td><code>/wp-content/uploads/crm-ds/wp-custom.css</code></td></tr>
+  <tr><td>mu-plugin path</td><td><code>/wp-content/mu-plugins/crm-custom-styles.php</code></td></tr>
+</table>
+
+<h3>GitHub</h3>
+<table>
+  <tr><th>Параметр</th><th>Значение</th></tr>
+  <tr><td>DS repo</td><td><code>ironfelix/crmgroup-blog-ds</code></td></tr>
+  <tr><td>Pages URL</td><td><code>https://ironfelix.github.io/crmgroup-blog-ds/</code></td></tr>
+</table>
+
+<!-- ═══════════════════════════════════════════════════════
+     WORDPRESS THEME
+     ═══════════════════════════════════════════════════════ -->
+<h2 id="theme">Тема content_hub</h2>
+
+<p>WordPress тема <code>content_hub</code> — кастомная тема с Gulp-сборкой SCSS, Swiper.js для слайдеров и AJAX-загрузкой статей.</p>
+
+<h3>Ключевые шаблоны</h3>
+<table>
+  <tr><th>Файл</th><th>URL</th><th>Описание</th></tr>
+  <tr><td><code>page-contenthub.php</code></td><td>/blog/</td><td>Хаб контента (блог)</td></tr>
+  <tr><td><code>single.php</code></td><td>/blog/{slug}/</td><td>Одиночная статья</td></tr>
+  <tr><td><code>page-services.php</code></td><td>/services/</td><td>Услуги</td></tr>
+  <tr><td><code>page-cases.php</code></td><td>/cases/</td><td>Кейсы</td></tr>
+  <tr><td><code>page-contacts.php</code></td><td>/contacts/</td><td>Контакты</td></tr>
+  <tr><td><code>header.php</code></td><td>&mdash;</td><td>Шапка (2 меню: desktop/mobile)</td></tr>
+  <tr><td><code>footer.php</code></td><td>&mdash;</td><td>Подвал</td></tr>
+</table>
+
+<h3>Ключевые CSS-классы темы</h3>
+
+<div class="callout callout-red">
+  <strong>Не угадывать классы! Всегда сверять с styles.min.css</strong>
+  Тема использует нестандартные имена. Ошибка в классе = CSS не применяется.
+</div>
+
+<table>
+  <tr><th>Элемент</th><th>Класс</th><th>Gotcha</th></tr>
+  <tr><td>Хедер</td><td><code>.header</code></td><td>НЕ <code>.site-header</code>, НЕ <code>.top-menu</code></td></tr>
+  <tr><td>Логотип</td><td><code>.header .content .logo</code></td><td>CSS background-image, не &lt;img&gt;!</td></tr>
+  <tr><td>Белый вариант</td><td><code>.--white .header</code></td><td>Применяется на страницах блога</td></tr>
+  <tr><td>Dropdown меню</td><td><code>.services-menu-div</code></td><td><code>.--white</code> делает bg: #F2F2F2</td></tr>
+  <tr><td>Responsive toggle</td><td><code>.isDescktop</code> / <code>.notDescktop</code></td><td>Тема использует display toggle. НЕ ставить <code>display:none</code> глобально!</td></tr>
+  <tr><td>Wrapper</td><td><code>.wrapper</code></td><td>Тема ставит <code>overflow: hidden</code> — ломает sticky</td></tr>
+</table>
+
+<h3>Шрифты</h3>
+<table>
+  <tr><th>Контекст</th><th>Шрифт</th><th>Примечание</th></tr>
+  <tr><td>Тема (базовый)</td><td>TTSmalls / TTRuns</td><td>Основа сайта, headings = TTRuns bold</td></tr>
+  <tr><td>Blog Hub (/blog/)</td><td>TTSmalls / TTRuns (оптимизированный)</td><td>P0.2: font-smoothing auto, lh 1.65, ls 0.008em</td></tr>
+  <tr><td>Статьи (single-blog)</td><td>Inter</td><td>Для long-read, body 17px/1.58</td></tr>
+</table>
+
+<!-- ═══════════════════════════════════════════════════════
+     POSTS & REST API
+     ═══════════════════════════════════════════════════════ -->
+<h2 id="posts">Посты и REST API</h2>
+
+<h3>Ключевые посты</h3>
+<table>
+  <tr><th>ID</th><th>Slug</th><th>Статус</th><th>Описание</th></tr>
+  <tr><td>9575</td><td><code>top-five-crm-metrics-guide</code></td><td><span class="badge badge-green">published</span></td><td>CRM Metrics Guide</td></tr>
+  <tr><td>12695</td><td>&mdash;</td><td><span class="badge badge-blue">draft</span></td><td>Черновик v2</td></tr>
+  <tr><td>12845</td><td><code>customer-value-management</code></td><td><span class="badge badge-green">published</span></td><td>CVM гайд 2026</td></tr>
+</table>
+
+<h3>REST API workflow</h3>
+
+<h4>Шаг 1: Получить пост</h4>
+<pre><code><span class="cmd">curl</span> -s -H <span class="str">"Authorization: Basic $(echo -n 'login:pass' | base64)"</span> \
+  <span class="str">"https://crmgroup.ru/wp-json/wp/v2/blog/9575?context=edit"</span> | python3 -m json.tool</code></pre>
+
+<h4>Шаг 2: Обновить пост (Python)</h4>
+<pre><code><span class="comment"># Python — обновление HTML контента поста</span>
+import urllib.request, json, base64
+
+USER = <span class="str">"ekaterina.shapochkina@crmgroup.ru"</span>
+PASS = <span class="str">"Sx960tbW8UvlzXBr3z1kvC3m"</span>
+POST_ID = 9575
+
+token = base64.b64encode(f<span class="str">"{USER}:{PASS}"</span>.encode()).decode()
+url = f<span class="str">"https://crmgroup.ru/wp-json/wp/v2/blog/{POST_ID}?context=edit"</span>
+req = urllib.request.Request(url, headers={<span class="str">"Authorization"</span>: f<span class="str">"Basic {token}"</span>})
+with urllib.request.urlopen(req) as r:
+    post = json.loads(r.read())
+
+raw = post[<span class="str">"content"</span>][<span class="str">"raw"</span>]
+fixed = raw.replace(OLD_HTML, NEW_HTML)
+
+payload = json.dumps({<span class="str">"content"</span>: {<span class="str">"raw"</span>: fixed}}).encode()
+req2 = urllib.request.Request(
+    f<span class="str">"https://crmgroup.ru/wp-json/wp/v2/blog/{POST_ID}"</span>,
+    data=payload,
+    headers={<span class="str">"Authorization"</span>: f<span class="str">"Basic {token}"</span>, <span class="str">"Content-Type"</span>: <span class="str">"application/json"</span>},
+    method=<span class="str">"PUT"</span>
+)
+with urllib.request.urlopen(req2) as r:
+    print(<span class="str">"OK"</span>, json.loads(r.read())[<span class="str">"id"</span>])</code></pre>
+
+<div class="callout callout-yellow">
+  <strong>custom_css НЕ доступен через REST API</strong>
+  WordPress Additional CSS (Customizer) нельзя обновить через API. Используем FTP-деплой через mu-plugin.
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     MU-PLUGIN
+     ═══════════════════════════════════════════════════════ -->
+<h2 id="mu-plugin">mu-plugin: crm-custom-styles.php</h2>
+
+<p>Файл: <code>crm-custom-styles.php</code> (v1.2). Деплоится в <code>/wp-content/mu-plugins/</code> через FTP.</p>
+
+<h3>Что делает</h3>
+<ol>
+  <li><strong>CSS enqueue</strong> (priority 999) &mdash; подключает <code>/uploads/crm-ds/wp-custom.css</code> с версией по <code>filemtime()</code></li>
+  <li><strong>Reading Progress Bar</strong> &mdash; красная полоска вверху на <code>is_singular('blog')</code>. Вставляет <code>&lt;div&gt;</code> + <code>&lt;script&gt;</code> в footer.</li>
+  <li><strong>No-image detection</strong> &mdash; JS скрипт добавляет класс <code>.no-image</code> на слайды/карточки без картинки. Проверяет <code>data-src</code> первым (Swiper lazy loading может очищать <code>src</code>).</li>
+</ol>
+
+<h3>Почему data-src важнее src</h3>
+<p>Swiper.js использует lazy loading: при инициализации URL картинки хранится в <code>data-src</code>, а <code>src</code> может быть пустым или очищенным. Проверка <code>data-src || src</code> гарантирует корректное определение наличия картинки.</p>
+
+<pre><code><span class="comment">// JS из mu-plugin: определение слайдов без картинки</span>
+document.querySelectorAll(<span class="str">'.new_article'</span>).forEach(function(slide) {
+    var img = slide.querySelector(<span class="str">'.new_article__author-photo img'</span>);
+    var src = img ? (img.getAttribute(<span class="str">'data-src'</span>) || img.getAttribute(<span class="str">'src'</span>)) : <span class="str">''</span>;
+    if (!src) {
+        slide.classList.add(<span class="str">'no-image'</span>);
+    }
+});</code></pre>
+
+<!-- ═══════════════════════════════════════════════════════
+     AUTOPTIMIZE
+     ═══════════════════════════════════════════════════════ -->
+<h2 id="autoptimize">Autoptimize / кэш</h2>
+
+<p>Autoptimize — WordPress плагин, который кэширует и минифицирует CSS/JS.</p>
+
+<ul>
+  <li>CSS-файлы объединяются в один cached файл</li>
+  <li>Inline <code>&lt;script&gt;</code> конвертируется в <code>&lt;script defer src="data:text/javascript;base64,..."&gt;</code></li>
+  <li>Кэш обновляется автоматически при изменении <code>filemtime()</code> CSS-файла</li>
+  <li>Для пользователей: <code>Cmd+Shift+R</code> для hard refresh после деплоя</li>
+</ul>
+
+<div class="callout callout-yellow">
+  <strong>:has() и Autoptimize</strong>
+  CSS-селектор <code>:has()</code> может некорректно обрабатываться Autoptimize при минификации. Из-за этого вместо <code>:has()</code> мы используем JS-классы (<code>.no-image</code>) для критичных стилей.
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     DESIGN SYSTEM DOCUMENTATION
+     ═══════════════════════════════════════════════════════ -->
+<h2 id="ds-docs">Дизайн-система: Документация</h2>
+
+<p>Дизайн-система прошла через несколько итераций. Ниже — история версий и актуальные файлы.</p>
+
+<h3>Версии DS</h3>
+<table>
+  <tr><th>Файл</th><th>Версия</th><th>Акцент</th><th>Шрифт</th><th>Статус</th></tr>
+  <tr>
+    <td><code>crmgroup-design-system.html</code></td>
+    <td>v1 (ранняя)</td>
+    <td><code>#FD3939</code></td>
+    <td>Inter</td>
+    <td><span class="badge badge-red">Устарела</span></td>
+  </tr>
+  <tr>
+    <td><code>crmgroup-blog-components.html</code></td>
+    <td>v2 (legacy)</td>
+    <td><code>#dc1327</code></td>
+    <td>Inter</td>
+    <td><span class="badge badge-red">Устарела</span></td>
+  </tr>
+  <tr>
+    <td><code>index.html</code></td>
+    <td>v3</td>
+    <td><code>#c01020</code></td>
+    <td>Inter + Manrope</td>
+    <td><span class="badge badge-blue">GitHub Pages</span></td>
+  </tr>
+  <tr>
+    <td><code>ds-updated.html</code></td>
+    <td>v6 (актуальная)</td>
+    <td><code>#c01020</code></td>
+    <td>Inter + Manrope</td>
+    <td><span class="badge badge-green">Актуальна</span></td>
+  </tr>
+</table>
+
+<h3>Что содержит DS v6 (<code>ds-updated.html</code>)</h3>
+<ul>
+  <li><strong>Токены:</strong> цвета (<code>#c01020</code>), типографика (17px/1.58), spacing (8px система), border-radius (12px)</li>
+  <li><strong>Компоненты:</strong> block-comment, block-sidenote, block-picture, block-experts, block-form, contributors, FAQ, TOC</li>
+  <li><strong>Рекомендации P0/P1/P2</strong> по улучшению (из <code>docs/DESIGN_SYSTEM_AUDIT.md</code>)</li>
+  <li><strong>Reading width:</strong> 660px (~72 символа для РУ текста)</li>
+</ul>
+
+<h3>Эволюция акцентного красного</h3>
+<table>
+  <tr><th>Этап</th><th>Цвет</th><th>Контраст (AA)</th><th>Где</th></tr>
+  <tr><td>Тема (оригинал)</td><td><code>#FD3939</code></td><td>~3.5:1</td><td>styles.min.css</td></tr>
+  <tr><td>DS v2</td><td><code>#dc1327</code></td><td>~4.5:1</td><td>blog-components.html</td></tr>
+  <tr><td>DS v6 (текущий)</td><td><code>#c01020</code></td><td>7.2:1</td><td>wp-custom.css, index.html, ds-updated.html</td></tr>
+</table>
+
+<h3>Markdown-доки DS</h3>
+<table>
+  <tr><th>Файл</th><th>Описание</th></tr>
+  <tr><td><code>CRM_DESIGN_SYSTEM.md</code></td><td>DS v5 — токены, типографика, TOC contract, layout, компоненты</td></tr>
+  <tr><td><code>docs/DESIGN_SYSTEM_AUDIT.md</code></td><td>Аудит DS: 12 рекомендаций (P0: цвет+типо, P1: компоненты, P2: advanced)</td></tr>
+  <tr><td><code>BLOGCRM_WRITING_RULES.md</code></td><td>Правила копирайтинга для блога (86KB)</td></tr>
+</table>
+
+<!-- ═══════════════════════════════════════════════════════
+     DESIGN SYSTEM TOKENS
+     ═══════════════════════════════════════════════════════ -->
+<h2 id="ds-tokens">Дизайн-система: Токены</h2>
+
+<h3>Цвета</h3>
+<div class="swatch-row">
+  <div class="swatch">
+    <div class="swatch-color" style="background:#c01020"></div>
+    <div class="swatch-label"><strong>#c01020</strong> Акцент (red)</div>
+  </div>
+  <div class="swatch">
+    <div class="swatch-color" style="background:#b10e1d"></div>
+    <div class="swatch-label"><strong>#b10e1d</strong> Hover red</div>
+  </div>
+  <div class="swatch">
+    <div class="swatch-color" style="background:#fde8e8"></div>
+    <div class="swatch-label"><strong>#fde8e8</strong> Red light</div>
+  </div>
+  <div class="swatch">
+    <div class="swatch-color" style="background:#1a1a1a"></div>
+    <div class="swatch-label"><strong>#1a1a1a</strong> Text / Dark bg</div>
+  </div>
+  <div class="swatch">
+    <div class="swatch-color" style="background:#888"></div>
+    <div class="swatch-label"><strong>#888</strong> Muted text</div>
+  </div>
+  <div class="swatch">
+    <div class="swatch-color" style="background:#e4e4e4"></div>
+    <div class="swatch-label"><strong>#e4e4e4</strong> Border</div>
+  </div>
+  <div class="swatch">
+    <div class="swatch-color" style="background:#f2f2f2"></div>
+    <div class="swatch-label"><strong>#f2f2f2</strong> Surface (blog hub)</div>
+  </div>
+  <div class="swatch">
+    <div class="swatch-color" style="background:#fff9f0"></div>
+    <div class="swatch-label"><strong>#fff9f0</strong> Warm bg</div>
+  </div>
+</div>
+
+<div class="callout callout-green">
+  <strong>P0.1 — Смена красного (2026-02-22)</strong>
+  Все 23 вхождения <code>#dc1327</code> заменены на <code>#c01020</code>. WCAG AA contrast ratio: 7.2:1 (было 4.5:1). Hover: <code>#b80f1f</code> &rarr; <code>#b10e1d</code>. Rgba: <code>rgba(220,19,39)</code> &rarr; <code>rgba(192,16,32)</code>.
+</div>
+
+<h3>Типографика (статьи)</h3>
+<table>
+  <tr><th>Элемент</th><th>Размер</th><th>Weight</th><th>Line-height</th><th>Шрифт</th></tr>
+  <tr><td>Body</td><td>17px</td><td>400</td><td>1.58</td><td>Inter</td></tr>
+  <tr><td>Lead</td><td>18px</td><td>400</td><td>1.65</td><td>Inter</td></tr>
+  <tr><td>H2</td><td>24-26px</td><td>700</td><td>1.25</td><td>Inter</td></tr>
+  <tr><td>H3</td><td>17px</td><td>600</td><td>1.35</td><td>Inter</td></tr>
+  <tr><td>TOC item</td><td>13.5-14px</td><td>400/600</td><td>1.4</td><td>Inter</td></tr>
+  <tr><td>FAQ Q</td><td>15.5-16px</td><td>600</td><td>1.4</td><td>Inter</td></tr>
+</table>
+
+<h3>Типографика (Blog Hub)</h3>
+<table>
+  <tr><th>Элемент</th><th>Размер</th><th>Weight</th><th>Line-height</th><th>Шрифт</th></tr>
+  <tr><td>Body / meta</td><td>14-15px</td><td>400-500</td><td>1.65</td><td>TTSmalls</td></tr>
+  <tr><td>Headings</td><td>20-28px</td><td>700</td><td>1.35</td><td>TTRuns</td></tr>
+  <tr><td>Card heading</td><td>18-20px</td><td>700</td><td>1.35</td><td>TTRuns</td></tr>
+  <tr><td>Card desc</td><td>14px</td><td>400</td><td>1.6</td><td>TTSmalls</td></tr>
+</table>
+
+<h3>Spacing</h3>
+<p><code>--s1: 8px</code> &nbsp; <code>--s2: 16px</code> &nbsp; <code>--s3: 24px</code> &nbsp; <code>--s4: 40px</code> &nbsp; <code>--s5: 64px</code></p>
+
+<h3>Global CSS Variables</h3>
+<pre><code>:root {
+  --color-accent-red: <span class="str">#c01020</span> !important;
+  --button-bg: <span class="str">#c01020</span> !important;
+  --button-bg-hover: <span class="str">#a80e1c</span> !important;
+  --input-button: <span class="str">#c01020</span> !important;
+}</code></pre>
+
+<!-- ═══════════════════════════════════════════════════════
+     DESIGN SYSTEM COMPONENTS
+     ═══════════════════════════════════════════════════════ -->
+<h2 id="ds-components">Компоненты</h2>
+
+<h3>Блоки статьи</h3>
+<table>
+  <tr><th>Класс</th><th>Описание</th></tr>
+  <tr><td><code>.block-comment</code></td><td>Цитаты/комментарии с красной левой полосой</td></tr>
+  <tr><td><code>.block-sidenote</code></td><td>Боковые заметки</td></tr>
+  <tr><td><code>.block-picture</code></td><td>Изображения с hover-эффектом</td></tr>
+  <tr><td><code>.block-experts</code></td><td>Сетка экспертов (grid auto-fill 130px)</td></tr>
+  <tr><td><code>.block-form</code> / <code>.block-result</code></td><td>CTA форма с кнопкой</td></tr>
+  <tr><td><code>.contributors</code></td><td>Единый блок авторов+экспертов (v5)</td></tr>
+  <tr><td><code>#crm-faq</code></td><td>FAQ accordion (details/summary)</td></tr>
+</table>
+
+<h3>Форма подписки</h3>
+<ul>
+  <li>Класс: <code>.block-form</code> внутри <code>wp-block-group__inner-container.is-layout-flow</code></li>
+  <li>WP добавляет padding &mdash; обнулять через <code>.block-form .wp-block-group__inner-container</code></li>
+  <li>Чекбоксы: кастомный <code>::before</code> 18x18px, <code>border-radius: 3px</code></li>
+  <li>Валидация: <code>.wpcf7-not-valid-tip</code> с <code>position: absolute</code> (без layout shift)</li>
+</ul>
+
+<!-- ═══════════════════════════════════════════════════════
+     FONT COMPARISON
+     ═══════════════════════════════════════════════════════ -->
+<h2 id="font-comparison">Сравнение шрифтов</h2>
+
+<p>Файл: <code>font-comparison.html</code> &mdash; интерактивное сравнение Inter vs TTSmalls/TTRuns для принятия решений по типографике.</p>
+
+<h3>Контекст решения</h3>
+<p>Тема <code>content_hub</code> использует <strong>TTSmalls</strong> (body) и <strong>TTRuns</strong> (headings) — коммерческие шрифты, подключённые через <code>@font-face</code> с сервера. Мы протестировали Inter как замену для long-read статей.</p>
+
+<h3>Результат: разные шрифты для разных контекстов</h3>
+<table>
+  <tr><th>Контекст</th><th>Шрифт</th><th>Почему</th></tr>
+  <tr>
+    <td>Blog Hub (/blog/)</td>
+    <td><strong>TTSmalls + TTRuns</strong></td>
+    <td>Карточки, заголовки, мета — короткие фрагменты. TT шрифты дают характерный брендовый вид. Оптимизированы: <code>-webkit-font-smoothing: auto</code> (subpixel rendering)</td>
+  </tr>
+  <tr>
+    <td>Статьи (single-blog)</td>
+    <td><strong>Inter</strong></td>
+    <td>Long-read контент 17px/1.58. Inter оптимизирован для экранного чтения, лучшая разборчивость на больших объёмах текста</td>
+  </tr>
+</table>
+
+<h3>Ключевые настройки TTSmalls/TTRuns (Blog Hub)</h3>
+<pre><code><span class="comment">/* P0.2 — Blog Hub Typography */</span>
+#blog {
+  font-family: TTSmalls, -apple-system, BlinkMacSystemFont, sans-serif;
+  -webkit-font-smoothing: auto;  <span class="comment">/* subpixel rendering */</span>
+  line-height: 1.65;
+  letter-spacing: 0.008em;
+}
+#blog h1, #blog h2, #blog h3,
+#blog .new_article__title {
+  font-family: TTRuns, sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}</code></pre>
+
+<div class="callout callout-blue">
+  <strong>Файлы шрифтов на сервере</strong>
+  <code>https://crmgroup.ru/wp-content/themes/content_hub/src/fonts/TT_Smalls/*.woff</code><br>
+  <code>https://crmgroup.ru/wp-content/themes/content_hub/src/fonts/TT_Runs/*.woff</code><br>
+  Локальные копии: <code>fonts/TT_Smalls/</code>, <code>fonts/TT_Runs/</code>, <code>fonts/Inter/</code>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     CSS ARCHITECTURE
+     ═══════════════════════════════════════════════════════ -->
+<h2 id="css-architecture">CSS архитектура (wp-custom.css)</h2>
+
+<p>Файл <code>css/wp-custom.css</code> (~1833 строк) — единый source of truth. Секции идут в следующем порядке:</p>
+
+<table>
+  <tr><th>Строки</th><th>Секция</th><th>Описание</th></tr>
+  <tr><td>1-2</td><td>Import</td><td>Google Fonts Inter</td></tr>
+  <tr><td>3-12</td><td>P0 Changelog</td><td>Описание изменений 2026-02-22</td></tr>
+  <tr><td>14-28</td><td>Reading Progress Bar</td><td>Красная полоска вверху статьи</td></tr>
+  <tr><td>30-41</td><td>Global Color Override</td><td>:root variables, #c01020</td></tr>
+  <tr><td>43-56</td><td>Существующий CSS</td><td>Базовые стили сайта (не трогать)</td></tr>
+  <tr><td>57-581</td><td>CRM DS v6 — Blog Articles</td><td>Основные стили статей, TOC, typography</td></tr>
+  <tr><td>582-941</td><td>Additions</td><td>Дополнительные компоненты, карточки</td></tr>
+  <tr><td>942-971</td><td>Footer</td><td>Тёмный футер для статей</td></tr>
+  <tr><td>972-988</td><td>Sticky Fix</td><td>overflow-x: clip для position:sticky</td></tr>
+  <tr><td>989-1056</td><td>Header</td><td>Тёмная шапка на single-blog</td></tr>
+  <tr><td>1057-1139</td><td>DS v4 Overrides</td><td>line-height 1.58, accent fix</td></tr>
+  <tr><td>1140-1227</td><td>Final Clean Fixes</td><td>Баги, typography, mobile</td></tr>
+  <tr><td>1228-1303</td><td>Layout Parity Fix</td><td>Draft/WP preview parity</td></tr>
+  <tr><td>1304-1371</td><td>Experts Pixel Parity</td><td>DS компоненты экспертов</td></tr>
+  <tr><td>1372-1405</td><td>Mobile Typography</td><td>Мобильные стили</td></tr>
+  <tr><td>1406-1515</td><td>P0.2 Blog Hub Typography</td><td>TTSmalls/TTRuns для /blog/</td></tr>
+  <tr><td>1516-1573</td><td>Blog Hub Forms</td><td>Формы на хабе</td></tr>
+  <tr><td>1574-1579</td><td>Header Menu</td><td>Скрыть "Календарь"</td></tr>
+  <tr><td>1581-1708</td><td>Slider + Editorial Dark</td><td>Swiper слайды, .no-image стили</td></tr>
+  <tr><td>1709-1743</td><td>CVM Tooltips</td><td>.explain / .explain-card</td></tr>
+  <tr><td>1744-1833</td><td>CVM Case Blocks</td><td>.cvm-ru-cases мобильные стили</td></tr>
+</table>
+
+<!-- ═══════════════════════════════════════════════════════
+     SLIDER (SWIPER)
+     ═══════════════════════════════════════════════════════ -->
+<h2 id="slider">Слайдер (Swiper)</h2>
+
+<h3>HTML структура</h3>
+<pre><code>&lt;div class=<span class="str">"new-articles swiper-container"</span> id=<span class="str">"new-articles"</span>&gt;
+  &lt;div class=<span class="str">"new-articles__slider swiper-wrapper"</span>&gt;
+    &lt;div class=<span class="str">"new_article swiper-slide"</span>&gt;
+      &lt;div class=<span class="str">"new_article__text"</span>&gt;
+        &lt;p class=<span class="str">"new_article__info"</span>&gt;...&lt;/p&gt;
+        &lt;h2 class=<span class="str">"new_article__title"</span>&gt;...&lt;/h2&gt;
+        &lt;a class=<span class="str">"button-read"</span>&gt;...&lt;/a&gt;
+      &lt;/div&gt;
+      &lt;div class=<span class="str">"new_article__author"</span>&gt;
+        &lt;div class=<span class="str">"new_article__author-photo"</span>&gt;
+          &lt;img data-src=<span class="str">"..."</span> src=<span class="str">"..."</span>&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+<h3>Swiper gotchas</h3>
+<ul>
+  <li><strong>translate3d overlap:</strong> Swiper позиционирует слайды через <code>translate3d</code> на каждом элементе. Слайды физически перекрываются &mdash; без явного фона тёмный слайд просвечивает через прозрачные.</li>
+  <li><strong>Lazy loading:</strong> <code>src</code> может быть пустым, <code>data-src</code> сохраняется. Всегда проверять <code>data-src</code> первым.</li>
+  <li><strong>z-index: -1:</strong> Тема ставит на <code>.new_article</code>, не трогать.</li>
+  <li><strong>Десктоп layout:</strong> flex, text + image side-by-side. <code>__text: width: calc(100% - 405px)</code></li>
+  <li><strong>Мобилка:</strong> <code>flex-direction: column-reverse</code>, image сверху</li>
+</ul>
+
+<!-- ═══════════════════════════════════════════════════════
+     EDITORIAL DARK
+     ═══════════════════════════════════════════════════════ -->
+<h2 id="editorial-dark">Editorial Dark (слайды без картинки)</h2>
+
+<p>Когда у поста нет featured image, слайдер показывает пост в стиле "Editorial Dark" &mdash; тёмный фон, белый текст, красная акцентная полоса.</p>
+
+<h3>Как работает</h3>
+<ol>
+  <li><strong>JS (mu-plugin)</strong> определяет слайды без картинки (проверка <code>data-src || src</code>) и добавляет класс <code>.no-image</code></li>
+  <li><strong>CSS</strong> стилизует <code>.new_article.no-image</code>: тёмный фон <code>#1a1a1a</code>, белый текст, красная полоса <code>::before</code></li>
+  <li><strong>Фон <code>#f2f2f2</code></strong> на ВСЕХ <code>.new_article__text</code> предотвращает "просвечивание" через Swiper overlap</li>
+</ol>
+
+<div class="callout callout-red">
+  <strong>Почему НЕ :has() ?</strong>
+  CSS <code>:has()</code> не работает надёжно в WordPress/Autoptimize pipeline. Было проверено: в Additional CSS не работал. Используем JS-классы вместо <code>:has()</code> для критичных стилей.
+</div>
+
+<h3>Стили Editorial Dark</h3>
+<pre><code><span class="comment">/* Явный фон на ВСЕХ текстовых областях (от Swiper overlap) */</span>
+#blog .new-articles .new_article__text {
+  background: <span class="str">#f2f2f2</span>;
+}
+
+<span class="comment">/* Тёмный фон + белый текст */</span>
+#blog .new-articles .new_article.no-image .new_article__text {
+  background: <span class="str">#1a1a1a</span> !important;
+  border-radius: 12px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  padding: 48px 36px !important;
+  width: 100% !important;
+}
+
+<span class="comment">/* Красная полоса */</span>
+#blog ... .no-image .new_article__text::before {
+  height: 4px !important;
+  background: linear-gradient(90deg, <span class="str">#c01020</span> 0%, <span class="str">#c01020</span> 30%, transparent 100%);
+}
+
+<span class="comment">/* Заголовок */</span>
+... .no-image .new_article__title {
+  color: <span class="str">#fff</span> !important;
+  font-size: 42px !important;  <span class="comment">/* мобилка: 36px */</span>
+  line-height: 1.1 !important;
+  text-wrap: balance !important;
+}
+
+<span class="comment">/* Кнопка */</span>
+... .no-image .button-read {
+  color: <span class="str">#c01020</span> !important;
+  font-weight: 600 !important;
+}</code></pre>
+
+<!-- ═══════════════════════════════════════════════════════
+     ARTICLE GRID
+     ═══════════════════════════════════════════════════════ -->
+<h2 id="article-grid">Сетка статей</h2>
+
+<h3>Карточка <code>.article</code> (Blog Hub)</h3>
+<ul>
+  <li>Загружается через AJAX: <code>admin-ajax.php?action=get_articles_by_category</code></li>
+  <li><code>.article-info</code> &mdash; дата + категория + время чтения</li>
+  <li><code>.article-heading</code> &mdash; h3, ссылка внутри</li>
+  <li><code>.article-desc</code> &mdash; описание, <strong>line-clamp 3 строки</strong></li>
+  <li><code>.button-read</code> &mdash; "Читать статью" (НЕ <code>.button-read-all</code>!)</li>
+  <li><strong>Equal-height:</strong> <code>display:flex; flex-direction:column</code> + <code>margin-top:auto</code> на <code>.button-read</code></li>
+</ul>
+
+<h3>Карточка <code>.card-article</code> (Главная)</h3>
+<ul>
+  <li><code>__textual</code> + <code>__visual</code></li>
+  <li>Пустое фото: <code>.card-article__visual:has(img[src=""])</code> &rarr; <code>display: none</code></li>
+  <li>JS добавляет <code>.no-image</code> на карточки без картинки</li>
+</ul>
+
+<!-- ═══════════════════════════════════════════════════════
+     ARTICLE LAYOUT
+     ═══════════════════════════════════════════════════════ -->
+<h2 id="article-layout">Layout статьи (single-blog)</h2>
+
+<pre><code>body.single-blog
+  main.singlepost
+    .column:nth-of-type(1)   <span class="comment">&rarr; hidden spacer</span>
+    .column:nth-of-type(2)   <span class="comment">&rarr; article content (max-width: 660px)</span>
+    .column:nth-of-type(3)   <span class="comment">&rarr; sticky right aside (.navigation)</span></code></pre>
+
+<ul>
+  <li>Reading width: <code>660px</code> (65-75 символов RU)</li>
+  <li>Шрифт: Inter 17px/1.58</li>
+  <li>Шапка и футер — тёмные (<code>#1a1a1a</code>)</li>
+  <li>Reading Progress Bar — красная полоска fixed top</li>
+</ul>
+
+<!-- ═══════════════════════════════════════════════════════
+     TOC / SIDEBAR
+     ═══════════════════════════════════════════════════════ -->
+<h2 id="toc">TOC / Sidebar</h2>
+
+<ul>
+  <li><code>.navigation</code> &mdash; sticky sidebar TOC (<code>.sticky-block</code>)</li>
+  <li><code>.navigation__item.active</code> &mdash; подсветка: bg <code>#fff5f5</code>, color <code>#c01020</code></li>
+  <li>Мобильная TOC: <code>&lt;details class="mobile-toc"&gt;</code> внутри контента</li>
+  <li>Тема имеет <code>.navigation-page</code> &mdash; скрываем чтобы не дублировать</li>
+</ul>
+
+<h3>Sticky fix</h3>
+<p>Тема ставит <code>.wrapper { overflow: hidden }</code>, что создаёт scroll-контейнер и ломает <code>position: sticky</code>. Фикс:</p>
+<pre><code>body.single-blog .wrapper {
+  overflow-x: clip !important;  <span class="comment">/* clip не создаёт scroll-контейнер */</span>
+  overflow-y: visible !important;
+}</code></pre>
+
+<h3>Контекстная CTA в сайдбаре</h3>
+<ul>
+  <li>Дефолт: <code>.navigation::after { content: 'Получить аудит CRM &rarr;' }</code></li>
+  <li>Контекст: <code>&lt;script&gt;setTimeout(fn, 300)&lt;/script&gt;</code> в посте добавляет кастомный CTA</li>
+  <li><code>setTimeout(300)</code> обязателен &mdash; тема строит TOC позже через JS</li>
+  <li>CSS: <code>.navigation.has-custom-cta::after { display: none }</code></li>
+</ul>
+
+<!-- ═══════════════════════════════════════════════════════
+     CVM COMPONENTS
+     ═══════════════════════════════════════════════════════ -->
+<h2 id="cvm-components">Переиспользуемые компоненты статей</h2>
+
+<p>Изначально созданы для CVM-статьи, но предназначены для переиспользования в любых постах.</p>
+
+<h3>Тултипы (<code>.explain</code> / <code>.explain-card</code>)</h3>
+<ul>
+  <li>Триггер: <code>border-bottom: 1px dashed #c01020; cursor: help</code></li>
+  <li>Десктоп: <code>position: absolute; left: 0; width: 290px</code></li>
+  <li>Мобилка (&le;768px): <code>position: relative</code> &mdash; inline в потоке текста</li>
+</ul>
+
+<h3>Кейсы (<code>.cvm-ru-cases</code>)</h3>
+<ul>
+  <li><code>.cvm-ru-card</code> &mdash; карточка с <code>border-left: #c01020</code></li>
+  <li><code>.cvm-ru-head</code> (имя + тег), <code>.cvm-ru-desc</code>, <code>.cvm-ru-result</code> (метрика)</li>
+  <li>Мобилка (&le;640px): <code>.cvm-ru-result</code> &rarr; <code>flex-direction: column</code></li>
+</ul>
+
+<h3>Другие CVM элементы</h3>
+<ul>
+  <li><code>.cvm-world-list</code> &mdash; список мировых кейсов (стрелки <code>&rarr;</code>)</li>
+  <li><code>.cvm-stat</code> &mdash; inline bold red подсветка статистики</li>
+</ul>
+
+<!-- ═══════════════════════════════════════════════════════
+     DEPLOY CSS
+     ═══════════════════════════════════════════════════════ -->
+<h2 id="deploy-css">Деплой CSS (FTP)</h2>
+
+<h3>Команда</h3>
+<pre><code><span class="cmd">curl</span> -s -T css/wp-custom.css \
+  <span class="str">"ftp://s.sychev:mnesfcfqk2@5.188.159.40/www/crmgroup.ru/wp-content/uploads/crm-ds/wp-custom.css"</span></code></pre>
+
+<h3>Процесс</h3>
+<ol>
+  <li>Редактировать <code>css/wp-custom.css</code> локально</li>
+  <li>Деплой через FTP (curl)</li>
+  <li>mu-plugin подхватывает новый <code>filemtime()</code> автоматически</li>
+  <li>Autoptimize перегенерирует кэш при следующем запросе</li>
+  <li>Пользователям: <code>Cmd+Shift+R</code> для hard refresh</li>
+</ol>
+
+<div class="callout callout-blue">
+  <strong>Бэкап перед крупными изменениями</strong>
+  <code>cp css/wp-custom.css css/wp-custom-backup-$(date +%Y-%m-%d).css</code>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     DEPLOY PHP
+     ═══════════════════════════════════════════════════════ -->
+<h2 id="deploy-php">Деплой PHP (mu-plugin)</h2>
+
+<pre><code><span class="cmd">curl</span> -s -T crm-custom-styles.php \
+  <span class="str">"ftp://s.sychev:mnesfcfqk2@5.188.159.40/www/crmgroup.ru/wp-content/mu-plugins/crm-custom-styles.php"</span></code></pre>
+
+<p>mu-plugins загружаются WordPress автоматически, активация не нужна.</p>
+
+<!-- ═══════════════════════════════════════════════════════
+     DEPLOY CONTENT
+     ═══════════════════════════════════════════════════════ -->
+<h2 id="deploy-content">Деплой контента</h2>
+
+<h3>Обновление HTML поста</h3>
+<ol>
+  <li>GET пост через REST API с <code>?context=edit</code></li>
+  <li>Парсинг <code>content.raw</code></li>
+  <li>Replace нужного фрагмента</li>
+  <li>PUT обратно</li>
+</ol>
+
+<h3>Висячие предлоги</h3>
+<p>CSS <code>text-wrap: pretty/balance</code> НЕ убирает предлоги. Единственный способ: <code>&amp;nbsp;</code> в HTML.</p>
+<pre><code><span class="comment"># Python regex для автозамены</span>
+import re
+text = re.sub(
+    r<span class="str">'\b(в|и|к|с|о|а|на|от|по|за|из|до|но|не|об) '</span>,
+    lambda m: m.group(1) + <span class="str">'\u00a0'</span>,
+    text
+)</code></pre>
+
+<!-- ═══════════════════════════════════════════════════════
+     WRITING RULES
+     ═══════════════════════════════════════════════════════ -->
+<h2 id="writing-rules">Правила написания статей</h2>
+
+<p>Полный стандарт: <code>BLOGCRM_WRITING_RULES.md</code> (~86KB, 1300+ строк). Ниже — ключевые выжимки.</p>
+
+<h3>Тон и стиль</h3>
+<ul>
+  <li><strong>Голос:</strong> эксперт в CRM-маркетинге рассказывает маркетинг-директору. Не "пишем для SEO", а "объясняем коллеге"</li>
+  <li><strong>Удалять:</strong> усилители (очень, действительно), связки-затычки (таким образом, следует отметить), слова-паразиты (данный, указанный)</li>
+  <li><strong>Активный залог:</strong> "Сегментация повышает" вместо "Эффективность может быть повышена"</li>
+  <li><strong>Конкретика:</strong> "68% клиентов уходят из-за ощущения безразличия (HubSpot, 2024)" вместо "многие компании теряют клиентов"</li>
+  <li><strong>Тире:</strong> не более 4 на всю статью (не считая заголовков)</li>
+</ul>
+
+<h3>Длина по типу</h3>
+<table>
+  <tr><th>Тип</th><th>Минимум</th><th>Оптимум</th></tr>
+  <tr><td>Гайд (как, что такое)</td><td>1500 слов</td><td>2000-3000</td></tr>
+  <tr><td>Эвергрин</td><td>2000 слов</td><td>2500-3500</td></tr>
+  <tr><td>Сравнение</td><td>1200 слов</td><td>1500-2500</td></tr>
+  <tr><td>Кейс с цифрами</td><td>800 слов</td><td>1000-1500</td></tr>
+</table>
+
+<h3>До написания (обязательно)</h3>
+<ol>
+  <li><strong>Целевой запрос</strong> — одна конкретная фраза, которую вбивают в поиск</li>
+  <li><strong>Конкурентный анализ топ-5</strong> — длина, структура H2, чего нет у конкурентов</li>
+  <li><strong>Уникальный угол</strong> — "Что есть у нас, чего нет ни в одной из этих статей?"</li>
+</ol>
+
+<h3>Финальный прогон (чеклист)</h3>
+<ol>
+  <li>Висячие предлоги в заголовках &rarr; <code>&amp;nbsp;</code></li>
+  <li>Ритм предложений — нет 3+ одной длины подряд</li>
+  <li>Активный залог — кто субъект?</li>
+  <li>Усилители &rarr; удалить или заменить числом</li>
+  <li>Повторы слов в соседних предложениях</li>
+  <li>Тире по правилам (≤4)</li>
+  <li>"Многие", "ряд" &rarr; число или конкретный пример</li>
+  <li>Висячий глагол — дописать существительное</li>
+  <li>"Летальный" подтекст — "клиента уже нет" читается как смерть</li>
+  <li>Тест вслух — споткнулся &rarr; переписывай</li>
+</ol>
+
+<!-- ═══════════════════════════════════════════════════════
+     ARTICLE MARKUP + NEURO
+     ═══════════════════════════════════════════════════════ -->
+<h2 id="article-markup">Вёрстка статьи с нейровыдачей</h2>
+
+<p>Статьи оптимизированы для Яндекс.Нейро (AI Overview) — первые предложения содержат прямой ответ на запрос.</p>
+
+<h3>H1: целевой запрос + год</h3>
+<pre><code><span class="cmd">&check;</span> <span class="str">"5 ключевых метрик для измерения эффективности CRM-стратегии в 2026"</span>
+<span class="cmd">&check;</span> <span class="str">"Email-маркетинг для интернет-магазина: полный гайд 2026"</span>
+<span class="comment">&cross;</span> <span class="str">"Всё о CRM-маркетинге"</span> <span class="comment">← нет запроса</span>
+<span class="comment">&cross;</span> <span class="str">"7 мифов, которые разрушат ваш маркетинг"</span> <span class="comment">← нет запроса</span></code></pre>
+
+<h3>Лид: формула для нейровыдачи</h3>
+<p><strong>1-е предложение</strong> = прямой ответ (plain language, без аббревиатур) &rarr; Яндекс.Нейро берёт ответ отсюда.<br>
+<strong>2-е</strong> = образ, противопоставление или конкретный факт.<br>
+<strong>3-е</strong> = мост: зачем читать дальше.</p>
+
+<div class="callout callout-green">
+  <strong>Пример правильного лида</strong>
+  "Здоровье клиентской базы определяют пять показателей: сколько приносит один клиент за всё время, как долго он остаётся, почему уходит, сколько тратит за заказ и готов ли рекомендовать бренд. Два бизнеса с одинаковой выручкой могут находиться в принципиально разном положении. Эти показатели объясняют разницу."
+</div>
+
+<h3>WP-блочный HTML</h3>
+<p>Claude генерирует готовый HTML для вставки в WP Code Editor (<code>Ctrl+Shift+Alt+M</code>).</p>
+
+<h4>Основные блоки</h4>
+<table>
+  <tr><th>Блок</th><th>Класс</th><th>Назначение</th></tr>
+  <tr><td>Оглавление</td><td>ACF <code>block-content-list</code></td><td>TOC сайдбар + мобильный</td></tr>
+  <tr><td>Комментарий эксперта</td><td><code>.block-comment</code></td><td>Цитата с именем + должность, фон #fff9f0</td></tr>
+  <tr><td>Читайте также</td><td><code>.block-sidenote</code></td><td>Внутренняя ссылка на смежную статью</td></tr>
+  <tr><td>CTA форма</td><td><code>.block-result</code></td><td>Призыв к действию со ссылкой на форму</td></tr>
+  <tr><td>FAQ</td><td><code>#crm-faq</code></td><td>Accordion, мин. 5 вопросов, Schema.org FAQ</td></tr>
+  <tr><td>Нум. список</td><td><code>.num-list</code></td><td>Красные номера через <code>&lt;mark&gt;</code>, НЕ <code>&lt;ol&gt;</code></td></tr>
+  <tr><td>Тултип</td><td><code>.explain</code> + <code>.explain-card</code></td><td>Глоссарий при первом упоминании термина</td></tr>
+</table>
+
+<h4>Пример: block-comment (WP HTML)</h4>
+<pre><code><span class="comment">&lt;!-- wp:group {..."className":"block-comment",...} --&gt;</span>
+&lt;div class=<span class="str">"wp-block-group block-comment has-background"</span>
+     style=<span class="str">"background-color:#fff9f0"</span>&gt;
+  <span class="comment">&lt;!-- wp:columns {"className":"block-comment__text"} --&gt;</span>
+    &lt;p&gt;&lt;strong&gt;Иван Ильин&lt;/strong&gt;&lt;br&gt;Управляющий партнёр CRM-group&lt;/p&gt;
+    &lt;p&gt;Текст комментария...&lt;/p&gt;
+  <span class="comment">&lt;!-- /wp:columns --&gt;</span>
+&lt;/div&gt;
+<span class="comment">&lt;!-- /wp:group --&gt;</span></code></pre>
+
+<h3>Чеклист WP перед публикацией</h3>
+<ul>
+  <li>Мета-теги в Yoast/Rank Math: Title, Description, Keywords</li>
+  <li>H1 содержит целевой запрос + год</li>
+  <li>Первые 2-3 предложения = прямой ответ (для нейровыдачи)</li>
+  <li>Каждый H2 — самостоятельный поисковый запрос</li>
+  <li>ACF block-content-list заполнен</li>
+  <li>FAQ минимум 5 вопросов</li>
+  <li>block-sidenote — ссылки на реальные страницы</li>
+  <li>CTA блок (block-result) — ссылка на форму</li>
+  <li>Проверить на мобильном</li>
+</ul>
+
+<!-- ═══════════════════════════════════════════════════════
+     INTERNAL LINKING
+     ═══════════════════════════════════════════════════════ -->
+<h2 id="internal-linking">Внутренняя линковка</h2>
+
+<p>Полные правила: <code>BLOGCRM_WRITING_RULES.md</code> &sect;10 и &sect;23.</p>
+
+<h3>Количество</h3>
+<ul>
+  <li><strong>Норма:</strong> 3-5 внутренних ссылок на статью</li>
+  <li><strong>Максимум:</strong> 7 (больше = спам)</li>
+  <li><strong>Обязательно:</strong> хотя бы 1 ссылка с новой статьи на старую + обновить 1-2 старых статьи со ссылкой на новую</li>
+</ul>
+
+<h3>Анкорный текст</h3>
+<pre><code><span class="cmd">&check;</span> <span class="str">"метрики CRM-маркетинга"</span>     <span class="comment">← точно описывает целевую страницу</span>
+<span class="cmd">&check;</span> <span class="str">"как строить CJM"</span>
+<span class="cmd">&check;</span> <span class="str">"гайд по email-рассылкам"</span>
+<span class="comment">&cross;</span> <span class="str">"здесь"</span>, <span class="str">"подробнее"</span>, <span class="str">"по ссылке"</span> <span class="comment">← не описывает страницу</span></code></pre>
+
+<h3>Где ставить</h3>
+<ul>
+  <li>В теле статьи, <strong>в контексте</strong> — после предложения, где тема упоминается впервые</li>
+  <li>НЕ в заголовках H2/H3</li>
+  <li>НЕ в первом абзаце лида</li>
+  <li>НЕ несколько ссылок подряд в одном предложении</li>
+  <li>1 блок "Читайте также" через <code>.block-sidenote</code></li>
+</ul>
+
+<h3>Приоритет выбора статей</h3>
+<ol>
+  <li>Статья, которая <strong>углубляет тему</strong> текущего абзаца</li>
+  <li>Статья, которая <strong>логически предшествует</strong> (контекст)</li>
+  <li>Статья с <strong>высоким трафиком</strong> — получит дополнительный вес</li>
+</ol>
+
+<div class="callout callout-red">
+  <strong>При публикации новой статьи — ОБЯЗАТЕЛЬНО</strong>
+  Найти 1-2 старые статьи по смежной теме и добавить в них ссылку на новую. Это важнее, чем ссылки из новой статьи. Иначе новая статья не попадает в граф ссылок.
+</div>
+
+<h3>Карта связей</h3>
+<table>
+  <tr><th>Тема новой статьи</th><th>Откуда можно сослаться</th></tr>
+  <tr><td>CVM</td><td>CRM-маркетолог, 5 метрик CRM, CRM-стратегия, омниканальность</td></tr>
+  <tr><td>Email</td><td>Email-тренды, CTR писем, велком-цепочка, DOI</td></tr>
+  <tr><td>CJM</td><td>Барьеры в CJM, омниканальность, персонализация</td></tr>
+  <tr><td>Метрики</td><td>Инкрементальность, дашборд, CRM-аудит</td></tr>
+  <tr><td>Геймификация</td><td>Вовлечённость, email-механики</td></tr>
+</table>
+
+<!-- ═══════════════════════════════════════════════════════
+     SEO & POSTS MAP
+     ═══════════════════════════════════════════════════════ -->
+<h2 id="seo">SEO и карта постов</h2>
+
+<h3>Файлы</h3>
+<table>
+  <tr><th>Файл</th><th>Описание</th></tr>
+  <tr><td><code>seo-keywords.md</code></td><td>Таргетные ключевые фразы, конкуренты, платформы (email-маркетинг фокус)</td></tr>
+  <tr><td><code>blog-posts-map.md</code></td><td>Полная карта 50 опубликованных постов с URL и SEO-запросами</td></tr>
+</table>
+
+<h3>Основные SEO-правила</h3>
+<ul>
+  <li>Один главный запрос на статью (не тема — конкретная фраза)</li>
+  <li>H1 = целевой запрос + год (для эвергрин-статей)</li>
+  <li>Каждый H2 — самостоятельный поисковый запрос</li>
+  <li>FAQ (минимум 5 вопросов) со Schema.org разметкой</li>
+  <li>Мета-теги: Title (≤60 символов), Description (≤160), Keywords</li>
+  <li>Первые 2-3 предложения = прямой ответ для Яндекс.Нейро</li>
+</ul>
+
+<h3>Опубликованные статьи (выборка ключевых)</h3>
+<table>
+  <tr><th>#</th><th>Название</th><th>Slug</th></tr>
+  <tr><td>9</td><td>5 ключевых метрик CRM-стратегии</td><td><code>top-five-crm-metrics-guide</code></td></tr>
+  <tr><td>1</td><td>In-house vs агентство CRM</td><td><code>inhouse-vs-agency-crm</code></td></tr>
+  <tr><td>10</td><td>CRM-маркетолог: чем занимается</td><td><code>crm-marketer</code></td></tr>
+  <tr><td>20</td><td>Как правильно считать доходность</td><td><code>incrementality</code></td></tr>
+  <tr><td>21</td><td>Барьеры клиента на CJM</td><td><code>barriers-in-the-customer-journey-map</code></td></tr>
+  <tr><td>22</td><td>Омниканальная коммуникация</td><td><code>how-to-build-omnichannel-communication</code></td></tr>
+  <tr><td>38</td><td>Как построить CJM</td><td><code>cjm</code></td></tr>
+</table>
+<p>Полный список 50 постов: <code>blog-posts-map.md</code></p>
+
+<!-- ═══════════════════════════════════════════════════════
+     OG IMAGES
+     ═══════════════════════════════════════════════════════ -->
+<h2 id="og-images">OG Images</h2>
+
+<p>Open Graph изображения для шаринга статей в соцсетях. Рендерятся как HTML/CSS и затем скриншотятся в 1200&times;630px.</p>
+
+<h3>Файлы</h3>
+<table>
+  <tr><th>Файл</th><th>Описание</th></tr>
+  <tr>
+    <td><code>og-image-cvm.html</code></td>
+    <td>
+      OG image для CVM-статьи. Тёмный фон <code>#0f1117</code>, красная полоса слева,
+      огромный "CVM" ghost-текст на фоне (opacity 3%), сетка-текстура.
+      Заголовок 104px bold white, подзаголовок с описанием, логотип crmgroup.ru снизу.
+    </td>
+  </tr>
+  <tr>
+    <td><code>og-preview.html</code></td>
+    <td>
+      Превью OG image в контексте реальных платформ: Telegram карточка, X (Twitter) summary,
+      LinkedIn пост, VK репост. Каждая платформа показана в своём нативном UI с реальными размерами.
+      Подгружает <code>og-image-cvm.html</code> через iframe с масштабированием.
+    </td>
+  </tr>
+</table>
+
+<h3>Структура OG image</h3>
+<pre><code><span class="comment">/* Размер: 1200 x 630px — стандарт Open Graph */</span>
+.og {
+  width: 1200px; height: 630px;
+  background: <span class="str">#0f1117</span>;
+  font-family: Inter;
+}
+
+<span class="comment">/* Элементы: */</span>
+.og-accent    <span class="comment">/* Красная полоса 8px слева */</span>
+.og-ghost     <span class="comment">/* "CVM" 420px, opacity 3% — фоновая типографика */</span>
+.og-grid      <span class="comment">/* Сетка-текстура (линии 60px) */</span>
+.og-tag       <span class="comment">/* Рубрика: "ГАЙД 2026" — красный, uppercase */</span>
+.og-title     <span class="comment">/* Заголовок: 104px, 800 weight */</span>
+.og-sub       <span class="comment">/* Подзаголовок: описание статьи */</span>
+.og-footer    <span class="comment">/* Логотип + домен crmgroup.ru */</span></code></pre>
+
+<div class="callout callout-yellow">
+  <strong>Цвет акцента в OG</strong>
+  В og-image-cvm.html ещё используется старый <code>#dc1327</code>. При создании новых OG images использовать актуальный <code>#c01020</code>.
+</div>
+
+<h3>Как создавать OG images</h3>
+<ol>
+  <li>Скопировать <code>og-image-cvm.html</code> как шаблон</li>
+  <li>Поменять заголовок, подзаголовок, ghost-текст, рубрику</li>
+  <li>Открыть в Chrome (1200px viewport), сделать скриншот</li>
+  <li>Проверить в <code>og-preview.html</code> — подставить путь к новому image</li>
+  <li>Загрузить в WordPress Media Library, прописать в Yoast SEO</li>
+</ol>
+
+<!-- ═══════════════════════════════════════════════════════
+     NO-IMAGE SLIDE CONCEPTS
+     ═══════════════════════════════════════════════════════ -->
+<h2 id="no-image-concepts">Editorial Dark — концепты</h2>
+
+<p>Файл: <code>no-image-slide-concept.html</code> &mdash; три визуальных концепта для слайдов без featured image на странице /blog/.</p>
+
+<h3>Три концепта</h3>
+<table>
+  <tr><th>Концепт</th><th>Стиль</th><th>Фон</th><th>Текст</th><th>Реализуемость CSS-only</th></tr>
+  <tr>
+    <td><strong>A &mdash; Editorial Dark</strong></td>
+    <td>Минималистичный тёмный</td>
+    <td><code>#1a1a1a</code></td>
+    <td>Белый, 38px</td>
+    <td><span class="badge badge-green">Полностью</span> &mdash; выбран для продакшена</td>
+  </tr>
+  <tr>
+    <td><strong>B &mdash; Gradient Brand</strong></td>
+    <td>Градиент с красным</td>
+    <td>linear-gradient 155deg</td>
+    <td>Белый, 36px + desc</td>
+    <td><span class="badge badge-blue">Частично</span> &mdash; desc нет в HTML</td>
+  </tr>
+  <tr>
+    <td><strong>C &mdash; Magazine Typo</strong></td>
+    <td>Светлый журнальный</td>
+    <td><code>#f2f2f2</code></td>
+    <td>Тёмный, 42px</td>
+    <td><span class="badge badge-blue">Частично</span> &mdash; divider нет в HTML</td>
+  </tr>
+</table>
+
+<h3>Почему выбран Concept A</h3>
+<ul>
+  <li><strong>100% CSS-only:</strong> тёмный фон, белый текст, красная полоса <code>::before</code> &mdash; не требует изменений HTML/PHP</li>
+  <li><strong>Контраст:</strong> чётко отличается от слайдов с картинкой (тёмный vs светлый)</li>
+  <li><strong>Бренд:</strong> красная полоса = акцентный <code>#c01020</code></li>
+  <li>Концепт B требует добавления <code>.slide__desc</code> в PHP</li>
+  <li>Концепт C требует <code>.slide__divider</code> элемента</li>
+</ul>
+
+<h3>Продакшен-реализация</h3>
+<p>Подробности в секции <a href="#editorial-dark">Editorial Dark</a>. Ключевое отличие от концепта:</p>
+<ul>
+  <li>Концепт: мобильные слайды 390&times;680px, standalone</li>
+  <li>Продакшен: Swiper внутри <code>#blog .new-articles</code>, с <code>translate3d</code> overlap, нужен explicit <code>background: #f2f2f2</code> на всех <code>.new_article__text</code></li>
+  <li>Продакшен: заголовок 42px (десктоп) / 36px (мобилка), vs 38px в концепте</li>
+  <li>Продакшен: класс <code>.no-image</code> через JS (mu-plugin), а не чистый CSS</li>
+</ul>
+
+<!-- ═══════════════════════════════════════════════════════
+     PATTERNS
+     ═══════════════════════════════════════════════════════ -->
+<h2 id="patterns">Паттерны</h2>
+
+<h3>CSS !important vs JS inline styles</h3>
+<p>CSS <code>!important</code> ВСЕГДА побеждает JS <code>element.style.property</code>. Если CSS задаёт <code>width: 0% !important</code>, JS <code>bar.style.width = "50%"</code> не сработает. Решение: убрать <code>!important</code> из CSS свойства, которое JS должен менять.</p>
+
+<h3>Empty image detection</h3>
+<p>WP может: (1) рендерить <code>&lt;img src=""&gt;</code>, (2) рендерить <code>&lt;img&gt;</code> без src, (3) не рендерить <code>&lt;img&gt;</code> совсем. Нужно покрывать все три кейса:</p>
+<pre><code><span class="comment">/* CSS fallback (работает не везде) */</span>
+.new_article__author:has(img[src=""]),
+.new_article__author:has(img:not([src])),
+.new_article__author:has(.new_article__author-photo:empty) {
+  display: none !important;
+}
+
+<span class="comment">/* JS (надёжный способ — через mu-plugin) */</span>
+var img = slide.querySelector(<span class="str">'.new_article__author-photo img'</span>);
+var src = img ? (img.getAttribute(<span class="str">'data-src'</span>) || img.getAttribute(<span class="str">'src'</span>)) : <span class="str">''</span>;
+if (!src) slide.classList.add(<span class="str">'no-image'</span>);</code></pre>
+
+<h3>Responsive: .isDescktop / .notDescktop</h3>
+<p>Тема использует эти классы для показа/скрытия контента. Скрывать только внутри <code>@media</code>:</p>
+<pre><code>@media (min-width: 769px) {
+  .block-form .h2-runs<span class="str">.notDescktop</span> { display: none !important; }
+}
+@media (max-width: 768px) {
+  .block-form .h2-runs<span class="str">.isDescktop</span> { display: none !important; }
+}</code></pre>
+
+<!-- ═══════════════════════════════════════════════════════
+     KNOWN ISSUES
+     ═══════════════════════════════════════════════════════ -->
+<h2 id="known-issues">Известные баги и решения</h2>
+
+<table>
+  <tr><th>Проблема</th><th>Причина</th><th>Решение</th><th>Статус</th></tr>
+  <tr>
+    <td>Sticky sidebar не работает</td>
+    <td><code>.wrapper { overflow: hidden }</code> в теме</td>
+    <td><code>overflow-x: clip; overflow-y: visible</code></td>
+    <td><span class="badge badge-green">Fixed</span></td>
+  </tr>
+  <tr>
+    <td>Progress bar невидим</td>
+    <td><code>width: 0% !important</code> + дубликат с <code>right: 0</code></td>
+    <td>Убрали !important, удалили дубликат</td>
+    <td><span class="badge badge-green">Fixed</span></td>
+  </tr>
+  <tr>
+    <td>:has() не работает в WP</td>
+    <td>Autoptimize / минификация ломает</td>
+    <td>JS .no-image классы через mu-plugin</td>
+    <td><span class="badge badge-green">Fixed</span></td>
+  </tr>
+  <tr>
+    <td>Все слайды тёмные</td>
+    <td>Swiper translate3d overlap</td>
+    <td>Explicit bg #f2f2f2 на .new_article__text</td>
+    <td><span class="badge badge-green">Fixed</span></td>
+  </tr>
+  <tr>
+    <td>JS определяет все как no-image</td>
+    <td>Swiper очищает src, проверка только src</td>
+    <td>Проверка data-src || src</td>
+    <td><span class="badge badge-green">Fixed</span></td>
+  </tr>
+  <tr>
+    <td>Тема CSS содержит старые стили</td>
+    <td>styles.min.css содержит leaked old CSS</td>
+    <td>Не фиксится (тема не наша). Перебиваем через !important</td>
+    <td><span class="badge badge-blue">Known</span></td>
+  </tr>
+  <tr>
+    <td>Autoptimize кэш не обновляется</td>
+    <td>Бразуерный кэш / CDN</td>
+    <td>Cmd+Shift+R. filemtime() в enqueue</td>
+    <td><span class="badge badge-blue">Known</span></td>
+  </tr>
+</table>
+
+<!-- ═══════════════════════════════════════════════════════
+     CHANGELOG
+     ═══════════════════════════════════════════════════════ -->
+<h2 id="changelog">Changelog</h2>
+
+<h3>2026-02-23</h3>
+<ul>
+  <li><strong>Fix:</strong> Reading Progress Bar — убрали <code>!important</code> с <code>width</code>, добавили <code>right: auto</code>, удалили дубликат</li>
+  <li><strong>Fix:</strong> Editorial Dark — заменили все <code>:has()</code> на <code>.no-image</code> класс + JS detection</li>
+  <li><strong>Fix:</strong> Swiper overlap — явный <code>background: #f2f2f2</code> на всех <code>.new_article__text</code></li>
+  <li><strong>Fix:</strong> JS no-image detection — <code>data-src || src</code> (Swiper lazy loading)</li>
+  <li><strong>New:</strong> mu-plugin v1.2 — добавлен JS detection для <code>.no-image</code> + <code>.card-article</code></li>
+</ul>
+
+<h3>2026-02-22 (P0)</h3>
+<ul>
+  <li><strong>P0.1:</strong> <code>#dc1327</code> &rarr; <code>#c01020</code> (все 23 вхождения), hover, rgba</li>
+  <li><strong>P0.2:</strong> Blog hub typography — TTSmalls/TTRuns optimized (font-smoothing, line-height, letter-spacing)</li>
+  <li><strong>P0.3:</strong> line-height 1.78 &rarr; 1.58</li>
+  <li><strong>Fix:</strong> Empty image handling (blog hub + homepage + article grid)</li>
+  <li><strong>Fix:</strong> Tooltip mobile — inline раскрытие</li>
+  <li><strong>Fix:</strong> CVM case blocks mobile — вертикальная раскладка</li>
+  <li><strong>Fix:</strong> article-desc — line-clamp 3 строки</li>
+  <li><strong>Fix:</strong> Equal-height cards — flex column + margin-top:auto</li>
+  <li><strong>Fix:</strong> Чекбоксы 18x18px, валидация position:absolute</li>
+  <li><strong>Fix:</strong> Мобилка слайдер без картинки — vertical center, gradient bg</li>
+  <li><strong>Fix:</strong> Висячие предлоги — &amp;nbsp; в WP excerpts</li>
+</ul>
+
+<hr style="margin-top: 64px; border: none; border-top: 2px solid var(--border);">
+<p style="color: var(--muted); font-size: 13px; margin-top: 16px;">
+  CRM Group Project Wiki &mdash; Generated 2026-02-23 &nbsp;|&nbsp;
+  Source: <code>/01-crmgroup/wiki.html</code>
+</p>
+
+</main>
+
+<!-- ── Sidebar active state ── -->
+<script>
+(function() {
+  var links = document.querySelectorAll('.sidebar nav a');
+  var sections = [];
+  links.forEach(function(link) {
+    var id = link.getAttribute('href');
+    if (id && id.startsWith('#')) {
+      var el = document.querySelector(id);
+      if (el) sections.push({ el: el, link: link });
+    }
+  });
+
+  function update() {
+    var scrollY = window.scrollY + 100;
+    var active = null;
+    for (var i = sections.length - 1; i >= 0; i--) {
+      if (sections[i].el.offsetTop <= scrollY) {
+        active = sections[i].link;
+        break;
+      }
+    }
+    links.forEach(function(l) { l.classList.remove('active'); });
+    if (active) active.classList.add('active');
+  }
+
+  window.addEventListener('scroll', update);
+  update();
+})();
+</script>
+
+</body>
+</html>

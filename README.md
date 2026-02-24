@@ -80,3 +80,119 @@
 **Для принятия решений использовать:**
 - `crmgroup-real-analysis-2025.html` — общий анализ и приоритеты
 - `crmgroup-team-audit-2026.html` — конкретные люди и сценарии оптимизации
+
+---
+
+## 📝 WordPress Blog — доступ и методика
+
+### Доступы
+| | |
+|---|---|
+| **Сайт** | https://crmgroup.ru |
+| **WP Login** | `ekaterina.shapochkina@crmgroup.ru` |
+| **App Password** | `Sx960tbW8UvlzXBr3z1kvC3m` |
+| **Additional CSS** | WP Admin → Внешний вид → Настроить → Дополнительный CSS |
+| **Тема** | `content_hub` |
+| **Тема CSS (публичный)** | `https://crmgroup.ru/wp-content/themes/content_hub/src/styles/styles.min.css` |
+
+### Ключевые посты
+| ID | Slug | Статус |
+|---|---|---|
+| **9575** | `top-five-crm-metrics-guide` | published |
+| **12695** | — | draft (черновик v2) |
+| Custom post type | `blog` | REST: `/wp-json/wp/v2/blog/{id}` |
+
+### Локальные файлы
+| Файл | Назначение |
+|---|---|
+| `css/wp-custom.css` | Основной кастомный CSS для блога (вставлять в Additional CSS) |
+| `draft-crm-metrics.html` | Референс-прототип статьи с правильной разметкой |
+| `CRM_DESIGN_SYSTEM.md` | Дизайн-система: токены, типографика, компоненты |
+| `ds-updated.html` | Обновлённая дизайн-система (Manrope, `#c01020`, line-height 1.58) |
+| `THEME_STRUCTURE.md` | ⭐ Структура темы, FTP-доступ, безопасный workflow для правок |
+
+---
+
+## 🔧 Инструкция по работе с WP для AI-агентов (Codex / Claude)
+
+### Шаг 1 — Посмотреть реальные CSS-классы темы
+```bash
+curl -s "https://crmgroup.ru/wp-content/themes/content_hub/src/styles/styles.min.css" \
+  | grep "нужный-класс"
+```
+> Файл публичный, авторизация не нужна. Это единственный способ узнать точные селекторы.
+
+### Шаг 2 — Получить содержимое поста
+```python
+import urllib.request, json, base64
+
+USER = "ekaterina.shapochkina@crmgroup.ru"
+PASS = "Sx960tbW8UvlzXBr3z1kvC3m"
+POST_ID = 9575
+
+token = base64.b64encode(f"{USER}:{PASS}".encode()).decode()
+url = f"https://crmgroup.ru/wp-json/wp/v2/blog/{POST_ID}?context=edit"
+req = urllib.request.Request(url, headers={"Authorization": f"Basic {token}"})
+with urllib.request.urlopen(req) as r:
+    post = json.loads(r.read())
+
+raw_content = post["content"]["raw"]
+```
+
+### Шаг 3 — Исправить HTML и обновить пост
+```python
+# Исправляем нужный фрагмент
+fixed_content = raw_content.replace(OLD_HTML, NEW_HTML)
+
+# Отправляем обратно
+payload = json.dumps({"content": {"raw": fixed_content}}).encode()
+headers = {"Authorization": f"Basic {token}", "Content-Type": "application/json"}
+req2 = urllib.request.Request(
+    f"https://crmgroup.ru/wp-json/wp/v2/blog/{POST_ID}",
+    data=payload, headers=headers, method="PUT"
+)
+with urllib.request.urlopen(req2) as r:
+    result = json.loads(r.read())
+    print("Status:", result["status"], "| ID:", result["id"])
+```
+
+### Шаг 4 — Обновить CSS
+1. Редактировать `css/wp-custom.css` локально
+2. Скопировать содержимое → вставить в **WP Admin → Внешний вид → Настроить → Дополнительный CSS**
+
+---
+
+## ⚠️ Критичные правила CSS для этой темы
+
+### Ключевые классы (не угадывать — брать из темы!)
+| Элемент | Класс | Примечание |
+|---|---|---|
+| Хедер | `.header` | НЕ `.site-header`, НЕ `.top-menu` |
+| Логотип | `.header .content .logo` | CSS `background-image`, не `<img>`! |
+| Белый вариант хедера | `.--white .header` | Применяется на страницах блога |
+| Белый логотип | `logo.svg` | Для тёмного фона |
+| Тёмный логотип | `logo-dark.svg` | Для светлого фона (`.--white`) |
+| Выпадающее меню | `.services-menu-div` | `.--white` делает `background: #F2F2F2` |
+| Форма подписки | `.block-form` | Внутри `wp-block-group__inner-container` |
+
+### Responsive классы темы
+Тема использует `.isDescktop` / `.notDescktop` для показа/скрытия контента.
+**НЕЛЬЗЯ** делать `display: none !important` глобально — сломает мобилку.
+**Правильно:**
+```css
+@media (min-width: 769px) {
+  .block-form .h2-runs.notDescktop { display: none !important; }
+}
+@media (max-width: 768px) {
+  .block-form .h2-runs.isDescktop { display: none !important; }
+}
+```
+
+### Частые ошибки
+| Ошибка | Последствие | Правильно |
+|---|---|---|
+| `display: none` вне media query на `.notDescktop` | Скрывается на мобилке | Обернуть в `@media` |
+| `filter: brightness(0) invert(1)` на логотип | Не работает (логотип — не `<img>`) | Менять `background-image` |
+| Угадывать классы хедера | CSS не применяется | Смотреть в `styles.min.css` |
+| `!important` без нужды | Перебивает responsive темы | Добавлять только там, где WP сильнее |
+| Глобальный `padding: 0` на `wp-block-group__inner-container` | Ломает другие блоки | Скоупить через `.block-form .wp-block-group__inner-container` |

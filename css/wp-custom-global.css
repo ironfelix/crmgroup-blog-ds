@@ -1,0 +1,615 @@
+/* wp-custom-global.css — загружается на ВСЕХ страницах */
+/* Global: :root vars, header menu, homepage, checkboxes, breadcrumbs */
+/* Split from wp-custom.css — 2026-02-23 */
+
+/* Inter font: загружается через <link> в mu-plugin (crm-custom-styles.php v1.3).
+   @import убран — создавал render-blocking chain +400ms. */
+
+/* ====================================================
+   P0 CHANGELOG (2026-02-22)
+   Бэкап: css/wp-custom-v6-backup-2026-02-22.css
+   Откат: cp css/wp-custom-v6-backup-2026-02-22.css css/wp-custom.css
+   ---
+   P0.1: #dc1327 → #c01020 (весь файл), hover #b80f1f → #b10e1d
+         rgba(220,19,39) → rgba(192,16,32)
+   P0.2: Blog hub font override → Inter (блок перед HEADER MENU)
+   P0.3: line-height 1.78 → 1.58 (уже в v4 overrides, строка ~979)
+   ==================================================== */
+
+/* ====================================================
+   READING PROGRESS BAR — красная полоска вверху статьи
+   ==================================================== */
+.reading-progress {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 0%;
+  right: auto !important;
+  height: 3px !important;
+  background: #c01020 !important;
+  z-index: 99999 !important;
+  transition: width 50ms linear !important;
+  pointer-events: none !important;
+}
+
+/* ====================================================
+   GLOBAL COLOR OVERRIDE — единый красный акцент
+   Тема использует --color-accent-red: #FD3939 повсюду.
+   Переопределяем на DS-токен #c01020 (WCAG AA 7.2:1).
+   Это фиксит: кнопки, ссылки, hover, footer, header, breadcrumbs.
+   ==================================================== */
+:root {
+  --color-accent-red: #c01020 !important;
+  --button-bg: #c01020 !important;
+  --button-bg-hover: #a80e1c !important;
+  --input-button: #c01020 !important;
+}
+
+/* ====================================================
+   СУЩЕСТВУЮЩИЙ CSS САЙТА (не трогаем)
+   ==================================================== */
+html, body { overflow-x: hidden; }
+body { max-width: 100vw; }
+.bann-bg-9  { background-image: url("/wp-content/themes/content_hub/public/img/bann-bg-9.svg");  background-size: cover; background-position: center; }
+.bann-bg-10 { background-image: url("/wp-content/themes/content_hub/public/img/bann-bg-10.svg"); background-size: cover; background-position: center; }
+.bann-bg-11 { background-image: url("/wp-content/themes/content_hub/public/img/bann-bg-11.svg"); background-size: cover; background-position: center; }
+.wp-block-list:not(.num-list) li:not([class])::before { content: ""; display: inline-block; width: 6px; height: 6px; border-radius: 50%; background-color: currentColor; margin-right: 10px; vertical-align: middle; margin-top: -2px; }
+.policy_text { display: inline !important; }
+input[type=submit][disabled] { cursor: no-drop !important; opacity: 0.5 !important; }
+.wp-block-video video { max-height: 500px; background: black; }
+
+
+
+
+
+/* Якорные ссылки в TOC: плавный скролл */
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
+
+/* ====================================================
+   HEADER MENU — глобальные правки
+   ==================================================== */
+
+/* Скрыть "Календарь" везде */
+.header-menu-ul li:has(a[href='/calendar/']) { display: none !important; }
+
+/* Дропдаун «Услуги» — только десктоп (тема сбрасывает в 1 колонку при ≤1156px) */
+@media (min-width: 1157px) {
+  .header-menu-ul .services-menu ul {
+    width: 460px !important;
+    gap: 10px 24px !important;        /* vertical 10px, horizontal 24px */
+  }
+  .header-menu-ul .services-menu ul li {
+    width: calc(50% - 12px) !important; /* (460 - 40 padding) / 2 - half gap */
+  }
+}
+
+/* Типографика меню — TTSmalls-500 (Medium) вместо 400 (Regular) */
+.header-menu__item,
+.header-menu-ul li a {
+  font-family: "TTSmalls-500", "TTSmalls-400", sans-serif !important;
+  font-weight: 500 !important;
+  font-size: 15px !important;
+}
+/* Дропдаун: чуть мельче */
+.header-menu-ul .services-menu ul li a {
+  font-family: "TTSmalls-500", "TTSmalls-400", sans-serif !important;
+  font-weight: 500 !important;
+  font-size: 14px !important;
+  line-height: 1.4 !important;
+}
+/* Пилл «Услуги ▾» / «Блог ▾» — тоже Medium */
+.header-menu-ul .services-menu .services-menu-div {
+  font-family: "TTSmalls-500", "TTSmalls-400", sans-serif !important;
+  font-weight: 500 !important;
+}
+/* --white вариант (хаб, главная) — те же правила */
+.--white .header-menu__item,
+.--white .header-menu-ul li a {
+  font-family: "TTSmalls-500", "TTSmalls-400", sans-serif !important;
+  font-weight: 500 !important;
+  font-size: 15px !important;
+}
+.--white .header-menu-ul .services-menu ul li a {
+  font-family: "TTSmalls-500", "TTSmalls-400", sans-serif !important;
+  font-weight: 500 !important;
+  font-size: 14px !important;
+}
+/* Responsive: сужаем на узких экранах */
+@media (max-width: 1080px) {
+  .header-menu__item,
+  .header-menu-ul li a,
+  .--white .header-menu__item,
+  .--white .header-menu-ul li a {
+    font-size: 14px !important;
+  }
+}
+
+
+/* ════════════════════════════════════════════════════════════════
+   EDITORIAL DARK — слайды без картинки (класс .no-image ставит JS)
+   JS в mu-plugin crm-custom-styles.php определяет пустое img и
+   добавляет .no-image на .new_article. Не используем :has() —
+   WordPress/Autoptimize могут не обрабатывать его корректно.
+   ════════════════════════════════════════════════════════════════ */
+
+/* Явный фон на ВСЁМ слайде (а не только __text) —
+   Swiper позиционирует слайды через translate3d, они перекрываются.
+   Без явного фона тёмный .no-image слайд просвечивает через прозрачные.
+   На мобилке: изображение/его контейнер прозрачный → чёрный фон виден. */
+
+/* Чекбокс в форме подписки — старый #dc1327 → #c01020 */
+/* Breadcrumbs — хардкод #fd3939 → #c01020 */
+#breadcrumbs a,
+.--white #breadcrumbs a,
+.top-page .bread-crumbs span:not(.breadcrumb_last) {
+  color: #c01020 !important;
+}
+
+/* ====================================================================
+   HOMEPAGE — Типографика, спейсинг, визуальная иерархия
+   Полный рефакторинг 2026-02-23
+   ==================================================================== */
+
+/* ── Body text: тема ставит --text-size: 22px, уменьшаем ─────────── */
+body.home {
+  --text-size: 18px;
+}
+@media (max-width: 768px) {
+  body.home { --text-size: 16px; }
+}
+
+/* ── Line-heights для heading-классов (тема не задаёт) ────────────── */
+.h3 { line-height: 1.25 !important; }
+.h4 { line-height: 1.3 !important; }
+.h5 { line-height: 1.35 !important; }
+.small { line-height: 1.45 !important; }
+.very-small { line-height: 1.5 !important; }
+
+/* ── Hero H1: responsive, стабильный отступ до CTA ───────────────── */
+.page-header .section-heading.h1 {
+  font-size: clamp(36px, 3.472vw, 50px) !important;
+  line-height: 1.1 !important;
+}
+.page-header .content .headline .section-heading {
+  margin-bottom: 24px !important;
+}
+.page-header .content .headline .actions {
+  padding-top: clamp(40px, 4.167vw, 60px) !important;
+}
+
+/* ── Hero → Services: убираем налипание ───────────────────────────── */
+.page-header + .section,
+.page-header + .services-section {
+  padding-top: clamp(48px, 4.861vw, 70px) !important;
+}
+
+/* ── Services: описания внутри тёмных карточек ────────────────────── */
+.service-desc p {
+  line-height: 1.5 !important;
+}
+
+/* ── Cases: числа, описания, теги ────────────────────────────────── */
+.case-info {
+  line-height: 1.0 !important;
+  margin-bottom: 12px !important;
+}
+.case-desc {
+  font-size: 16px !important;
+  line-height: 1.5 !important;
+  opacity: 0.85;
+}
+.case-tags .tag {
+  font-size: 12px !important;
+  line-height: 1.4 !important;
+}
+
+/* ── Expert section: «Делимся опытом» — фикс наезда на следующий блок */
+.expert-experience-section {
+  padding-bottom: clamp(24px, 2.5vw, 40px) !important;
+  overflow: visible !important;
+}
+/* На мобилке: overflow hidden + ограничение ширины Swiper-слайдов */
+@media (max-width: 990px) {
+  .expert-experience-section {
+    overflow: hidden !important;
+  }
+  /* Swiper-слайдер статей — ограничиваем ширину */
+  .articles-slider {
+    overflow: hidden !important;
+    max-width: 100% !important;
+  }
+  .articles-slider .swiper {
+    overflow: hidden !important;
+  }
+  .articles-slider .swiper-slide {
+    max-width: calc(100vw - 32px) !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
+  }
+  .articles-slider .swiper-slide .small_article_content,
+  .articles-slider .swiper-slide .card-article__textual {
+    overflow: hidden !important;
+    box-sizing: border-box !important;
+    word-break: break-word !important;
+  }
+  /* Заголовок статьи — обрезаем 2 строки */
+  .articles-slider .card-article__textual__head {
+    overflow: hidden !important;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2 !important;
+    -webkit-box-orient: vertical !important;
+  }
+  /* Описание — 3 строки */
+  .articles-slider .card-article__textual__desc {
+    overflow: hidden !important;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 3 !important;
+    -webkit-box-orient: vertical !important;
+  }
+}
+.expert-experience-section .split-content {
+  align-items: flex-start !important;
+}
+.expert-experience-section .split-content .articles {
+  overflow: visible !important;
+}
+/* Карточки статей на homepage */
+body.home .card-article {
+  background: #f2f2f2 !important;
+  border-radius: 8px !important;
+}
+body.home .card-article.no-image .card-article__visual {
+  display: none !important;
+}
+body.home .card-article__textual {
+  padding: 20px 24px !important;
+}
+body.home .card-article__textual__data {
+  font-size: 13px !important;
+  color: #8a8a8a !important;
+}
+body.home .card-article__textual__data p {
+  font-size: 13px !important;
+  line-height: 1.4 !important;
+  margin: 0 !important;
+}
+body.home .card-article__textual__head {
+  font-size: 18px !important;
+  line-height: 1.35 !important;
+  font-family: "TTRuns-600", "TTRuns", sans-serif !important;
+}
+body.home .card-article__textual__desc {
+  font-size: 15px !important;
+  line-height: 1.55 !important;
+  color: #555 !important;
+}
+body.home .card-article__textual__link::after {
+  font-size: 15px !important;
+}
+
+/* ── Awards: заголовок + описание в тёмных карточках ─────────────── */
+.award-header {
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  line-height: 1.3 !important;
+}
+.award-desc {
+  font-size: 16px !important;
+  line-height: 1.45 !important;
+}
+
+/* ── About section spacing (padding, не margin — body bg = #000) ── */
+.about-section {
+  padding-bottom: clamp(40px, 3.646vw, 70px) !important;
+  margin-bottom: 0 !important;
+}
+/* ── About section subtitle: 22px grey, как в expert-experience ─── */
+.about-section .textual .summary p {
+  font-size: 22px !important;
+  color: var(--color-gray, #595959) !important;
+  line-height: 1.45 !important;
+}
+@media (max-width: 1080px) {
+  .about-section .textual .summary p {
+    font-size: 18px !important;
+  }
+}
+
+/* ── Clients split-container gap ─────────────────────────────────── */
+.split-container { gap: clamp(30px, 3.472vw, 50px) !important; }
+
+/* ── Form section spacing ──────────────────────────────────────────
+   ВАЖНО: body { background: #000 } в теме!
+   margin = прозрачный → чёрный body просвечивает.
+   Используем padding, не margin. ─────────────────────────────────── */
+.form-section {
+  padding-bottom: clamp(40px, 3.646vw, 70px) !important;
+  margin-bottom: 0 !important;
+}
+
+/* ── Footer ──────────────────────────────────────────────────────── */
+.footer {
+  padding: 40px 0 !important;
+  background: #fff !important;
+}
+.footer .copyright,
+.footer .conditions {
+  font-size: 13px !important;
+  color: rgba(26,26,26,0.5) !important;
+}
+.footer .social-networking a {
+  font-family: "TTSmalls-500", "TTSmalls-400", sans-serif !important;
+  font-size: 14px !important;
+}
+
+/* ── Header CTA: TTSmalls для единообразия с навигацией ───────────── */
+.header .content .to-form {
+  font-family: "TTSmalls-600", "TTSmalls-500", sans-serif !important;
+}
+
+/* ── SVG-стрелки слайдеров: хардкод #FD3939 → DS-токен ───────────── */
+.slider__navigation path {
+  stroke: var(--color-accent-red) !important;
+}
+
+/* ── heading-block spacing ───────────────────────────────────────── */
+.heading-block { margin-bottom: clamp(32px, 2.778vw, 40px) !important; }
+
+/* ── Secondary button (CSS-класс, нужен в HTML) ──────────────────── */
+.button--secondary {
+  background: transparent !important;
+  border: 1px solid var(--color-accent-red) !important;
+  color: var(--color-accent-red) !important;
+}
+.button--secondary:hover {
+  background: var(--color-accent-red) !important;
+  color: #fff !important;
+}
+
+/* ====================================================================
+   FORM CHECKBOXES — единый стиль (homepage + articles)
+   Тема НЕ стилизует .form-request .form-checkbox → browser default.
+   Подход: прячем input, рисуем чекбокс через label::before/::after.
+   Это НАДЁЖНЕЕ чем appearance:none на input (iOS Safari не поддерживает
+   ::after на replaced elements вроде <input>).
+   ==================================================================== */
+
+/* ── Прячем нативный input (оставляем для accessibility/focus) ──── */
+.form-request .form-checkbox input[type="checkbox"] {
+  position: absolute !important;
+  opacity: 0 !important;
+  width: 0 !important;
+  height: 0 !important;
+  pointer-events: none !important;
+}
+
+/* ── Label: flex-контейнер с отступом под кастомный чекбокс ─────── */
+.form-request .form-checkbox label {
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 0 !important;
+  cursor: pointer !important;
+  font-size: 13px !important;
+  line-height: 1.5 !important;
+  color: #8a8a8a !important;
+  position: relative !important;
+  padding-left: 28px !important;
+}
+
+/* ── Кастомный чекбокс (квадрат 18×18) через label::before ─────── */
+.form-request .form-checkbox input[type="checkbox"] + label::before {
+  content: '' !important;
+  position: absolute !important;
+  left: 0 !important;
+  top: 1px !important;
+  width: 18px !important;
+  height: 18px !important;
+  border: 1.5px solid #ccc !important;
+  border-radius: 3px !important;
+  background: transparent !important;
+  transition: background .15s, border-color .15s !important;
+  box-sizing: border-box !important;
+}
+
+/* ── Checked state: красный фон ────────────────────────────────── */
+.form-request .form-checkbox input[type="checkbox"]:checked + label::before {
+  background: #c01020 !important;
+  border-color: #c01020 !important;
+}
+
+/* ── Галочка (checkmark) через label::after ────────────────────── */
+.form-request .form-checkbox input[type="checkbox"]:checked + label::after {
+  content: '' !important;
+  position: absolute !important;
+  left: 5.5px !important;
+  top: 3px !important;
+  width: 5px !important;
+  height: 9px !important;
+  border: solid #fff !important;
+  border-width: 0 2px 2px 0 !important;
+  transform: rotate(45deg) !important;
+}
+
+/* ── Focus state для accessibility ─────────────────────────────── */
+.form-request .form-checkbox input[type="checkbox"]:focus-visible + label::before {
+  outline: 2px solid #c01020 !important;
+  outline-offset: 2px !important;
+}
+
+/* ── Ссылка внутри чекбокса ────────────────────────────────────── */
+.form-checkbox a {
+  color: #c01020 !important;
+}
+
+/* ====================================================================
+   MOBILE HOMEPAGE — адаптивные стили (≤768px)
+   ==================================================================== */
+@media (max-width: 768px) {
+  /* Hero: компактнее */
+  .page-header .section-heading.h1 {
+    font-size: 30px !important;
+    line-height: 1.15 !important;
+  }
+  .page-header .content .headline .actions {
+    padding-top: 32px !important;
+  }
+
+  /* Services: плотнее карточки */
+  .services-section .service-desc p {
+    font-size: 15px !important;
+    line-height: 1.45 !important;
+  }
+
+  /* Cases: чуть мельче */
+  .case-desc {
+    font-size: 14px !important;
+  }
+
+  /* Awards: мельче текст */
+  .award-header {
+    font-size: 15px !important;
+  }
+  .award-desc {
+    font-size: 14px !important;
+    line-height: 1.5 !important;
+  }
+
+  /* Card articles на homepage */
+  body.home .card-article__textual {
+    padding: 16px 20px !important;
+  }
+  body.home .card-article__textual__head {
+    font-size: 16px !important;
+    line-height: 1.3 !important;
+  }
+  body.home .card-article__textual__desc {
+    font-size: 14px !important;
+    line-height: 1.5 !important;
+  }
+
+  /* Footer: компактнее */
+  .footer {
+    padding: 28px 0 !important;
+  }
+  .footer .social-networking a {
+    font-size: 13px !important;
+  }
+
+  /* Headings: line-heights для мобилки */
+  .h3 { line-height: 1.2 !important; }
+  .h4 { line-height: 1.25 !important; }
+
+  /* Форма: компактнее */
+  .form-request .form-checkbox label {
+    font-size: 12px !important;
+  }
+}
+
+/* ── Extra small (≤480px) ────────────────────────────────────────── */
+@media (max-width: 480px) {
+  .page-header .section-heading.h1 {
+    font-size: 26px !important;
+  }
+  .split-container {
+    gap: 20px !important;
+  }
+}
+
+/* ====================================================================
+   TRUST BLOCK — тёмный блок «Нам доверяют» (замена #clients)
+   Stripe-стиль: rounded dark card с логотипами и статистиками.
+   Добавлено: 2026-02-23
+   ==================================================================== */
+
+/* ── Контейнер: тёмный rounded блок ────────────────────────────────── */
+#clients .clients-section-c {
+  background: #1a1a1a !important;
+  border-radius: 20px !important;
+  padding: 56px 64px !important;
+  color: #fff !important;
+}
+#clients .clients-section-c h2 {
+  color: #fff !important;
+}
+
+/* ── Верхняя строка: заголовок слева + статы справа ────────────────── */
+#clients .clients-section-c .top-row {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: flex-start !important;
+  gap: 48px !important;
+  margin-bottom: 40px !important;
+}
+#clients .clients-section-c .stats-row {
+  display: flex !important;
+  gap: 40px !important;
+  flex-shrink: 0 !important;
+}
+#clients .clients-section-c .stat-item {
+  text-align: right !important;
+}
+#clients .clients-section-c .trust-stat-num {
+  font-family: 'TTRuns-700', sans-serif !important;
+  font-size: 32px !important;
+  line-height: 1.1 !important;
+  color: #fff !important;
+  letter-spacing: -0.03rem !important;
+}
+#clients .clients-section-c .trust-stat-label {
+  font-size: 14px !important;
+  color: rgba(255,255,255,0.5) !important;
+  margin-top: 4px !important;
+}
+
+/* ── Разделитель ──────────────────────────────────────────────────── */
+#clients .clients-section-c .divider-line {
+  height: 1px !important;
+  background: rgba(255,255,255,0.12) !important;
+  margin-bottom: 40px !important;
+}
+
+/* ── Сетка логотипов ──────────────────────────────────────────────── */
+#clients .clients-section-c .logo-grid {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)) !important;
+  gap: 12px !important;
+}
+#clients .clients-section-c .trust-logo {
+  height: 70px !important;
+  border: 1px solid rgba(255,255,255,0.08) !important;
+  border-radius: 8px !important;
+  background-size: contain !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  filter: brightness(0) invert(1) !important;
+  opacity: 0.45 !important;
+  transition: opacity 0.2s !important;
+}
+#clients .clients-section-c .trust-logo:hover {
+  opacity: 0.85 !important;
+}
+
+/* ── Mobile ───────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  #clients .clients-section-c {
+    padding: 36px 24px !important;
+    border-radius: 16px !important;
+  }
+  #clients .clients-section-c .top-row {
+    flex-direction: column !important;
+    gap: 24px !important;
+    margin-bottom: 28px !important;
+  }
+  #clients .clients-section-c .stats-row {
+    gap: 24px !important;
+    flex-wrap: wrap !important;
+  }
+  #clients .clients-section-c .stat-item {
+    text-align: left !important;
+  }
+  #clients .clients-section-c .trust-stat-num {
+    font-size: 26px !important;
+  }
+}

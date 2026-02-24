@@ -1,0 +1,31 @@
+# System
+.DS_Store
+Thumbs.db
+
+# Excel / бинарники
+*.xlsx
+*.xls
+
+# Генерируемые и кеш
+cache/
+seo_output/
+
+# Бэкапы CSS (не рабочие файлы)
+css/wp-custom-backup*.css
+css/wp-custom-v6-backup*.css
+css/wp-custom-live.css
+css/wp-custom-backup-pre-split.css
+css/*.bak
+*.bak
+
+# Минифицированные файлы темы (3rd party, ~540KB каждый)
+css/styles.min.css
+css/theme-styles.min.css
+css/wp-inline.css
+
+# Шрифты (бинарники, тяжёлые)
+fonts/
+
+# Python кеш
+__pycache__/
+*.pyc

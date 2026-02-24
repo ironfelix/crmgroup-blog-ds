@@ -1,0 +1,634 @@
+=== ЧЕРНОВИК v2: 5 метрик CRM-маркетинга ===
+Улучшения: вводный абзац, связь метрик, FAQ+schema, sidenote в RR/CR, placeholder комментария RR
+Вставка: Gutenberg Code Editor (три точки → Code editor)
+===
+
+<!-- wp:acf/block-content-list {"id":"block_content_list_metrics_v2","name":"acf/block-content-list","data":{"block_content_list_0_block_content_list_name":"LTV: как считать пожизненную ценность клиента","_block_content_list_0_block_content_list_name":"field_637c6a9d3282c","block_content_list_1_block_content_list_name":"Retention Rate: коэффициент удержания клиентов","_block_content_list_1_block_content_list_name":"field_637c6a9d3282c","block_content_list_2_block_content_list_name":"Churn Rate: как измерить отток клиентов","_block_content_list_2_block_content_list_name":"field_637c6a9d3282c","block_content_list_3_block_content_list_name":"AOV: средний чек и его влияние на выручку","_block_content_list_3_block_content_list_name":"field_637c6a9d3282c","block_content_list_4_block_content_list_name":"NPS: индекс потребительской лояльности","_block_content_list_4_block_content_list_name":"field_637c6a9d3282c","block_content_list_5_block_content_list_name":"Как метрики связаны между собой","_block_content_list_5_block_content_list_name":"field_637c6a9d3282c","block_content_list_6_block_content_list_name":"Как улучшить метрики: 8 инструментов","_block_content_list_6_block_content_list_name":"field_637c6a9d3282c","block_content_list_7_block_content_list_name":"Частые вопросы по метрикам CRM","_block_content_list_7_block_content_list_name":"field_637c6a9d3282c","block_content_list":8,"_block_content_list":"field_637c6a5f32829"},"align":"","mode":"preview"} /-->
+
+<!-- wp:paragraph -->
+<p>Здоровье клиентской базы определяют пять показателей: сколько приносит один клиент за&nbsp;всё время, как долго он&nbsp;остаётся, почему уходит, сколько тратит за&nbsp;заказ и&nbsp;готов&nbsp;ли рекомендовать бренд. Два бизнеса с&nbsp;одинаковой выручкой могут находиться в&nbsp;принципиально разном положении — один растёт за&nbsp;счёт лояльных, другой каждый месяц восполняет отток. Эти показатели объясняют разницу.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:acf/block-sidenote {"id":"block_sidenote_intro_1","name":"acf/block-sidenote","data":{"block_sidenote_text":"","_block_sidenote_text":"field_637f0e6426d4a","block_sidenotes_0_block_sidenote_type":"Читайте также","_block_sidenotes_0_block_sidenote_type":"field_63e615b411a3b","block_sidenotes_0_block_sidenote_name_1":"Читайте также","_block_sidenotes_0_block_sidenote_name_1":"field_63e615fc11a3c","block_sidenotes_0_block_sidenote_select_text":"","_block_sidenotes_0_block_sidenote_select_text":"field_637f0e643b493","block_sidenotes_0_block_sidenote_content":"<a href=\"https://crmgroup.ru/blog/incrementality/\">Как правильно считать доходность в&nbsp;CRM-маркетинге</a>","_block_sidenotes_0_block_sidenote_content":"field_637f0f7a051ef","block_sidenotes":1,"_block_sidenotes":"field_637f0e6426d8c"},"align":"","mode":"edit"} /-->
+
+<!-- wp:group {"layout":{"type":"constrained"}} -->
+<div id="anchor_1" class="wp-block-group">
+<!-- wp:heading -->
+<h2 class="wp-block-heading">LTV: как считать пожизненную ценность клиента</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p><a href="https://emailsoldiers.ru/glossary/ltv">LTV</a> (Customer Lifetime Value) показывает общую прибыль от&nbsp;одного клиента за&nbsp;всё время взаимодействия. По&nbsp;данным Bain&nbsp;&amp;&nbsp;Company, удержать клиента в&nbsp;5–7 раз дешевле, чем привлечь нового, поэтому соотношение LTV к&nbsp;стоимости привлечения (CAC) — главный показатель окупаемости маркетинга.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Как считать LTV</h3>
+<!-- /wp:heading -->
+
+<!-- wp:image {"id":19381,"sizeSlug":"full","linkDestination":"none"} -->
+<figure class="wp-block-image size-full"><img src="https://crmgroup.ru/wp-content/uploads/2024/08/img-94.png" alt="Формула LTV: ARPU умножить на среднюю продолжительность взаимодействия" class="wp-image-19381"/></figure>
+<!-- /wp:image -->
+
+<!-- wp:paragraph -->
+<p><a href="https://crmgroup.ru/glossary/arpu/">ARPU</a> (Average Revenue Per User) — средний доход от&nbsp;одного клиента за&nbsp;период. Средняя продолжительность взаимодействия — время, в&nbsp;течение которого клиент остаётся с&nbsp;компанией.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p><strong>Пример:</strong> клиент пользовался сервисом по&nbsp;подписке с&nbsp;ежемесячной оплатой 500&nbsp;рублей в&nbsp;течение года. LTV = 500 &times; 12 = 6&nbsp;000 рублей.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Зачем считать LTV</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Если LTV выше стоимости привлечения клиента (<a href="https://emailsoldiers.ru/glossary/customer-acquisition-cost">CAC</a>), вложения в&nbsp;маркетинг окупаются. По&nbsp;данным McKinsey, CAC за&nbsp;последние 5 лет вырос на&nbsp;50-70%, поэтому отслеживать соотношение LTV/CAC критично.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>LTV помогает определить самых ценных клиентов. Сравните покупателей по&nbsp;LTV, выделите тех, кто выше среднего. По&nbsp;практике наших клиентов, персональные офферы для top-20% по&nbsp;LTV увеличивают повторные покупки на&nbsp;15–25%.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:group {"metadata":{"categories":["custom"],"patternName":"comment","name":"Комментарий"},"align":"full","className":"block-comment","style":{"color":{"background":"#fff9f0"}}} -->
+<div class="wp-block-group alignfull block-comment has-background" style="background-color:#fff9f0">
+<!-- wp:columns {"className":"block-comment__text"} -->
+<div class="wp-block-columns block-comment__text"><!-- wp:column -->
+<div class="wp-block-column"><!-- wp:paragraph -->
+<p>Главная трудность с&nbsp;подсчётом LTV — определиться, на&nbsp;каком интервале считать. По&nbsp;определению, это весь срок жизни клиента. Но&nbsp;представим: покупатель регулярно совершал покупки, а&nbsp;потом перестал. Мы&nbsp;посчитали его LTV. Через год он&nbsp;вернулся. Пересчитывать или считать его новым клиентом?</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>Чтобы избежать этой проблемы, LTV считают на&nbsp;ограниченном периоде — за&nbsp;квартал или за&nbsp;год. Для e-commerce в&nbsp;России средний горизонт — 3-4 покупки за&nbsp;18 месяцев.</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:column --></div>
+<!-- /wp:columns -->
+
+<!-- wp:columns {"verticalAlignment":"top"} -->
+<div class="wp-block-columns are-vertically-aligned-top"><!-- wp:column {"verticalAlignment":"top","width":"100%"} -->
+<div class="wp-block-column is-vertically-aligned-top" style="flex-basis:100%"><!-- wp:columns {"className":"block-comment__autor"} -->
+<div class="wp-block-columns block-comment__autor"><!-- wp:column {"width":"72px","className":"autor-photo"} -->
+<div class="wp-block-column autor-photo" style="flex-basis:72px"><!-- wp:image {"id":11522,"sizeSlug":"full","linkDestination":"none"} -->
+<figure class="wp-block-image size-full"><img src="https://crmgroup.ru/wp-content/uploads/2023/03/Valera-Kurakin.png" alt="Валерий Куракин" class="wp-image-11522"/></figure>
+<!-- /wp:image --></div>
+<!-- /wp:column -->
+
+<!-- wp:column {"verticalAlignment":"center","width":"66.66%","className":"block-comment__autor-about"} -->
+<div class="wp-block-column is-vertically-aligned-center block-comment__autor-about" style="flex-basis:66.66%"><!-- wp:paragraph {"className":"autor-name"} -->
+<p class="autor-name">Валерий Куракин</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph {"className":"autor-post"} -->
+<p class="autor-post">Руководитель отдела аналитики CRM-group</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:column --></div>
+<!-- /wp:columns --></div>
+<!-- /wp:column --></div>
+<!-- /wp:columns --></div>
+<!-- /wp:group -->
+
+</div>
+<!-- /wp:group -->
+
+<!-- wp:group {"layout":{"type":"constrained"}} -->
+<div id="anchor_2" class="wp-block-group">
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Retention Rate: коэффициент удержания клиентов</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p><a href="https://crmgroup.ru/glossary/retention/">Retention Rate</a> (RR) показывает, какой процент клиентов продолжает пользоваться продуктами или услугами компании за&nbsp;конкретный период. Для e-commerce нормальный RR за&nbsp;12 месяцев — 20-30%. Для SaaS-сервисов ориентир выше: 85-95% ежемесячно.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Как считать Retention Rate</h3>
+<!-- /wp:heading -->
+
+<!-- wp:image {"id":19380,"sizeSlug":"full","linkDestination":"none"} -->
+<figure class="wp-block-image size-full"><img src="https://crmgroup.ru/wp-content/uploads/2024/08/img-93.png" alt="Формула Retention Rate: (Клиенты на конец периода минус Новые клиенты) делить на Клиенты на начало периода умножить на 100%" class="wp-image-19380"/></figure>
+<!-- /wp:image -->
+
+<!-- wp:paragraph -->
+<p><strong>Пример:</strong> у&nbsp;компании было 100&nbsp;клиентов. За&nbsp;месяц 10 ушли, но&nbsp;пришли 20 новых, увеличив базу до&nbsp;110 человек. RR = ((110 &minus; 20) / 100) &times; 100% = 90%.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Зачем считать Retention Rate</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Зная RR, команда прогнозирует, сколько клиентов останется в&nbsp;следующем периоде, и&nbsp;рассчитывает бюджет на&nbsp;привлечение для достижения <a href="https://crmgroup.ru/glossary/kpi/">KPI</a>.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>RR отслеживает тенденции в&nbsp;поведении покупателей. Если клиенты регулярно уходят после трёх месяцев подписки — это видно по&nbsp;периодическому RR. Сигнал: нужно разобраться, что происходит на&nbsp;этом этапе, и&nbsp;скорректировать онбординг или коммуникацию.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Рост RR напрямую увеличивает LTV. Каждый процент удержания сокращает потребность в&nbsp;новых клиентах и&nbsp;делает выручку предсказуемой.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>RR варьируется по&nbsp;отраслям, поэтому сравнивайте его внутри компании по&nbsp;периодам и&nbsp;по&nbsp;средним значениям в&nbsp;нише, а&nbsp;не&nbsp;с&nbsp;компаниями из&nbsp;другого рынка.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:group {"metadata":{"categories":["custom"],"patternName":"comment","name":"Комментарий"},"align":"full","className":"block-comment","style":{"color":{"background":"#fff9f0"}}} -->
+<div class="wp-block-group alignfull block-comment has-background" style="background-color:#fff9f0">
+<!-- wp:columns {"className":"block-comment__text"} -->
+<div class="wp-block-columns block-comment__text"><!-- wp:column -->
+<div class="wp-block-column"><!-- wp:paragraph -->
+<p>Коэффициент удержания как средний показатель по&nbsp;базе скрывает больше, чем показывает. В&nbsp;наших проектах почти всегда оказывается, что за&nbsp;«нормальными» 35–40% прячутся два совершенно разных потока: клиенты из&nbsp;одного канала держатся полтора года, из&nbsp;другого уходят через три месяца. Когортный анализ по&nbsp;каналам привлечения — это первое, что мы&nbsp;делаем на&nbsp;старте CRM-аудита.</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:column --></div>
+<!-- /wp:columns -->
+
+<!-- wp:columns {"verticalAlignment":"top"} -->
+<div class="wp-block-columns are-vertically-aligned-top"><!-- wp:column {"verticalAlignment":"top","width":"100%"} -->
+<div class="wp-block-column is-vertically-aligned-top" style="flex-basis:100%"><!-- wp:columns {"className":"block-comment__autor"} -->
+<div class="wp-block-columns block-comment__autor"><!-- wp:column {"width":"72px","className":"autor-photo"} -->
+<div class="wp-block-column autor-photo" style="flex-basis:72px"><!-- wp:image {"id":11869,"sizeSlug":"full","linkDestination":"none"} -->
+<figure class="wp-block-image size-full"><img src="https://crmgroup.ru/wp-content/uploads/2025/05/Иван-Ильин.jpg" alt="Иван Ильин" class="wp-image-11869"/></figure>
+<!-- /wp:image --></div>
+<!-- /wp:column -->
+
+<!-- wp:column {"verticalAlignment":"center","width":"66.66%","className":"block-comment__autor-about"} -->
+<div class="wp-block-column is-vertically-aligned-center block-comment__autor-about" style="flex-basis:66.66%"><!-- wp:paragraph {"className":"autor-name"} -->
+<p class="autor-name">Иван Ильин</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph {"className":"autor-post"} -->
+<p class="autor-post">Основатель, Генеральный директор CRM-group</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:column --></div>
+<!-- /wp:columns --></div>
+<!-- /wp:column --></div>
+<!-- /wp:columns --></div>
+<!-- /wp:group -->
+
+<!-- wp:acf/block-sidenote {"id":"block_sidenote_rr_1","name":"acf/block-sidenote","data":{"block_sidenote_text":"","_block_sidenote_text":"field_637f0e6426d4a","block_sidenotes_0_block_sidenote_type":"Читайте также","_block_sidenotes_0_block_sidenote_type":"field_63e615b411a3b","block_sidenotes_0_block_sidenote_name_1":"Читайте также","_block_sidenotes_0_block_sidenote_name_1":"field_63e615fc11a3c","block_sidenotes_0_block_sidenote_select_text":"","_block_sidenotes_0_block_sidenote_select_text":"field_637f0e643b493","block_sidenotes_0_block_sidenote_content":"<a href=\"https://crmgroup.ru/blog/how-to-build-omnichannel-communication/\">Как построить омниканальную коммуникацию с&nbsp;клиентами</a>","_block_sidenotes_0_block_sidenote_content":"field_637f0f7a051ef","block_sidenotes":1,"_block_sidenotes":"field_637f0e6426d8c"},"align":"","mode":"edit"} /-->
+
+</div>
+<!-- /wp:group -->
+
+<!-- wp:group {"layout":{"type":"constrained"}} -->
+<div id="anchor_3" class="wp-block-group">
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Churn Rate: как измерить отток клиентов</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p><a href="https://crmgroup.ru/glossary/customer-churn-rate/">Churn Rate</a> (CR) показывает, какой процент клиентов отказался от&nbsp;продукта за&nbsp;период: перестал покупать товар, отменил подписку, не&nbsp;вернулся на&nbsp;сайт.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Как считать Churn Rate</h3>
+<!-- /wp:heading -->
+
+<!-- wp:image {"id":19379,"sizeSlug":"full","linkDestination":"none"} -->
+<figure class="wp-block-image size-full"><img src="https://crmgroup.ru/wp-content/uploads/2024/08/img-92.png" alt="Формула Churn Rate: Ушедшие клиенты делить на Клиенты на начало периода умножить на 100%" class="wp-image-19379"/></figure>
+<!-- /wp:image -->
+
+<!-- wp:paragraph -->
+<p><strong>Пример:</strong> 15 из&nbsp;100 клиентов компании ушли за&nbsp;месяц. CR = (15 / 100) &times; 100% = 15%.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Зачем считать Churn Rate</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Чтобы оценить стабильность клиентской базы. <a href="https://recurly.com/research/churn-rate-benchmarks/" target="_blank" rel="nofollow noreferrer">Средний CR для различных отраслей — 3-7%</a>. Чем ниже показатель, тем лучше. CR от&nbsp;10% в&nbsp;месяц и&nbsp;выше указывает на&nbsp;проблемы с&nbsp;продуктом или обслуживанием: клиенты уходят быстрее, чем компания привлекает новых.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Все метрики связаны: снижение CR увеличивает LTV клиентов и&nbsp;сокращает расходы на&nbsp;привлечение. По&nbsp;нашей практике, интернет-магазины, которые снижают CR на&nbsp;5 процентных пунктов, получают рост LTV на&nbsp;25-35%.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:acf/block-sidenote {"id":"block_sidenote_cr_1","name":"acf/block-sidenote","data":{"block_sidenote_text":"","_block_sidenote_text":"field_637f0e6426d4a","block_sidenotes_0_block_sidenote_type":"Читайте также","_block_sidenotes_0_block_sidenote_type":"field_63e615b411a3b","block_sidenotes_0_block_sidenote_name_1":"Читайте также","_block_sidenotes_0_block_sidenote_name_1":"field_63e615fc11a3c","block_sidenotes_0_block_sidenote_select_text":"","_block_sidenotes_0_block_sidenote_select_text":"field_637f0e643b493","block_sidenotes_0_block_sidenote_content":"<a href=\"https://crmgroup.ru/glossary/trigger-emails/\">Триггерные рассылки: что это и&nbsp;как настроить</a>","_block_sidenotes_0_block_sidenote_content":"field_637f0f7a051ef","block_sidenotes":1,"_block_sidenotes":"field_637f0e6426d8c"},"align":"","mode":"edit"} /-->
+
+</div>
+<!-- /wp:group -->
+
+<!-- wp:group {"layout":{"type":"constrained"}} -->
+<div id="anchor_4" class="wp-block-group">
+<!-- wp:heading -->
+<h2 class="wp-block-heading">AOV: средний чек и&nbsp;его влияние на&nbsp;выручку</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p><a href="https://crmgroup.ru/glossary/average-order-value/">AOV</a> (Average Order Value) — средняя сумма одного заказа за&nbsp;период. Этот показатель помогает понять покупательские привычки и&nbsp;найти возможности для роста выручки без увеличения трафика.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Как считать AOV</h3>
+<!-- /wp:heading -->
+
+<!-- wp:image {"id":19377,"sizeSlug":"full","linkDestination":"none"} -->
+<figure class="wp-block-image size-full"><img src="https://crmgroup.ru/wp-content/uploads/2024/08/img-90.png" alt="Формула AOV: Общая выручка делить на Количество заказов" class="wp-image-19377"/></figure>
+<!-- /wp:image -->
+
+<!-- wp:paragraph -->
+<p><strong>Пример:</strong> 50 заказов принесли 100&nbsp;000 рублей. AOV = 100&nbsp;000 / 50 = 2&nbsp;000 рублей.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Зачем считать AOV</h3>
+<!-- /wp:heading -->
+
+<!-- wp:acf/block-sidenote {"id":"block_sidenote_aov_1","name":"acf/block-sidenote","data":{"block_sidenote_text":"","_block_sidenote_text":"field_637f0e6426d4a","block_sidenotes_0_block_sidenote_type":"Смотрите кейс","_block_sidenotes_0_block_sidenote_type":"field_63e615b411a3b","block_sidenotes_0_block_sidenote_name_1":"Смотрите кейс","_block_sidenotes_0_block_sidenote_name_1":"field_63e615fc11a3c","block_sidenotes_0_block_sidenote_select_text":"","_block_sidenotes_0_block_sidenote_select_text":"field_637f0e643b493","block_sidenotes_0_block_sidenote_content":"<a href=\"https://emailsoldiers.ru/cases/vichy-triggers\">На 36% увеличили средний чек промокампании</a>","_block_sidenotes_0_block_sidenote_content":"field_637f0f7a051ef","block_sidenotes":1,"_block_sidenotes":"field_637f0e6426d8c"},"align":"","mode":"edit"} /-->
+
+<!-- wp:paragraph -->
+<p>AOV показывает, какие продукты клиенты чаще покупают вместе. Это открывает возможности для кросс-продаж и&nbsp;апселлов. Например, добавление блока «С этим товаром покупают» в&nbsp;корзину в&nbsp;проектах наших клиентов увеличивало AOV на&nbsp;12-18%.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Знание AOV позволяет точнее планировать маркетинговые кампании и&nbsp;<a href="https://emailsoldiers.ru/glossary/loyalty-programs">программы лояльности</a>. Если средний чек — 2&nbsp;000 рублей, скидка в&nbsp;200 рублей при заказе от&nbsp;3&nbsp;000 рублей стимулирует добрать товар, а&nbsp;не&nbsp;просто снижает маржу.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Рост AOV напрямую увеличивает LTV при той&nbsp;же частоте покупок. Если клиент покупает 4 раза в&nbsp;год и&nbsp;AOV вырос с&nbsp;2&nbsp;000 до&nbsp;2&nbsp;400 рублей, LTV за&nbsp;год растёт с&nbsp;8&nbsp;000 до&nbsp;9&nbsp;600 рублей.</p>
+<!-- /wp:paragraph -->
+
+</div>
+<!-- /wp:group -->
+
+<!-- wp:group {"layout":{"type":"constrained"}} -->
+<div id="anchor_5" class="wp-block-group">
+<!-- wp:heading -->
+<h2 class="wp-block-heading">NPS: индекс потребительской лояльности</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p><a href="https://emailsoldiers.ru/glossary/nps">NPS</a> (Net Promoter Score) измеряет готовность клиентов рекомендовать компанию другим людям. По&nbsp;данным Bain&nbsp;&amp;&nbsp;Company, которая разработала индекс, компании с&nbsp;NPS выше 50% растут в&nbsp;2-2,5 раза быстрее конкурентов.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Как считать NPS</h3>
+<!-- /wp:heading -->
+
+<!-- wp:acf/block-sidenote {"id":"block_sidenote_nps_1","name":"acf/block-sidenote","data":{"block_sidenote_text":"","_block_sidenote_text":"field_637f0e6426d4a","block_sidenotes_0_block_sidenote_type":"Читайте также","_block_sidenotes_0_block_sidenote_type":"field_63e615b411a3b","block_sidenotes_0_block_sidenote_name_1":"Читайте также","_block_sidenotes_0_block_sidenote_name_1":"field_63e615fc11a3c","block_sidenotes_0_block_sidenote_select_text":"","_block_sidenotes_0_block_sidenote_select_text":"field_637f0e643b493","block_sidenotes_0_block_sidenote_content":"<a href=\"https://crmgroup.ru/blog/nps-survey/\">Как мы проводили NPS-опрос и&nbsp;что изменили в&nbsp;работе</a>","_block_sidenotes_0_block_sidenote_content":"field_637f0f7a051ef","block_sidenotes":1,"_block_sidenotes":"field_637f0e6426d8c"},"align":"","mode":"edit"} /-->
+
+<!-- wp:paragraph -->
+<p>Расчёт NPS идёт в&nbsp;два этапа. Сначала клиентов просят оценить по&nbsp;десятибалльной шкале, насколько они готовы рекомендовать бренд. Затем ответивших делят на&nbsp;три группы:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list {"ordered":true} -->
+<ol><!-- wp:list-item -->
+<li><strong>Промоутеры</strong> (оценка 9-10 баллов) — лояльны к&nbsp;бренду и&nbsp;активно его рекомендуют.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Нейтралы</strong> (оценка 7-8 баллов) — в&nbsp;целом довольны, но&nbsp;не&nbsp;привязаны. Могут уйти к&nbsp;конкурентам за&nbsp;более выгодным предложением.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Критики</strong> (оценка 0-6 баллов) — недовольны качеством, близки к&nbsp;оттоку. Чаще всего именно они пишут негативные отзывы.</li>
+<!-- /wp:list-item --></ol>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>На&nbsp;втором этапе NPS рассчитывают по&nbsp;формуле:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:image {"id":19378,"sizeSlug":"full","linkDestination":"none"} -->
+<figure class="wp-block-image size-full"><img src="https://crmgroup.ru/wp-content/uploads/2024/08/img-91.png" alt="Формула NPS: процент промоутеров минус процент критиков" class="wp-image-19378"/></figure>
+<!-- /wp:image -->
+
+<!-- wp:paragraph -->
+<p><strong>Пример:</strong> опрос выявил 50% промоутеров, 30% нейтралов и&nbsp;20% критиков. NPS = 50% &minus; 20% = 30%.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Зачем считать NPS</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>NPS позволяет оценить лояльность клиентов, а&nbsp;высокое значение коррелирует с&nbsp;ростом бизнеса. <a href="https://www.qualtrics.com/experience-management/customer/good-net-promoter-score/" target="_blank" rel="nofollow noreferrer">Bain&nbsp;&amp;&nbsp;Company</a> предлагает такую градацию:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:table -->
+<figure class="wp-block-table"><table><thead><tr><th>Коэффициент NPS</th><th>Как интерпретировать</th></tr></thead><tbody><tr><td><strong>80-100%</strong></td><td>Идеально. Компании с&nbsp;таким NPS считаются лучшими в&nbsp;нише.</td></tr><tr><td><strong>50-80%</strong></td><td>Отлично. Бренды мирового уровня. NPS Netflix в&nbsp;2022 году — 68%, Starbucks — 77%.</td></tr><tr><td><strong>20-50%</strong></td><td>Хорошо. Стабильные, зарекомендовавшие себя компании.</td></tr><tr><td><strong>0-20%</strong></td><td>Есть куда расти, но&nbsp;положительный индекс — уже показатель здорового бизнеса.</td></tr></tbody></table></figure>
+<!-- /wp:table -->
+
+<!-- wp:paragraph -->
+<p>Если NPS отрицательный, то&nbsp;есть число критиков превышает число промоутеров, это сигнал к&nbsp;срочному анализу. Нужно понять причины недовольства и&nbsp;устранить их&nbsp;до&nbsp;того, как отток вырастет.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:group {"metadata":{"categories":["custom"],"patternName":"comment","name":"Комментарий"},"align":"full","className":"block-comment","style":{"color":{"background":"#fff9f0"}}} -->
+<div class="wp-block-group alignfull block-comment has-background" style="background-color:#fff9f0">
+<!-- wp:columns {"className":"block-comment__text"} -->
+<div class="wp-block-columns block-comment__text"><!-- wp:column -->
+<div class="wp-block-column"><!-- wp:paragraph -->
+<p>NPS, пожалуй, самая простая метрика для оценки удовлетворённости. Один вопрос, и&nbsp;вы&nbsp;понимаете, насколько клиенты довольны продуктом и&nbsp;готовы&nbsp;ли его рекомендовать.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>Для одного из&nbsp;наших клиентов в&nbsp;фармацевтике мы&nbsp;внедрили систематические NPS-опросы врачей после визитов медицинских представителей. Все показатели собираем в&nbsp;дашборд. Клиент отслеживает динамику ответов и&nbsp;работает с&nbsp;аномалиями — низкими оценками в&nbsp;конкретных регионах.</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:column --></div>
+<!-- /wp:columns -->
+
+<!-- wp:columns {"verticalAlignment":"top"} -->
+<div class="wp-block-columns are-vertically-aligned-top"><!-- wp:column {"verticalAlignment":"top","width":"100%"} -->
+<div class="wp-block-column is-vertically-aligned-top" style="flex-basis:100%"><!-- wp:columns {"className":"block-comment__autor"} -->
+<div class="wp-block-columns block-comment__autor"><!-- wp:column {"width":"72px","className":"autor-photo"} -->
+<div class="wp-block-column autor-photo" style="flex-basis:72px"><!-- wp:image {"id":12411,"sizeSlug":"full","linkDestination":"none"} -->
+<figure class="wp-block-image size-full"><img src="https://crmgroup.ru/wp-content/uploads/2023/10/Александр-Волков_1.png" alt="Александр Волков" class="wp-image-12411"/></figure>
+<!-- /wp:image --></div>
+<!-- /wp:column -->
+
+<!-- wp:column {"verticalAlignment":"center","width":"66.66%","className":"block-comment__autor-about"} -->
+<div class="wp-block-column is-vertically-aligned-center block-comment__autor-about" style="flex-basis:66.66%"><!-- wp:paragraph {"className":"autor-name"} -->
+<p class="autor-name">Александр Волков</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph {"className":"autor-post"} -->
+<p class="autor-post">Руководитель Martech-направления CRM-group</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:column --></div>
+<!-- /wp:columns --></div>
+<!-- /wp:column --></div>
+<!-- /wp:columns --></div>
+<!-- /wp:group -->
+
+</div>
+<!-- /wp:group -->
+
+<!-- wp:group {"layout":{"type":"constrained"}} -->
+<div id="anchor_6" class="wp-block-group">
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Как метрики связаны между собой</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Пять метрик CRM-маркетинга образуют замкнутый цикл: изменение одного показателя тянет за&nbsp;собой остальные. Зная эти связи, легче расставить приоритеты и&nbsp;не&nbsp;тратить бюджет на&nbsp;точечные улучшения без системного эффекта.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:table -->
+<figure class="wp-block-table"><table><thead><tr><th>Связка</th><th>Как работает</th><th>Пример</th></tr></thead><tbody><tr><td><strong>RR &uarr; &rarr; CR &darr;</strong></td><td>Retention Rate и&nbsp;Churn Rate — зеркальные метрики. Рост одной = падение другой.</td><td>RR вырос с&nbsp;85% до&nbsp;90% — CR упал с&nbsp;15% до&nbsp;10%</td></tr><tr><td><strong>RR &uarr; &rarr; LTV &uarr;</strong></td><td>Чем дольше клиент с&nbsp;компанией, тем больше совокупная выручка от&nbsp;него.</td><td>Клиент остаётся 18 мес вместо 12 — LTV растёт на&nbsp;50%</td></tr><tr><td><strong>AOV &uarr; &rarr; LTV &uarr;</strong></td><td>Средний чек растёт — каждая покупка приносит больше денег.</td><td>AOV +20% при 4 покупках в&nbsp;год = LTV +20%</td></tr><tr><td><strong>NPS &uarr; &rarr; RR &uarr;</strong></td><td>Лояльные клиенты реже уходят и&nbsp;покупают чаще.</td><td>Промоутеры покупают в&nbsp;2-3 раза чаще критиков</td></tr><tr><td><strong>NPS &uarr; &rarr; CAC &darr;</strong></td><td>Промоутеры приводят новых клиентов через рекомендации, снижая стоимость привлечения.</td><td>Реферальный канал обходится в&nbsp;3-5 раз дешевле платной рекламы</td></tr></tbody></table></figure>
+<!-- /wp:table -->
+
+<!-- wp:paragraph -->
+<p>Отсюда стратегия: начинайте с&nbsp;NPS и&nbsp;Retention Rate. Рост удержания запускает цепную реакцию: снижается отток, растёт LTV, а&nbsp;лояльные клиенты приводят новых. AOV подключайте вторым этапом через кросс-продажи и&nbsp;персонализацию.</p>
+<!-- /wp:paragraph -->
+
+</div>
+<!-- /wp:group -->
+
+<!-- wp:group {"layout":{"type":"constrained"}} -->
+<div id="anchor_7" class="wp-block-group">
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Как улучшить метрики: 8 инструментов</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Метрики переплетаются, и&nbsp;работа с&nbsp;одной влияет на&nbsp;остальные. Восемь инструментов, которые улучшают показатели сразу по&nbsp;нескольким направлениям:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:group {"metadata":{"categories":["custom"],"patternName":"comment","name":"Комментарий"},"align":"full","className":"block-comment","style":{"color":{"background":"#fff9f0"}}} -->
+<div class="wp-block-group alignfull block-comment has-background" style="background-color:#fff9f0">
+<!-- wp:columns {"className":"block-comment__text"} -->
+<div class="wp-block-columns block-comment__text"><!-- wp:column -->
+<div class="wp-block-column"><!-- wp:paragraph -->
+<p>Метрики тесно связаны. Повышение Retention Rate ведёт к&nbsp;снижению Churn Rate, что увеличивает LTV. Своевременное проведение NPS-опроса позволяет держать руку на&nbsp;пульсе и&nbsp;быстро вносить корректировки.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>Я&nbsp;бы добавил метрику Contactability — способность компании связаться с&nbsp;клиентом через разные каналы. Она помогает выявить самый эффективный канал для работы с&nbsp;базой.</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:column --></div>
+<!-- /wp:columns -->
+
+<!-- wp:columns {"verticalAlignment":"top"} -->
+<div class="wp-block-columns are-vertically-aligned-top"><!-- wp:column {"verticalAlignment":"top","width":"100%"} -->
+<div class="wp-block-column is-vertically-aligned-top" style="flex-basis:100%"><!-- wp:columns {"className":"block-comment__autor"} -->
+<div class="wp-block-columns block-comment__autor"><!-- wp:column {"width":"72px","className":"autor-photo"} -->
+<div class="wp-block-column autor-photo" style="flex-basis:72px"><!-- wp:image {"id":19476,"sizeSlug":"full","linkDestination":"none"} -->
+<figure class="wp-block-image size-full"><img src="https://crmgroup.ru/wp-content/uploads/2024/08/sobolevskyi.jpg" alt="Сергей Соболевский" class="wp-image-19476"/></figure>
+<!-- /wp:image --></div>
+<!-- /wp:column -->
+
+<!-- wp:column {"verticalAlignment":"center","width":"66.66%","className":"block-comment__autor-about"} -->
+<div class="wp-block-column is-vertically-aligned-center block-comment__autor-about" style="flex-basis:66.66%"><!-- wp:paragraph {"className":"autor-name"} -->
+<p class="autor-name">Сергей Соболевский</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph {"className":"autor-post"} -->
+<p class="autor-post">Ведущий менеджер проектов CRM-group</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:column --></div>
+<!-- /wp:columns --></div>
+<!-- /wp:column --></div>
+<!-- /wp:columns --></div>
+<!-- /wp:group -->
+
+<!-- wp:group {"metadata":{"categories":["custom"],"patternName":"astrolog/block-result","name":"Блок - результат"},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group"><!-- wp:group {"className":"block-result","style":{"color":{"background":"#fff9f0"}}} -->
+<div class="wp-block-group block-result has-background" style="background-color:#fff9f0"><!-- wp:heading {"level":3,"className":"h2-smalls block-result__heading mb-30"} -->
+<h3 class="wp-block-heading h2-smalls block-result__heading mb-30"><span style="font-weight: 400;">Проводим аудит и&nbsp;составляем action-план для увеличения выручки. <a style="color:#dc1327" href="https://crmgroup.ru/?form=consulting">Оставьте заявку</a>. Проведём бесплатную консультацию.</span></h3>
+<!-- /wp:heading --></div>
+<!-- /wp:group --></div>
+<!-- /wp:group -->
+
+<!-- wp:paragraph -->
+<p>Восемь инструментов, которые работают на&nbsp;рост всех пяти метрик:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list {"ordered":true} -->
+<ol><!-- wp:list-item -->
+<li><strong><a href="https://crmgroup.ru/glossary/trigger-emails/">Триггерные рассылки</a></strong> — автоматические сообщения в&nbsp;ответ на&nbsp;действия пользователя. Брошенная корзина, просмотр без покупки, неактивность 30+ дней. По&nbsp;данным DMA/Litmus (2023), email-маркетинг возвращает $36 на&nbsp;каждый вложенный доллар.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong><a href="https://crmgroup.ru/glossary/omnichannel/">Омниканальность</a></strong> — взаимодействие через email, SMS, чат-боты, push-уведомления с&nbsp;единым контекстом. По&nbsp;данным McKinsey, 71% клиентов ожидают персонализированную коммуникацию. <a href="https://crmgroup.ru/blog/how-to-build-omnichannel-communication/">Омниканальная стратегия</a> обеспечивает полный охват.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong><a href="https://crmgroup.ru/glossary/kaskadnye-kommunikaczii/">Каскадные коммуникации</a></strong> — отправка сообщений последовательно по&nbsp;нескольким каналам. Если email не&nbsp;открыли за&nbsp;24 часа, отправляем push-уведомление. Не&nbsp;отреагировали на&nbsp;push, следом SMS. Повышают шанс контакта с&nbsp;клиентом в&nbsp;2-3 раза.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Апселлы</strong> — предложение более дорогих или расширенных версий продукта в&nbsp;момент покупки. Увеличивают AOV на&nbsp;10-30%. Работает при условии, что предложение полезно клиенту, а&nbsp;не&nbsp;навязано ради чека.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Кросс-продажи</strong> — предложение сопутствующих товаров. «К этим кроссовкам берут стельки и&nbsp;средство для ухода». Помогает увеличить AOV и&nbsp;удовлетворённость клиента.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Реферальные программы</strong> — системы вознаграждений за&nbsp;привлечение друзей. Промоутеры из&nbsp;NPS-опроса станут первыми кандидатами. Реферальный канал обходится в&nbsp;3-5 раз дешевле платной рекламы и&nbsp;приводит клиентов с&nbsp;LTV выше среднего.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong><a href="https://emailsoldiers.ru/glossary/loyalty-programs">Программы лояльности</a></strong> — скидки, бонусы и&nbsp;спецпредложения за&nbsp;повторные покупки. Стимулируют возвраты, повышая RR и&nbsp;LTV. Работают лучше всего в&nbsp;связке с&nbsp;персонализацией.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Персонализация</strong> — адаптация сообщений, рекомендаций и&nbsp;офферов под конкретных клиентов. По&nbsp;нашей практике, персонализированные email-кампании дают CTR на&nbsp;40-60% выше стандартных массовых рассылок. Влияет на&nbsp;AOV, RR и&nbsp;NPS одновременно.</li>
+<!-- /wp:list-item --></ol>
+<!-- /wp:list -->
+
+<!-- wp:acf/block-sidenote {"id":"block_sidenote_tools_1","name":"acf/block-sidenote","data":{"block_sidenote_text":"","_block_sidenote_text":"field_637f0e6426d4a","block_sidenotes_0_block_sidenote_type":"Читайте также","_block_sidenotes_0_block_sidenote_type":"field_63e615b411a3b","block_sidenotes_0_block_sidenote_name_1":"Читайте также","_block_sidenotes_0_block_sidenote_name_1":"field_63e615fc11a3c","block_sidenotes_0_block_sidenote_select_text":"","_block_sidenotes_0_block_sidenote_select_text":"field_637f0e643b493","block_sidenotes_0_block_sidenote_content":"<a href=\"https://crmgroup.ru/crm-marketing/\">CRM-маркетинг: что это и&nbsp;как работает</a>","_block_sidenotes_0_block_sidenote_content":"field_637f0f7a051ef","block_sidenotes":1,"_block_sidenotes":"field_637f0e6426d8c"},"align":"","mode":"edit"} /-->
+
+<!-- wp:group {"metadata":{"categories":["custom"],"patternName":"comment","name":"Комментарий"},"align":"full","className":"block-comment","style":{"color":{"background":"#fff9f0"}}} -->
+<div class="wp-block-group alignfull block-comment has-background" style="background-color:#fff9f0">
+<!-- wp:columns {"className":"block-comment__text"} -->
+<div class="wp-block-columns block-comment__text"><!-- wp:column -->
+<div class="wp-block-column"><!-- wp:paragraph -->
+<p>Мы&nbsp;регулярно замеряем LTV, Churn Rate и&nbsp;NPS в&nbsp;нашем деловом сообществе фанатов сервиса servicefans.ru. На&nbsp;основании замеров и&nbsp;обратной связи <a href="https://crmgroup.ru/glossary/process-approach-marketing/">улучшаем процессы</a> онбординга и&nbsp;пребывания участников.</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>Как говорил Билл Хьюлетт: невозможно чем-то управлять, пока не&nbsp;измерил. Но&nbsp;измерять метрики стоит только тогда, когда вы&nbsp;готовы внедрять результаты в&nbsp;жизнь компании, а&nbsp;не&nbsp;просто показать на&nbsp;конференции красивый слайд.</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:column --></div>
+<!-- /wp:columns -->
+
+<!-- wp:columns {"verticalAlignment":"top"} -->
+<div class="wp-block-columns are-vertically-aligned-top"><!-- wp:column {"verticalAlignment":"top","width":"100%"} -->
+<div class="wp-block-column is-vertically-aligned-top" style="flex-basis:100%"><!-- wp:columns {"className":"block-comment__autor"} -->
+<div class="wp-block-columns block-comment__autor"><!-- wp:column {"width":"72px","className":"autor-photo"} -->
+<div class="wp-block-column autor-photo" style="flex-basis:72px"><!-- wp:image {"id":19477,"sizeSlug":"full","linkDestination":"none"} -->
+<figure class="wp-block-image size-full"><img src="https://crmgroup.ru/wp-content/uploads/2024/08/ivan_firsov1.jpg" alt="Иван Фирсов" class="wp-image-19477"/></figure>
+<!-- /wp:image --></div>
+<!-- /wp:column -->
+
+<!-- wp:column {"verticalAlignment":"center","width":"66.66%","className":"block-comment__autor-about"} -->
+<div class="wp-block-column is-vertically-aligned-center block-comment__autor-about" style="flex-basis:66.66%"><!-- wp:paragraph {"className":"autor-name"} -->
+<p class="autor-name">Иван Фирсов</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph {"className":"autor-post"} -->
+<p class="autor-post">Бизнес-коуч, основатель <a href="https://servicefans.ru/" target="_blank" rel="noreferrer noopener">сообщества «Фанаты сервиса»</a></p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:column --></div>
+<!-- /wp:columns --></div>
+<!-- /wp:column --></div>
+<!-- /wp:columns --></div>
+<!-- /wp:group -->
+
+</div>
+<!-- /wp:group -->
+
+<!-- wp:group {"layout":{"type":"constrained"}} -->
+<div id="anchor_8" class="wp-block-group">
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Частые вопросы по&nbsp;метрикам CRM</h2>
+<!-- /wp:heading -->
+
+<!-- wp:html -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Что такое LTV и как его считать?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "LTV (Customer Lifetime Value) — общая прибыль от одного клиента за всё время взаимодействия. Формула: LTV = ARPU × средняя продолжительность взаимодействия. Например, клиент платит 500 рублей в месяц в течение года: LTV = 500 × 12 = 6 000 рублей. Для e-commerce в России средний горизонт расчёта — 12-18 месяцев."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Какой Retention Rate считается хорошим?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Нормальный Retention Rate зависит от отрасли. Для e-commerce хороший показатель за 12 месяцев — 20-30%. Для SaaS-сервисов ориентир выше: 85-95% ежемесячно. Сравнивать RR нужно внутри своей ниши и отслеживать динамику по периодам внутри компании."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Чем отличается Churn Rate от Retention Rate?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Churn Rate и Retention Rate — зеркальные метрики. Retention Rate показывает долю клиентов, которые остались, а Churn Rate — долю ушедших. Если RR = 90%, то CR = 10%. Обе метрики считаются за один и тот же период. Отслеживать обе полезно, потому что они подсвечивают ситуацию с разных сторон: RR фокусирует на удержании, CR — на причинах оттока."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Как увеличить средний чек (AOV) без скидок?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Три способа увеличить AOV без снижения маржи: кросс-продажи (блок «С этим товаром покупают» в корзине увеличивает AOV на 12-18%), апселлы (предложение расширенной версии продукта в момент покупки) и порог бесплатной доставки (установите его на 15-20% выше текущего среднего чека). Все три способа работают через персонализацию рекомендаций."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Как связаны LTV, NPS и Retention Rate?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Эти метрики образуют цепочку: высокий NPS означает лояльных клиентов, которые реже уходят (растёт Retention Rate). Рост удержания увеличивает срок жизни клиента, а значит, растёт LTV. По данным Bain & Company, промоутеры (NPS 9-10) покупают в 2-3 раза чаще критиков. Поэтому работа над NPS запускает рост всех остальных показателей."
+      }
+    }
+  ]
+}
+</script>
+
+<div itemscope itemtype="https://schema.org/FAQPage">
+
+<details itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" style="margin-bottom:10px;border:1px solid #e4e2dc;border-radius:8px;overflow:hidden;">
+<summary itemprop="name" style="padding:16px 20px;cursor:pointer;font-weight:600;font-size:16px;">Что такое LTV и&nbsp;как его считать?</summary>
+<div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer" style="padding:0 20px 18px;border-top:1px solid #e4e2dc;">
+<div itemprop="text" style="padding-top:14px;line-height:1.7;">
+LTV (Customer Lifetime Value) — общая прибыль от&nbsp;одного клиента за&nbsp;всё время взаимодействия. Формула: <strong>LTV = ARPU &times; средняя продолжительность взаимодействия</strong>. Например, клиент платит 500&nbsp;рублей в&nbsp;месяц в&nbsp;течение года: LTV = 500 &times; 12 = 6&nbsp;000 рублей. Для e-commerce в&nbsp;России средний горизонт расчёта — 12-18 месяцев.
+</div>
+</div>
+</details>
+
+<details itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" style="margin-bottom:10px;border:1px solid #e4e2dc;border-radius:8px;overflow:hidden;">
+<summary itemprop="name" style="padding:16px 20px;cursor:pointer;font-weight:600;font-size:16px;">Какой Retention Rate считается хорошим?</summary>
+<div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer" style="padding:0 20px 18px;border-top:1px solid #e4e2dc;">
+<div itemprop="text" style="padding-top:14px;line-height:1.7;">
+Нормальный Retention Rate зависит от&nbsp;отрасли. Для e-commerce хороший показатель за&nbsp;12 месяцев — 20-30%. Для SaaS-сервисов ориентир выше: 85-95% ежемесячно. Сравнивать RR нужно внутри своей ниши и&nbsp;отслеживать динамику по&nbsp;периодам внутри компании.
+</div>
+</div>
+</details>
+
+<details itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" style="margin-bottom:10px;border:1px solid #e4e2dc;border-radius:8px;overflow:hidden;">
+<summary itemprop="name" style="padding:16px 20px;cursor:pointer;font-weight:600;font-size:16px;">Чем отличается Churn Rate от&nbsp;Retention Rate?</summary>
+<div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer" style="padding:0 20px 18px;border-top:1px solid #e4e2dc;">
+<div itemprop="text" style="padding-top:14px;line-height:1.7;">
+Churn Rate и&nbsp;Retention Rate — зеркальные метрики. Retention Rate показывает долю клиентов, которые остались, а&nbsp;Churn Rate — долю ушедших. Если RR = 90%, то&nbsp;CR = 10%. Обе считаются за&nbsp;один и&nbsp;тот&nbsp;же период. Отслеживать обе полезно: RR фокусирует на&nbsp;удержании, CR — на&nbsp;причинах оттока.
+</div>
+</div>
+</details>
+
+<details itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" style="margin-bottom:10px;border:1px solid #e4e2dc;border-radius:8px;overflow:hidden;">
+<summary itemprop="name" style="padding:16px 20px;cursor:pointer;font-weight:600;font-size:16px;">Как увеличить средний чек (AOV) без скидок?</summary>
+<div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer" style="padding:0 20px 18px;border-top:1px solid #e4e2dc;">
+<div itemprop="text" style="padding-top:14px;line-height:1.7;">
+Три способа увеличить AOV без снижения маржи: кросс-продажи (блок «С&nbsp;этим товаром покупают» увеличивает AOV на&nbsp;12-18%), апселлы (предложение расширенной версии продукта в&nbsp;момент покупки) и&nbsp;порог бесплатной доставки (установите его на&nbsp;15-20% выше текущего среднего чека). Все три способа работают через персонализацию рекомендаций.
+</div>
+</div>
+</details>
+
+<details itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" style="margin-bottom:10px;border:1px solid #e4e2dc;border-radius:8px;overflow:hidden;">
+<summary itemprop="name" style="padding:16px 20px;cursor:pointer;font-weight:600;font-size:16px;">Как связаны LTV, NPS и&nbsp;Retention Rate?</summary>
+<div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer" style="padding:0 20px 18px;border-top:1px solid #e4e2dc;">
+<div itemprop="text" style="padding-top:14px;line-height:1.7;">
+Эти метрики образуют цепочку: высокий NPS означает лояльных клиентов, которые реже уходят (растёт Retention Rate). Рост удержания увеличивает срок жизни клиента, а&nbsp;значит, растёт LTV. По&nbsp;данным Bain&nbsp;&amp;&nbsp;Company, промоутеры (NPS 9-10) покупают в&nbsp;2-3 раза чаще критиков. Работа над NPS запускает рост всех остальных показателей.
+</div>
+</div>
+</details>
+
+</div>
+<!-- /wp:html -->
+
+</div>
+<!-- /wp:group -->
+
+<!-- wp:group {"layout":{"type":"constrained"}} -->
+<div id="anchor_9" class="wp-block-group">
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Бесплатная консультация от&nbsp;CRM-group</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Разберём ваши метрики и&nbsp;покажем, где бизнес теряет деньги. На&nbsp;консультации проанализируем текущие LTV, RR и&nbsp;Churn Rate, определим точки роста и&nbsp;составим action-план на&nbsp;первый месяц.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:group {"metadata":{"categories":["custom"],"patternName":"astrolog/block-result","name":"Блок - результат"},"layout":{"type":"constrained"}} -->
+<div class="wp-block-group"><!-- wp:group {"className":"block-result","style":{"color":{"background":"#fff9f0"}}} -->
+<div class="wp-block-group block-result has-background" style="background-color:#fff9f0"><!-- wp:heading {"level":3,"className":"h2-smalls block-result__heading mb-30"} -->
+<h3 class="wp-block-heading h2-smalls block-result__heading mb-30"><span style="font-weight: 400;"><a style="color:#dc1327" href="https://crmgroup.ru/?form=consulting">Оставьте нам заявку</a>. Проведём бесплатную консультацию.</span></h3>
+<!-- /wp:heading --></div>
+<!-- /wp:group --></div>
+<!-- /wp:group -->
+</div>
+<!-- /wp:group -->
+
+<!-- wp:pattern {"slug":"developer-starter/social-networks"} /-->
+
+<!-- wp:pattern {"slug":"developer-starter/form_main"} /-->

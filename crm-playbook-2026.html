@@ -1,0 +1,1387 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CRM Playbook 2026 — CRM-group</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════
+   CSS VARIABLES
+   ═══════════════════════════════════════════ */
+:root {
+  --c-bg: #ffffff;
+  --c-text: #1a1a2e;
+  --c-text-secondary: #4a4a6a;
+  --c-primary: #2d3a8c;
+  --c-primary-light: #4a5bc7;
+  --c-accent: #e8523f;
+  --c-accent-soft: #fff0ee;
+  --c-border: #e2e4ec;
+  --c-border-light: #f0f1f5;
+  --c-surface: #f7f8fc;
+  --c-surface-alt: #eef0f7;
+  --c-success: #1b8c5a;
+  --c-warning: #c77d1a;
+  --c-code-bg: #f4f5f9;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --page-w: 210mm;
+  --page-h: 297mm;
+  --margin: 22mm;
+}
+
+/* ═══════════════════════════════════════════
+   RESET & BASE
+   ═══════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { font-size: 11pt; }
+
+body {
+  font-family: var(--font-body);
+  color: var(--c-text);
+  line-height: 1.65;
+  background: #e8e8e8;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ═══════════════════════════════════════════
+   PAGE CONTAINER (screen)
+   ═══════════════════════════════════════════ */
+.page {
+  width: var(--page-w);
+  min-height: var(--page-h);
+  margin: 20px auto;
+  padding: var(--margin);
+  background: var(--c-bg);
+  box-shadow: 0 2px 20px rgba(0,0,0,0.12);
+  page-break-after: always;
+  position: relative;
+}
+
+/* ═══════════════════════════════════════════
+   COVER PAGE
+   ═══════════════════════════════════════════ */
+.cover {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: calc(var(--page-h) - var(--margin) * 2);
+  padding: 0;
+}
+
+.cover-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.cover-logo {
+  font-size: 14pt;
+  font-weight: 700;
+  color: var(--c-primary);
+  letter-spacing: -0.02em;
+}
+
+.cover-year {
+  font-size: 12pt;
+  font-weight: 600;
+  color: var(--c-text-secondary);
+}
+
+.cover-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 30mm 0;
+}
+
+.cover-badge {
+  display: inline-block;
+  background: var(--c-primary);
+  color: #fff;
+  font-size: 8pt;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 5px 14px;
+  border-radius: 3px;
+  margin-bottom: 16px;
+}
+
+.cover-title {
+  font-size: 32pt;
+  font-weight: 900;
+  line-height: 1.1;
+  color: var(--c-text);
+  letter-spacing: -0.03em;
+  margin-bottom: 16px;
+}
+
+.cover-subtitle {
+  font-size: 14pt;
+  font-weight: 400;
+  color: var(--c-text-secondary);
+  line-height: 1.5;
+  max-width: 85%;
+}
+
+.cover-bottom {
+  border-top: 2px solid var(--c-border);
+  padding-top: 16px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 9pt;
+  color: var(--c-text-secondary);
+}
+
+.cover-meta span { display: block; margin-bottom: 4px; }
+.cover-meta strong { color: var(--c-text); font-weight: 600; }
+
+/* ═══════════════════════════════════════════
+   TYPOGRAPHY
+   ═══════════════════════════════════════════ */
+h1 {
+  font-size: 22pt;
+  font-weight: 800;
+  color: var(--c-primary);
+  line-height: 1.2;
+  margin: 0 0 8px 0;
+  letter-spacing: -0.02em;
+}
+
+h1 .chapter-num {
+  display: block;
+  font-size: 10pt;
+  font-weight: 700;
+  color: var(--c-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-bottom: 6px;
+}
+
+h2 {
+  font-size: 14pt;
+  font-weight: 700;
+  color: var(--c-text);
+  margin: 24px 0 10px 0;
+  padding-bottom: 6px;
+  border-bottom: 1.5px solid var(--c-border);
+  letter-spacing: -0.01em;
+}
+
+h3 {
+  font-size: 11.5pt;
+  font-weight: 700;
+  color: var(--c-primary);
+  margin: 18px 0 8px 0;
+}
+
+h4 {
+  font-size: 10.5pt;
+  font-weight: 600;
+  color: var(--c-text-secondary);
+  margin: 14px 0 6px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+p { margin: 0 0 10px 0; }
+
+strong { font-weight: 600; }
+
+blockquote {
+  margin: 14px 0;
+  padding: 12px 16px;
+  border-left: 3px solid var(--c-primary-light);
+  background: var(--c-surface);
+  border-radius: 0 6px 6px 0;
+  font-style: italic;
+  color: var(--c-text-secondary);
+}
+
+blockquote strong { color: var(--c-text); }
+
+/* ═══════════════════════════════════════════
+   TABLES
+   ═══════════════════════════════════════════ */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 12px 0 16px 0;
+  font-size: 9pt;
+  line-height: 1.45;
+}
+
+thead th {
+  background: var(--c-primary);
+  color: #fff;
+  font-weight: 600;
+  text-align: left;
+  padding: 8px 10px;
+  font-size: 8.5pt;
+  letter-spacing: 0.02em;
+}
+
+thead th:first-child { border-radius: 4px 0 0 0; }
+thead th:last-child { border-radius: 0 4px 0 0; }
+
+tbody td {
+  padding: 7px 10px;
+  border-bottom: 1px solid var(--c-border-light);
+  vertical-align: top;
+}
+
+tbody tr:nth-child(even) { background: var(--c-surface); }
+tbody tr:hover { background: var(--c-surface-alt); }
+
+tbody td:first-child { font-weight: 500; }
+
+/* Highlight rows */
+tbody tr.highlight { background: var(--c-accent-soft); }
+tbody tr.highlight td { font-weight: 600; }
+
+/* ═══════════════════════════════════════════
+   LISTS
+   ═══════════════════════════════════════════ */
+ul, ol {
+  margin: 8px 0 12px 0;
+  padding-left: 20px;
+}
+
+li { margin-bottom: 4px; }
+
+/* Checklist */
+.checklist {
+  list-style: none;
+  padding-left: 0;
+  margin: 10px 0 14px 0;
+}
+
+.checklist li {
+  position: relative;
+  padding-left: 26px;
+  margin-bottom: 6px;
+  line-height: 1.5;
+}
+
+.checklist li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 3px;
+  width: 15px;
+  height: 15px;
+  border: 1.5px solid var(--c-border);
+  border-radius: 3px;
+  background: #fff;
+}
+
+/* ═══════════════════════════════════════════
+   SPECIAL BLOCKS
+   ═══════════════════════════════════════════ */
+.play-card {
+  margin: 16px 0;
+  border: 1px solid var(--c-border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.play-header {
+  background: var(--c-surface);
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--c-border);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.play-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--c-primary);
+  color: #fff;
+  font-weight: 700;
+  font-size: 10pt;
+  flex-shrink: 0;
+}
+
+.play-title {
+  font-size: 11pt;
+  font-weight: 700;
+  color: var(--c-text);
+}
+
+.play-body { padding: 14px 16px; }
+
+.play-label {
+  font-size: 8pt;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--c-accent);
+  margin: 10px 0 4px 0;
+}
+
+.play-label:first-child { margin-top: 0; }
+
+.formula-box {
+  background: var(--c-code-bg);
+  border: 1px solid var(--c-border);
+  border-radius: 6px;
+  padding: 12px 16px;
+  margin: 10px 0 14px 0;
+  font-family: var(--font-mono);
+  font-size: 9.5pt;
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+
+.stat-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin: 12px 0;
+}
+
+.stat-card {
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: 6px;
+  padding: 12px 14px;
+  text-align: center;
+}
+
+.stat-value {
+  font-size: 18pt;
+  font-weight: 800;
+  color: var(--c-primary);
+  line-height: 1.2;
+}
+
+.stat-label {
+  font-size: 8pt;
+  color: var(--c-text-secondary);
+  margin-top: 2px;
+}
+
+.callout {
+  margin: 14px 0;
+  padding: 12px 16px;
+  border-radius: 6px;
+  font-size: 10pt;
+}
+
+.callout-warning {
+  background: #fff8ed;
+  border: 1px solid #f0d9a8;
+  color: #7a5a1e;
+}
+
+.callout-info {
+  background: #eef3ff;
+  border: 1px solid #bfcfef;
+  color: #2d4a7c;
+}
+
+.callout-danger {
+  background: var(--c-accent-soft);
+  border: 1px solid #f0c0b8;
+  color: #7a2e22;
+}
+
+.callout strong { font-weight: 700; }
+
+/* Chapter intro */
+.chapter-intro {
+  font-size: 11.5pt;
+  color: var(--c-text-secondary);
+  margin-bottom: 20px;
+  line-height: 1.6;
+  border-left: 3px solid var(--c-primary-light);
+  padding-left: 14px;
+}
+
+/* TOC */
+.toc { margin: 24px 0; }
+
+.toc-item {
+  display: flex;
+  align-items: baseline;
+  padding: 8px 0;
+  border-bottom: 1px dotted var(--c-border);
+  text-decoration: none;
+  color: var(--c-text);
+  font-size: 10.5pt;
+}
+
+.toc-item:hover { color: var(--c-primary); }
+
+.toc-num {
+  font-weight: 700;
+  color: var(--c-primary);
+  width: 60px;
+  flex-shrink: 0;
+}
+
+.toc-label { flex: 1; font-weight: 500; }
+
+.toc-page {
+  font-weight: 600;
+  color: var(--c-text-secondary);
+  margin-left: 8px;
+}
+
+.toc-sub {
+  padding-left: 60px;
+  font-size: 9.5pt;
+  color: var(--c-text-secondary);
+  border-bottom: none;
+  padding: 3px 0 3px 60px;
+}
+
+/* Cascade diagram */
+.cascade {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  margin: 12px 0;
+  font-size: 9pt;
+  flex-wrap: wrap;
+}
+
+.cascade-step {
+  background: var(--c-primary);
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.cascade-arrow {
+  color: var(--c-text-secondary);
+  padding: 0 6px;
+  font-size: 8pt;
+}
+
+.cascade-condition {
+  color: var(--c-text-secondary);
+  font-style: italic;
+  font-size: 8pt;
+  padding: 0 4px;
+}
+
+/* Footer */
+.page-footer {
+  position: absolute;
+  bottom: var(--margin);
+  left: var(--margin);
+  right: var(--margin);
+  display: flex;
+  justify-content: space-between;
+  font-size: 7.5pt;
+  color: #aaa;
+  border-top: 1px solid var(--c-border-light);
+  padding-top: 8px;
+}
+
+/* Section divider */
+.section-break {
+  text-align: center;
+  margin: 20px 0;
+  color: var(--c-border);
+  font-size: 14pt;
+  letter-spacing: 8px;
+}
+
+/* ═══════════════════════════════════════════
+   PRINT STYLES
+   ═══════════════════════════════════════════ */
+@media print {
+  body { background: #fff; }
+  .page {
+    margin: 0;
+    padding: 18mm 20mm;
+    box-shadow: none;
+    width: auto;
+    min-height: auto;
+  }
+  .page-footer { display: none; }
+  table { font-size: 8.5pt; }
+  thead th { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  tbody tr:nth-child(even) { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .play-header, .stat-card, .callout, blockquote, .formula-box {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .cascade-step { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  h1, h2, h3 { page-break-after: avoid; }
+  table, .play-card { page-break-inside: avoid; }
+  .cover-badge, .play-num { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}
+
+@page {
+  size: A4;
+  margin: 18mm 20mm;
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+     COVER PAGE
+     ═══════════════════════════════════════════ -->
+<div class="page">
+  <div class="cover">
+    <div class="cover-top">
+      <div class="cover-logo">CRM-group</div>
+      <div class="cover-year">2026</div>
+    </div>
+
+    <div class="cover-main">
+      <div class="cover-badge">Ежегодное издание</div>
+      <div class="cover-title">CRM Playbook&nbsp;2026</div>
+      <div class="cover-subtitle">От рассылок к управлению ценностью клиента.<br>Данные, фреймворки и чеклисты для&nbsp;российского&nbsp;рынка.</div>
+    </div>
+
+    <div class="cover-bottom">
+      <div class="cover-meta">
+        <span><strong>Аудитория:</strong> директора по маркетингу, CMO, CRM-менеджеры, владельцы бизнеса</span>
+        <span><strong>Данные актуальны:</strong> февраль 2026</span>
+      </div>
+      <div class="cover-meta" style="text-align:right;">
+        <span>crmgroup.ru</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     TABLE OF CONTENTS
+     ═══════════════════════════════════════════ -->
+<div class="page">
+  <h1 style="margin-bottom:4px;">Содержание</h1>
+  <p style="color:var(--c-text-secondary); margin-bottom:20px;">Плейбук состоит из шести частей. Каждая решает конкретную задачу.</p>
+
+  <div class="toc">
+    <a class="toc-item" href="#part1">
+      <span class="toc-num">Часть I</span>
+      <span class="toc-label">Состояние рынка: что изменилось за год</span>
+    </a>
+    <div class="toc-sub">Рынок в цифрах &middot; Бенчмарки каналов &middot; Шесть трендов 2026</div>
+
+    <a class="toc-item" href="#part2">
+      <span class="toc-num">Часть II</span>
+      <span class="toc-label">Email &rarr; CRM-маркетинг &rarr; CVM: три ступени зрелости</span>
+    </a>
+    <div class="toc-sub">Зачем различать &middot; Что такое CVM &middot; Кейсы &middot; Юнит-экономика</div>
+
+    <a class="toc-item" href="#part3">
+      <span class="toc-num">Часть III</span>
+      <span class="toc-label">Двенадцать plays: тактики на ближайший квартал</span>
+    </a>
+    <div class="toc-sub">Welcome &middot; Реактивация &middot; RFM &middot; Каскад каналов &middot; Replenishment &middot; Post-purchase &middot; Birthday &middot; Abandoned Cart &middot; Churn Prediction &middot; Cross-sell &middot; NBA &middot; Лояльность</div>
+
+    <a class="toc-item" href="#part4">
+      <span class="toc-num">Часть IV</span>
+      <span class="toc-label">Технологический стек: что выбрать в 2026 году</span>
+    </a>
+    <div class="toc-sub">CDP и CRM-платформы &middot; Дата-стек &middot; Уровни зрелости &middot; Архитектура данных</div>
+
+    <a class="toc-item" href="#part5">
+      <span class="toc-num">Часть V</span>
+      <span class="toc-label">Юридический фреймворк: 152-ФЗ, 38-ФЗ и маркировка</span>
+    </a>
+    <div class="toc-sub">Персональные данные &middot; Согласие &middot; Штрафы &middot; Реклама &middot; Мессенджеры &middot; Чеклист</div>
+
+    <a class="toc-item" href="#part6">
+      <span class="toc-num">Часть VI</span>
+      <span class="toc-label">Метрики и измерение: что показывать руководству</span>
+    </a>
+    <div class="toc-sub">Четыре уровня KPI &middot; Контрольные группы &middot; Дашборд для руководства</div>
+
+    <a class="toc-item" href="#appendix">
+      <span class="toc-num">Прилож.</span>
+      <span class="toc-label">Глоссарий &middot; ROI по подходам &middot; Источники</span>
+    </a>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     PART I
+     ═══════════════════════════════════════════ -->
+<div class="page" id="part1">
+  <h1><span class="chapter-num">Часть I</span>Состояние рынка: что изменилось за год</h1>
+
+  <h2>Российский CRM-маркетинг в цифрах</h2>
+
+  <table>
+    <thead><tr><th>Показатель</th><th>Значение</th><th>Источник</th></tr></thead>
+    <tbody>
+      <tr><td>Рынок CRM в России</td><td>32+ млрд руб. (2024), прогноз 46 млрд (2026)</td><td>TAdviser</td></tr>
+      <tr><td>Рост рынка CRM</td><td>20–25% в год</td><td>CRM Rating</td></tr>
+      <tr><td>E-commerce РФ</td><td>11,2 трлн руб. (2024, +39% г/г)</td><td>Data Insight</td></tr>
+      <tr><td>Доля e-com в рознице</td><td>24% (48% в non-food)</td><td>Data Insight</td></tr>
+      <tr><td>Экономика Рунета</td><td>24 трлн руб. (2024, +40% г/г)</td><td>РАЭК</td></tr>
+      <tr><td>Рынок email-маркетинга</td><td>4,2 млрд руб. (2024), прогноз 5,3 млрд (2027)</td><td>DashaMail</td></tr>
+      <tr><td>Облачные CRM</td><td>90% рынка</td><td>CRM Rating</td></tr>
+      <tr><td>Компании с внедрённой CRM</td><td>14–30%*</td><td>CRM Rating</td></tr>
+    </tbody>
+  </table>
+  <p style="font-size:8.5pt; color:var(--c-text-secondary);">*14% — от всех компаний РФ, 30% — от компаний в digital-сегменте.</p>
+
+  <p>Россия — мировой лидер по темпам роста e-commerce минимум четыре года подряд (2021–2024). В октябре 2024 месячный объём e-com впервые превысил 1&nbsp;трлн рублей.</p>
+
+  <p><strong>Три фактора ускоряют рост CRM:</strong></p>
+  <ol>
+    <li><strong>CAC растёт.</strong> Стоимость привлечения нового клиента выросла на 50–70% за последние пять лет (McKinsey). Компании вынуждены зарабатывать на текущей базе.</li>
+    <li><strong>Third-party cookies уходят.</strong> Рекламные инструменты ограничиваются. Выигрывают компании с собственными данными (first-party data).</li>
+    <li><strong>AI стал частью продукта.</strong> Предиктивный скоринг, генерация контента и автосегментация вошли в стандартную функциональность CRM-платформ (CNews, 2025).</li>
+  </ol>
+
+  <h2>Бенчмарки каналов 2025–2026</h2>
+
+  <h3>Email</h3>
+  <p style="font-size:9pt; color:var(--c-text-secondary); margin-bottom:8px;">Данные Mindbox, исследование 2024: 31,4 млрд писем, 815 компаний, 46 отраслей</p>
+
+  <table>
+    <thead><tr><th>Отрасль</th><th>Open Rate</th><th>Click Rate</th></tr></thead>
+    <tbody>
+      <tr><td>Девелоперы / недвижимость</td><td>24,3%</td><td>3,0%</td></tr>
+      <tr><td>ЖД и авиабилеты</td><td>19,9%</td><td>н/д</td></tr>
+      <tr><td>Благотворительные фонды</td><td>18,5%</td><td>1,6%</td></tr>
+      <tr><td>Автодилеры</td><td>18,5%</td><td>н/д</td></tr>
+      <tr><td>Медклиники</td><td>18,2%</td><td>н/д</td></tr>
+      <tr><td>Техника и электроника</td><td>17,1%</td><td>1,7%</td></tr>
+    </tbody>
+  </table>
+
+  <p><strong>Общий диапазон:</strong> медианный Open Rate от 11% до 24%, Click Rate от 0,5% до 3,0%. Аутсайдеры: общепит (0,5%), продукты питания (0,5%), образование (0,6%).</p>
+
+  <div class="callout callout-info">
+    <strong>Тренд:</strong> Open Rate падает почти во всех категориях. Apple Mail Privacy Protection завышает показатель. Ориентируйтесь на Click Rate и конверсию.
+  </div>
+
+  <h3>Доля CRM-канала в выручке: российские кейсы</h3>
+
+  <table>
+    <thead><tr><th>Компания</th><th>Отрасль</th><th>Доля CRM-выручки</th><th>Динамика</th></tr></thead>
+    <tbody>
+      <tr><td>METRO</td><td>E-com / продукты</td><td>20% e-com выручки</td><td>рост с 11%</td></tr>
+      <tr><td>АШАН</td><td>Продукты / ритейл</td><td>19,7% e-com выручки</td><td>—</td></tr>
+      <tr><td>Акушерство</td><td>Детские товары</td><td>16,2%</td><td>рост с 8,7%</td></tr>
+      <tr><td>Quke</td><td>Техника</td><td>8% (только email)</td><td>рост с 4%</td></tr>
+      <tr><td>Купибилет</td><td>Тревел</td><td>5% от оборота</td><td>рост с 0,8%</td></tr>
+    </tbody>
+  </table>
+
+  <p>Средний достижимый эффект от автоматизации CRM-маркетинга: <strong>+14% к выручке</strong> за счёт роста частоты покупок и среднего чека (Mindbox).</p>
+
+  <h3>Push-уведомления</h3>
+  <p>Глобальные бенчмарки 2024: opt-in rate Android 67%, iOS 56% (среднее 61%). CTR push в e-commerce: Android 3,78%, iOS 3,05% (Pushwoosh, 2025). ФАС движется к классификации push как рекламы.</p>
+
+  <h3>SMS</h3>
+  <p>С 1 сентября 2025 согласие на рекламные SMS регистрируется у оператора связи. Стоимость канала растёт, но для срочных коммуникаций SMS остаётся незаменимым.</p>
+</div>
+
+<!-- PART I continued: Trends -->
+<div class="page">
+  <h2>Шесть трендов, которые определяют 2026 год</h2>
+
+  <h3>1. Агентный AI</h3>
+  <p>Переход от запланированных customer journey к автономным движкам принятия решений. Агентный AI принимает решения самостоятельно, адаптируется к контексту и самооптимизируется. Ранние внедрения показывают рост конверсии в 7 раз и повышение лид-конверсии на 15–30%.</p>
+
+  <h3>2. Composable CDP</h3>
+  <p>Модульные CDP интегрируются с data warehouse без дублирования данных. В России используют ClickHouse, Яндекс DataLens, Arenadata.</p>
+  <p><strong>Глобальный рынок CDP</strong> растёт с $9,7 млрд (2025) до $37,1 млрд (2030) при CAGR 30,7%.</p>
+  <p><strong>Рынок CDP в России</strong> развивается по собственной траектории. После ухода зарубежных платформ рынок сконцентрировался вокруг Mindbox (1&nbsp;100+ клиентов) и Retail Rocket Group (1&nbsp;700+ сайтов). Барьер входа — требование локализации данных (152-ФЗ).</p>
+
+  <h3>3. Гиперперсонализация в масштабе</h3>
+  <p>AI анализирует поведение на сайте, историю покупок, паттерны вовлечённости. Персонализация приносит +40% к выручке (McKinsey, 2021).</p>
+
+  <h3>4. Privacy-first стратегия</h3>
+  <p>Компании, строящие CRM на first-party data с respect consent, получают на 43% более высокий CLV. С 1 июля 2025 первичный сбор данных через зарубежные серверы запрещён.</p>
+
+  <h3>5. Динамический контент в email</h3>
+  <p>Письма 2026 года ведут себя как мини-сайты: контент обновляется автоматически на основе актуальных данных о клиенте.</p>
+
+  <h3>6. Импортозамещение CRM-стека</h3>
+  <p>К началу 2026 года импортозамещение CRM-стека — свершившийся факт. В рейтинге CNews 2025 полностью отсутствуют иностранные решения. Битрикс24 (25–30% рынка), AmoCRM, Mindbox, Retail Rocket работают с локальными дата-центрами и соответствуют 152-ФЗ.</p>
+
+  <div class="callout callout-danger">
+    <strong>Штрафы:</strong> нарушение локализации — до 18 млн руб. Повторная утечка данных — оборотный штраф 1–3% годовой выручки (до 500 млн руб.).
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     PART II
+     ═══════════════════════════════════════════ -->
+<div class="page" id="part2">
+  <h1><span class="chapter-num">Часть II</span>Email &rarr; CRM-маркетинг &rarr; CVM: три ступени зрелости</h1>
+
+  <p class="chapter-intro">Путать подходы — значит выбирать инструменты не под задачу. Email решает задачу доставки. CRM-маркетинг — управления отношениями. CVM — максимизации ценности клиента.</p>
+
+  <table>
+    <thead><tr><th></th><th>Email-маркетинг</th><th>CRM-маркетинг</th><th>CVM</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Фокус</strong></td><td>Доставка сообщений</td><td>Управление отношениями</td><td>Максимизация ценности</td></tr>
+      <tr><td><strong>Философия</strong></td><td>Отправь правильное письмо</td><td>Знай своего клиента</td><td>Увеличь CLV каждого</td></tr>
+      <tr><td><strong>Каналы</strong></td><td>Email</td><td>Email, телефон, встречи</td><td>Omnichannel</td></tr>
+      <tr><td><strong>Метрики</strong></td><td>OR, CTR, Conversion</td><td>Pipeline, Win Rate</td><td>CLV, ARPU, Churn, NPS</td></tr>
+      <tr><td><strong>Стек</strong></td><td>Sendsay, UniSender</td><td>Битрикс24, AmoCRM</td><td>CDP + ML + оркестрация</td></tr>
+      <tr><td><strong>Старт</strong></td><td>С первого дня</td><td>От 5 менеджеров</td><td>База 10 000+ клиентов</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Что такое CVM и когда он нужен</h2>
+
+  <p>CVM (Customer Value Management) появляется тогда, когда органический рост исчерпан. Единственный источник роста: текущая клиентская база.</p>
+
+  <blockquote>
+    <strong>CRM-маркетинг:</strong> «Клиент X купил шампунь. Отправим email с рекомендацией кондиционера».<br><br>
+    <strong>CVM:</strong> «Клиент X с вероятностью 73% уйдёт к конкуренту. NBA-движок рекомендует персональное предложение через Telegram, потому что этот стимул даёт наибольший прирост CLV».
+  </blockquote>
+
+  <h3>Матрица выбора подхода</h3>
+  <table>
+    <thead><tr><th>Стадия</th><th>Клиентская база</th><th>Бюджет/мес</th><th>Что внедрять</th></tr></thead>
+    <tbody>
+      <tr><td>Стартап</td><td>до 100</td><td>до 50K руб.</td><td>Email + таблицы</td></tr>
+      <tr><td>Рост</td><td>100–1 000</td><td>50–200K руб.</td><td>CRM + email-автоматизация</td></tr>
+      <tr><td>Scale-up</td><td>1 000–50 000</td><td>200K–1M руб.</td><td>CRM-маркетинг + элементы CVM</td></tr>
+      <tr><td>Enterprise</td><td>50 000+</td><td>1M+ руб.</td><td>Полноценный CVM</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Фреймворк CVMBoK (Exacaster)</h3>
+  <p><strong>CVMBoK</strong> (Customer Value Management Body of Knowledge) — первый отраслевой стандарт CVM. Создан Exacaster совместно с 65 CVM-менеджерами из 26 стран. Книга вышла 3 марта 2025 (ISBN 9786099646909). Миссия — поднять CVM до уровня признанной дисциплины, наравне с PMBoK.</p>
+
+  <div class="stat-grid" style="grid-template-columns: 1fr 1fr 1fr;">
+    <div class="stat-card">
+      <div class="stat-value" style="color:var(--c-success);">Acquire</div>
+      <div class="stat-label">Онбординг, миграция, реферальные, win-back</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value" style="color:var(--c-primary);">Grow</div>
+      <div class="stat-label">Upsell, cross-sell, лояльность, VAS</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value" style="color:var(--c-accent);">Retain</div>
+      <div class="stat-label">Проактивное удержание, отмены, save-офферы</div>
+    </div>
+  </div>
+  <p style="font-size:9pt; color:var(--c-text-secondary);">Детальная расшифровка фреймворка CVMBoK — на следующих страницах.</p>
+
+  <h3>CVM-стратегия: семь шагов</h3>
+  <ol>
+    <li><strong>Аудит данных.</strong> Текущие ARPU, Retention, Churn. Где пробелы.</li>
+    <li><strong>Value-based сегментация.</strong> RFM + CLV-модель. Пять сегментов: Champions, Loyal, Potential, At Risk, Dormant.</li>
+    <li><strong>Определение Value Drivers.</strong> Что увеличивает CLV, что снижает.</li>
+    <li><strong>Customer Journey по сегментам.</strong> Для каждого сегмента — свой сценарий.</li>
+    <li><strong>Lifecycle-стратегия.</strong> Acquisition &rarr; Activation &rarr; Retention &rarr; Expansion &rarr; Reactivation.</li>
+    <li><strong>Real-time Decisioning.</strong> NBA/NBO-движок, ML-модели, A/B-тестирование.</li>
+    <li><strong>Метрики и Feedback Loop.</strong> North Star: CLV по когортам.</li>
+  </ol>
+</div>
+
+<!-- PART II continued: Cases + Unit Economics -->
+<div class="page">
+  <h2>Кейсы CVM в России</h2>
+
+  <table>
+    <thead><tr><th>Компания</th><th>Что сделали</th><th>Результат</th></tr></thead>
+    <tbody>
+      <tr><td><strong>X5 Group</strong></td><td>Персональные скидки через X5 Club: предиктивная модель определяет склонность к покупке</td><td>Рост частоты визитов At Risk на 12%</td></tr>
+      <tr><td><strong>МТС</strong></td><td>CVM-программа: предиктивные предложения при риске отключения</td><td>Снижение churn в сегменте предоплаты</td></tr>
+      <tr><td><strong>T-Банк</strong></td><td>NBA-движок для кросс-продаж на основе транзакций</td><td>Рост кросс-продаж</td></tr>
+      <tr><td><strong>ВкусВилл</strong></td><td>Гиперперсонализация через историю покупок</td><td>Один из самых высоких Retention в продуктовом ритейле</td></tr>
+      <tr><td><strong>BetBoom</strong></td><td>CDP + поведенческая сегментация + триггеры (Mindbox)</td><td>Удержание &times;2,4, конверсия +23%</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Юнит-экономика CVM</h2>
+
+  <div class="formula-box">CLV > CAC
+Здоровое соотношение: CLV / CAC ≥ 3
+Целевое для SaaS: CLV / CAC ≥ 5</div>
+
+  <div class="stat-grid">
+    <div class="stat-card">
+      <div class="stat-value">&times;4</div>
+      <div class="stat-label">Монетизация (upsell, cross-sell) эффективнее привлечения</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">&times;2</div>
+      <div class="stat-label">Удержание эффективнее привлечения</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">+67%</div>
+      <div class="stat-label">Существующие клиенты тратят больше, чем новые</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">+75%</div>
+      <div class="stat-label">Рост CLV при росте удержания на 5% (Bain)</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     PART III — Plays 1-4
+     ═══════════════════════════════════════════ -->
+<div class="page" id="part3">
+  <h1><span class="chapter-num">Часть III</span>Двенадцать plays: тактики на ближайший квартал</h1>
+  <p class="chapter-intro">Каждая play устроена одинаково: проблема &rarr; решение &rarr; метрики &rarr; чеклист запуска.</p>
+
+  <div class="play-card">
+    <div class="play-header"><span class="play-num">1</span><span class="play-title">Welcome-цепочка, которая конвертит в первую покупку</span></div>
+    <div class="play-body">
+      <div class="play-label">Проблема</div>
+      <p>До 70% клиентов совершают только одну покупку и не возвращаются.</p>
+      <div class="play-label">Решение</div>
+      <table>
+        <thead><tr><th>День</th><th>Письмо</th><th>Цель</th></tr></thead>
+        <tbody>
+          <tr><td>D+0</td><td>Благодарность + знакомство с брендом</td><td>Первое впечатление</td></tr>
+          <tr><td>D+3</td><td>Приглашение пройти диагностику/опрос</td><td>Сбор данных</td></tr>
+          <tr><td>D+10</td><td>Персональная рекомендация или бестселлеры</td><td>Конверсия</td></tr>
+          <tr><td>D+14</td><td>Социальное доказательство: отзывы, кейсы</td><td>Доверие</td></tr>
+          <tr><td>D+21</td><td>«Расскажите о себе» + стимул</td><td>Обогащение базы</td></tr>
+        </tbody>
+      </table>
+      <div class="play-label">Метрики</div>
+      <p>Conversion Rate welcome-серии, Time-to-First-Purchase, доля квалифицированных контактов.</p>
+    </div>
+  </div>
+
+  <div class="play-card">
+    <div class="play-header"><span class="play-num">2</span><span class="play-title">Реактивация «мёртвой» базы без скидок</span></div>
+    <div class="play-body">
+      <div class="play-label">Проблема</div>
+      <p>«Мёртвые» подписчики снижают deliverability и ведут к попаданию в спам-листы.</p>
+      <div class="play-label">Решение</div>
+      <p><strong>Этап 1 (M+6):</strong> Письмо с неожиданной темой и форматом. Юмор, провокация, нетипичный дизайн. Без скидок.</p>
+      <p><strong>Этап 2 (M+12):</strong> «Последний шанс» — предупреждение об удалении. Без реакции — архивный сегмент.</p>
+      <div class="play-label">Метрики</div>
+      <p>Reactivation Rate, изменение deliverability после чистки, Revenue per Reactivated Contact.</p>
+    </div>
+  </div>
+
+  <div class="play-card">
+    <div class="play-header"><span class="play-num">3</span><span class="play-title">RFM-сегментация для компаний без аналитика</span></div>
+    <div class="play-body">
+      <div class="play-label">Решение</div>
+      <p>Минимальная RFM-модель: R (когда купил), F (сколько покупок), M (на какую сумму). Достаточно 1&nbsp;000 клиентов и 3&nbsp;000 транзакций.</p>
+      <table>
+        <thead><tr><th>Сегмент</th><th>Характеристика</th><th>Действие</th></tr></thead>
+        <tbody>
+          <tr><td>Champions</td><td>Высокие R, F, M</td><td>Привилегии, реферальная программа</td></tr>
+          <tr><td>Loyal</td><td>Высокие F и M</td><td>Cross-sell, лояльность</td></tr>
+          <tr><td>Potential</td><td>Высокий R, низкие F, M</td><td>Стимулировать 2-ю покупку</td></tr>
+          <tr><td>At Risk</td><td>Низкий R, высокие F, M</td><td>Проактивное удержание</td></tr>
+          <tr><td>Dormant</td><td>Низкие R, F, M</td><td>Реактивация или прощание</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="play-card">
+    <div class="play-header"><span class="play-num">4</span><span class="play-title">Каскад каналов: email &rarr; push &rarr; SMS</span></div>
+    <div class="play-body">
+      <div class="cascade">
+        <span class="cascade-step">Email (D+0)</span>
+        <span class="cascade-arrow">&rarr;</span>
+        <span class="cascade-condition">нет открытия 24h</span>
+        <span class="cascade-arrow">&rarr;</span>
+        <span class="cascade-step">Push (D+1)</span>
+        <span class="cascade-arrow">&rarr;</span>
+        <span class="cascade-condition">нет клика 12h</span>
+        <span class="cascade-arrow">&rarr;</span>
+        <span class="cascade-step">SMS (D+2)</span>
+      </div>
+      <p>Клиенты с omnichannel-коммуникацией имеют CLV на 30% выше. Многоканальная экспозиция даёт 10–15% инкрементальной конверсии.</p>
+      <div class="callout callout-warning">
+        <strong>Юридический нюанс:</strong> согласие нужно получить отдельно для каждого канала (38-ФЗ, ст. 18).
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PART III: Plays 5-8 -->
+<div class="page">
+  <div class="play-card">
+    <div class="play-header"><span class="play-num">5</span><span class="play-title">Триггер «Пополнение запаса» (Replenishment)</span></div>
+    <div class="play-body">
+      <p>Автоматическое напоминание за 7–10 дней до окончания продукта. Пример: шампунь 250 мл &asymp; 60 дней. Триггер на D+50.</p>
+      <p>Серия: D+70 — напоминание + cross-sell. D+80 — усиленное предложение (бесплатная доставка, бонусные баллы).</p>
+    </div>
+  </div>
+
+  <div class="play-card">
+    <div class="play-header"><span class="play-num">6</span><span class="play-title">Post-purchase серия: от покупки до адвоката бренда</span></div>
+    <div class="play-body">
+      <table>
+        <thead><tr><th>День</th><th>Коммуникация</th><th>Цель</th></tr></thead>
+        <tbody>
+          <tr><td>D+1</td><td>Благодарность + советы по использованию</td><td>Снизить возвраты</td></tr>
+          <tr><td>D+14</td><td>Опрос удовлетворённости</td><td>Обратная связь</td></tr>
+          <tr><td>D+15</td><td>Довольным — cross-sell, недовольным — помощь</td><td>Удержание</td></tr>
+          <tr><td>D+28</td><td>Приглашение оставить отзыв</td><td>UGC</td></tr>
+          <tr><td>D+60</td><td>Рекомендация повторной покупки</td><td>Конверсия</td></tr>
+        </tbody>
+      </table>
+      <p>Клиенты со второй покупкой в 2 раза вероятнее купят снова.</p>
+    </div>
+  </div>
+
+  <div class="play-card">
+    <div class="play-header"><span class="play-num">7</span><span class="play-title">Birthday-программа с каскадом</span></div>
+    <div class="play-body">
+      <table>
+        <thead><tr><th>Когда</th><th>Что</th><th>Зачем</th></tr></thead>
+        <tbody>
+          <tr><td>D-10</td><td>Анонс подарка / скидки</td><td>Создать ожидание</td></tr>
+          <tr><td>D</td><td>Поздравление + активация предложения</td><td>Конверсия</td></tr>
+          <tr><td>D+20</td><td>Напоминание об истечении</td><td>Дожим</td></tr>
+        </tbody>
+      </table>
+      <p>Два раза в год запускать кампанию по сбору дат рождения.</p>
+    </div>
+  </div>
+
+  <div class="play-card">
+    <div class="play-header"><span class="play-num">8</span><span class="play-title">Abandoned Cart: три письма вместо одного</span></div>
+    <div class="play-body">
+      <table>
+        <thead><tr><th>Когда</th><th>Фокус</th><th>Тема</th></tr></thead>
+        <tbody>
+          <tr><td>H+2</td><td>Товар</td><td>Напоминание + рекомендации</td></tr>
+          <tr><td>D+1</td><td>Товар (другой акцент)</td><td>Характеристики товара</td></tr>
+          <tr><td>D+7</td><td>Предложение</td><td>Стимул к покупке</td></tr>
+        </tbody>
+      </table>
+      <div class="callout callout-warning">
+        <strong>Юридический нюанс:</strong> ФАС классифицирует abandoned cart как рекламу, если есть призыв к покупке. Получайте согласие заранее.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PART III: Plays 9-12 -->
+<div class="page">
+  <div class="play-card">
+    <div class="play-header"><span class="play-num">9</span><span class="play-title">Churn Prediction: предсказать уход до того, как он случится</span></div>
+    <div class="play-body">
+      <p>ML-модели достигают точности 95–98%. Рост удержания на 5–10% увеличивает прибыль на 25–95% (Bain).</p>
+      <div class="play-label">Триггеры-предвестники оттока</div>
+      <ul>
+        <li>Снижение частоты покупок на 30%+ от среднего</li>
+        <li>Отсутствие открытий email 60+ дней</li>
+        <li>Обращение в поддержку с жалобой</li>
+        <li>Просмотр страницы отмены подписки / удаления аккаунта</li>
+      </ul>
+      <p><strong>Действие:</strong> персональное предложение через предпочтительный канал. Не скидка — ценность.</p>
+    </div>
+  </div>
+
+  <div class="play-card">
+    <div class="play-header"><span class="play-num">10</span><span class="play-title">Cross-sell на основе корзинного анализа</span></div>
+    <div class="play-body">
+      <p>Анализ совместных покупок (market basket analysis). Рекомендация дополняющего товара (кондиционер к шампуню, чехол к смартфону) — базовый, но работающий cross-sell.</p>
+      <p><strong>Метрики:</strong> Cross-sell Conversion Rate, Average Products per Order.</p>
+    </div>
+  </div>
+
+  <div class="play-card">
+    <div class="play-header"><span class="play-num">11</span><span class="play-title">Next Best Action (NBA) — от правил к моделям</span></div>
+    <div class="play-body">
+      <p>NBA-движок для каждого клиента выбирает оптимальное действие: канал, сообщение, предложение или молчание.</p>
+      <div class="play-label">Quick-Start Protocol (Simon-Kucher)</div>
+      <ul>
+        <li>Недели 1–4: консолидация данных в Customer Value Hub</li>
+        <li>Недели 1–12: запуск 6–8 триггерных кампаний (quick wins)</li>
+        <li>Постоянно: развитие AI-архитектуры</li>
+      </ul>
+      <p><strong>Результаты:</strong> +5% ARPU в точке продления (голландский оператор), +20% к CLV (европейский телеком).</p>
+    </div>
+  </div>
+
+  <div class="play-card">
+    <div class="play-header"><span class="play-num">12</span><span class="play-title">Программа лояльности, завязанная на данных</span></div>
+    <div class="play-body">
+      <p>Баллы не только за покупки, но и за заполнение профиля, диагностику, отзывы, рекомендации друзьям. Цикл: больше данных &rarr; лучше персонализация &rarr; выше CLV &rarr; сильнее лояльность.</p>
+      <p><strong>Платформы:</strong> Loymax (25 000+ магазинов, 100K+ POS), SailPlay/Maestra (SMB, геймификация).</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     PART IV
+     ═══════════════════════════════════════════ -->
+<div class="page" id="part4">
+  <h1><span class="chapter-num">Часть IV</span>Технологический стек: что выбрать в 2026 году</h1>
+
+  <h2>CDP и CRM-маркетинг платформы</h2>
+  <table>
+    <thead><tr><th>Платформа</th><th>Тип</th><th>Сильные стороны</th><th>Старт от</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Mindbox</strong></td><td>CDP + коммуникации</td><td>1 000+ клиентов, ML-модели, 8 продуктов, выручка 2,8 млрд (2024)</td><td>13K руб./мес</td></tr>
+      <tr><td><strong>Retail Rocket</strong></td><td>Live CDP</td><td>1 700+ сайтов, 35+ алгоритмов персонализации</td><td>По запросу</td></tr>
+      <tr><td><strong>Sendsay</strong></td><td>CDP + коммуникации</td><td>Email, SMS, Push, Telegram, VK, поведенческий анализ</td><td>По запросу</td></tr>
+      <tr><td><strong>Carrot Quest</strong></td><td>Лидогенерация</td><td>Чат-боты, поп-апы, email, аналитика поведения</td><td>По запросу</td></tr>
+    </tbody>
+  </table>
+
+  <h2>CRM-системы</h2>
+  <table>
+    <thead><tr><th>Платформа</th><th>Клиенты</th><th>Сильные стороны</th><th>Старт от</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Битрикс24</strong></td><td>25–30% рынка</td><td>CoPilot (AI), скоринг лидов, коробка и облако</td><td>0 (free)</td></tr>
+      <tr><td><strong>AmoCRM</strong></td><td>SMB, стартапы</td><td>Messenger-first, AI через n8n</td><td>499 руб./мес</td></tr>
+      <tr><td><strong>RetailCRM</strong></td><td>E-commerce</td><td>Конструктор сценариев, AI-помощник (v10)</td><td>1 500 руб./мес</td></tr>
+      <tr><td><strong>1С:CRM</strong></td><td>12 000+ компаний</td><td>Интеграция с 1С:ERP, процессный подход</td><td>По запросу</td></tr>
+      <tr><td><strong>BPMSoft</strong></td><td>Enterprise</td><td>Лидер CNews 2025, предиктивный скоринг</td><td>По запросу</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Лояльность, коммуникации и email</h2>
+  <table>
+    <thead><tr><th>Платформа</th><th>Тип</th><th>Сильные стороны</th><th>Старт от</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Loymax</strong></td><td>Лояльность + CRM</td><td>25 000+ магазинов, 100K+ POS</td><td>По запросу</td></tr>
+      <tr><td><strong>SailPlay / Maestra</strong></td><td>Лояльность</td><td>Геймификация, быстрый запуск</td><td>30K руб./мес</td></tr>
+      <tr><td><strong>edna</strong></td><td>Омниканальные коммуникации</td><td>2 500+ клиентов, чат-центр, push</td><td>По запросу</td></tr>
+      <tr><td><strong>UniSender</strong></td><td>Email/SMS</td><td>Простота, гибкие тарифы, SMB</td><td>0 (free)</td></tr>
+      <tr><td><strong>DashaMail</strong></td><td>Email</td><td>Массовые + триггерные + web push</td><td>По запросу</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Российский дата-стек: аналитика и хранилища</h2>
+  <table>
+    <thead><tr><th>Платформа</th><th>Назначение</th><th>Замена</th></tr></thead>
+    <tbody>
+      <tr><td><strong>ClickHouse</strong></td><td>Аналитическая СУБД, реальное время</td><td>BigQuery, Snowflake</td></tr>
+      <tr><td><strong>Яндекс DataLens</strong></td><td>BI, визуализация, дашборды</td><td>Looker, Tableau</td></tr>
+      <tr><td><strong>Яндекс.Метрика</strong></td><td>Веб-аналитика, вебвизор</td><td>Google Analytics</td></tr>
+      <tr><td><strong>AppMetrica</strong></td><td>Мобильная аналитика</td><td>Firebase Analytics</td></tr>
+      <tr><td><strong>Яндекс DataSphere</strong></td><td>ML-модели: churn, CLV, сегментация</td><td>Vertex AI, SageMaker</td></tr>
+      <tr><td><strong>Arenadata</strong></td><td>Enterprise Data Platform</td><td>Cloudera, Databricks</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- PART IV continued: Maturity + Architecture -->
+<div class="page">
+  <h2>Уровни зрелости CRM-стека</h2>
+  <table>
+    <thead><tr><th>Уровень</th><th>Описание</th><th>Типичный стек</th></tr></thead>
+    <tbody>
+      <tr><td>1. Рассылки</td><td>Отправка email, отслеживание доставки</td><td>UniSender, Sendsay</td></tr>
+      <tr><td>2. Единая база</td><td>Мультиканальные кампании</td><td>Битрикс24 + email</td></tr>
+      <tr><td>3. Персонализация</td><td>Сегментация, триггеры, рекомендации</td><td>Mindbox / RetailCRM</td></tr>
+      <tr><td>4. Аналитика</td><td>Предиктивная аналитика, DWH, лояльность</td><td>Mindbox + ClickHouse + Loymax</td></tr>
+      <tr><td>5. AI-оркестрация</td><td>NBA, real-time decisioning, ML-пайплайн</td><td>CDP + ClickHouse + DataSphere</td></tr>
+    </tbody>
+  </table>
+  <p>Большинство российских компаний на уровне 2–3. Уровень 5 — в пилотах у крупнейших ритейлеров и банков.</p>
+
+  <h2>Архитектура данных: пять слоёв CVM-стека</h2>
+  <ol>
+    <li><strong>Data Layer.</strong> CDP, единые 360-профили клиентов.</li>
+    <li><strong>Analytics Layer.</strong> ML-модели для churn prediction, CLV-прогнозирование, сегментация.</li>
+    <li><strong>Decisioning Layer.</strong> NBA-движок, бизнес-правила, real-time триггеры.</li>
+    <li><strong>Activation Layer.</strong> Омниканальная отправка: email, SMS, push, мессенджеры, in-app.</li>
+    <li><strong>Measurement Layer.</strong> Атрибуция, A/B-тестирование, ROI кампаний.</li>
+  </ol>
+
+  <h2>Четыре уровня данных о клиенте</h2>
+  <table>
+    <thead><tr><th>Уровень</th><th>Данные</th><th>Источник</th></tr></thead>
+    <tbody>
+      <tr><td>1. Анонимный</td><td>Посещения, действия на сайте</td><td>Cookies, Яндекс.Метрика</td></tr>
+      <tr><td>2. Контакт</td><td>Имя, email, телефон</td><td>Регистрация, подписка</td></tr>
+      <tr><td>3. Квалифицированный</td><td>Предпочтения, интересы, демография</td><td>Опросы, профилирование</td></tr>
+      <tr><td>4. Транзакционный</td><td>История покупок, средний чек, частота</td><td>E-commerce / касса</td></tr>
+    </tbody>
+  </table>
+  <p>Чем глубже уровень, тем точнее персонализация и выше конверсия.</p>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     PART V
+     ═══════════════════════════════════════════ -->
+<div class="page" id="part5">
+  <h1><span class="chapter-num">Часть V</span>Юридический фреймворк: 152-ФЗ, 38-ФЗ и маркировка</h1>
+
+  <p class="chapter-intro">CRM-маркетинг в России регулируется несколькими законами одновременно. Ошибка стоит от 300&nbsp;000 рублей до 3% годовой выручки. С 2025 появилась уголовная ответственность за работу с утёкшими базами.</p>
+
+  <h2>152-ФЗ «О персональных данных»</h2>
+
+  <h3>Что считается персональными данными</h3>
+  <p>Любая информация, относящаяся к определённому лицу: ФИО, телефон, email, дата рождения, адрес, IP, cookies (в сочетании с другими данными), история покупок.</p>
+
+  <h3>Согласие: новые правила с 1 сентября 2025</h3>
+  <div class="callout callout-danger">
+    <strong>Критичное изменение (ФЗ №&nbsp;156-ФЗ):</strong> согласие на обработку ПДн — отдельный самостоятельный документ. Запрещено встраивать в оферту. Один чекбокс на несколько согласий — нарушение. Штраф: 300–700K руб.
+  </div>
+
+  <p><strong>Обязательное содержание</strong> (ст.&nbsp;9, ч.&nbsp;4): ФИО и адрес субъекта; наименование оператора; цель обработки; перечень ПДн; перечень действий; срок; порядок отзыва.</p>
+
+  <h3>Локализация данных</h3>
+  <p>Базы с ПДн граждан РФ — физически на территории России (ст.&nbsp;18, ч.&nbsp;5). С&nbsp;01.07.2025 первичный сбор через зарубежные серверы запрещён. Штраф: до 18&nbsp;млн руб.</p>
+
+  <h3>Штрафы 152-ФЗ (с 30.05.2025)</h3>
+  <table>
+    <thead><tr><th>Нарушение</th><th>Юрлица</th><th>При повторе</th></tr></thead>
+    <tbody>
+      <tr><td>Обработка без согласия</td><td>150–300K руб.</td><td>300–500K руб.</td></tr>
+      <tr><td>Нарушение формы согласия</td><td>300–700K руб.</td><td>—</td></tr>
+      <tr><td>Отсутствие уведомления РКН</td><td>100–300K руб.</td><td>—</td></tr>
+      <tr><td>Неуведомление об утечке</td><td>1–3 млн руб.</td><td>—</td></tr>
+      <tr><td>Утечка 1K–10K субъектов</td><td>3–5 млн руб.</td><td>—</td></tr>
+      <tr><td>Утечка 10K–100K субъектов</td><td>5–10 млн руб.</td><td>—</td></tr>
+      <tr><td>Утечка 100K+ субъектов</td><td>10–15 млн руб.</td><td>—</td></tr>
+      <tr class="highlight"><td>Повторная утечка</td><td><strong>1–3% выручки</strong> (мин. 20M, макс. 500M)</td><td>—</td></tr>
+      <tr><td>Нарушение локализации</td><td>до 6 млн руб.</td><td>до 18 млн руб.</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Уголовная ответственность (ст. 272.1 УК РФ, с 30.05.2025)</h3>
+  <table>
+    <thead><tr><th>Состав</th><th>Максимум</th></tr></thead>
+    <tbody>
+      <tr><td>Незаконный сбор, хранение, передача ПДн</td><td>до 4 лет</td></tr>
+      <tr><td>Данные несовершеннолетних, биометрия</td><td>до 5 лет</td></tr>
+      <tr><td>С использованием служебного положения</td><td>до 6 лет</td></tr>
+      <tr class="highlight"><td>Организованная группа, тяжкие последствия</td><td><strong>до 10 лет</strong></td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- PART V continued -->
+<div class="page">
+  <h2>38-ФЗ «О рекламе»: согласие по каналам</h2>
+
+  <h3>Что считается рекламой, а что нет</h3>
+  <table>
+    <thead><tr><th>Тип сообщения</th><th>Пример</th><th>Реклама?</th></tr></thead>
+    <tbody>
+      <tr><td>Транзакционное</td><td>Подтверждение заказа, чек</td><td>Нет</td></tr>
+      <tr><td>Сервисное</td><td>Сброс пароля, подтверждение подписки</td><td>Нет</td></tr>
+      <tr><td>Промо-рассылка</td><td>«Скидка 20%», «Новая коллекция»</td><td><strong>Да</strong></td></tr>
+      <tr><td>Персональная рекомендация</td><td>«Вам может понравиться...»</td><td><strong>Да</strong> (ФАС)</td></tr>
+      <tr><td>Контент с CTA</td><td>«5 трендов + купить сейчас»</td><td><strong>Да</strong></td></tr>
+    </tbody>
+  </table>
+
+  <p>Штраф за рассылку без согласия: <strong>300K–1M руб.</strong> за каждое нарушение.</p>
+
+  <h2>Маркировка рекламы (ОРД / ЕРИР)</h2>
+
+  <h3>Что CRM-маркетологу НЕ нужно маркировать</h3>
+  <table>
+    <thead><tr><th>Коммуникация</th><th>Маркировка</th></tr></thead>
+    <tbody>
+      <tr><td>Email/SMS/Push по своей базе (свои товары)</td><td><strong>Нет</strong></td></tr>
+      <tr><td>Email/SMS с рекламой чужих товаров (аффилиат)</td><td><strong>Да</strong></td></tr>
+      <tr><td>Баннеры, таргет, контекст</td><td><strong>Да</strong></td></tr>
+    </tbody>
+  </table>
+
+  <h2>41-ФЗ: ограничения на иностранные мессенджеры (с 01.06.2025)</h2>
+  <p>Запрет использования Telegram, WhatsApp, Viber, Discord для деловой коммуникации с клиентами. Прямой запрет — госорганы, банки, маркетплейсы. Расширенный — фактически любой бизнес.</p>
+  <div class="callout callout-warning">
+    <strong>Правоприменение не устоялось.</strong> Многие продолжают использовать Telegram. Зона юридической неопределённости — следите за разъяснениями регуляторов.
+  </div>
+
+  <h2>Чеклист юридического комплаенса</h2>
+
+  <h4>Сбор данных</h4>
+  <ul class="checklist">
+    <li>Уведомление в Роскомнадзор подано до начала обработки ПДн</li>
+    <li>Политика обработки ПДн опубликована на сайте</li>
+    <li>Согласие на обработку ПДн — отдельный документ (с 01.09.2025)</li>
+    <li>Отдельное согласие на рекламные рассылки (38-ФЗ)</li>
+    <li>Double opt-in для email</li>
+    <li>Все согласия хранятся (логи, скриншоты, записи)</li>
+  </ul>
+
+  <h4>Хранение данных</h4>
+  <ul class="checklist">
+    <li>Серверы CRM физически расположены в России</li>
+    <li>Первичный сбор — только через российские серверы</li>
+    <li>Зарубежные CRM не используются для хранения ПДн</li>
+    <li>Аналитика: Яндекс.Метрика вместо Google Analytics</li>
+    <li>Резервные копии — тоже на территории России</li>
+  </ul>
+
+  <h4>Рассылки</h4>
+  <ul class="checklist">
+    <li>Механизм отписки в каждом рекламном письме</li>
+    <li>Транзакционные письма не содержат рекламу</li>
+    <li>Маркировка ERID не требуется (свои товары)</li>
+    <li>Маркировка требуется для аффилиатной рекламы</li>
+  </ul>
+
+  <h4>Удаление данных</h4>
+  <ul class="checklist">
+    <li>Приём отзыва согласия в любой форме</li>
+    <li>Прекращение обработки и удаление в течение 30 дней</li>
+    <li>Оформление акта уничтожения</li>
+  </ul>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     PART VI
+     ═══════════════════════════════════════════ -->
+<div class="page" id="part6">
+  <h1><span class="chapter-num">Часть VI</span>Метрики и измерение: что показывать руководству</h1>
+
+  <h2>Четыре уровня метрик</h2>
+
+  <h3>Уровень 1: Метрики базы данных</h3>
+  <table>
+    <thead><tr><th>Метрика</th><th>Формула</th><th>Норма</th></tr></thead>
+    <tbody>
+      <tr><td>Размер базы</td><td>Общее количество контактов</td><td>Рост 10–20%/год</td></tr>
+      <tr><td>Доля активных</td><td>Взаимодействие за 6 мес. / Всего</td><td>&gt; 40%</td></tr>
+      <tr><td>Доля контактируемых</td><td>С opt-in / Всего</td><td>&gt; 60%</td></tr>
+      <tr><td>Квалификация</td><td>С заполненным профилем / Всего</td><td>&gt; 30%</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Уровень 2: Метрики покупок</h3>
+  <table>
+    <thead><tr><th>Метрика</th><th>Формула</th><th>Зачем</th></tr></thead>
+    <tbody>
+      <tr><td>Retention Rate</td><td>Покупатели N+1 / Покупатели N</td><td>Здоровье базы</td></tr>
+      <tr><td>Repeat Rate</td><td>2+ покупки / Все покупатели</td><td>Лояльность</td></tr>
+      <tr><td>AOV</td><td>Выручка / Заказы</td><td>Монетизация</td></tr>
+      <tr><td>Purchase Frequency</td><td>Заказы / Покупатели</td><td>Вовлечённость</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Уровень 3: Метрики кампаний</h3>
+  <table>
+    <thead><tr><th>Метрика</th><th>Формула</th><th>Бенчмарк (ритейл)</th></tr></thead>
+    <tbody>
+      <tr><td>Unique Open Rate</td><td>Уникальные открытия / Доставленные</td><td>35–45%</td></tr>
+      <tr><td>Click-Through Rate</td><td>Клики / Доставленные</td><td>1,5–2,5%</td></tr>
+      <tr><td>Conversion Rate</td><td>Заказы / Клики</td><td>3–8%</td></tr>
+      <tr><td>Unsubscribe Rate</td><td>Отписки / Доставленные</td><td>&lt; 0,5%</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Уровень 4: Продвинутые метрики (CVM)</h3>
+  <table>
+    <thead><tr><th>Метрика</th><th>Формула</th><th>Зачем</th></tr></thead>
+    <tbody>
+      <tr><td>CLV</td><td>(AOV &times; Frequency &times; Lifespan) - CAC</td><td>North Star</td></tr>
+      <tr><td>CLV по когортам</td><td>CLV для каждой когорты привлечения</td><td>Тренд качества</td></tr>
+      <tr><td>Инкрементальный доход</td><td>Тестовая группа - Контрольная группа</td><td>Доказательство ROI</td></tr>
+      <tr><td>CRM Contribution</td><td>Инкрементальный / Общий доход</td><td>Доля CRM</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Метод контрольных групп</h2>
+  <div class="formula-box">Инкрементальный доход = Доход(тест) - Доход(контроль) × (Размер тест / Размер контроль)</div>
+  <p>Изолировать 10–50% аудитории. Российские кейсы: METRO 20% e-com выручки через CRM (рост с 11%), CDEK +5% инкрементальная выручка, Zolla &times;10 товарооборот самовывоза.</p>
+
+  <h2>Дашборд для руководства: пять метрик</h2>
+  <ol>
+    <li><strong>CLV по когортам</strong> — растёт или падает качество клиентов</li>
+    <li><strong>Retention Rate</strong> — удерживаем или теряем базу</li>
+    <li><strong>Инкрементальный доход от CRM</strong> — сколько денег приносит CRM</li>
+    <li><strong>CLV:CAC</strong> — окупаемость привлечения</li>
+    <li><strong>Churn Rate</strong> — скорость потери клиентов</li>
+  </ol>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     APPENDIX
+     ═══════════════════════════════════════════ -->
+<div class="page" id="appendix">
+  <h1><span class="chapter-num">Приложения</span>Глоссарий, ROI, источники</h1>
+
+  <h2>Глоссарий</h2>
+  <table>
+    <thead><tr><th>Термин</th><th>Определение</th></tr></thead>
+    <tbody>
+      <tr><td><strong>CLV / LTV</strong></td><td>Суммарная выручка от клиента за всё время отношений</td></tr>
+      <tr><td><strong>CAC</strong></td><td>Стоимость привлечения одного нового клиента</td></tr>
+      <tr><td><strong>RFM</strong></td><td>Recency + Frequency + Monetary — модель сегментации</td></tr>
+      <tr><td><strong>Churn Rate</strong></td><td>Процент клиентов, прекративших покупки за период</td></tr>
+      <tr><td><strong>Retention Rate</strong></td><td>Доля клиентов, сохранивших активность за период</td></tr>
+      <tr><td><strong>ARPU</strong></td><td>Средняя выручка на одного клиента за период</td></tr>
+      <tr><td><strong>NBA / NBO</strong></td><td>Next Best Action / Offer — система рекомендаций следующего действия</td></tr>
+      <tr><td><strong>CDP</strong></td><td>Customer Data Platform — единая платформа данных о клиентах</td></tr>
+      <tr><td><strong>NPS</strong></td><td>Net Promoter Score — индекс лояльности (от –100 до +100)</td></tr>
+      <tr><td><strong>CVM</strong></td><td>Customer Value Management — максимизация ценности клиента</td></tr>
+      <tr><td><strong>ОРД</strong></td><td>Оператор рекламных данных — сервис для маркировки рекламы</td></tr>
+      <tr><td><strong>ЕРИР</strong></td><td>Единый реестр интернет-рекламы</td></tr>
+      <tr><td><strong>ERID</strong></td><td>Уникальный идентификатор рекламного креатива</td></tr>
+    </tbody>
+  </table>
+
+  <h2>ROI по подходам</h2>
+  <table>
+    <thead><tr><th>Подход</th><th>ROI</th><th>Источник</th></tr></thead>
+    <tbody>
+      <tr><td>Email-маркетинг</td><td>36 руб. на каждый вложенный</td><td>DMA / Litmus, 2023</td></tr>
+      <tr><td>CRM-маркетинг</td><td>8,71 руб. на 1 руб.</td><td>Nucleus Research</td></tr>
+      <tr><td>CVM</td><td>+15–25% к CLV, +5% к EBITDA</td><td>McKinsey</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Источники</h2>
+  <h4>Исследования и отчёты</h4>
+  <ul style="font-size:9pt;">
+    <li>McKinsey, «Next in Personalization», 2021</li>
+    <li>DMA / Litmus, ROI email-маркетинга, 2023</li>
+    <li>Bain & Company, стоимость удержания vs привлечения</li>
+    <li>Simon-Kucher, «Why CVM is the growth lever you're missing», 2024</li>
+    <li>Exacaster, CVMBoK — Customer Value Management Body of Knowledge (exacaster.com/cvmbok/)</li>
+  </ul>
+  <h4>Российские источники</h4>
+  <ul style="font-size:9pt;">
+    <li>Mindbox, исследование email-рассылок 2024 (31,4 млрд писем, 815 компаний)</li>
+    <li>Mindbox, кейсы: METRO, АШАН, Акушерство, Quke, Купибилет, CDEK, Zolla</li>
+    <li>TAdviser, рынок CRM в России 2024–2025</li>
+    <li>CRM Rating, обзор рынка CRM 2025</li>
+    <li>CNews, рейтинг CRM-систем 2025</li>
+    <li>Data Insight, «Интернет-торговля в России 2025»</li>
+    <li>DashaMail, исследование рынка email-сервисов РФ</li>
+    <li>РАЭК, экономика Рунета 2024</li>
+    <li>Pushwoosh, Push Notification Benchmarks 2025</li>
+    <li>Arenadata, итоги 2025</li>
+  </ul>
+  <h4>Законодательство</h4>
+  <ul style="font-size:9pt;">
+    <li>152-ФЗ «О персональных данных» (ред. 2025)</li>
+    <li>38-ФЗ «О рекламе» (ред. 2025)</li>
+    <li>41-ФЗ от 01.04.2025 (ограничения мессенджеров)</li>
+    <li>421-ФЗ от 30.11.2024 (ст. 272.1 УК РФ)</li>
+    <li>156-ФЗ от 24.06.2025 (форма согласия)</li>
+  </ul>
+
+  <div class="section-break">&bull; &bull; &bull;</div>
+
+  <p style="text-align:center; color:var(--c-text-secondary); font-size:9.5pt; margin-top:20px;">
+    <strong>CRM Playbook 2026</strong> подготовлен CRM-group.<br>
+    Данные актуальны на февраль 2026 года.<br>
+    Следующее издание — Q1 2027.
+  </p>
+  <p style="text-align:center; font-size:9pt; margin-top:8px;">
+    <strong>crmgroup.ru</strong>
+  </p>
+</div>
+
+</body>
+</html>

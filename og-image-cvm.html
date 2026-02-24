@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>OG Image — Что такое CVM в маркетинге</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { width: 1200px; height: 630px; overflow: hidden; background: #0f1117; }
+
+  .og {
+    position: relative;
+    width: 1200px;
+    height: 630px;
+    background: #0f1117;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    overflow: hidden;
+  }
+
+  /* Left red accent bar */
+  .og-accent {
+    position: absolute;
+    left: 0; top: 0;
+    width: 8px; height: 100%;
+    background: #dc1327;
+  }
+
+  /* Ghost CVM — background typography */
+  .og-ghost {
+    position: absolute;
+    right: -20px; top: 30px;
+    font-size: 420px;
+    font-weight: 800;
+    color: #ffffff;
+    opacity: 0.03;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    user-select: none;
+    pointer-events: none;
+  }
+
+  /* Subtle grid texture */
+  .og-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.02) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  /* Tag line — крупнее для читаемости в превью */
+  .og-tag {
+    position: absolute;
+    left: 80px; top: 80px;
+    font-size: 22px;
+    font-weight: 600;
+    color: #dc1327;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* Main headline — увеличен для Telegram/соцсетей */
+  .og-title {
+    position: absolute;
+    left: 76px; top: 150px;
+    font-size: 104px;
+    font-weight: 800;
+    color: #ffffff;
+    line-height: 1.0;
+    letter-spacing: -0.025em;
+    max-width: 900px;
+  }
+
+  .og-title em {
+    font-style: normal;
+    color: #dc1327;
+  }
+
+  /* Subtitle — крупнее, контрастнее */
+  .og-sub {
+    position: absolute;
+    left: 80px; top: 410px;
+    font-size: 32px;
+    font-weight: 400;
+    color: #a0a8b8;
+    line-height: 1.4;
+    max-width: 700px;
+  }
+
+  /* Bottom separator line */
+  .og-bottom-line {
+    position: absolute;
+    left: 80px; bottom: 88px;
+    right: 80px; height: 1px;
+    background: rgba(255,255,255,0.08);
+  }
+
+  /* Brand bottom — крупнее */
+  .og-brand {
+    position: absolute;
+    left: 80px; bottom: 40px;
+    font-size: 24px;
+    font-weight: 600;
+    color: rgba(255,255,255,.45);
+    letter-spacing: 0.03em;
+  }
+
+  /* Red dot bottom-right */
+  .og-dot {
+    position: absolute;
+    right: 80px; bottom: 36px;
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: #dc1327;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .og-dot::after {
+    content: '';
+    width: 14px; height: 14px;
+    background: #fff;
+    border-radius: 50%;
+    opacity: .8;
+  }
+
+  /* ───────────────────── */
+  /* PREVIEW SECTION BELOW */
+  /* ───────────────────── */
+  .preview-note {
+    display: none;
+  }
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="og">
+  <div class="og-grid"></div>
+  <div class="og-accent"></div>
+  <div class="og-ghost">CVM</div>
+  <div class="og-tag">Гайд · Customer Value Management</div>
+  <div class="og-title">Что такое <em>CVM</em><br>в маркетинге</div>
+  <div class="og-sub">Бюджет не растёт, а план растёт. Разбираемся.</div>
+  <div class="og-bottom-line"></div>
+  <div class="og-brand">crmgroup.ru</div>
+  <div class="og-dot"></div>
+</div>
+</body>
+</html>
