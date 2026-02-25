@@ -299,6 +299,36 @@ a { color: var(--red); text-decoration: none; }
 .block-flow__arrow{color:var(--red);font-size:18px;font-weight:400;flex-shrink:0;line-height:1}
 @media(max-width:640px){.block-flow{flex-direction:column;align-items:stretch;gap:0}.block-flow__step{max-width:100%}.block-flow__arrow{padding:4px 16px;font-size:16px}}
 
+/* ── block-scenario (Intercom/Klaviyo-style cascade) ── */
+.block-scenario{display:flex;flex-direction:column;align-items:center;font-family:var(--font,Inter,system-ui,sans-serif);max-width:540px;margin:24px 0 32px}
+.bs-node{display:flex;align-items:center;gap:10px;background:#fff;border:1.5px solid #e4e4e4;border-left-width:4px;border-radius:10px;padding:10px 14px;width:100%;max-width:280px;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+.bs-node__icon{font-size:17px;width:24px;text-align:center;flex-shrink:0;line-height:1}
+.bs-node__body strong{display:block;font-size:13px;font-weight:700;color:#1a1a1a;line-height:1.3}
+.bs-node__body span{font-size:12px;color:#888;display:block;line-height:1.35}
+.bs-node--trigger{border-left-color:#c01020;background:#fff5f5}
+.bs-node--action{border-left-color:#2563eb;background:#eff6ff}
+.bs-node--wait{border-left-color:#d97706;background:#fffbeb}
+.bs-node--end{border-left-color:#16a34a;background:#f0fdf4}
+.bs-conn{width:2px;height:18px;background:#d0d0d0}
+/* Branch / condition node */
+.bs-branch{width:100%;display:flex;flex-direction:column;align-items:center}
+.bs-branch__cond{display:flex;align-items:center;gap:8px;border:1.5px dashed #bbb;border-radius:10px;padding:9px 14px;width:100%;max-width:280px;font-size:13px;font-weight:600;color:#555;background:#f8f8f8}
+.bs-branch__cond-icon{font-size:14px;flex-shrink:0}
+/* Horizontal bar that splits into two paths */
+.bs-branch__paths{display:flex;gap:0;width:100%;border-top:2px solid #d0d0d0}
+.bs-branch__path{flex:1;display:flex;flex-direction:column;align-items:center;gap:0}
+.bs-branch__path:first-child{border-right:1px solid #e8e8e8}
+.bs-branch__label{font-size:11px;font-weight:700;letter-spacing:.4px;text-transform:uppercase;padding:3px 10px;border-radius:0 0 8px 8px;margin-bottom:8px}
+.bs-branch__path--yes .bs-branch__label{background:#dcfce7;color:#16a34a}
+.bs-branch__path--no .bs-branch__label{background:#fee2e2;color:#dc2626}
+/* On mobile, stack paths vertically */
+@media(max-width:540px){
+  .bs-branch__paths{flex-direction:column;border-top:none;border-left:2px solid #d0d0d0;align-items:flex-start;padding-left:16px;gap:12px}
+  .bs-branch__path:first-child{border-right:none;border-bottom:1px solid #e8e8e8;padding-bottom:12px;width:100%}
+  .bs-branch__label{border-radius:20px;margin-bottom:6px}
+  .bs-node{max-width:100%}
+}
+
 .faq-section { margin: var(--s5) 0; padding-top: var(--s4); border-top: 2px solid var(--border); max-width: var(--measure); }
 .faq-section__title { font-size: 22px; font-weight: 700; margin-bottom: 4px; }
 .faq-section__sub { font-size: 14px; color: var(--gray); margin-bottom: var(--s3); }
@@ -551,6 +581,7 @@ a { color: var(--red); text-decoration: none; }
     <a href="#hub-font">Хаб: Inter</a>
     <a href="#empty-img">Пустые картинки</a>
     <a href="#flow">Схема потока</a>
+    <a href="#scenario">Сценарий</a>
     <a href="#other">Остальные блоки</a>
     <a href="#wpcss">WP CSS v5</a>
     <a href="#page">Пример страницы</a>
@@ -1196,6 +1227,137 @@ document.addEventListener('DOMContentLoaded', () => {
     </div>
 
     <p style="font-size:13px;color:#888;margin-top:12px;">Стили в <code>wp-custom.css</code> + инлайн <code>&lt;style&gt;</code> в начале статьи (как в CVM). Цвета: фон <code>#fff9f0</code>, граница <code>#e4e2dc</code>, акцент <code>#c01020</code>.</p>
+  </section>
+
+  <!-- ─── SECTION: Сценарий каскада ─────────────────────────── -->
+  <section class="ds-section" id="scenario">
+    <div class="ds-section-label">Сценарий каскада — .block-scenario <span class="badge badge-new">новый</span></div>
+
+    <div class="preview">
+      <p style="font-size:12px;color:#aaa;margin-bottom:20px;">Вертикальная цепочка нод: триггер → ожидание → действие → ветка (да/нет). Стиль Intercom / Klaviyo. 4 типа нод: <code>--trigger</code> (красный), <code>--action</code> (синий), <code>--wait</code> (жёлтый), <code>--end</code> (зелёный). Ветка — <code>.bs-branch</code>.</p>
+
+      <!-- Живой пример: каскад "Брошенная корзина" -->
+      <div class="block-scenario">
+
+        <div class="bs-node bs-node--trigger">
+          <span class="bs-node__icon">⚡</span>
+          <div class="bs-node__body"><strong>Триггер</strong><span>Брошенная корзина</span></div>
+        </div>
+        <div class="bs-conn"></div>
+
+        <div class="bs-node bs-node--wait">
+          <span class="bs-node__icon">⏱</span>
+          <div class="bs-node__body"><strong>Ждать</strong><span>1 час</span></div>
+        </div>
+        <div class="bs-conn"></div>
+
+        <div class="bs-node bs-node--action">
+          <span class="bs-node__icon">📧</span>
+          <div class="bs-node__body"><strong>Email</strong><span>«Вы забыли кое-что»</span></div>
+        </div>
+        <div class="bs-conn"></div>
+
+        <!-- Ветка условия -->
+        <div class="bs-branch">
+          <div class="bs-branch__cond">
+            <span class="bs-branch__cond-icon">🔀</span>
+            Открыл письмо?
+          </div>
+          <div class="bs-conn"></div>
+          <div class="bs-branch__paths">
+
+            <div class="bs-branch__path bs-branch__path--yes">
+              <div class="bs-branch__label">Да ✓</div>
+              <div class="bs-conn"></div>
+              <div class="bs-node bs-node--wait">
+                <span class="bs-node__icon">⏱</span>
+                <div class="bs-node__body"><strong>Ждать</strong><span>2 дня</span></div>
+              </div>
+              <div class="bs-conn"></div>
+              <div class="bs-node bs-node--action">
+                <span class="bs-node__icon">💬</span>
+                <div class="bs-node__body"><strong>SMS</strong><span>Скидка 10%</span></div>
+              </div>
+              <div class="bs-conn"></div>
+              <div class="bs-node bs-node--end">
+                <span class="bs-node__icon">✅</span>
+                <div class="bs-node__body"><strong>Конец</strong><span>сценария</span></div>
+              </div>
+            </div>
+
+            <div class="bs-branch__path bs-branch__path--no">
+              <div class="bs-branch__label">Нет ✗</div>
+              <div class="bs-conn"></div>
+              <div class="bs-node bs-node--action">
+                <span class="bs-node__icon">📧</span>
+                <div class="bs-node__body"><strong>Email</strong><span>Повторное письмо</span></div>
+              </div>
+              <div class="bs-conn"></div>
+              <div class="bs-node bs-node--end">
+                <span class="bs-node__icon">✅</span>
+                <div class="bs-node__body"><strong>Конец</strong><span>сценария</span></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div><!-- /block-scenario -->
+    </div>
+
+    <!-- HTML шаблон -->
+    <div class="change-code" style="font-size:12px;line-height:1.7;">
+&lt;div class="block-scenario"&gt;<br>
+<br>
+&nbsp;&nbsp;&lt;!-- Триггер --&gt;<br>
+&nbsp;&nbsp;&lt;div class="bs-node bs-node--trigger"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;span class="bs-node__icon"&gt;⚡&lt;/span&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="bs-node__body"&gt;&lt;strong&gt;Триггер&lt;/strong&gt;&lt;span&gt;подпись&lt;/span&gt;&lt;/div&gt;<br>
+&nbsp;&nbsp;&lt;/div&gt;<br>
+&nbsp;&nbsp;&lt;div class="bs-conn"&gt;&lt;/div&gt;<br>
+<br>
+&nbsp;&nbsp;&lt;!-- Ожидание (bs-node--wait) или Действие (bs-node--action) --&gt;<br>
+&nbsp;&nbsp;&lt;div class="bs-node bs-node--wait"&gt;...&lt;/div&gt;<br>
+&nbsp;&nbsp;&lt;div class="bs-conn"&gt;&lt;/div&gt;<br>
+<br>
+&nbsp;&nbsp;&lt;!-- Ветка условия --&gt;<br>
+&nbsp;&nbsp;&lt;div class="bs-branch"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="bs-branch__cond"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span class="bs-branch__cond-icon"&gt;🔀&lt;/span&gt; Условие?<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="bs-conn"&gt;&lt;/div&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="bs-branch__paths"&gt;<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="bs-branch__path bs-branch__path--yes"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="bs-branch__label"&gt;Да ✓&lt;/div&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="bs-conn"&gt;&lt;/div&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="bs-node bs-node--action"&gt;...&lt;/div&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="bs-conn"&gt;&lt;/div&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="bs-node bs-node--end"&gt;...&lt;/div&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="bs-branch__path bs-branch__path--no"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="bs-branch__label"&gt;Нет ✗&lt;/div&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="bs-conn"&gt;&lt;/div&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="bs-node bs-node--action"&gt;...&lt;/div&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="bs-conn"&gt;&lt;/div&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="bs-node bs-node--end"&gt;...&lt;/div&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;&lt;!-- /bs-branch__paths --&gt;<br>
+&nbsp;&nbsp;&lt;/div&gt;&lt;!-- /bs-branch --&gt;<br>
+<br>
+&lt;/div&gt;&lt;!-- /block-scenario --&gt;
+    </div>
+
+    <div style="display:flex;gap:16px;flex-wrap:wrap;margin-top:16px;font-size:13px;color:#555;">
+      <span>⚡ <code>.bs-node--trigger</code> — красный, запуск</span>
+      <span>📧 <code>.bs-node--action</code> — синий, шаг</span>
+      <span>⏱ <code>.bs-node--wait</code> — жёлтый, пауза</span>
+      <span>✅ <code>.bs-node--end</code> — зелёный, финал</span>
+      <span>🔀 <code>.bs-branch</code> — развилка да/нет</span>
+    </div>
+    <p style="font-size:13px;color:#888;margin-top:10px;">Стили в <code>wp-custom.css</code> + инлайн <code>&lt;style&gt;</code> в статье. На мобиле ветки стекаются вертикально.</p>
   </section>
 
   <section class="ds-section" id="other">
