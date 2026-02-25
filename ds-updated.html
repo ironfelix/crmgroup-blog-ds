@@ -81,19 +81,22 @@ a { color: var(--red); text-decoration: none; }
 }
 
 .ds-nav {
-  display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 40px;
+  display: flex; gap: 8px; flex-wrap: nowrap; overflow-x: auto; margin-bottom: 40px;
   position: sticky; top: 0; z-index: 100;
   background: var(--ds-bg); padding: 12px 0;
+  scrollbar-width: none; -ms-overflow-style: none;
+  border-bottom: 1px solid var(--ds-border);
 }
+.ds-nav::-webkit-scrollbar { display: none; }
 .ds-nav a {
-  padding: 7px 16px; border-radius: 20px; font-size: 13px; font-weight: 600;
+  padding: 7px 16px; border-radius: 20px; font-size: 13px; font-weight: 600; white-space: nowrap; flex-shrink: 0;
   background: #fff; border: 1px solid var(--ds-border); color: var(--black);
-  transition: all .15s;
+  transition: all .15s; text-decoration: none;
 }
 .ds-nav a:hover { background: var(--black); color: #fff; border-color: var(--black); }
 .ds-nav a.active { background: var(--red); color: #fff; border-color: var(--red); }
 
-.ds-section { margin-bottom: 64px; scroll-margin-top: 64px; }
+.ds-section { margin-bottom: 64px; scroll-margin-top: 56px; }
 .ds-section-label {
   font-size: 10.5px; font-weight: 700; letter-spacing: 1.8px; text-transform: uppercase;
   color: var(--ds-label); margin-bottom: 18px; padding-bottom: 10px; border-bottom: 1px solid #e0e0e0;
@@ -547,6 +550,7 @@ a { color: var(--red); text-decoration: none; }
     <a href="#sidenote">Читайте также</a>
     <a href="#hub-font">Хаб: Inter</a>
     <a href="#empty-img">Пустые картинки</a>
+    <a href="#flow">Схема потока</a>
     <a href="#other">Остальные блоки</a>
     <a href="#wpcss">WP CSS v5</a>
     <a href="#page">Пример страницы</a>
