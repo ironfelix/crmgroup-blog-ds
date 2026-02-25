@@ -287,6 +287,15 @@ a { color: var(--red); text-decoration: none; }
 .block-sidenote a:hover { text-decoration: underline; }
 
 /* ─── NEW: FAQ / Яндекс.Нейро ────────────────────────────── */
+/* ── block-flow ── */
+.block-flow{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin:20px 0 28px;max-width:660px;font-family:var(--font)}
+.block-flow__step{background:var(--warm);border:1px solid var(--border);border-radius:8px;padding:10px 14px;flex-shrink:0;max-width:140px}
+.block-flow__step strong{display:block;font-size:13px;font-weight:700;color:var(--black);line-height:1.3;margin-bottom:3px}
+.block-flow__step span{font-size:12px;color:var(--gray);line-height:1.35;display:block}
+.block-flow__step--end{border-color:var(--red);border-width:2px;background:#fff5f5}
+.block-flow__arrow{color:var(--red);font-size:18px;font-weight:400;flex-shrink:0;line-height:1}
+@media(max-width:640px){.block-flow{flex-direction:column;align-items:stretch;gap:0}.block-flow__step{max-width:100%}.block-flow__arrow{padding:4px 16px;font-size:16px}}
+
 .faq-section { margin: var(--s5) 0; padding-top: var(--s4); border-top: 2px solid var(--border); max-width: var(--measure); }
 .faq-section__title { font-size: 22px; font-weight: 700; margin-bottom: 4px; }
 .faq-section__sub { font-size: 14px; color: var(--gray); margin-bottom: var(--s3); }
@@ -1150,6 +1159,41 @@ document.addEventListener('DOMContentLoaded', () => {
   </section>
 
   <!-- ─── SECTION: Остальные блоки ─────────────────────────── -->
+  <section class="ds-section" id="flow">
+    <div class="ds-section-label">Схема потока данных — .block-flow <span class="badge badge-new">новый</span></div>
+
+    <div class="preview">
+      <p style="font-size:12px;color:#aaa;margin-bottom:16px;">Горизонтальная цепочка шагов. На мобиле — вертикальный стек. Финальный узел выделяется красной рамкой (<code>.block-flow__step--end</code>).</p>
+      <div class="block-flow">
+        <div class="block-flow__step"><strong>Клиент</strong><span>пишет в MAX</span></div>
+        <div class="block-flow__arrow">→</div>
+        <div class="block-flow__step"><strong>Wazzup24</strong><span>webhook от VK API</span></div>
+        <div class="block-flow__arrow">→</div>
+        <div class="block-flow__step"><strong>CRM</strong><span>поиск контакта</span></div>
+        <div class="block-flow__arrow">→</div>
+        <div class="block-flow__step"><strong>Менеджер</strong><span>отвечает из CRM</span></div>
+        <div class="block-flow__arrow">→</div>
+        <div class="block-flow__step block-flow__step--end"><strong>Клиент в MAX</strong><span>получает ответ</span></div>
+      </div>
+    </div>
+
+    <div class="change-code">
+&lt;div class="block-flow"&gt;<br>
+&nbsp;&nbsp;&lt;div class="block-flow__step"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;strong&gt;Название шага&lt;/strong&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;span&gt;подпись&lt;/span&gt;<br>
+&nbsp;&nbsp;&lt;/div&gt;<br>
+&nbsp;&nbsp;&lt;div class="block-flow__arrow"&gt;→&lt;/div&gt;<br>
+&nbsp;&nbsp;&lt;!-- повторить для каждого шага --&gt;<br>
+&nbsp;&nbsp;&lt;div class="block-flow__step block-flow__step--end"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;strong&gt;Финальный шаг&lt;/strong&gt;<br>
+&nbsp;&nbsp;&lt;/div&gt;<br>
+&lt;/div&gt;
+    </div>
+
+    <p style="font-size:13px;color:#888;margin-top:12px;">Стили в <code>wp-custom.css</code> + инлайн <code>&lt;style&gt;</code> в начале статьи (как в CVM). Цвета: фон <code>#fff9f0</code>, граница <code>#e4e2dc</code>, акцент <code>#c01020</code>.</p>
+  </section>
+
   <section class="ds-section" id="other">
     <div class="ds-section-label">Остальные блоки <span class="badge badge-upd">дополнено по референсу</span></div>
 
