@@ -329,6 +329,26 @@ a { color: var(--red); text-decoration: none; }
   .bs-node{max-width:100%}
 }
 
+/* ── block-cjm (горизонтальная карта этапов CJM) ── */
+.block-cjm{display:flex;align-items:center;gap:0;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding:4px 0 16px;margin:20px 0 28px;font-family:var(--font)}
+.bcjm-stage{flex-shrink:0;scroll-snap-align:start;width:150px;background:#fff;border:1px solid #e8e8e8;border-top:4px solid #94a3b8;border-radius:0 0 10px 10px;padding:12px 12px 14px;display:flex;flex-direction:column;gap:8px;align-self:flex-start}
+.bcjm-stage--positive{border-top-color:#16a34a}
+.bcjm-stage--neutral{border-top-color:#94a3b8}
+.bcjm-stage--doubt{border-top-color:#d97706}
+.bcjm-stage--risk{border-top-color:#ea580c}
+.bcjm-stage--negative{border-top-color:#c01020}
+.bcjm-stage__name{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:#1a1a1a;line-height:1.3}
+.bcjm-stage__points{margin:0;padding:0 0 0 14px;font-size:12px;color:#555;line-height:1.5;display:flex;flex-direction:column;gap:2px}
+.bcjm-stage__points li{margin:0}
+.bcjm-stage__emotion{font-size:11px;padding:3px 8px;border-radius:20px;font-weight:600;align-self:flex-start;line-height:1.4;margin-top:auto}
+.bcjm-em--positive{background:#dcfce7;color:#15803d}
+.bcjm-em--neutral{background:#f1f5f9;color:#475569}
+.bcjm-em--doubt{background:#fef3c7;color:#92400e}
+.bcjm-em--risk{background:#ffedd5;color:#c2410c}
+.bcjm-em--negative{background:#fee2e2;color:#991b1b}
+.bcjm-stage__barrier{font-size:11px;color:#888;font-style:italic;border-top:1px solid #f0f0f0;padding-top:6px;line-height:1.4}
+.bcjm-arrow{flex-shrink:0;color:#ccc;font-size:16px;padding:0 4px;margin-bottom:40px}
+
 .faq-section { margin: var(--s5) 0; padding-top: var(--s4); border-top: 2px solid var(--border); max-width: var(--measure); }
 .faq-section__title { font-size: 22px; font-weight: 700; margin-bottom: 4px; }
 .faq-section__sub { font-size: 14px; color: var(--gray); margin-bottom: var(--s3); }
@@ -582,6 +602,7 @@ a { color: var(--red); text-decoration: none; }
     <a href="#empty-img">Пустые картинки</a>
     <a href="#flow">Схема потока</a>
     <a href="#scenario">Сценарий</a>
+    <a href="#cjm">CJM-схема</a>
     <a href="#other">Остальные блоки</a>
     <a href="#wpcss">WP CSS v5</a>
     <a href="#page">Пример страницы</a>
@@ -1358,6 +1379,109 @@ document.addEventListener('DOMContentLoaded', () => {
       <span>🔀 <code>.bs-branch</code> — развилка да/нет</span>
     </div>
     <p style="font-size:13px;color:#888;margin-top:10px;">Стили в <code>wp-custom.css</code> + инлайн <code>&lt;style&gt;</code> в статье. На мобиле ветки стекаются вертикально.</p>
+  </section>
+
+  <!-- ─── SECTION: CJM-схема ──────────────────────────────────── -->
+  <section class="ds-section" id="cjm">
+    <div class="ds-section-label">CJM-схема — .block-cjm <span class="badge badge-new">новый</span></div>
+
+    <div class="preview">
+      <p style="font-size:12px;color:#aaa;margin-bottom:20px;">Горизонтальный ряд этапов с цветовой кодировкой эмоции. Цвет верхней полосы = качество опыта на этом этапе. Используй вместо таблицы для CJM-примеров в статьях. На мобиле — горизонтальный скролл (scroll-snap). Максимум 6 этапов.</p>
+
+      <!-- Живой пример: CJM онлайн-магазина одежды -->
+      <div class="block-cjm">
+
+        <div class="bcjm-stage bcjm-stage--neutral">
+          <div class="bcjm-stage__name">Осознание</div>
+          <ul class="bcjm-stage__points">
+            <li>Таргетинг</li>
+            <li>Рекомендация</li>
+          </ul>
+          <div class="bcjm-stage__emotion bcjm-em--neutral">😐 Любопытство</div>
+        </div>
+        <div class="bcjm-arrow">→</div>
+
+        <div class="bcjm-stage bcjm-stage--positive">
+          <div class="bcjm-stage__name">Изучение</div>
+          <ul class="bcjm-stage__points">
+            <li>Страница товара</li>
+            <li>Отзывы</li>
+          </ul>
+          <div class="bcjm-stage__emotion bcjm-em--positive">😊 Интерес</div>
+        </div>
+        <div class="bcjm-arrow">→</div>
+
+        <div class="bcjm-stage bcjm-stage--doubt">
+          <div class="bcjm-stage__name">Выбор</div>
+          <ul class="bcjm-stage__points">
+            <li>Сравнение размеров</li>
+            <li>Сайт конкурента</li>
+          </ul>
+          <div class="bcjm-stage__emotion bcjm-em--doubt">🤔 Сомнение</div>
+          <div class="bcjm-stage__barrier">Нет таблицы размеров</div>
+        </div>
+        <div class="bcjm-arrow">→</div>
+
+        <div class="bcjm-stage bcjm-stage--positive">
+          <div class="bcjm-stage__name">Покупка</div>
+          <ul class="bcjm-stage__points">
+            <li>Корзина</li>
+            <li>Оплата</li>
+          </ul>
+          <div class="bcjm-stage__emotion bcjm-em--positive">😊 Решимость</div>
+        </div>
+        <div class="bcjm-arrow">→</div>
+
+        <div class="bcjm-stage bcjm-stage--risk">
+          <div class="bcjm-stage__name">Доставка</div>
+          <ul class="bcjm-stage__points">
+            <li>Email-трекинг</li>
+            <li>СМС</li>
+          </ul>
+          <div class="bcjm-stage__emotion bcjm-em--risk">😤 Тревога</div>
+          <div class="bcjm-stage__barrier">Нет статуса 3 дня</div>
+        </div>
+        <div class="bcjm-arrow">→</div>
+
+        <div class="bcjm-stage bcjm-stage--positive">
+          <div class="bcjm-stage__name">После покупки</div>
+          <ul class="bcjm-stage__points">
+            <li>Email «Оцените»</li>
+            <li>Программа лояльности</li>
+          </ul>
+          <div class="bcjm-stage__emotion bcjm-em--positive">😊 Лояльность</div>
+        </div>
+
+      </div><!-- /block-cjm -->
+    </div>
+
+    <!-- HTML шаблон -->
+    <div class="change-code" style="font-size:12px;line-height:1.7;">
+&lt;div class="block-cjm"&gt;<br>
+<br>
+&nbsp;&nbsp;&lt;div class="bcjm-stage bcjm-stage--positive"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="bcjm-stage__name"&gt;Название этапа&lt;/div&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;ul class="bcjm-stage__points"&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;Точка контакта 1&lt;/li&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;li&gt;Точка контакта 2&lt;/li&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;/ul&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="bcjm-stage__emotion bcjm-em--positive"&gt;😊 Эмоция&lt;/div&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;!-- опционально --&gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="bcjm-stage__barrier"&gt;Барьер или проблема&lt;/div&gt;<br>
+&nbsp;&nbsp;&lt;/div&gt;<br>
+&nbsp;&nbsp;&lt;div class="bcjm-arrow"&gt;→&lt;/div&gt;<br>
+<br>
+&lt;/div&gt;&lt;!-- /block-cjm --&gt;
+    </div>
+
+    <div style="display:flex;gap:16px;flex-wrap:wrap;margin-top:16px;font-size:13px;color:#555;">
+      <span style="display:flex;align-items:center;gap:5px;"><span style="width:12px;height:12px;background:#16a34a;border-radius:2px;display:inline-block;"></span> <code>--positive</code> — позитивный опыт</span>
+      <span style="display:flex;align-items:center;gap:5px;"><span style="width:12px;height:12px;background:#94a3b8;border-radius:2px;display:inline-block;"></span> <code>--neutral</code> — нейтральный</span>
+      <span style="display:flex;align-items:center;gap:5px;"><span style="width:12px;height:12px;background:#d97706;border-radius:2px;display:inline-block;"></span> <code>--doubt</code> — сомнение</span>
+      <span style="display:flex;align-items:center;gap:5px;"><span style="width:12px;height:12px;background:#ea580c;border-radius:2px;display:inline-block;"></span> <code>--risk</code> — тревога / фрустрация</span>
+      <span style="display:flex;align-items:center;gap:5px;"><span style="width:12px;height:12px;background:#c01020;border-radius:2px;display:inline-block;"></span> <code>--negative</code> — боль / потеря</span>
+    </div>
+    <p style="font-size:13px;color:#888;margin-top:10px;">Стили в <code>wp-custom.css</code> + инлайн <code>&lt;style&gt;</code> в начале статьи. Не более 6 этапов. На мобиле — горизонтальный скролл.</p>
   </section>
 
   <section class="ds-section" id="other">

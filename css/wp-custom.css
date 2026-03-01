@@ -597,6 +597,26 @@ body.single-blog .singlepost .container-columns > .column {
   .bs-node { max-width: 100%; }
 }
 
+/* ── CJM-схема этапов / block-cjm ── */
+.block-cjm { display: flex; align-items: center; gap: 0; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; padding: 4px 0 16px; margin: 20px 0 28px; font-family: Inter, system-ui, sans-serif; }
+.bcjm-stage { flex-shrink: 0; scroll-snap-align: start; width: 150px; background: #fff; border: 1px solid #e8e8e8; border-top: 4px solid #94a3b8; border-radius: 0 0 10px 10px; padding: 12px 12px 14px; display: flex; flex-direction: column; gap: 8px; align-self: flex-start; }
+.bcjm-stage--positive { border-top-color: #16a34a; }
+.bcjm-stage--neutral  { border-top-color: #94a3b8; }
+.bcjm-stage--doubt    { border-top-color: #d97706; }
+.bcjm-stage--risk     { border-top-color: #ea580c; }
+.bcjm-stage--negative { border-top-color: #c01020; }
+.bcjm-stage__name { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .6px; color: #1a1a1a; line-height: 1.3; }
+.bcjm-stage__points { margin: 0; padding: 0 0 0 14px; font-size: 12px; color: #555; line-height: 1.5; display: flex; flex-direction: column; gap: 2px; }
+.bcjm-stage__points li { margin: 0; }
+.bcjm-stage__emotion { font-size: 11px; padding: 3px 8px; border-radius: 20px; font-weight: 600; align-self: flex-start; line-height: 1.4; margin-top: auto; }
+.bcjm-em--positive { background: #dcfce7; color: #15803d; }
+.bcjm-em--neutral  { background: #f1f5f9; color: #475569; }
+.bcjm-em--doubt    { background: #fef3c7; color: #92400e; }
+.bcjm-em--risk     { background: #ffedd5; color: #c2410c; }
+.bcjm-em--negative { background: #fee2e2; color: #991b1b; }
+.bcjm-stage__barrier { font-size: 11px; color: #888; font-style: italic; border-top: 1px solid #f0f0f0; padding-top: 6px; line-height: 1.4; }
+.bcjm-arrow { flex-shrink: 0; color: #ccc; font-size: 16px; padding: 0 4px; margin-bottom: 40px; }
+
 /* ── FAQ ── */
 #crm-faq details { border: 1px solid #e4e2dc; border-radius: 10px; margin-bottom: 8px; overflow: hidden; }
 #crm-faq summary { display: flex; justify-content: space-between; align-items: center; padding: 14px 18px; cursor: pointer; font-weight: 600; font-size: 15px !important; list-style: none; gap: 12px; font-family: Inter, system-ui, sans-serif; color: #1a1a1a; }
@@ -705,6 +725,28 @@ body.single-blog .section-content .wp-block-group.block-result { margin-bottom: 
   transition: background .15s !important;
 }
 #anchor_9 .block-result a:hover { background: #b10e1d !important; }
+
+/* ── CTA-блок (anchor_cta): тёмная карточка — аналог anchor_9 ── */
+#anchor_cta {
+  background: #1a1a1a !important; border-radius: 16px !important;
+  padding: 36px !important; margin: 48px 0 32px !important;
+}
+#anchor_cta h2.wp-block-heading {
+  color: #ffffff !important; border-top: none !important;
+  padding-top: 0 !important; margin-top: 0 !important; font-size: 22px !important;
+  letter-spacing: -0.2px !important;
+}
+#anchor_cta p { color: rgba(255,255,255,0.72) !important; margin-top: 8px !important; }
+#anchor_cta .block-result { background: transparent !important; padding: 0 !important; margin-top: 24px !important; }
+#anchor_cta .block-result .wp-block-heading { border-top: none !important; padding-top: 0 !important; margin-top: 0 !important; }
+#anchor_cta .block-result a {
+  display: inline-block !important; background: #c01020 !important;
+  color: #fff !important; padding: 12px 26px !important;
+  border-radius: 8px !important; text-decoration: none !important;
+  font-weight: 600 !important; font-size: 15px !important;
+  transition: background .15s !important;
+}
+#anchor_cta .block-result a:hover { background: #b10e1d !important; }
 
 /* ── Форма подписки внизу статьи (block-form) ── */
 .single-blog .section-content .block-form {
