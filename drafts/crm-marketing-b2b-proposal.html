@@ -65,7 +65,14 @@ ul { list-style: none; }
 .sec-sub-light { color: var(--gray-60); }
 
 /* ── dev-annotation ── */
-.ann, .ann-blue, .ann-green, .ann-red { display: none; }
+.ann {
+  background: #fffbeb; border-left: 4px solid #f59e0b;
+  font-family: monospace; font-size: 12px; color: #78350f;
+  padding: 8px 14px; line-height: 1.5;
+}
+.ann-blue { background: #eff6ff; border-left-color: #3b82f6; color: #1e3a8a; }
+.ann-green { background: #f0fdf4; border-left-color: #22c55e; color: #14532d; }
+.ann-red { background: #fff5f5; border-left-color: #ef4444; color: #7f1d1d; }
 
 /* ══════════════════════════════════════════════════
    STICKY HEADER (новый)
@@ -1011,8 +1018,8 @@ ul { list-style: none; }
       <span class="logo-bar__item"><img src="https://crmgroup.ru/wp-content/themes/content_hub/src/img/logos/kerastase.svg" alt="Kérastase"></span>
       <span class="logo-bar__item"><img src="https://crmgroup.ru/wp-content/themes/content_hub/src/img/logos/dodo.svg" alt="Додо Пицца"></span>
       <span class="logo-bar__item"><img src="https://crmgroup.ru/wp-content/themes/content_hub/src/img/logos/puma.svg" alt="Puma"></span>
-      <span class="logo-bar__item"><img src="https://crmgroup.ru/wp-content/themes/content_hub/src/img/logos/samolet.svg" alt="Самолёт"></span>
-      <span class="logo-bar__item"><img src="https://crmgroup.ru/wp-content/themes/content_hub/src/img/logos/tinkoff.svg" alt="Тинькофф"></span>
+      <span class="logo-bar__item"><img src="https://crmgroup.ru/wp-content/themes/content_hub/src/img/logos/magnit.svg" alt="Магнит"></span>
+      <span class="logo-bar__item"><img src="https://crmgroup.ru/wp-content/themes/content_hub/src/img/logos/vichy.svg" alt="Vichy"></span>
     </div>
   </div>
 </div>
@@ -1463,9 +1470,10 @@ ul { list-style: none; }
         </div>
       </details>
       <details class="faq-item">
-        <summary>Какой минимальный срок контракта?</summary>
+        <summary>Какой срок нужен, чтобы увидеть результат?</summary>
         <div class="faq-item__body">
-          <p>Для сопровождения минимум 6 месяцев: за меньший срок не успеть запустить систему и увидеть результат в деньгах. Разовые проекты (аудит, стратегия) без ограничений по сроку.</p>
+          <p>Рекомендуем закладывать 6 месяцев на сопровождение: первые 2–3 уходят на построение системы — сегменты, платформа, триггеры. Следующие 3 — на рост выручки с канала, который уже виден в деньгах.</p>
+          <p>Для разовых проектов (аудит, стратегия) срок не фиксируем — смотрим по задаче.</p>
         </div>
       </details>
       <details class="faq-item">
