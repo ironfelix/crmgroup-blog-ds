@@ -200,28 +200,32 @@ ul { list-style: none; }
 ══════════════════════════════════════════════════ */
 .logo-bar {
   background: var(--black); border-top: 1px solid rgba(255,255,255,.07);
-  padding: 22px 0;
+  border-bottom: 1px solid rgba(255,255,255,.07);
+  padding: 40px 0;
 }
 .logo-bar__inner {
-  display: flex; align-items: center; gap: 40px; overflow: hidden;
+  display: flex; align-items: center; gap: 0; overflow: hidden;
 }
 .logo-bar__cap {
-  font-family: var(--fu); font-size: 11px; font-weight: 700;
-  text-transform: uppercase; letter-spacing: .08em;
-  color: rgba(255,255,255,.25); white-space: nowrap; flex-shrink: 0;
+  font-family: var(--fu); font-size: 10px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .1em;
+  color: rgba(255,255,255,.2); white-space: nowrap; flex-shrink: 0;
+  padding-right: 40px;
+  border-right: 1px solid rgba(255,255,255,.1);
+  margin-right: 40px;
 }
 .logo-bar__logos {
-  display: flex; align-items: center; gap: 36px; flex: 1; overflow: hidden;
+  display: flex; align-items: center; gap: 52px; flex: 1; overflow: hidden;
 }
 .logo-bar__item {
   flex-shrink: 0; display: flex; align-items: center; transition: opacity .2s;
 }
 .logo-bar__item img {
-  height: 22px; width: auto; max-width: 110px;
-  filter: brightness(0) invert(1); opacity: .28;
+  height: 30px; width: auto; max-width: 130px;
+  filter: brightness(0) invert(1); opacity: .38;
   transition: opacity .2s;
 }
-.logo-bar__item:hover img { opacity: .65; }
+.logo-bar__item:hover img { opacity: .72; }
 
 /* ══════════════════════════════════════════════════
    3. TRUST BAR
