@@ -65,14 +65,7 @@ ul { list-style: none; }
 .sec-sub-light { color: var(--gray-60); }
 
 /* ── dev-annotation ── */
-.ann {
-  background: #fffbeb; border-left: 4px solid #f59e0b;
-  font-family: monospace; font-size: 12px; color: #78350f;
-  padding: 8px 14px; line-height: 1.5;
-}
-.ann-blue { background: #eff6ff; border-left-color: #3b82f6; color: #1e3a8a; }
-.ann-green { background: #f0fdf4; border-left-color: #22c55e; color: #14532d; }
-.ann-red { background: #fff5f5; border-left-color: #ef4444; color: #7f1d1d; }
+.ann, .ann-blue, .ann-green, .ann-red { display: none; }
 
 /* ══════════════════════════════════════════════════
    STICKY HEADER (новый)
@@ -214,12 +207,14 @@ ul { list-style: none; }
   display: flex; align-items: center; gap: 36px; flex: 1; overflow: hidden;
 }
 .logo-bar__item {
-  font-family: var(--fh); font-size: 13px; font-weight: 700;
-  color: rgba(255,255,255,.28); white-space: nowrap; flex-shrink: 0;
-  letter-spacing: .04em; text-transform: uppercase;
-  transition: color .2s;
+  flex-shrink: 0; display: flex; align-items: center; transition: opacity .2s;
 }
-.logo-bar__item:hover { color: rgba(255,255,255,.65); }
+.logo-bar__item img {
+  height: 22px; width: auto; max-width: 110px;
+  filter: brightness(0) invert(1); opacity: .28;
+  transition: opacity .2s;
+}
+.logo-bar__item:hover img { opacity: .65; }
 
 /* ══════════════════════════════════════════════════
    3. TRUST BAR
@@ -1011,13 +1006,13 @@ ul { list-style: none; }
   <div class="container logo-bar__inner">
     <span class="logo-bar__cap">Клиенты</span>
     <div class="logo-bar__logos">
-      <span class="logo-bar__item">Miele</span>
-      <span class="logo-bar__item">Burger King</span>
-      <span class="logo-bar__item">Kérastase</span>
-      <span class="logo-bar__item">Додо Пицца</span>
-      <span class="logo-bar__item">PUMA</span>
-      <span class="logo-bar__item">RBI</span>
-      <span class="logo-bar__item">Сбер</span>
+      <span class="logo-bar__item"><img src="https://crmgroup.ru/wp-content/themes/content_hub/src/img/logos/miele.svg" alt="Miele"></span>
+      <span class="logo-bar__item"><img src="https://crmgroup.ru/wp-content/themes/content_hub/src/img/logos/burger.svg" alt="Burger King"></span>
+      <span class="logo-bar__item"><img src="https://crmgroup.ru/wp-content/themes/content_hub/src/img/logos/kerastase.svg" alt="Kérastase"></span>
+      <span class="logo-bar__item"><img src="https://crmgroup.ru/wp-content/themes/content_hub/src/img/logos/dodo.svg" alt="Додо Пицца"></span>
+      <span class="logo-bar__item"><img src="https://crmgroup.ru/wp-content/themes/content_hub/src/img/logos/puma.svg" alt="Puma"></span>
+      <span class="logo-bar__item"><img src="https://crmgroup.ru/wp-content/themes/content_hub/src/img/logos/samolet.svg" alt="Самолёт"></span>
+      <span class="logo-bar__item"><img src="https://crmgroup.ru/wp-content/themes/content_hub/src/img/logos/tinkoff.svg" alt="Тинькофф"></span>
     </div>
   </div>
 </div>
@@ -1368,10 +1363,10 @@ ul { list-style: none; }
         <div class="process-step__num">4</div>
         <div class="process-step__title">Оптимизация и рост</div>
         <div class="process-step__desc">
-          Запускаем A/B-тесты, считаем выручку с канала. Масштабируем то, что работает.
+          Запускаем A/B-тесты, считаем выручку с канала. Масштабируем то, что работает, режем то, что не окупается.
         </div>
-        <span class="process-step__deliverable">Еженедельный отчёт</span>
-        <span class="process-step__duration">Постоянно</span>
+        <span class="process-step__deliverable">Ежемесячный P&L email-канала</span>
+        <span class="process-step__duration">Месяц 3+</span>
       </div>
     </div>
   </div>
