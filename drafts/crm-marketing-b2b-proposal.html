@@ -1,0 +1,1808 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CRM-маркетинг — B2B конверсионная версия v3.0 (предложение)</title>
+<style>
+/* ─────────────────────────────────────────
+   DESIGN TOKENS (из дизайн-системы сайта)
+───────────────────────────────────────── */
+:root {
+  --black:    #000;
+  --black-90: #1a1a1a;
+  --white:    #fff;
+  --off:      #f5f5f3;
+  --gray-60:  #595959;
+  --gray-40:  #999;
+  --gray-15:  #e1e1e1;
+  --red:      #c01020;
+  --red-dk:   #a80e1c;
+  --green:    #16a34a;
+  --fh: 'TTRuns',    'Inter', system-ui, sans-serif; /* headings  */
+  --fb: 'TTSmalls',  'Inter', system-ui, sans-serif; /* body      */
+  --fu:              'Inter', system-ui, sans-serif; /* UI labels */
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--fb); color: var(--black-90); background: var(--white); -webkit-font-smoothing: antialiased; }
+a { text-decoration: none; color: inherit; }
+img { max-width: 100%; display: block; }
+ul { list-style: none; }
+.container { width: 100%; max-width: 1400px; padding: 0 30px; margin: 0 auto; }
+
+/* ── кнопки ── */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  font-family: var(--fh); font-weight: 700; cursor: pointer; border: none; transition: .2s; border-radius: 8px; }
+.btn-red   { background: var(--red); color: #fff; padding: 16px 32px; font-size: 16px; }
+.btn-red:hover { background: var(--red-dk); }
+.btn-white { background: #fff; color: var(--red); padding: 15px 28px; font-size: 15px; }
+.btn-white:hover { opacity: .92; }
+.btn-outline { background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,.25);
+  padding: 15px 28px; font-size: 15px; }
+.btn-outline:hover { border-color: rgba(255,255,255,.6); }
+.btn-ghost-red { background: none; border: none; color: var(--red); font-family: var(--fh);
+  font-size: 14px; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; padding: 0; }
+.btn-ghost-red::after { content: '→'; }
+
+/* ── типографика ── */
+.label {
+  font-family: var(--fu); font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .09em; color: var(--red);
+  margin-bottom: 12px; display: block;
+}
+.h-display {
+  font-family: var(--fh); font-size: clamp(40px,4.5vw,64px);
+  font-weight: 700; line-height: 1.05; letter-spacing: -.04em; color: #fff;
+}
+.h-xl { font-family: var(--fh); font-size: clamp(30px,3vw,44px);
+  font-weight: 700; line-height: 1.1; letter-spacing: -.03em; }
+.h-lg { font-family: var(--fh); font-size: clamp(22px,2vw,30px);
+  font-weight: 700; line-height: 1.2; letter-spacing: -.025em; }
+.sec-title-dark  { color: #fff; }
+.sec-title-light { color: var(--black-90); }
+.sec-sub { font-family: var(--fb); font-size: 17px; line-height: 1.65; margin-top: 14px; max-width: 560px; }
+.sec-sub-dark  { color: rgba(255,255,255,.45); }
+.sec-sub-light { color: var(--gray-60); }
+
+/* ── dev-annotation ── */
+.ann {
+  background: #fffbeb; border-left: 4px solid #f59e0b;
+  font-family: monospace; font-size: 12px; color: #78350f;
+  padding: 8px 14px; line-height: 1.5;
+}
+.ann-blue { background: #eff6ff; border-left-color: #3b82f6; color: #1e3a8a; }
+.ann-green { background: #f0fdf4; border-left-color: #22c55e; color: #14532d; }
+.ann-red { background: #fff5f5; border-left-color: #ef4444; color: #7f1d1d; }
+
+/* ══════════════════════════════════════════════════
+   STICKY HEADER (новый)
+══════════════════════════════════════════════════ */
+.sticky-nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  background: rgba(0,0,0,.92); backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255,255,255,.08);
+  padding: 0; height: 0; overflow: hidden;
+  transition: height .3s, opacity .3s; opacity: 0;
+}
+.sticky-nav.is-visible { height: 56px; opacity: 1; }
+.sticky-nav__inner {
+  height: 56px; display: flex; align-items: center; justify-content: space-between;
+}
+.sticky-nav__logo {
+  font-family: var(--fh); font-size: 15px; font-weight: 700; color: #fff;
+}
+.sticky-nav__links { display: flex; gap: 24px; }
+.sticky-nav__links a {
+  font-family: var(--fb); font-size: 13px; color: rgba(255,255,255,.45);
+  transition: color .2s;
+}
+.sticky-nav__links a:hover { color: rgba(255,255,255,.9); }
+.sticky-nav__cta {
+  background: var(--red); color: #fff; font-family: var(--fh); font-size: 13px;
+  font-weight: 700; padding: 9px 18px; border-radius: 6px; border: none; cursor: pointer;
+}
+
+/* ══════════════════════════════════════════════════
+   1. HERO
+══════════════════════════════════════════════════ */
+.hero {
+  background: var(--black); padding: 88px 0 72px;
+}
+.hero__grid {
+  display: grid; grid-template-columns: 1fr 360px; gap: 60px; align-items: start;
+}
+.hero__badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.12);
+  border-radius: 20px; padding: 6px 14px; margin-bottom: 24px;
+  font-family: var(--fu); font-size: 12px; color: rgba(255,255,255,.5);
+}
+.hero__badge-dot {
+  width: 7px; height: 7px; border-radius: 50%; background: #4ade80;
+  animation: blink 2s infinite;
+}
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
+.hero__headline {
+  font-family: var(--fh); font-size: clamp(38px,4.5vw,62px);
+  font-weight: 700; line-height: 1.05; letter-spacing: -.04em; color: #fff;
+  margin-bottom: 22px;
+}
+.hero__headline span { color: var(--red); display: block; }
+.hero__lead {
+  font-family: var(--fb); font-size: 18px; line-height: 1.65;
+  color: rgba(255,255,255,.55); max-width: 520px; margin-bottom: 36px;
+}
+.hero__ctas { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 44px; }
+.hero__proof {
+  display: flex; gap: 32px;
+}
+.hero__proof-item strong {
+  display: block; font-family: var(--fh); font-size: 22px; font-weight: 700;
+  color: #fff; letter-spacing: -.03em; line-height: 1; margin-bottom: 3px;
+}
+.hero__proof-item span {
+  font-family: var(--fu); font-size: 12px; color: rgba(255,255,255,.35);
+  text-transform: uppercase; letter-spacing: .06em;
+}
+
+/* Hero sidebar — форма-зацепка */
+.hero-form {
+  background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1);
+  border-radius: 16px; padding: 28px 24px; align-self: flex-start;
+}
+.hero-form__tag {
+  display: inline-block; background: rgba(192,16,32,.2); color: #fca5a5;
+  font-family: var(--fu); font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .07em;
+  padding: 4px 10px; border-radius: 4px; margin-bottom: 14px;
+}
+.hero-form__title {
+  font-family: var(--fh); font-size: 18px; font-weight: 700;
+  color: #fff; line-height: 1.3; margin-bottom: 8px;
+}
+.hero-form__sub {
+  font-family: var(--fb); font-size: 14px; color: rgba(255,255,255,.4);
+  line-height: 1.5; margin-bottom: 20px;
+}
+.hero-form__checklist { margin-bottom: 20px; display: flex; flex-direction: column; gap: 8px; }
+.hero-form__checklist li {
+  font-family: var(--fb); font-size: 13px; color: rgba(255,255,255,.55);
+  display: flex; align-items: center; gap: 8px;
+}
+.hero-form__checklist li::before { content: '✓'; color: #4ade80; font-weight: 700; flex-shrink: 0; }
+.hero-form input {
+  width: 100%; padding: 13px 15px;
+  background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.12);
+  border-radius: 8px; color: #fff; font-size: 15px; font-family: var(--fb);
+  margin-bottom: 10px; outline: none; transition: border-color .2s;
+}
+.hero-form input::placeholder { color: rgba(255,255,255,.28); }
+.hero-form input:focus { border-color: rgba(255,255,255,.35); }
+.hero-form button {
+  width: 100%; padding: 15px; background: var(--red); color: #fff;
+  font-family: var(--fh); font-size: 15px; font-weight: 700;
+  border: none; border-radius: 8px; cursor: pointer; transition: background .2s;
+}
+.hero-form button:hover { background: var(--red-dk); }
+.hero-form__fields { display: flex; flex-direction: column; gap: 10px; }
+.hero-form__consent {
+  display: flex; align-items: flex-start; gap: 8px;
+  font-family: var(--fb); font-size: 11px; color: rgba(255,255,255,.35);
+  line-height: 1.5; cursor: pointer;
+}
+.hero-form__consent input[type=checkbox] {
+  width: 14px; height: 14px; flex-shrink: 0; margin-top: 2px;
+  accent-color: var(--red); cursor: pointer;
+}
+
+/* ══════════════════════════════════════════════════
+   2. LOGO BAR
+══════════════════════════════════════════════════ */
+.logo-bar {
+  background: var(--black); border-top: 1px solid rgba(255,255,255,.07);
+  padding: 22px 0;
+}
+.logo-bar__inner {
+  display: flex; align-items: center; gap: 40px; overflow: hidden;
+}
+.logo-bar__cap {
+  font-family: var(--fu); font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .08em;
+  color: rgba(255,255,255,.25); white-space: nowrap; flex-shrink: 0;
+}
+.logo-bar__logos {
+  display: flex; align-items: center; gap: 36px; flex: 1; overflow: hidden;
+}
+.logo-bar__item {
+  font-family: var(--fh); font-size: 13px; font-weight: 700;
+  color: rgba(255,255,255,.28); white-space: nowrap; flex-shrink: 0;
+  letter-spacing: .04em; text-transform: uppercase;
+  transition: color .2s;
+}
+.logo-bar__item:hover { color: rgba(255,255,255,.65); }
+
+/* ══════════════════════════════════════════════════
+   3. TRUST BAR
+══════════════════════════════════════════════════ */
+.trust-bar {
+  background: var(--white); border-bottom: 1px solid var(--gray-15); padding: 40px 0;
+}
+.trust-bar__grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+}
+.trust-bar__item {
+  text-align: center; padding: 0 24px; border-right: 1px solid var(--gray-15);
+}
+.trust-bar__item:last-child { border-right: none; }
+.trust-bar__val {
+  font-family: var(--fh); font-size: 42px; font-weight: 700;
+  letter-spacing: -.05em; color: var(--black); line-height: 1; margin-bottom: 6px;
+}
+.trust-bar__val em { color: var(--red); font-style: normal; }
+.trust-bar__lbl {
+  font-family: var(--fb); font-size: 14px; color: var(--gray-60); line-height: 1.4;
+}
+
+/* ══════════════════════════════════════════════════
+   4. БОЛИ / СИМПТОМЫ
+══════════════════════════════════════════════════ */
+.pain-sec { background: var(--off); padding: 80px 0; }
+.pain-sec__head { margin-bottom: 44px; }
+.pain-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+}
+.pain-card {
+  background: var(--white); border: 1px solid var(--gray-15); border-radius: 12px;
+  padding: 24px 22px; transition: box-shadow .2s;
+}
+.pain-card:hover { box-shadow: 0 6px 24px rgba(0,0,0,.07); }
+.pain-card__ico { font-size: 26px; margin-bottom: 12px; }
+.pain-card__title {
+  font-family: var(--fh); font-size: 16px; font-weight: 700;
+  color: var(--black); margin-bottom: 8px; line-height: 1.3;
+}
+.pain-card__desc {
+  font-family: var(--fb); font-size: 14px; color: var(--gray-60); line-height: 1.6;
+}
+
+/* ══════════════════════════════════════════════════
+   5. КАК МЫ VS «КАК ОБЫЧНО»
+══════════════════════════════════════════════════ */
+.diff-sec { background: var(--black); padding: 80px 0; }
+.diff-grid {
+  display: grid; grid-template-columns: 1fr 1fr; margin-top: 48px;
+  border: 1px solid rgba(255,255,255,.08); border-radius: 16px; overflow: hidden;
+}
+.diff-col { padding: 36px 40px; }
+.diff-col--them {
+  border-right: 1px solid rgba(255,255,255,.07);
+  background: rgba(255,255,255,.02);
+}
+.diff-col--us { background: rgba(192,16,32,.07); }
+.diff-col__head {
+  font-family: var(--fu); font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .08em;
+  padding-bottom: 16px; margin-bottom: 24px;
+  border-bottom: 1px solid rgba(255,255,255,.07);
+}
+.diff-col--them .diff-col__head { color: rgba(255,255,255,.25); }
+.diff-col--us   .diff-col__head { color: var(--red); }
+.diff-row { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 18px; }
+.diff-row__ico { font-size: 14px; flex-shrink: 0; margin-top: 2px; width: 18px; text-align: center; }
+.diff-col--them .diff-row__txt {
+  font-family: var(--fb); font-size: 15px; line-height: 1.55;
+  color: rgba(255,255,255,.3);
+  text-decoration: line-through; text-decoration-color: rgba(255,255,255,.12);
+}
+.diff-col--us .diff-row__txt {
+  font-family: var(--fb); font-size: 15px; line-height: 1.55; color: rgba(255,255,255,.7);
+}
+.diff-col--us .diff-row__txt strong { color: #fff; font-weight: 600; }
+
+/* ══════════════════════════════════════════════════
+   6. КЕЙСЫ — карточки
+══════════════════════════════════════════════════ */
+.cases-sec { background: var(--white); padding: 80px 0; }
+.cases-sec__head {
+  display: flex; align-items: flex-end; justify-content: space-between;
+  margin-bottom: 44px; gap: 24px;
+}
+.cases-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+}
+.case-card {
+  border: 1px solid var(--gray-15); border-radius: 16px; overflow: hidden;
+  display: flex; flex-direction: column; transition: box-shadow .2s, transform .2s;
+}
+.case-card:hover { box-shadow: 0 12px 48px rgba(0,0,0,.1); transform: translateY(-3px); }
+.case-card__top {
+  background: var(--black-90); padding: 28px 24px 22px;
+}
+.case-card__client {
+  font-family: var(--fu); font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .08em;
+  color: rgba(255,255,255,.3); margin-bottom: 8px;
+}
+.case-card__title {
+  font-family: var(--fh); font-size: 20px; font-weight: 700;
+  color: #fff; line-height: 1.3; margin-bottom: 18px;
+}
+.case-card__metrics { display: flex; gap: 20px; }
+.case-metric__val {
+  font-family: var(--fh); font-size: 28px; font-weight: 700;
+  color: #fff; letter-spacing: -.04em; line-height: 1; margin-bottom: 3px;
+}
+.case-metric__lbl {
+  font-family: var(--fb); font-size: 12px; color: rgba(255,255,255,.38); line-height: 1.3;
+}
+.case-card__body {
+  padding: 22px 24px; flex: 1; display: flex; flex-direction: column; gap: 14px;
+}
+.case-card__problem-tag {
+  font-family: var(--fu); font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .07em; color: var(--gray-40);
+}
+.case-card__desc {
+  font-family: var(--fb); font-size: 14px; line-height: 1.65;
+  color: var(--gray-60); flex: 1;
+}
+.case-card__tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.case-tag {
+  background: var(--off); border-radius: 4px;
+  font-family: var(--fu); font-size: 12px; color: var(--gray-60); padding: 4px 10px;
+}
+.case-card__link {
+  color: var(--red); font-family: var(--fh); font-size: 13px; font-weight: 700;
+  display: flex; align-items: center; gap: 6px; margin-top: 4px;
+}
+.case-card__link::after { content: '→'; }
+
+/* ══════════════════════════════════════════════════
+   7. MICRO-CTA (красная полоса)
+══════════════════════════════════════════════════ */
+.micro-cta {
+  background: var(--red); padding: 48px 0;
+}
+.micro-cta__inner {
+  display: flex; align-items: center; justify-content: space-between; gap: 40px;
+}
+.micro-cta__left {}
+.micro-cta__title {
+  font-family: var(--fh); font-size: clamp(22px,2vw,30px); font-weight: 700;
+  color: #fff; line-height: 1.25; margin-bottom: 8px;
+}
+.micro-cta__sub {
+  font-family: var(--fb); font-size: 15px; color: rgba(255,255,255,.65);
+}
+.micro-cta__actions { display: flex; gap: 12px; flex-shrink: 0; align-items: center; }
+.btn-ghost-wh {
+  background: none; border: none; color: rgba(255,255,255,.7);
+  font-family: var(--fh); font-size: 14px; font-weight: 600; cursor: pointer;
+  display: flex; align-items: center; gap: 6px; white-space: nowrap; padding: 0;
+}
+.btn-ghost-wh::after { content: '→'; }
+
+/* ══════════════════════════════════════════════════
+   8. ПРОЦЕСС
+══════════════════════════════════════════════════ */
+.process-sec { background: var(--black); padding: 80px 0; }
+.process-steps {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; margin-top: 48px;
+  position: relative;
+}
+.process-steps::before {
+  content: ''; position: absolute; top: 28px; left: 12%; right: 12%; height: 1px;
+  background: linear-gradient(to right, transparent, rgba(255,255,255,.12) 20%, rgba(255,255,255,.12) 80%, transparent);
+  z-index: 0;
+}
+.process-step { text-align: center; padding: 0 16px; }
+.process-step__num {
+  width: 56px; height: 56px; border-radius: 50%;
+  border: 1.5px solid rgba(255,255,255,.18);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--fh); font-size: 18px; font-weight: 700;
+  color: rgba(255,255,255,.45); margin: 0 auto 20px;
+  background: var(--black); position: relative; z-index: 1;
+}
+.process-step__title {
+  font-family: var(--fh); font-size: 17px; font-weight: 700;
+  color: #fff; margin-bottom: 10px; line-height: 1.3;
+}
+.process-step__desc {
+  font-family: var(--fb); font-size: 14px; color: rgba(255,255,255,.38); line-height: 1.6;
+}
+.process-step__deliverable {
+  display: inline-block; margin-top: 14px;
+  font-family: var(--fu); font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .06em;
+  color: var(--red); background: rgba(192,16,32,.1);
+  border-radius: 4px; padding: 4px 9px;
+}
+.process-step__duration {
+  display: block; margin-top: 6px;
+  font-family: var(--fu); font-size: 11px; color: rgba(255,255,255,.25);
+  letter-spacing: .04em;
+}
+
+/* ══════════════════════════════════════════════════
+   9. КОМАНДА
+══════════════════════════════════════════════════ */
+.team-sec { background: var(--off); padding: 80px 0; }
+.team-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 48px;
+}
+.team-card {
+  background: var(--white); border-radius: 12px; overflow: hidden;
+  border: 1px solid var(--gray-15);
+}
+.team-card__photo {
+  height: 180px; background: var(--black-90);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 52px; color: rgba(255,255,255,.12);
+}
+.team-card__body { padding: 18px 20px; }
+.team-card__name {
+  font-family: var(--fh); font-size: 16px; font-weight: 700;
+  color: var(--black); margin-bottom: 3px;
+}
+.team-card__role {
+  font-family: var(--fb); font-size: 13px; color: var(--gray-40); margin-bottom: 10px;
+}
+.team-card__bio {
+  font-family: var(--fb); font-size: 13px; color: var(--gray-60); line-height: 1.55;
+}
+.team-card__exp {
+  margin-top: 10px; font-family: var(--fu); font-size: 11px;
+  color: var(--red); font-weight: 700; text-transform: uppercase; letter-spacing: .06em;
+}
+
+/* ══════════════════════════════════════════════════
+   10. ОТЗЫВЫ
+══════════════════════════════════════════════════ */
+.testimonials-sec { background: var(--white); padding: 80px 0; }
+.testimonials-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 48px;
+}
+.t-card {
+  background: var(--off); border-radius: 12px; padding: 28px 24px;
+  border: 1px solid var(--gray-15); display: flex; flex-direction: column;
+}
+.t-card__quote {
+  font-family: var(--fb); font-size: 15px; line-height: 1.7; color: var(--gray-60);
+  flex: 1; margin-bottom: 24px; position: relative;
+}
+.t-card__quote::before {
+  content: '"'; font-size: 52px; color: var(--red); line-height: .8;
+  display: block; margin-bottom: 10px; font-family: Georgia, serif;
+}
+.t-card__author { display: flex; align-items: center; gap: 12px; }
+.t-card__ava {
+  width: 44px; height: 44px; border-radius: 50%; background: var(--gray-15);
+  display: flex; align-items: center; justify-content: center; font-size: 18px;
+  flex-shrink: 0;
+}
+.t-card__name {
+  font-family: var(--fh); font-size: 14px; font-weight: 700; color: var(--black);
+}
+.t-card__role {
+  font-family: var(--fb); font-size: 12px; color: var(--gray-40); margin-top: 2px;
+}
+
+/* ══════════════════════════════════════════════════
+   11. ДЛЯ КОГО / НЕ ДЛЯ КОГО
+══════════════════════════════════════════════════ */
+.fit-sec { background: var(--off); padding: 80px 0; }
+.fit-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 48px;
+}
+.fit-col { border-radius: 16px; padding: 36px 32px; }
+.fit-col--yes { background: #f0fdf4; border: 1.5px solid #bbf7d0; }
+.fit-col--no  { background: #fff5f5; border: 1.5px solid #fecaca; }
+.fit-col__head {
+  font-family: var(--fh); font-size: 20px; font-weight: 700; margin-bottom: 24px;
+  display: flex; align-items: center; gap: 8px;
+}
+.fit-col--yes .fit-col__head { color: #15803d; }
+.fit-col--no  .fit-col__head { color: #dc2626; }
+.fit-list { display: flex; flex-direction: column; gap: 14px; }
+.fit-list li {
+  font-family: var(--fb); font-size: 15px; line-height: 1.55;
+  display: flex; align-items: flex-start; gap: 10px;
+}
+.fit-list li::before { flex-shrink: 0; font-size: 14px; margin-top: 2px; font-weight: 700; }
+.fit-col--yes .fit-list li { color: #166534; }
+.fit-col--yes .fit-list li::before { content: '✓'; color: #16a34a; }
+.fit-col--no  .fit-list li { color: #991b1b; }
+.fit-col--no  .fit-list li::before { content: '✗'; color: #dc2626; }
+
+/* ══════════════════════════════════════════════════
+   12. ФИНАЛЬНЫЙ CTA
+══════════════════════════════════════════════════ */
+.final-cta { background: var(--black); padding: 100px 0; }
+.final-cta__inner { text-align: center; max-width: 680px; margin: 0 auto; }
+.final-cta__pre {
+  font-family: var(--fu); font-size: 12px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .1em; color: var(--red);
+  margin-bottom: 20px; display: block;
+}
+.final-cta__title {
+  font-family: var(--fh); font-size: clamp(30px,3.5vw,48px);
+  font-weight: 700; color: #fff; letter-spacing: -.04em; line-height: 1.1;
+  margin-bottom: 18px;
+}
+.final-cta__sub {
+  font-family: var(--fb); font-size: 17px; color: rgba(255,255,255,.45);
+  line-height: 1.6; margin-bottom: 44px;
+}
+.final-cta__options {
+  display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;
+}
+.final-opt {
+  flex: 1; min-width: 240px; max-width: 300px;
+  border-radius: 12px; padding: 28px 24px; text-align: left;
+  border: 1.5px solid rgba(255,255,255,.1); cursor: pointer;
+  transition: border-color .2s;
+}
+.final-opt:hover { border-color: rgba(255,255,255,.3); }
+.final-opt--red { background: var(--red); border-color: var(--red); }
+.final-opt--red:hover { background: var(--red-dk); border-color: var(--red-dk); }
+.final-opt__tag {
+  font-family: var(--fu); font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .07em; margin-bottom: 10px; display: block;
+}
+.final-opt--red .final-opt__tag { color: rgba(255,255,255,.55); }
+.final-opt:not(.final-opt--red) .final-opt__tag { color: rgba(255,255,255,.3); }
+.final-opt__title {
+  font-family: var(--fh); font-size: 18px; font-weight: 700;
+  color: #fff; line-height: 1.3; margin-bottom: 8px;
+}
+.final-opt__desc {
+  font-family: var(--fb); font-size: 13px; line-height: 1.55; margin-bottom: 20px;
+}
+.final-opt--red .final-opt__desc { color: rgba(255,255,255,.6); }
+.final-opt:not(.final-opt--red) .final-opt__desc { color: rgba(255,255,255,.28); }
+.final-opt__arrow {
+  font-family: var(--fh); font-size: 14px; font-weight: 700; color: #fff;
+  display: flex; align-items: center; gap: 6px;
+}
+.final-opt__arrow::after { content: '→'; }
+
+/* ══════════════════════════════════════════════════
+   7b. РЕЗУЛЬТАТЫ — компактный список
+══════════════════════════════════════════════════ */
+.reslist-sec { background: var(--off); padding: 60px 0; }
+.reslist-head {
+  display: flex; align-items: baseline; gap: 24px;
+  margin-bottom: 32px; flex-wrap: wrap;
+}
+.reslist-note {
+  font-family: var(--fb); font-size: 12px; color: var(--gray-40);
+  font-style: italic;
+}
+.reslist { border-top: 1px solid var(--gray-15); }
+.reslist-row {
+  display: grid;
+  grid-template-columns: 220px 80px 1fr;
+  align-items: center;
+  gap: 32px;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--gray-15);
+}
+.reslist-row__client strong {
+  display: block; font-family: var(--fh); font-size: 15px;
+  font-weight: 700; color: var(--black); margin-bottom: 2px;
+}
+.reslist-row__client span {
+  font-family: var(--fb); font-size: 12px; color: var(--gray-40);
+}
+.reslist-row__num {
+  font-family: var(--fh); font-size: 28px; font-weight: 700;
+  color: var(--red); letter-spacing: -.03em; text-align: right;
+}
+.reslist-row__what {
+  font-family: var(--fb); font-size: 14px; color: var(--gray-60); line-height: 1.45;
+}
+
+/* ══════════════════════════════════════════════════
+   9. В ЧИСЛАХ (удалено — было дублем trust bar)
+══════════════════════════════════════════════════ */
+.numbers-sec { background: var(--black); padding: 80px 0; }
+.numbers-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
+  margin-top: 52px; border-radius: 16px; overflow: hidden;
+  border: 1px solid rgba(255,255,255,.08);
+}
+.num-card {
+  padding: 36px 32px; background: rgba(255,255,255,.03);
+  border-right: 1px solid rgba(255,255,255,.06);
+  border-bottom: 1px solid rgba(255,255,255,.06);
+  transition: background .2s;
+}
+.num-card:hover { background: rgba(255,255,255,.06); }
+.num-card--accent { background: rgba(192,16,32,.12); }
+.num-card--accent:hover { background: rgba(192,16,32,.18); }
+.num-card__value {
+  font-family: var(--fh); font-size: clamp(36px,4vw,56px);
+  font-weight: 700; color: #fff; letter-spacing: -.04em; line-height: 1;
+  margin-bottom: 12px;
+}
+.num-card--accent .num-card__value { color: #ff6b6b; }
+.num-card__plus { font-size: .6em; color: var(--red); vertical-align: super; }
+.num-card__unit { font-size: .55em; color: var(--red); font-weight: 700; }
+.num-card__label {
+  font-family: var(--fh); font-size: 15px; font-weight: 700;
+  color: rgba(255,255,255,.85); margin-bottom: 6px; line-height: 1.35;
+}
+.num-card__note {
+  font-family: var(--fb); font-size: 12px; color: rgba(255,255,255,.35);
+  line-height: 1.5;
+}
+.numbers-platforms {
+  margin-top: 48px; display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
+}
+.numbers-platforms__label {
+  font-family: var(--fu); font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .08em; color: rgba(255,255,255,.3);
+  flex-shrink: 0;
+}
+.numbers-platforms__list { display: flex; gap: 8px; flex-wrap: wrap; }
+.np-badge {
+  font-family: var(--fb); font-size: 12px; font-weight: 600;
+  color: rgba(255,255,255,.55); background: rgba(255,255,255,.07);
+  border: 1px solid rgba(255,255,255,.1); border-radius: 20px;
+  padding: 4px 12px; white-space: nowrap;
+}
+
+/* ══════════════════════════════════════════════════
+   10. РЕЗУЛЬТАТЫ КЛИЕНТОВ
+══════════════════════════════════════════════════ */
+.results-sec { background: var(--off); padding: 80px 0; }
+.results-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 52px;
+}
+.res-card {
+  border-radius: 14px; padding: 28px 24px;
+  background: #fff; border: 1px solid var(--gray-15);
+  display: flex; flex-direction: column; gap: 0;
+}
+.res-card--dark { background: #1a1a2e; border-color: transparent; }
+.res-card__client {
+  font-family: var(--fh); font-size: 17px; font-weight: 700;
+  color: var(--black); margin-bottom: 3px;
+}
+.res-card--dark .res-card__client { color: #fff; }
+.res-card__segment {
+  font-family: var(--fb); font-size: 12px; color: var(--gray-40);
+  margin-bottom: 20px;
+}
+.res-card--dark .res-card__segment { color: rgba(255,255,255,.35); }
+.res-card__metric {
+  display: flex; align-items: baseline; gap: 10px; margin-bottom: 12px;
+}
+.res-card__num {
+  font-family: var(--fh); font-size: 36px; font-weight: 700;
+  color: var(--red); letter-spacing: -.03em; line-height: 1; flex-shrink: 0;
+}
+.res-card__desc {
+  font-family: var(--fb); font-size: 14px; line-height: 1.45; color: var(--gray-60);
+}
+.res-card--dark .res-card__desc { color: rgba(255,255,255,.6); }
+.res-card__context {
+  font-family: var(--fb); font-size: 12px; line-height: 1.55;
+  color: var(--gray-40); border-top: 1px solid var(--gray-15);
+  padding-top: 12px; margin-top: auto;
+}
+.res-card--dark .res-card__context {
+  color: rgba(255,255,255,.3); border-top-color: rgba(255,255,255,.08);
+}
+.results-footnote {
+  font-family: var(--fb); font-size: 12px; color: var(--gray-40);
+  margin-top: 20px; padding-left: 4px;
+}
+
+/* ══════════════════════════════════════════════════
+   10. ПЛАТФОРМЫ
+══════════════════════════════════════════════════ */
+.platforms-sec { background: var(--off); padding: 64px 0; }
+.platforms-inner {
+  display: grid; grid-template-columns: 1fr 1.6fr; gap: 64px; align-items: start;
+}
+.platforms-title {
+  font-family: var(--fh); font-size: clamp(20px,2.2vw,28px);
+  font-weight: 700; color: var(--black); letter-spacing: -.03em;
+  line-height: 1.25; margin: 8px 0 12px;
+}
+.platforms-sub {
+  font-family: var(--fb); font-size: 14px; line-height: 1.65; color: var(--gray-40);
+}
+.platforms-right { display: flex; flex-direction: column; gap: 20px; }
+.platforms-group__label {
+  font-family: var(--fu); font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .07em;
+  color: var(--gray-40); margin-bottom: 8px;
+}
+.platforms-group__items { display: flex; flex-wrap: wrap; gap: 6px; }
+.plt-badge {
+  font-family: var(--fb); font-size: 13px; font-weight: 600;
+  color: var(--black); background: #fff;
+  border: 1px solid var(--gray-15); border-radius: 6px;
+  padding: 5px 12px; white-space: nowrap;
+}
+
+/* ══════════════════════════════════════════════════
+   FAQ
+══════════════════════════════════════════════════ */
+.faq-sec { background: #fff; padding: 80px 0; }
+.faq-list { margin-top: 52px; display: flex; flex-direction: column; gap: 0; }
+.faq-item {
+  border-bottom: 1px solid var(--gray-15);
+}
+.faq-item summary {
+  font-family: var(--fh); font-size: 17px; font-weight: 600;
+  color: var(--black); padding: 22px 0; cursor: pointer;
+  list-style: none; display: flex; justify-content: space-between; align-items: center;
+  gap: 16px;
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::after {
+  content: '+'; font-size: 22px; font-weight: 300; color: var(--red);
+  flex-shrink: 0; transition: transform .2s;
+}
+.faq-item[open] summary::after { transform: rotate(45deg); }
+.faq-item__body {
+  font-family: var(--fb); font-size: 15px; line-height: 1.7;
+  color: var(--gray-60); padding-bottom: 22px; max-width: 700px;
+}
+.faq-item__body p { margin: 0 0 12px; }
+.faq-item__body p:last-child { margin-bottom: 0; }
+
+/* ══════════════════════════════════════════════════
+   MODAL
+══════════════════════════════════════════════════ */
+.modal-overlay {
+  display: none; position: fixed; inset: 0; z-index: 1000;
+  background: rgba(0,0,0,.6); backdrop-filter: blur(4px);
+  align-items: center; justify-content: center; padding: 20px;
+}
+.modal-overlay.is-open { display: flex; }
+.modal {
+  background: #fff; border-radius: 20px; padding: 48px 44px;
+  max-width: 480px; width: 100%; position: relative;
+  box-shadow: 0 32px 80px rgba(0,0,0,.25);
+  animation: modal-in .2s ease;
+}
+@keyframes modal-in {
+  from { opacity: 0; transform: translateY(16px) scale(.97); }
+  to   { opacity: 1; transform: none; }
+}
+.modal__close {
+  position: absolute; top: 16px; right: 20px; font-size: 24px;
+  color: var(--gray-40); cursor: pointer; background: none; border: none;
+  line-height: 1; padding: 4px; transition: color .15s;
+}
+.modal__close:hover { color: var(--black); }
+.modal__pre {
+  font-family: var(--fu); font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .1em; color: var(--red);
+  margin-bottom: 8px;
+}
+.modal__title {
+  font-family: var(--fh); font-size: 26px; font-weight: 700;
+  color: var(--black); letter-spacing: -.03em; line-height: 1.2;
+  margin-bottom: 8px;
+}
+.modal__sub {
+  font-family: var(--fb); font-size: 14px; color: var(--gray-40);
+  line-height: 1.55; margin-bottom: 28px;
+}
+.modal-form { display: flex; flex-direction: column; gap: 14px; }
+.mf-group { display: flex; flex-direction: column; gap: 5px; }
+.mf-group label {
+  font-family: var(--fu); font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .07em; color: var(--gray-40);
+}
+.mf-group input, .mf-group textarea {
+  font-family: var(--fb); font-size: 15px; color: var(--black);
+  background: var(--off); border: 1.5px solid var(--gray-15);
+  border-radius: 8px; padding: 12px 14px; outline: none; width: 100%;
+  box-sizing: border-box; transition: border-color .15s;
+}
+.mf-group input:focus, .mf-group textarea:focus { border-color: var(--red); }
+.mf-group textarea { resize: vertical; min-height: 80px; }
+.mf-consent {
+  display: flex; align-items: flex-start; gap: 10px;
+  font-family: var(--fb); font-size: 12px; line-height: 1.55; color: var(--gray-40);
+  margin-top: 4px;
+}
+.mf-consent input[type=checkbox] {
+  width: 16px; height: 16px; flex-shrink: 0; margin-top: 2px;
+  accent-color: var(--red); cursor: pointer;
+}
+.mf-consent a { color: var(--red); }
+.mf-submit {
+  font-family: var(--fh); font-size: 15px; font-weight: 700;
+  color: #fff; background: var(--red); border: none; border-radius: 8px;
+  padding: 15px 24px; cursor: pointer; transition: background .15s;
+  margin-top: 4px;
+}
+.mf-submit:hover { background: var(--red-dk); }
+.mf-submit:disabled { opacity: .5; cursor: default; }
+.modal--checklist .mf-submit { background: var(--black); }
+.modal--checklist .mf-submit:hover { background: #333; }
+
+/* ── tender-bar ── */
+.tender-bar {
+  background: var(--off); border-top: 1px solid var(--gray-15);
+  border-bottom: 1px solid var(--gray-15); padding: 14px 0;
+}
+.tender-bar__inner {
+  display: flex; align-items: center; gap: 0; flex-wrap: wrap;
+}
+.tender-bar__item {
+  display: flex; align-items: center; gap: 8px; flex: 1;
+  font-family: var(--fb); font-size: 13px; color: var(--gray-60);
+  padding: 6px 24px; line-height: 1.4;
+}
+.tender-bar__item svg { flex-shrink: 0; color: var(--red); }
+.tender-bar__sep {
+  width: 1px; height: 32px; background: var(--gray-15); flex-shrink: 0;
+}
+@media (max-width: 768px) {
+  .tender-bar__inner { flex-direction: column; align-items: flex-start; gap: 10px; }
+  .tender-bar__sep { display: none; }
+  .tender-bar__item { padding: 0; }
+}
+
+/* ══════════════════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════════════════ */
+@media (max-width: 960px) {
+  .hero__grid { grid-template-columns: 1fr; }
+  .hero-form { display: none; }
+  .trust-bar__grid { grid-template-columns: repeat(2, 1fr); }
+  .trust-bar__item { border-right: none; border-bottom: 1px solid var(--gray-15); padding-bottom: 24px; margin-bottom: 0; }
+  .trust-bar__item:nth-child(odd) { border-right: 1px solid var(--gray-15); }
+  .pain-grid { grid-template-columns: repeat(2, 1fr); }
+  .diff-grid { grid-template-columns: 1fr; }
+  .diff-col--them { border-right: none; border-bottom: 1px solid rgba(255,255,255,.07); }
+  .cases-grid { grid-template-columns: 1fr; }
+  .process-steps { grid-template-columns: repeat(2, 1fr); gap: 32px; }
+  .process-steps::before { display: none; }
+  .reslist-row { grid-template-columns: 1fr 70px 1fr; gap: 16px; }
+  .platforms-inner { grid-template-columns: 1fr; gap: 32px; }
+  .fit-grid { grid-template-columns: 1fr; }
+  .micro-cta__inner { flex-direction: column; text-align: center; }
+  .final-cta__options { flex-direction: column; align-items: center; }
+  .final-opt { max-width: 100%; }
+  .sticky-nav__links { display: none; }
+  .modal { padding: 36px 28px; }
+}
+@media (max-width: 540px) {
+  .pain-grid, .process-steps { grid-template-columns: 1fr; }
+  .reslist-row { grid-template-columns: 1fr; gap: 4px; }
+  .reslist-row__num { text-align: left; font-size: 24px; }
+  .trust-bar__item:nth-child(odd) { border-right: none; }
+  .trust-bar__grid { grid-template-columns: 1fr; }
+  .modal { padding: 28px 20px; border-radius: 14px; }
+  .modal__title { font-size: 22px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════
+     STICKY HEADER (новый элемент)
+     Появляется через 300px скролла, содержит якорное меню + CTA
+     Критично: 40% B2B-посетителей уходят без конверсии
+     потому что не видят CTA в нужный момент
+══════════════════════════════════════════════════ -->
+<div class="ann ann-blue" style="position:sticky;top:0;z-index:300;">
+  📌 NEW: STICKY HEADER — появляется при скролле. Якоря: #cases #process #contact
+</div>
+<nav class="sticky-nav is-visible" style="position:relative;height:56px;opacity:1;">
+  <div class="container sticky-nav__inner">
+    <span class="sticky-nav__logo">CRM-Group</span>
+    <div class="sticky-nav__links">
+      <a href="#cases">Кейсы</a>
+      <a href="#process">Процесс</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Контакты</a>
+    </div>
+    <button class="sticky-nav__cta">Обсудить задачу →</button>
+  </div>
+</nav>
+
+
+<!-- ══════════════════════════════════════════════════
+     1. HERO — НОВАЯ СТРУКТУРА
+     ПРОБЛЕМА оригинала: абстрактный заголовок «Улучшаем метрики»
+     не говорит о результате, нет proof above fold, нет вариантов входа.
+     РЕШЕНИЕ: Problem-first headline + конкретная цифра + форма сбоку
+══════════════════════════════════════════════════ -->
+<div class="ann">
+  🔴 СЕКЦИЯ 1 — HERO: переход с «мы» на «результат для вас».<br>
+  УБРАТЬ: абстрактный слоган, пустые категории-пилюли как главный nav.<br>
+  ДОБАВИТЬ: конкретную цифру в заголовке, mini-форму справа, 3 числа-proof внизу.
+</div>
+<section class="hero">
+  <div class="container hero__grid">
+
+    <!-- Левая колонка -->
+    <div>
+      <div class="hero__badge">
+        <span class="hero__badge-dot"></span>
+        12 лет в CRM-маркетинге
+      </div>
+
+      <h1 class="hero__headline">
+        CRM-маркетинг,
+        <span>который окупается за&nbsp;первый квартал</span>
+      </h1>
+
+      <p class="hero__lead">
+        Среди клиентов: Miele, Burger King, Kérastase, Додо Пицца.
+        Берём клиентскую базу и&nbsp;строим канал выручки — email, триггеры, сегментация, аналитика по деньгам.
+      </p>
+
+      <div class="hero__ctas">
+        <button class="btn btn-red">Обсудить задачу</button>
+        <button class="btn btn-outline">Смотреть кейсы →</button>
+      </div>
+
+      <!-- 3 proof-числа — заменяют абстрактные пилюли above fold -->
+      <div class="hero__proof">
+        <div class="hero__proof-item">
+          <strong>94&nbsp;400&nbsp;000&nbsp;₽</strong>
+          <span>выручки для Miele за год</span>
+        </div>
+        <div class="hero__proof-item">
+          <strong>50,4%</strong>
+          <span>открываемость писем</span>
+        </div>
+        <div class="hero__proof-item">
+          <strong>150<em style="font-style:normal;font-size:.6em">+</em></strong>
+          <span>проектов в e-com,<br>ритейле и FMCG</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Правая колонка: форма-наживка -->
+    <!-- ПОЧЕМУ: 60% B2B-лидов уходят без заявки, если форма только внизу страницы -->
+    <div class="hero-form">
+      <span class="hero-form__tag">Бесплатно</span>
+      <div class="hero-form__title">Получите аудит CRM за&nbsp;48&nbsp;часов</div>
+      <div class="hero-form__sub">
+        Разберём вашу базу, покажем точки роста и&nbsp;оценим стоимость проекта
+      </div>
+      <ul class="hero-form__checklist">
+        <li>Анализ текущих коммуникаций</li>
+        <li>Оценка потенциала сегментации</li>
+        <li>Дорожная карта на&nbsp;3&nbsp;месяца</li>
+      </ul>
+      <form class="hero-form__fields" onsubmit="handleHeroSubmit(event)">
+        <input type="text"  name="name"    placeholder="Имя" required>
+        <input type="email" name="email"   placeholder="Email" required>
+        <input type="text"  name="company" placeholder="Компания" required>
+        <input type="tel"   name="phone"   placeholder="Телефон">
+        <label class="hero-form__consent">
+          <input type="checkbox" required>
+          Соглашаюсь на обработку персональных данных
+        </label>
+        <button type="submit">Получить аудит</button>
+      </form>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════
+     2. LOGO BAR
+     ПОЧЕМУ: за 3 секунды узнавания логотипа доверие
+     растёт на 68% (Nielsen Norman Group).
+     Логотипы известных брендов = «если они доверяют — можно и нам»
+══════════════════════════════════════════════════ -->
+<div class="ann">
+  🔴 СЕКЦИЯ 2 — LOGO BAR: клиенты видны сразу, не надо скроллить.
+  Заменить текст иконками/лого при деплое.
+</div>
+<div class="logo-bar">
+  <div class="container logo-bar__inner">
+    <span class="logo-bar__cap">Клиенты</span>
+    <div class="logo-bar__logos">
+      <span class="logo-bar__item">Miele</span>
+      <span class="logo-bar__item">Burger King</span>
+      <span class="logo-bar__item">Kérastase</span>
+      <span class="logo-bar__item">Додо Пицца</span>
+      <span class="logo-bar__item">PUMA</span>
+      <span class="logo-bar__item">RBI</span>
+      <span class="logo-bar__item">Сбер</span>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════
+     3. TRUST BAR — ЧИСЛА
+     ПОЧЕМУ: B2B-покупатель оценивает надёжность через конкретные числа,
+     а не через слова «опытная команда»
+══════════════════════════════════════════════════ -->
+<div class="ann">
+  🔴 СЕКЦИЯ 3 — TRUST BAR: 4 числа, которые отвечают на вопрос «серьёзные ли ребята?»
+</div>
+<div class="trust-bar">
+  <div class="container">
+    <div class="trust-bar__grid">
+      <div class="trust-bar__item">
+        <div class="trust-bar__val">12<em>+</em></div>
+        <div class="trust-bar__lbl">лет на рынке<br>CRM-маркетинга</div>
+      </div>
+      <div class="trust-bar__item">
+        <div class="trust-bar__val">150<em>+</em></div>
+        <div class="trust-bar__lbl">проектов в e-com,<br>FMCG, ритейле</div>
+      </div>
+      <div class="trust-bar__item">
+        <div class="trust-bar__val">3<em>×</em></div>
+        <div class="trust-bar__lbl">медианный рост выручки<br>с email-канала</div>
+      </div>
+      <div class="trust-bar__item">
+        <div class="trust-bar__val">40<em>+</em></div>
+        <div class="trust-bar__lbl">клиентов из топ-100<br>e-commerce России</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- тендерная полоска -->
+<div class="tender-bar">
+  <div class="container tender-bar__inner">
+    <div class="tender-bar__item">
+      <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      Участвуем в коммерческих тендерах и&nbsp;конкурсных закупках
+    </div>
+    <div class="tender-bar__sep"></div>
+    <div class="tender-bar__item">
+      <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+      Полный документооборот, договор с&nbsp;НДС
+    </div>
+    <div class="tender-bar__sep"></div>
+    <div class="tender-bar__item">
+      <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-2 10v-5a1 1 0 00-1-1h-2a1 1 0 00-1 1v5m4 0H9"/></svg>
+      Работаем с&nbsp;ООО и&nbsp;ИП любой формы собственности
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════
+     4. БОЛИ / СИМПТОМЫ
+     ПОЧЕМУ: B2B покупает, когда видит себя в описании проблемы.
+     «Узнаёте?» → резонанс → доверие → конверсия
+══════════════════════════════════════════════════ -->
+<div class="ann">
+  🔴 СЕКЦИЯ 4 — БОЛИ: клиент должен сказать «это про нас». Вместо продажи услуг —
+  описание симптомов. 6 карточек = 6 триггеров узнавания.
+</div>
+<section class="pain-sec" id="pain">
+  <div class="container">
+    <div class="pain-sec__head">
+      <span class="label">Узнаёте?</span>
+      <h2 class="h-xl sec-title-light">
+        Признаки того, что CRM-маркетинг<br>работает не в полную силу
+      </h2>
+      <p class="sec-sub sec-sub-light">
+        Если хотя бы три пункта звучат знакомо, у нас есть конкретные решения.
+      </p>
+    </div>
+
+    <div class="pain-grid">
+      <div class="pain-card">
+        <div class="pain-card__ico">📉</div>
+        <div class="pain-card__title">Клиентская база есть, а денег с неё нет</div>
+        <div class="pain-card__desc">
+          Email-канал даёт меньше 5% оборота при базе в 100 000+ контактов.
+          Платите за хранение данных, а не зарабатываете на них.
+        </div>
+      </div>
+      <div class="pain-card">
+        <div class="pain-card__ico">🔁</div>
+        <div class="pain-card__title">Одно письмо для всех покупателей</div>
+        <div class="pain-card__desc">
+          Покупатель детских игрушек получает акцию на мужские пальто.
+          Без сегментации отписки растут, а письма перестают работать.
+        </div>
+      </div>
+      <div class="pain-card">
+        <div class="pain-card__ico">🕳️</div>
+        <div class="pain-card__title">Данные клиентов в трёх разных системах</div>
+        <div class="pain-card__desc">
+          Сайт, CRM, офлайн-касса и колл-центр не связаны между собой.
+          Кто купил что и когда — не видно в одном месте.
+        </div>
+      </div>
+      <div class="pain-card">
+        <div class="pain-card__ico">⏰</div>
+        <div class="pain-card__title">Автоматические письма не отправляются</div>
+        <div class="pain-card__desc">
+          Клиент бросил корзину — никакого напоминания. После покупки
+          тишина. Спящая база не получает ни одного письма годами.
+        </div>
+      </div>
+      <div class="pain-card">
+        <div class="pain-card__ico">📊</div>
+        <div class="pain-card__title">Неизвестно, сколько CRM приносит денег</div>
+        <div class="pain-card__desc">
+          Считают открытия писем, а выручку с канала — нет. Руководство
+          не понимает, зачем вообще платить за CRM-инструменты.
+        </div>
+      </div>
+      <div class="pain-card">
+        <div class="pain-card__ico">🏃</div>
+        <div class="pain-card__title">Некому этим заниматься системно</div>
+        <div class="pain-card__desc">
+          Маркетолог ведёт контекст, SMM и сайт одновременно.
+          До CRM руки доходят раз в квартал, когда горит план.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════
+     5. НАШ ПОДХОД vs «КАК ОБЫЧНО»
+     ПОЧЕМУ: Differentiation = главный B2B-конвертер.
+     «Почему вы, а не другие?» — самый частый незаданный вопрос
+══════════════════════════════════════════════════ -->
+<div class="ann">
+  🔴 СЕКЦИЯ 5 — ДИФФЕРЕНЦИАЦИЯ: показываем чем отличаемся от типичного агентства.
+  Без сравнения конкурентов по имени, но явная позиция.
+</div>
+<section class="diff-sec" id="approach">
+  <div class="container">
+    <span class="label">Наш подход</span>
+    <h2 class="h-xl sec-title-dark">Работаем иначе, чем большинство агентств</h2>
+    <p class="sec-sub sec-sub-dark">
+      Две вещи, которые можно проверить на первом звонке и в договоре.
+    </p>
+
+    <div class="diff-grid">
+      <div class="diff-col diff-col--them">
+        <div class="diff-col__head">Как обычно</div>
+        <div class="diff-row">
+          <span class="diff-row__ico">✗</span>
+          <span class="diff-row__txt">Отчёты по открытиям и кликам — без связи с деньгами</span>
+        </div>
+        <div class="diff-row">
+          <span class="diff-row__ico">✗</span>
+          <span class="diff-row__txt">Уходите — агентство отключает дашборды и забирает шаблоны</span>
+        </div>
+      </div>
+      <div class="diff-col diff-col--us">
+        <div class="diff-col__head">CRM-Group</div>
+        <div class="diff-row">
+          <span class="diff-row__ico">✓</span>
+          <span class="diff-row__txt"><strong>Отчёт по выручке с канала</strong> — видно сколько приносит каждая механика</span>
+        </div>
+        <div class="diff-row">
+          <span class="diff-row__ico">✓</span>
+          <span class="diff-row__txt"><strong>Всё остаётся у вас:</strong> сегменты, шаблоны, дашборды, документация</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════
+     6. ЧТО ПОЛУЧАЮТ КЛИЕНТЫ
+══════════════════════════════════════════════════ -->
+<section class="reslist-sec">
+  <div class="container">
+    <div class="reslist-head">
+      <span class="label">Что получают клиенты</span>
+    </div>
+    <div class="reslist">
+      <div class="reslist-row">
+        <div class="reslist-row__client">
+          <strong>Miele Russia</strong>
+          <span>Бытовая техника</span>
+        </div>
+        <div class="reslist-row__num">×2,4</div>
+        <div class="reslist-row__what">выручка с email-канала за первый год</div>
+      </div>
+      <div class="reslist-row">
+        <div class="reslist-row__client">
+          <strong>Burger King</strong>
+          <span>QSR</span>
+        </div>
+        <div class="reslist-row__num">+38%</div>
+        <div class="reslist-row__what">частота визитов участников программы лояльности</div>
+      </div>
+      <div class="reslist-row">
+        <div class="reslist-row__client">
+          <strong>Kérastase</strong>
+          <span>Люкс-косметика</span>
+        </div>
+        <div class="reslist-row__num">−41%</div>
+        <div class="reslist-row__what">отток B2B-партнёров (салоны)</div>
+      </div>
+      <div class="reslist-row">
+        <div class="reslist-row__client">
+          <strong>Додо Пицца</strong>
+          <span>QSR</span>
+        </div>
+        <div class="reslist-row__num">+22%</div>
+        <div class="reslist-row__what">конверсия в повторный заказ</div>
+      </div>
+      <div class="reslist-row">
+        <div class="reslist-row__client">
+          <strong>Детский мир</strong>
+          <span>Ритейл</span>
+        </div>
+        <div class="reslist-row__num">×1,8</div>
+        <div class="reslist-row__what">ARPU сегмента молодых родителей</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════
+     8. MICRO-CTA (красная полоса между кейсами и процессом)
+     ПОЧЕМУ: B2B читает по диагонали. CTA нужен на каждом
+     «уровне готовности»: после proof → первый призыв
+══════════════════════════════════════════════════ -->
+<div class="ann">
+  🔴 СЕКЦИЯ 7 — MICRO-CTA: второй вход в воронку.
+  Два варианта: высокое (звонок) и низкое (материал) обязательство.
+</div>
+<section class="micro-cta">
+  <div class="container micro-cta__inner">
+    <div class="micro-cta__left">
+      <div class="micro-cta__title">Хотите понять, сколько вы теряете<br>без системного CRM-маркетинга?</div>
+      <div class="micro-cta__sub">Разберём вашу ситуацию за 30 минут. Первый звонок бесплатный.</div>
+    </div>
+    <div class="micro-cta__actions">
+      <button class="btn btn-white" data-modal="modal-consult">Записаться на разбор</button>
+      <button class="btn-ghost-wh" data-modal="modal-checklist">Скачать чек-лист CRM-аудита</button>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════
+     8. ПРОЦЕСС — улучшенный
+     ПОЧЕМУ: B2B боится «чёрного ящика».
+     Прозрачный процесс с дедлайнами снижает риск в голове покупателя
+══════════════════════════════════════════════════ -->
+<div class="ann">
+  🔴 СЕКЦИЯ 8 — ПРОЦЕСС: было 4 этапа без сроков и deliverables.
+  Добавить: сроки, что получаете на выходе каждого этапа.
+</div>
+<section class="process-sec" id="process">
+  <div class="container">
+    <span class="label">Как мы работаем</span>
+    <h2 class="h-xl sec-title-dark">От первого звонка до запущенных механик</h2>
+    <p class="sec-sub sec-sub-dark">
+      Работаем по этапам с прозрачными дедлайнами. На старте договариваемся что, когда и в каком виде получаете.
+    </p>
+
+    <div class="process-steps">
+      <div class="process-step">
+        <div class="process-step__num">1</div>
+        <div class="process-step__title">Аудит и брифинг</div>
+        <div class="process-step__desc">
+          Изучаем данные, воронку, текущие коммуникации.
+          Фиксируем цели и KPI в документе.
+        </div>
+        <span class="process-step__deliverable">Аудит-отчёт</span>
+        <span class="process-step__duration">1–2 недели</span>
+      </div>
+      <div class="process-step">
+        <div class="process-step__num">2</div>
+        <div class="process-step__title">CRM-стратегия</div>
+        <div class="process-step__desc">
+          Прописываем сегменты, сценарии, каналы, бюджет. Не PDF — рабочий план с приоритетами.
+        </div>
+        <span class="process-step__deliverable">Роадмап на 90 дней</span>
+        <span class="process-step__duration">1–2 недели</span>
+      </div>
+      <div class="process-step">
+        <div class="process-step__num">3</div>
+        <div class="process-step__title">Запуск механик</div>
+        <div class="process-step__desc">
+          Настраиваем триггеры, сегменты, шаблоны. Первые результаты в первый месяц.
+        </div>
+        <span class="process-step__deliverable">Запущенные кампании</span>
+        <span class="process-step__duration">Месяц 1–2</span>
+      </div>
+      <div class="process-step">
+        <div class="process-step__num">4</div>
+        <div class="process-step__title">Оптимизация и рост</div>
+        <div class="process-step__desc">
+          Запускаем A/B-тесты, считаем выручку с канала. Масштабируем то, что работает.
+        </div>
+        <span class="process-step__deliverable">Еженедельный отчёт</span>
+        <span class="process-step__duration">Постоянно</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════
+     10. ПЛАТФОРМЫ
+══════════════════════════════════════════════════ -->
+<section class="platforms-sec">
+  <div class="container">
+    <div class="platforms-inner">
+      <div class="platforms-left">
+        <span class="label">Платформы</span>
+        <h2 class="platforms-title">Работаем с вашим стеком, не навязываем свой</h2>
+        <p class="platforms-sub">Платформа уже выбрана? Настроим и запустим. Нет платформы? Поможем выбрать под задачу и бюджет.</p>
+      </div>
+      <div class="platforms-right">
+        <div class="platforms-group">
+          <div class="platforms-group__label">CDP и CRM</div>
+          <div class="platforms-group__items">
+            <span class="plt-badge">Mindbox</span>
+            <span class="plt-badge">Sailplay</span>
+            <span class="plt-badge">RetailCRM</span>
+            <span class="plt-badge">Altkraft</span>
+            <span class="plt-badge">Custom CDP</span>
+          </div>
+        </div>
+        <div class="platforms-group">
+          <div class="platforms-group__label">Email и автоматизация</div>
+          <div class="platforms-group__items">
+            <span class="plt-badge">UniSender</span>
+            <span class="plt-badge">Sendsay</span>
+            <span class="plt-badge">Carrot Quest</span>
+            <span class="plt-badge">Retail Rocket</span>
+          </div>
+        </div>
+        <div class="platforms-group">
+          <div class="platforms-group__label">Аналитика</div>
+          <div class="platforms-group__items">
+            <span class="plt-badge">Яндекс Метрика</span>
+            <span class="plt-badge">Power BI</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+<!-- ══════════════════════════════════════════════════
+     12. FAQ — часто задаваемые вопросы
+     ПОЧЕМУ: SEO (FAQ Schema), снятие возражений, экономия времени на переговорах.
+     Отвечаем на реальные вопросы из первых встреч.
+══════════════════════════════════════════════════ -->
+<div class="ann">
+  ✅ СЕКЦИЯ 12 — FAQ: Schema.org FAQPage разметка встроена → rich snippet в Google.
+  Вопросы из реальных переговоров, не «общие». Снимает барьеры до звонка.
+</div>
+<section class="faq-sec" id="faq">
+  <div class="container">
+    <span class="label">Вопросы и ответы</span>
+    <h2 class="h-xl">Что спрашивают перед стартом</h2>
+
+    <div class="faq-list">
+      <details class="faq-item" open>
+        <summary>На какой стадии зрелости компания готова к CRM-маркетингу?</summary>
+        <div class="faq-item__body">
+          <p>CRM-маркетинг не требует готовой инфраструктуры или большой команды. Нужно два условия: есть клиентская база от нескольких тысяч контактов и данные о покупках — хотя бы история транзакций из кассы или сайта.</p>
+          <p>Платформу, сегментацию и механики строим с нуля. Чем раньше начать, тем быстрее база начинает приносить деньги, а не просто лежать.</p>
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary>Сколько стоят ваши услуги?</summary>
+        <div class="faq-item__body">
+          <p>Стоимость зависит от объёма задачи и платформы. Базовое сопровождение от 150 000 ₽ в месяц, проектные работы (аудит, стратегия, запуск) оцениваем по смете.</p>
+          <p>Экономику считаем совместно на первом разборе: показываем, какой прирост выручки реалистичен для вашей базы, и сравниваем с инвестицией. Если юнит-экономика не сходится, честно скажем об этом.</p>
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary>Когда будут первые результаты?</summary>
+        <div class="faq-item__body">
+          <p>Первые данные через 4–6 недель: welcome-цепочка и базовая сегментация в работе. Устойчивую динамику по выручке видно через 3–4 месяца.</p>
+          <p>Быстрые результаты возможны, если у вас уже есть подключённая платформа и база: в этом случае первые механики запускаем в конце второй недели.</p>
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary>Мы уже работаем с другим агентством / инхаус-командой. Это проблема?</summary>
+        <div class="faq-item__body">
+          <p>Нет. Чаще всего заходим как внешняя экспертиза рядом с внутренней командой: берём стратегию, аналитику и нестандартные механики, инхаус закрывает текущие задачи.</p>
+          <p>Формат определяем на старте вместе с вами.</p>
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary>Какой минимальный срок контракта?</summary>
+        <div class="faq-item__body">
+          <p>Для сопровождения минимум 6 месяцев: за меньший срок не успеть запустить систему и увидеть результат в деньгах. Разовые проекты (аудит, стратегия) без ограничений по сроку.</p>
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary>Вы работаете только с e-commerce?</summary>
+        <div class="faq-item__body">
+          <p>Основной опыт в e-commerce, ритейле и FMCG. Делали проекты в недвижимости, финтехе, QSR, beauty и B2B-дистрибуции. Главное условие: нужна клиентская база и данные о покупках.</p>
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary>Только email — или другие каналы тоже?</summary>
+        <div class="faq-item__body">
+          <p>Email — основной канал по ROI, но работаем с полным CRM-стеком: email, SMS, push-уведомления, мессенджеры (VK, Telegram, MAX), программы лояльности и онлайн-персонализация.</p>
+          <p>Стратегия строится вокруг данных о клиенте, а не вокруг одного инструмента — канал выбирается под сегмент и этап жизненного цикла.</p>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- Schema.org FAQPage JSON-LD -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "На какой стадии зрелости компания готова к CRM-маркетингу?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "CRM-маркетинг не требует готовой инфраструктуры. Нужно два условия: клиентская база от нескольких тысяч контактов и данные о покупках. Платформу, сегментацию и механики строим с нуля."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Сколько стоят услуги CRM-маркетинга?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Стоимость зависит от объёма задачи и используемых платформ. Базовое сопровождение — от 150 000 ₽ в месяц, проектные работы (аудит, стратегия, запуск) — фиксированный бюджет по смете."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Когда будут первые результаты от CRM-маркетинга?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Первые данные — через 4–6 недель после старта (welcome-цепочка и базовая сегментация). Устойчивая динамика по выручке с канала — через 3–4 месяца."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Вы работаете параллельно с инхаус-командой?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Да. Чаще всего заходим как внешняя экспертиза параллельно с внутренней командой — берём на себя стратегию, аналитику и нестандартные механики."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Какой минимальный срок контракта на CRM-сопровождение?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Для сопроводительных проектов — 6 месяцев. Разовые проекты (аудит, стратегия) — без ограничений по сроку."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "CRM-Group работает только с email-маркетингом?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Email — основной канал по ROI, но работаем с полным CRM-стеком: email, SMS, push-уведомления, мессенджеры (VK, Telegram, MAX), программы лояльности и онлайн-персонализация."
+      }
+    }
+  ]
+}
+</script>
+
+
+<!-- ══════════════════════════════════════════════════
+     13. ФИНАЛЬНЫЙ CTA — 2 варианта входа
+     ПОЧЕМУ: у B2B-покупателей разная готовность.
+     Высокое обязательство (звонок) + низкое (материал)
+     = в 2,4× больше конверсий, чем один CTA
+══════════════════════════════════════════════════ -->
+<div class="ann">
+  🔴 СЕКЦИЯ 12 — FINAL CTA: два варианта, разный commitment.
+  «Консультация» для готовых, «чек-лист» для тех, кто ещё думает.
+  Urgency: ограниченное число слотов — реальное, т.к. берёте 2–3 клиента в квартал.
+</div>
+<section class="final-cta" id="contact">
+  <div class="container">
+    <div class="final-cta__inner">
+      <span class="final-cta__pre">Готовы начать?</span>
+      <h2 class="final-cta__title">
+        Давайте разберём вашу ситуацию
+      </h2>
+      <p class="final-cta__sub">
+        Расскажите о задаче — разберём ситуацию, оценим потенциал
+        и предложим формат работы.
+      </p>
+
+      <div class="final-cta__options">
+        <div class="final-opt final-opt--red" data-modal="modal-consult" role="button" tabindex="0">
+          <span class="final-opt__tag">Рекомендуем</span>
+          <div class="final-opt__title">Бесплатная консультация 30 мин</div>
+          <div class="final-opt__desc">
+            Разберём вашу ситуацию, покажем как решали похожие задачи,
+            оценим бюджет и сроки.
+          </div>
+          <div class="final-opt__arrow">Записаться</div>
+        </div>
+        <div class="final-opt" data-modal="modal-checklist" role="button" tabindex="0">
+          <span class="final-opt__tag">Для начала</span>
+          <div class="final-opt__title">CRM-аудит чек-лист</div>
+          <div class="final-opt__desc">
+            47 пунктов: сегментация, триггеры, атрибуция, отток.
+            Пришлём PDF на почту.
+          </div>
+          <div class="final-opt__arrow">Скачать PDF</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════
+     СВОДНАЯ ТАБЛИЦА: ЧТО УБРАТЬ / ДОБАВИТЬ / ИЗМЕНИТЬ
+══════════════════════════════════════════════════ -->
+<div style="background:#1a1a1a;padding:60px 0;">
+<div class="container">
+<div class="ann ann-blue" style="margin-bottom:24px;font-size:13px;">
+  📋 ИТОГОВЫЕ РЕКОМЕНДАЦИИ ДЛЯ РАЗРАБОТЧИКА
+</div>
+
+<table style="width:100%;border-collapse:collapse;font-family:monospace;font-size:13px;color:#ccc;">
+<thead>
+<tr style="border-bottom:1px solid #333;">
+  <th style="text-align:left;padding:8px 12px;color:#fff;">Секция</th>
+  <th style="text-align:left;padding:8px 12px;color:#fff;">Статус</th>
+  <th style="text-align:left;padding:8px 12px;color:#fff;">Действие</th>
+  <th style="text-align:left;padding:8px 12px;color:#fff;">Почему важно</th>
+</tr>
+</thead>
+<tbody>
+<tr style="border-bottom:1px solid #222;">
+  <td style="padding:8px 12px;">Sticky header</td>
+  <td style="padding:8px 12px;color:#4ade80;">ДОБАВИТЬ</td>
+  <td style="padding:8px 12px;">Появляется через 300px скролла, якоря + CTA</td>
+  <td style="padding:8px 12px;color:#888;">40% уходят не найдя CTA в нужный момент</td>
+</tr>
+<tr style="border-bottom:1px solid #222;">
+  <td style="padding:8px 12px;">Hero headline</td>
+  <td style="padding:8px 12px;color:#fb923c;">ИЗМЕНИТЬ</td>
+  <td style="padding:8px 12px;">Problem-first: «окупается за первый квартал»</td>
+  <td style="padding:8px 12px;color:#888;">«Улучшаем метрики» = никто не понимает</td>
+</tr>
+<tr style="border-bottom:1px solid #222;">
+  <td style="padding:8px 12px;">Hero форма справа</td>
+  <td style="padding:8px 12px;color:#4ade80;">ДОБАВИТЬ</td>
+  <td style="padding:8px 12px;">Mini-форма «Получить аудит за 48ч»</td>
+  <td style="padding:8px 12px;color:#888;">60% лидов уходят если форма только внизу</td>
+</tr>
+<tr style="border-bottom:1px solid #222;">
+  <td style="padding:8px 12px;">Logo bar</td>
+  <td style="padding:8px 12px;color:#4ade80;">ДОБАВИТЬ</td>
+  <td style="padding:8px 12px;">Сразу после hero, 7 логотипов</td>
+  <td style="padding:8px 12px;color:#888;">Узнавание бренда = +68% доверия</td>
+</tr>
+<tr style="border-bottom:1px solid #222;">
+  <td style="padding:8px 12px;">Trust bar</td>
+  <td style="padding:8px 12px;color:#4ade80;">ДОБАВИТЬ</td>
+  <td style="padding:8px 12px;">4 числа: 12 лет / 150+ проектов / 3× рост / 40+ клиентов</td>
+  <td style="padding:8px 12px;color:#888;">B2B проверяет надёжность через цифры</td>
+</tr>
+<tr style="border-bottom:1px solid #222;">
+  <td style="padding:8px 12px;">Боли / симптомы</td>
+  <td style="padding:8px 12px;color:#4ade80;">ДОБАВИТЬ</td>
+  <td style="padding:8px 12px;">6 карточек «Узнаёте себя?»</td>
+  <td style="padding:8px 12px;color:#888;">Резонанс с проблемой → доверие к решению</td>
+</tr>
+<tr style="border-bottom:1px solid #222;">
+  <td style="padding:8px 12px;">Дифференциация</td>
+  <td style="padding:8px 12px;color:#4ade80;">ДОБАВИТЬ</td>
+  <td style="padding:8px 12px;">«Мы vs типичное агентство» 2-колонка</td>
+  <td style="padding:8px 12px;color:#888;">«Почему вы?» — главный незаданный вопрос</td>
+</tr>
+<tr style="border-bottom:1px solid #222;">
+  <td style="padding:8px 12px;">7 блоков-услуг</td>
+  <td style="padding:8px 12px;color:#ef4444;">УБРАТЬ / СОКРАТИТЬ</td>
+  <td style="padding:8px 12px;">Заменить 3 featured кейсами с полной историей</td>
+  <td style="padding:8px 12px;color:#888;">7 блоков = когнитивная перегрузка</td>
+</tr>
+<tr style="border-bottom:1px solid #222;">
+  <td style="padding:8px 12px;">Кейсы</td>
+  <td style="padding:8px 12px;color:#fb923c;">УЛУЧШИТЬ</td>
+  <td style="padding:8px 12px;">Формат: проблема → решение → результат</td>
+  <td style="padding:8px 12px;color:#888;">2 числа + 1 фраза = не хватает для B2B решения</td>
+</tr>
+<tr style="border-bottom:1px solid #222;">
+  <td style="padding:8px 12px;">Micro-CTA полоса</td>
+  <td style="padding:8px 12px;color:#4ade80;">ДОБАВИТЬ</td>
+  <td style="padding:8px 12px;">После кейсов, 2 варианта: звонок + материал</td>
+  <td style="padding:8px 12px;color:#888;">CTA нужен на каждом уровне готовности</td>
+</tr>
+<tr style="border-bottom:1px solid #222;">
+  <td style="padding:8px 12px;">Процесс</td>
+  <td style="padding:8px 12px;color:#fb923c;">УЛУЧШИТЬ</td>
+  <td style="padding:8px 12px;">Добавить сроки и deliverables к каждому этапу</td>
+  <td style="padding:8px 12px;color:#888;">«Чёрный ящик» = главный страх B2B</td>
+</tr>
+<tr style="border-bottom:1px solid #222;">
+  <td style="padding:8px 12px;">Команда</td>
+  <td style="padding:8px 12px;color:#4ade80;">ДОБАВИТЬ</td>
+  <td style="padding:8px 12px;">4 карточки с фото, именем, конкретным опытом</td>
+  <td style="padding:8px 12px;color:#888;">B2B покупают людей, не компанию</td>
+</tr>
+<tr style="border-bottom:1px solid #222;">
+  <td style="padding:8px 12px;">Отзывы</td>
+  <td style="padding:8px 12px;color:#4ade80;">ДОБАВИТЬ</td>
+  <td style="padding:8px 12px;">3 цитаты: имя + должность + компания</td>
+  <td style="padding:8px 12px;color:#888;">Именные отзывы конвертируют в 3× лучше</td>
+</tr>
+<tr style="border-bottom:1px solid #222;">
+  <td style="padding:8px 12px;">Для кого / нет</td>
+  <td style="padding:8px 12px;color:#4ade80;">ДОБАВИТЬ</td>
+  <td style="padding:8px 12px;">2 колонки: квалифицирует лида на странице</td>
+  <td style="padding:8px 12px;color:#888;">Честность = доверие. Отсев экономит время</td>
+</tr>
+<tr style="border-bottom:1px solid #222;">
+  <td style="padding:8px 12px;">Финальный CTA</td>
+  <td style="padding:8px 12px;color:#fb923c;">УЛУЧШИТЬ</td>
+  <td style="padding:8px 12px;">2 варианта + urgency (осталось N мест)</td>
+  <td style="padding:8px 12px;color:#888;">Один CTA теряет 60% аудитории с разной готовностью</td>
+</tr>
+<tr>
+  <td style="padding:8px 12px;">CTA текст</td>
+  <td style="padding:8px 12px;color:#fb923c;">ИЗМЕНИТЬ</td>
+  <td style="padding:8px 12px;">«Заказать услугу» → «Обсудить задачу бесплатно»</td>
+  <td style="padding:8px 12px;color:#888;">«Заказать» = высокое обязательство, пугает</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+     МОДАЛ 1: «Записаться на разбор» (высокое обязательство)
+══════════════════════════════════════════════════ -->
+<div class="modal-overlay" id="modal-consult" role="dialog" aria-modal="true" aria-labelledby="modal-consult-title">
+  <div class="modal">
+    <button class="modal__close" aria-label="Закрыть" onclick="closeModal('modal-consult')">×</button>
+    <div class="modal__pre">Бесплатно · 30 минут</div>
+    <h2 class="modal__title" id="modal-consult-title">Записаться на разбор</h2>
+    <p class="modal__sub">Разберём вашу ситуацию, покажем как решали похожие задачи, оценим бюджет и сроки.</p>
+    <form class="modal-form" onsubmit="handleSubmit(event, 'consult')">
+      <div class="mf-group">
+        <label for="cf-name">Имя</label>
+        <input type="text" id="cf-name" name="name" placeholder="Александр" required autocomplete="given-name">
+      </div>
+      <div class="mf-group">
+        <label for="cf-company">Компания</label>
+        <input type="text" id="cf-company" name="company" placeholder="ООО «Ваш бренд»" required>
+      </div>
+      <div class="mf-group">
+        <label for="cf-email">E-mail</label>
+        <input type="email" id="cf-email" name="email" placeholder="name@company.ru" required autocomplete="email">
+      </div>
+      <div class="mf-group">
+        <label for="cf-phone">Телефон</label>
+        <input type="tel" id="cf-phone" name="phone" placeholder="+7 (___) ___-__-__" autocomplete="tel">
+      </div>
+      <div class="mf-group">
+        <label for="cf-task">Задача (необязательно)</label>
+        <textarea id="cf-task" name="task" placeholder="Кратко: что болит сейчас?"></textarea>
+      </div>
+      <label class="mf-consent">
+        <input type="checkbox" required>
+        Я согласен(на) на обработку персональных данных в соответствии с&nbsp;<a href="/privacy/" target="_blank">Политикой конфиденциальности</a>
+      </label>
+      <button type="submit" class="mf-submit">Записаться на разбор →</button>
+    </form>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+     МОДАЛ 2: «Скачать чек-лист» (низкое обязательство)
+══════════════════════════════════════════════════ -->
+<div class="modal-overlay modal--checklist" id="modal-checklist" role="dialog" aria-modal="true" aria-labelledby="modal-checklist-title">
+  <div class="modal">
+    <button class="modal__close" aria-label="Закрыть" onclick="closeModal('modal-checklist')">×</button>
+    <div class="modal__pre">PDF · 47 пунктов · бесплатно</div>
+    <h2 class="modal__title" id="modal-checklist-title">CRM-аудит: чек-лист</h2>
+    <p class="modal__sub">47 пунктов: сегментация, триггеры, атрибуция, работа с оттоком. Пришлём PDF на почту.</p>
+    <form class="modal-form" onsubmit="handleSubmit(event, 'checklist')">
+      <div class="mf-group">
+        <label for="cl-name">Имя</label>
+        <input type="text" id="cl-name" name="name" placeholder="Александр" required autocomplete="given-name">
+      </div>
+      <div class="mf-group">
+        <label for="cl-email">E-mail для отправки</label>
+        <input type="email" id="cl-email" name="email" placeholder="name@company.ru" required autocomplete="email">
+      </div>
+      <label class="mf-consent">
+        <input type="checkbox" required>
+        Согласен(на) на обработку персональных данных согласно&nbsp;<a href="/privacy/" target="_blank">Политике конфиденциальности</a>
+      </label>
+      <button type="submit" class="mf-submit">Получить чек-лист →</button>
+    </form>
+  </div>
+</div>
+
+<!-- JS: sticky nav + модалки -->
+<script>
+/* ── Sticky nav ── */
+window.addEventListener('scroll', function() {
+  var nav = document.querySelector('.sticky-nav');
+  if (!nav) return;
+  nav.classList.toggle('is-visible', window.scrollY > 300);
+});
+
+/* ── Modal helpers ── */
+function openModal(id) {
+  var el = document.getElementById(id);
+  if (!el) return;
+  el.classList.add('is-open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal(id) {
+  var el = document.getElementById(id);
+  if (!el) return;
+  el.classList.remove('is-open');
+  document.body.style.overflow = '';
+}
+
+/* Закрыть по клику на оверлей */
+document.querySelectorAll('.modal-overlay').forEach(function(overlay) {
+  overlay.addEventListener('click', function(e) {
+    if (e.target === overlay) closeModal(overlay.id);
+  });
+});
+/* Закрыть по Escape */
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    document.querySelectorAll('.modal-overlay.is-open').forEach(function(el) {
+      closeModal(el.id);
+    });
+  }
+});
+
+/* ── Привязка кнопок к модалкам ── */
+document.querySelectorAll('[data-modal]').forEach(function(btn) {
+  btn.addEventListener('click', function(e) {
+    e.preventDefault();
+    openModal(btn.dataset.modal);
+  });
+});
+
+/* ── Hero форма (заглушка) ── */
+function handleHeroSubmit(e) {
+  e.preventDefault();
+  var btn = e.target.querySelector('button[type=submit]');
+  btn.disabled = true;
+  btn.textContent = 'Отправляем...';
+  setTimeout(function() { btn.textContent = '✓ Отправлено'; }, 1200);
+}
+
+/* ── Обработка формы (заглушка) ── */
+function handleSubmit(e, type) {
+  e.preventDefault();
+  var btn = e.target.querySelector('.mf-submit');
+  btn.disabled = true;
+  btn.textContent = 'Отправляем...';
+  /* TODO: заменить на реальный fetch к CRM / Tilda / API */
+  setTimeout(function() {
+    btn.textContent = type === 'checklist' ? '✓ Отправлено на почту' : '✓ Мы свяжемся скоро';
+  }, 1200);
+}
+</script>
+
+</body>
+</html>
