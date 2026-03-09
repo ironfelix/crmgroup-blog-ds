@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SEO-стратегия CRM-group 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --red: #c01020;
+  --red-hover: #a80e1c;
+  --gold: #e8a838;
+  --bg: #f5f4f1;
+  --card: #ffffff;
+  --text: #1a1a1a;
+  --text-muted: #6b6b6b;
+  --border: #e4e2dc;
+  --green: #2a7a4b;
+  --green-bg: #f0faf4;
+}
+
+body {
+  font-family: Inter, -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Layout ── */
+.page { max-width: 980px; margin: 0 auto; padding: 48px 24px 80px; }
+
+/* ── Hero ── */
+.hero {
+  background: var(--text);
+  border-radius: 20px;
+  padding: 52px 52px 48px;
+  margin-bottom: 40px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 320px; height: 320px;
+  background: var(--red);
+  border-radius: 50%;
+  opacity: 0.12;
+}
+.hero-label {
+  font-size: 11px; font-weight: 600; letter-spacing: 1.2px;
+  text-transform: uppercase; color: var(--gold);
+  margin-bottom: 16px; display: block;
+}
+.hero h1 {
+  font-size: 38px; font-weight: 700; line-height: 1.15;
+  color: #fff; margin-bottom: 20px; max-width: 580px;
+}
+.hero h1 span { color: var(--red); }
+.hero-desc {
+  font-size: 16px; color: rgba(255,255,255,0.65);
+  max-width: 500px; line-height: 1.6;
+}
+.hero-meta {
+  margin-top: 32px;
+  display: flex; gap: 32px; flex-wrap: wrap;
+}
+.hero-stat { }
+.hero-stat-val {
+  font-size: 28px; font-weight: 700; color: #fff; display: block;
+}
+.hero-stat-label {
+  font-size: 12px; color: rgba(255,255,255,0.5); margin-top: 2px; display: block;
+}
+
+/* ── Section ── */
+.section { margin-bottom: 40px; }
+.section-title {
+  font-size: 11px; font-weight: 600; letter-spacing: 1.1px;
+  text-transform: uppercase; color: var(--text-muted);
+  margin-bottom: 16px; display: flex; align-items: center; gap: 10px;
+}
+.section-title::after {
+  content: ''; flex: 1; height: 1px; background: var(--border);
+}
+h2.block-title {
+  font-size: 22px; font-weight: 700; color: var(--text);
+  margin-bottom: 20px; line-height: 1.25;
+}
+
+/* ── Cards grid ── */
+.cards { display: grid; gap: 16px; }
+.cards-2 { grid-template-columns: 1fr 1fr; }
+.cards-3 { grid-template-columns: 1fr 1fr 1fr; }
+
+.card {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 14px; padding: 24px;
+}
+.card-accent { border-left: 3px solid var(--red); }
+.card-gold   { border-left: 3px solid var(--gold); }
+.card-green  { border-left: 3px solid var(--green); }
+
+.card-icon {
+  width: 36px; height: 36px; border-radius: 10px;
+  background: #f5f4f1; display: flex; align-items: center; justify-content: center;
+  font-size: 18px; margin-bottom: 14px;
+}
+.card h3 { font-size: 15px; font-weight: 600; margin-bottom: 8px; }
+.card p  { font-size: 14px; color: var(--text-muted); line-height: 1.55; }
+
+/* ── Инсайт-блок ── */
+.insight {
+  background: #fff8ed; border: 1px solid #f0e0b0;
+  border-left: 4px solid var(--gold);
+  border-radius: 0 12px 12px 0;
+  padding: 22px 26px; margin-bottom: 16px;
+}
+.insight-label {
+  font-size: 11px; font-weight: 600; text-transform: uppercase;
+  letter-spacing: 1px; color: #9a7020; margin-bottom: 8px; display: block;
+}
+.insight p { font-size: 15px; line-height: 1.6; color: var(--text); }
+.insight strong { color: var(--text); }
+
+/* ── Funnel ── */
+.funnel {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 14px; padding: 28px 28px 24px;
+}
+.funnel-row {
+  display: flex; align-items: center; gap: 0; margin-bottom: 0;
+}
+.funnel-step {
+  flex: 1; text-align: center; padding: 14px 8px;
+  border-right: 1px dashed var(--border);
+  position: relative;
+}
+.funnel-step:last-child { border-right: none; }
+.funnel-step-val {
+  font-size: 22px; font-weight: 700; color: var(--text); display: block;
+}
+.funnel-step-label {
+  font-size: 12px; color: var(--text-muted); margin-top: 4px; display: block; line-height: 1.3;
+}
+.funnel-arrow {
+  font-size: 18px; color: var(--border); flex-shrink: 0;
+}
+.funnel-title {
+  font-size: 12px; font-weight: 600; text-transform: uppercase;
+  letter-spacing: 0.8px; color: var(--text-muted); margin-bottom: 20px;
+}
+
+/* ── Timeline / Quarters ── */
+.timeline { display: flex; flex-direction: column; gap: 16px; }
+.quarter {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 14px; overflow: hidden;
+}
+.quarter-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 18px 24px; border-bottom: 1px solid var(--border);
+  background: #fafaf8;
+}
+.quarter-tag {
+  font-size: 11px; font-weight: 700; letter-spacing: 1px;
+  text-transform: uppercase; color: var(--red);
+  background: rgba(192,16,32,0.07); padding: 4px 10px; border-radius: 20px;
+}
+.quarter-period { font-size: 14px; color: var(--text-muted); }
+.quarter-goal {
+  font-size: 15px; font-weight: 600; color: var(--text);
+}
+.quarter-body { padding: 20px 24px; }
+.quarter-tasks { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.quarter-tasks li {
+  display: flex; align-items: flex-start; gap: 10px;
+  font-size: 14px; line-height: 1.5; color: var(--text);
+}
+.task-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--red); margin-top: 6px; flex-shrink: 0;
+}
+.task-dot.gold { background: var(--gold); }
+
+/* ── Таблицы ── */
+.tbl-wrap { overflow-x: auto; border-radius: 12px; border: 1px solid var(--border); }
+table { width: 100%; border-collapse: collapse; background: var(--card); }
+thead tr { background: #fafaf8; border-bottom: 1px solid var(--border); }
+th {
+  padding: 12px 16px; text-align: left;
+  font-size: 11px; font-weight: 600; text-transform: uppercase;
+  letter-spacing: 0.8px; color: var(--text-muted);
+}
+td { padding: 12px 16px; font-size: 14px; border-bottom: 1px solid #f0efeb; }
+tr:last-child td { border-bottom: none; }
+td strong { color: var(--text); font-weight: 600; }
+.tag-red { color: var(--red); font-weight: 600; }
+.tag-green { color: var(--green); font-weight: 600; }
+.tag-gold  { color: #9a7020; font-weight: 600; }
+
+/* ── Конкурент-сравнение ── */
+.comp-grid { display: flex; flex-direction: column; gap: 8px; }
+.comp-row {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 10px; padding: 14px 18px;
+  display: flex; align-items: center; gap: 16px;
+}
+.comp-row.us {
+  border-color: var(--red); background: #fff8f8;
+}
+.comp-name { font-size: 14px; font-weight: 600; width: 170px; flex-shrink: 0; }
+.comp-bar-wrap { flex: 1; }
+.comp-bar-label { font-size: 12px; color: var(--text-muted); margin-bottom: 4px; }
+.comp-bar { height: 6px; border-radius: 3px; background: #eae9e5; position: relative; }
+.comp-bar-fill { height: 100%; border-radius: 3px; background: var(--border); }
+.comp-bar-fill.red { background: var(--red); }
+.comp-meta { font-size: 13px; color: var(--text-muted); width: 100px; text-align: right; flex-shrink: 0; }
+
+/* ── Quick Wins ── */
+.qw-list { display: flex; flex-direction: column; gap: 12px; }
+.qw {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 12px; padding: 18px 20px;
+  display: flex; gap: 16px; align-items: flex-start;
+}
+.qw-num {
+  width: 32px; height: 32px; border-radius: 8px;
+  background: var(--red); color: #fff;
+  font-size: 13px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.qw-num.orange { background: var(--gold); color: #fff; }
+.qw-body { flex: 1; }
+.qw-title { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+.qw-desc { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+.qw-badge {
+  font-size: 12px; font-weight: 700; color: var(--red);
+  background: rgba(192,16,32,0.08); padding: 3px 8px;
+  border-radius: 20px; flex-shrink: 0; align-self: flex-start;
+}
+
+/* ── Checklist ── */
+.checklist { display: flex; flex-direction: column; gap: 8px; }
+.check-item {
+  display: flex; align-items: flex-start; gap: 12px;
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 10px; padding: 14px 16px; font-size: 14px;
+}
+.check-item.done { opacity: 0.6; }
+.check-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+
+/* ── Редакционный ритм ── */
+.rhythm-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+.rhythm-card {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 14px; padding: 20px;
+}
+.rhythm-freq {
+  font-size: 11px; font-weight: 600; text-transform: uppercase;
+  letter-spacing: 0.8px; color: var(--text-muted); margin-bottom: 12px; display: block;
+}
+.rhythm-title { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+.rhythm-sub  { font-size: 13px; color: var(--text-muted); margin-bottom: 12px; line-height: 1.5; }
+.rhythm-examples { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+.rhythm-examples li {
+  font-size: 13px; color: var(--text-muted); padding-left: 14px; position: relative; line-height: 1.45;
+}
+.rhythm-examples li::before {
+  content: '→'; position: absolute; left: 0; color: var(--red); font-size: 12px;
+}
+.pill {
+  display: inline-block; font-size: 11px; font-weight: 600;
+  padding: 3px 9px; border-radius: 20px;
+  background: rgba(192,16,32,0.08); color: var(--red); margin-bottom: 10px;
+}
+.pill.gold { background: rgba(232,168,56,0.12); color: #9a7020; }
+.pill.muted { background: #f0efeb; color: var(--text-muted); }
+
+/* ── Long-tail таблица ── */
+.lt-row-wide  { background: #fff8f8; }
+.lt-row-narrow { background: #f0faf4; }
+
+/* ── Footer ── */
+.doc-footer {
+  margin-top: 52px; padding-top: 24px; border-top: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.doc-footer-label { font-size: 13px; color: var(--text-muted); }
+.doc-footer-badge {
+  font-size: 12px; font-weight: 600; color: var(--red);
+  background: rgba(192,16,32,0.08); padding: 5px 12px; border-radius: 20px;
+}
+
+@media (max-width: 700px) {
+  .page { padding: 20px 16px 60px; }
+  .hero { padding: 28px 20px 24px; border-radius: 16px; margin-bottom: 28px; }
+  .hero h1 { font-size: 24px; }
+  .hero-desc { font-size: 14px; }
+  .hero-meta { gap: 20px; margin-top: 24px; }
+  .hero-stat-val { font-size: 22px; }
+  .cards-2, .cards-3, .rhythm-grid { grid-template-columns: 1fr; }
+  .funnel-row { flex-direction: column; }
+  .funnel-step { border-right: none; border-bottom: 1px dashed var(--border); padding: 12px 8px; }
+  .funnel-step:last-child { border-bottom: none; }
+  .comp-row { flex-wrap: wrap; gap: 8px; }
+  .comp-name { width: auto; font-size: 13px; }
+  .comp-meta { width: auto; text-align: left; }
+  .qw { flex-wrap: wrap; }
+  .qw-badge { margin-top: 4px; }
+  .quarter-header { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .quarter-goal { font-size: 14px; }
+  th, td { padding: 10px 12px; font-size: 13px; }
+  .doc-footer { flex-direction: column; gap: 10px; align-items: flex-start; }
+  .rhythm-card { padding: 16px; }
+  h2.block-title { font-size: 18px; }
+  .section-title { font-size: 10px; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ── HERO ── -->
+  <div class="hero">
+    <span class="hero-label">CRM-group · SEO-стратегия · Версия 1.1 · Март 2026</span>
+    <h1>50 целевых лидов<br>в&nbsp;месяц из&nbsp;<span>органики</span></h1>
+    <p class="hero-desc">Контентная стратегия CRM-group на 2026. Блог + глоссарий + сервисные страницы → маркетологи-практики → клиенты.</p>
+    <div class="hero-meta">
+      <div class="hero-stat">
+        <span class="hero-stat-val">10–40k</span>
+        <span class="hero-stat-label">визитов/мес — цель Q3 2026</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-val">4–6</span>
+        <span class="hero-stat-label">статей/мес с AI</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-val">5–10</span>
+        <span class="hero-stat-label">новых клиентов/мес</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-val">250k ₽</span>
+        <span class="hero-stat-label">средний чек/мес (ССЧ)</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── МАТЕМАТИКА ── -->
+  <div class="section">
+    <div class="section-title">Математика цели</div>
+    <div class="funnel card">
+      <div class="funnel-title">Воронка при 10k визитов/мес (промежуточная цель)</div>
+      <div class="funnel-row">
+        <div class="funnel-step">
+          <span class="funnel-step-val">10&nbsp;000</span>
+          <span class="funnel-step-label">визитов<br>в&nbsp;месяц</span>
+        </div>
+        <div class="funnel-step">
+          <span class="funnel-step-val">~0,5%</span>
+          <span class="funnel-step-label">трафик<br>→ лид</span>
+        </div>
+        <div class="funnel-step">
+          <span class="funnel-step-val">50</span>
+          <span class="funnel-step-label">обращений<br>в&nbsp;месяц</span>
+        </div>
+        <div class="funnel-step">
+          <span class="funnel-step-val">10%</span>
+          <span class="funnel-step-label">лид<br>→ клиент</span>
+        </div>
+        <div class="funnel-step">
+          <span class="funnel-step-val" style="color:var(--red)">5</span>
+          <span class="funnel-step-label">новых клиентов<br>в&nbsp;месяц</span>
+        </div>
+      </div>
+    </div>
+    <div style="background:#f0faf4;border:1px solid #b0dfc0;border-radius:10px;padding:14px 18px;margin-top:10px;font-size:13px;color:#1a5c35">
+      <strong>При 40k визитов/мес (цель Q3):</strong> ~200 лидов → 20 клиентов/мес — ограничение здесь производственная мощность, не трафик. Конверсия из трафика в лид уточняется через Метрику.
+    </div>
+  </div>
+
+  <!-- ── ПОЧЕМУ МАРКЕТОЛОГИ = КЛИЕНТЫ ── -->
+  <div class="section">
+    <div class="section-title">Логика стратегии</div>
+    <div class="cards cards-3">
+      <div class="card card-accent">
+        <div class="card-icon">🎯</div>
+        <h3>Маркетолог — ЛПР</h3>
+        <p>Маркетолог либо сам выбирает CRM-агентство, либо продаёт идею найма внутри компании руководству.</p>
+      </div>
+      <div class="card card-accent">
+        <div class="card-icon">🤝</div>
+        <h3>Доверие через контент</h3>
+        <p>Читатель, который учился по материалам CRM-group, приходит в переговоры уже лояльным. Нет холодных продаж.</p>
+      </div>
+      <div class="card card-accent">
+        <div class="card-icon">⏳</div>
+        <h3>Прогрев 2–6 месяцев</h3>
+        <p>B2B-цикл сделки длинный. Контент работает на протяжении всего пути — от первого касания до подписания.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── КЛЮЧЕВОЙ ИНСАЙТ ── -->
+  <div class="section">
+    <div class="section-title">Ключевой инсайт про аудиторию</div>
+    <div class="insight">
+      <span class="insight-label">⚡ Важно</span>
+      <p><strong>Общий трафик — ложная метрика.</strong> Реальный показатель — доля маркетологов-практиков среди читателей. Тема статьи определяет качество аудитории сильнее, чем объём трафика.</p>
+    </div>
+    <div class="cards cards-2" style="margin-top:12px">
+      <div class="card" style="background:#fff8f8;border-color:#f0c0c0">
+        <div style="font-size:12px;font-weight:600;color:var(--red);margin-bottom:10px;text-transform:uppercase;letter-spacing:.8px">Широкий ключ WS 2000+</div>
+        <p style="font-size:14px;margin-bottom:8px">«программа лояльности»</p>
+        <p style="font-size:13px;color:var(--text-muted)">Смешанная аудитория: студенты, случайные люди, конкуренты. Конверсия низкая.</p>
+      </div>
+      <div class="card" style="background:#f0faf4;border-color:#b0dfc0">
+        <div style="font-size:12px;font-weight:600;color:var(--green);margin-bottom:10px;text-transform:uppercase;letter-spacing:.8px">Профи-ключ WS 50–300</div>
+        <p style="font-size:14px;margin-bottom:8px">«программа лояльности расчёт окупаемости»</p>
+        <p style="font-size:13px;color:var(--text-muted)">100% целевая аудитория. Маркетинг-директор с конкретной задачей. Конверсия в 5–10× выше.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── КОНКУРЕНТЫ ── -->
+  <div class="section">
+    <div class="section-title">Конкурентный анализ Keys.so · март 2026</div>
+    <div class="insight" style="margin-bottom:16px">
+      <span class="insight-label">🏆 Главный инсайт</span>
+      <p>crmgroup.ru имеет <strong>лучший показатель топ-1 (23 ключа)</strong> среди всех конкурентов. Проигрываем по количеству тем, не по качеству позиций. Конкуренты случайно получают трафик на нерелевантных темах.</p>
+    </div>
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Домен</th>
+            <th>Ключей</th>
+            <th>vis</th>
+            <th>Топ-1</th>
+            <th>Топ-10</th>
+            <th>Est. трафик/мес</th>
+            <th>80% трафика — откуда</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>crmgroup.ru</strong></td>
+            <td>1 849</td>
+            <td>25</td>
+            <td class="tag-red"><strong>23 ✦</strong></td>
+            <td><strong>264</strong></td>
+            <td>~324</td>
+            <td>7 страниц — CRM-тематика ✅</td>
+          </tr>
+          <tr>
+            <td>outofcloud.ru</td>
+            <td>529</td>
+            <td>22</td>
+            <td>12</td>
+            <td>159</td>
+            <td>~495</td>
+            <td><span style="color:#999">1 стр. — «как пишется емайл» ✗</span></td>
+          </tr>
+          <tr>
+            <td>mailfit.com</td>
+            <td>3 228</td>
+            <td>16</td>
+            <td>18</td>
+            <td>289</td>
+            <td>~551</td>
+            <td><span style="color:#999">2 стр. — Figma Community ✗</span></td>
+          </tr>
+          <tr>
+            <td>emailmatrix.ru</td>
+            <td>6 535</td>
+            <td>218</td>
+            <td>36</td>
+            <td>1 214</td>
+            <td>~320</td>
+            <td><span style="color:#999">5 стр. — дизайн рассылки, «как лениться» ✗</span></td>
+          </tr>
+          <tr>
+            <td>wim.agency</td>
+            <td>757</td>
+            <td>3</td>
+            <td>5</td>
+            <td>67</td>
+            <td>~165</td>
+            <td><span style="color:#999">3 стр. — стили сайтов, повышение цен ✗</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ── КОММЕРЧЕСКИЕ ПОЗИЦИИ ── -->
+  <div class="section">
+    <div class="section-title">Наши позиции по коммерческим ключам</div>
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr><th>Ключ</th><th>avbid</th><th>Наша позиция</th><th>Статус</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>crm агентство</td>
+            <td class="tag-gold">116 ₽</td>
+            <td><strong>p7</strong></td>
+            <td class="tag-gold">Дожать в топ-3</td>
+          </tr>
+          <tr>
+            <td>crm маркетинг</td>
+            <td class="tag-gold">80 ₽</td>
+            <td><strong>p17</strong></td>
+            <td class="tag-red">WS=2213 — главный ключ, далеко</td>
+          </tr>
+          <tr>
+            <td>срм маркетолог</td>
+            <td>65 ₽</td>
+            <td><strong>p11</strong></td>
+            <td class="tag-gold">Рядом с топ-10</td>
+          </tr>
+          <tr>
+            <td>crm для маркетплейсов</td>
+            <td class="tag-gold">145 ₽</td>
+            <td><strong>p17</strong></td>
+            <td>Есть страница, слабая</td>
+          </tr>
+          <tr style="background:#fff8f8">
+            <td><strong>программа лояльности для бизнеса</strong></td>
+            <td class="tag-red"><strong>410 ₽</strong></td>
+            <td class="tag-red">нет в топ-100</td>
+            <td class="tag-red">Страницы нет — создать</td>
+          </tr>
+          <tr style="background:#fff8f8">
+            <td>crm маркетинг агентство</td>
+            <td class="tag-red">100 ₽</td>
+            <td class="tag-red">нет в топ-100</td>
+            <td class="tag-red">Страницы нет</td>
+          </tr>
+          <tr style="background:#fff8f8">
+            <td>email маркетинг</td>
+            <td>~50 ₽</td>
+            <td class="tag-red">нет в топ-100</td>
+            <td>Страница есть, невидима</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ── QUICK WINS ── -->
+  <div class="section">
+    <div class="section-title">Приоритетный план действий</div>
+    <div class="qw-list">
+      <div class="qw">
+        <div class="qw-num">1</div>
+        <div class="qw-body">
+          <div class="qw-title">Создать <code>/programma-loyalnosti/</code></div>
+          <div class="qw-desc">Посадочная с кейсами, ценами, механиками. outofcloud держит p4 с минимумом контента. Написать вдвое лучше.</div>
+        </div>
+        <div class="qw-badge">410 ₽ avbid</div>
+      </div>
+      <div class="qw">
+        <div class="qw-num">2</div>
+        <div class="qw-body">
+          <div class="qw-title">Усилить <code>/crm-marketing/</code></div>
+          <div class="qw-desc">Текст 3000+, FAQ Schema, 7+ внутренних ссылок с блога и глоссария. WS=2213 — главный ключ бизнеса.</div>
+        </div>
+        <div class="qw-badge">80 ₽ avbid</div>
+      </div>
+      <div class="qw">
+        <div class="qw-num">3</div>
+        <div class="qw-body">
+          <div class="qw-title">Усилить <code>/email-marketing-pod-klyuch/</code></div>
+          <div class="qw-desc">Добавить кластер ключей, цены, кейсы. Сейчас страница полностью невидима в поиске.</div>
+        </div>
+        <div class="qw-badge">50–107 ₽</div>
+      </div>
+      <div class="qw">
+        <div class="qw-num" style="background:var(--gold)">4</div>
+        <div class="qw-body">
+          <div class="qw-title">Создать <code>/crm-agentstvo/</code></div>
+          <div class="qw-desc">Лендинг под «crm агентство» + «crm маркетинг агентство». outofcloud держит p1 — это наш ключ, не их.</div>
+        </div>
+        <div class="qw-badge">116 ₽ avbid</div>
+      </div>
+      <div class="qw">
+        <div class="qw-num" style="background:var(--gold)">5</div>
+        <div class="qw-body">
+          <div class="qw-title">Статья «Кто такой CRM-маркетолог»</div>
+          <div class="qw-desc">Аудитория = руководитель, который думает о найме → рассматривает агентство. Прямой путь к конверсии. inbox-marketing держит p19 — ключ свободен.</div>
+        </div>
+        <div class="qw-badge">99 ₽ avbid</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── ПЛАН 2026 ── -->
+  <div class="section">
+    <div class="section-title">Поквартальный план 2026</div>
+    <div class="timeline">
+      <div class="quarter">
+        <div class="quarter-header">
+          <div>
+            <span class="quarter-tag">Q1</span>
+            <span class="quarter-period" style="margin-left:12px">Март — Июнь 2026</span>
+          </div>
+          <div class="quarter-goal">Цель: 5–10k визитов/мес к июлю</div>
+        </div>
+        <div class="quarter-body">
+          <ul class="quarter-tasks">
+            <li><span class="task-dot"></span>Темп: <strong>4–6 флагманских статей/мес</strong> с AI — 16–24 статьи за квартал</li>
+            <li><span class="task-dot"></span>Усилить <code>/crm-marketing/</code> — текст 3000+, FAQ Schema, 7+ внутренних ссылок</li>
+            <li><span class="task-dot"></span>Усилить <code>/email-marketing-pod-klyuch/</code> — кластер ключей, цены, кейсы</li>
+            <li><span class="task-dot gold"></span>Глоссарий: 15–20 терминов улучшить до 600–800 слов + новый кластер «программа лояльности»</li>
+            <li><span class="task-dot gold"></span>Internal linking: глоссарий ↔ блог для топ-20 терминов</li>
+          </ul>
+        </div>
+      </div>
+      <div class="quarter">
+        <div class="quarter-header">
+          <div>
+            <span class="quarter-tag">Q2</span>
+            <span class="quarter-period" style="margin-left:12px">Июль — Сентябрь 2026</span>
+          </div>
+          <div class="quarter-goal">Цель: 15–25k визитов/мес</div>
+        </div>
+        <div class="quarter-body">
+          <ul class="quarter-tasks">
+            <li><span class="task-dot"></span>Контент Q1 начинает ранжироваться — трафик растёт за счёт накопленного</li>
+            <li><span class="task-dot"></span>4–6 статей/мес: фокус на long-tail профи-интент + экспертный взгляд</li>
+            <li><span class="task-dot"></span>Создать <code>/programma-loyalnosti/</code> (avbid=410 ₽) — приоритет №1 по ROI</li>
+            <li><span class="task-dot"></span>Создать <code>/crm-agentstvo/</code> или оптимизировать главную (avbid=116 ₽)</li>
+            <li><span class="task-dot gold"></span>Запустить ссылочную массу — крауд + партнёрские публикации</li>
+            <li><span class="task-dot gold"></span>SEO-оптимизация статей из позиций 4–10 (быстрый прирост)</li>
+          </ul>
+        </div>
+      </div>
+      <div class="quarter">
+        <div class="quarter-header">
+          <div>
+            <span class="quarter-tag" style="background:rgba(232,168,56,.12);color:#9a7020">Q3</span>
+            <span class="quarter-period" style="margin-left:12px">Октябрь — Декабрь 2026</span>
+          </div>
+          <div class="quarter-goal" style="color:var(--text-muted)">Цель: 20–30k — корректируется по Q2</div>
+        </div>
+        <div class="quarter-body">
+          <ul class="quarter-tasks">
+            <li><span class="task-dot gold"></span>4 статьи + обновление лучших глоссарных страниц</li>
+            <li><span class="task-dot gold"></span>SEO-оптимизация статей с позиций 4–10 (быстрые фрукты)</li>
+            <li><span class="task-dot gold"></span>Линкбейт — исследование с уникальными данными</li>
+            <li><span class="task-dot gold"></span>Ретаргетинг на читателей блога (Яндекс.Аудитории) — в 3–5× дешевле холодной рекламы</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── РЕДАКЦИОННЫЙ РИТМ ── -->
+  <div class="section">
+    <div class="section-title">Редакционный ритм</div>
+    <div class="rhythm-grid">
+      <div class="rhythm-card">
+        <span class="pill">4–6 в месяц</span>
+        <div class="rhythm-title">SEO-флагман</div>
+        <div class="rhythm-sub">Гайд, инструмент, сравнение. Claude + редактор. Трафик годами.</div>
+        <ul class="rhythm-examples">
+          <li>Программа лояльности: ROI-калькулятор</li>
+          <li>Триггерные цепочки: 12 сценариев</li>
+          <li>RFM-анализ: Excel-шаблон</li>
+        </ul>
+      </div>
+      <div class="rhythm-card" style="border-top: 3px solid var(--gold)">
+        <span class="pill gold">1–2 в месяц</span>
+        <div class="rhythm-title">Экспертный взгляд</div>
+        <div class="rhythm-sub">Мнение, тренд, разбор. Пишет команда или основатель от первого лица.</div>
+        <ul class="rhythm-examples">
+          <li><strong>CRM-маркетинг в 2026: что изменилось</strong></li>
+          <li>80% программ лояльности умирают — почему</li>
+          <li>Разбираем рассылки 3 ретейлеров</li>
+        </ul>
+      </div>
+      <div class="rhythm-card" style="border-top: 3px solid #aaa">
+        <span class="pill muted">~1 в квартал</span>
+        <div class="rhythm-title">Кейс с цифрами</div>
+        <div class="rhythm-sub">Выходит когда готов — не планируется в календарь. Редкость = ценность.</div>
+        <ul class="rhythm-examples">
+          <li>LTV +34% за 4 месяца (e-commerce)</li>
+          <li>Email с нуля для SMB: ROMI открыто</li>
+          <li>100 CRM-аудитов: что мы узнали</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── МЕХАНИКА БАЗЫ ── -->
+  <div class="section">
+    <div class="section-title">Механика сбора базы</div>
+    <div class="insight">
+      <span class="insight-label">📥 Обязательно в каждой статье</span>
+      <p>Каждая статья заканчивается конкретным инструментом для скачивания. Это не просто «полезный контент» — демонстрация продукта в действии. Маркетолог видит: «они делают то, что продают».</p>
+    </div>
+    <div class="tbl-wrap" style="margin-top:12px">
+      <table>
+        <thead><tr><th>Тип статьи</th><th>Лид-магнит</th></tr></thead>
+        <tbody>
+          <tr><td>Гайд по программе лояльности</td><td>Excel-шаблон расчёта ROI программы</td></tr>
+          <tr><td>Триггерные цепочки</td><td>Библиотека 12 сценариев в PDF</td></tr>
+          <tr><td>CRM-стратегия</td><td>Шаблон стратегии на 6 месяцев</td></tr>
+          <tr><td>RFM-анализ</td><td>Excel-шаблон RFM-сегментации</td></tr>
+          <tr><td>Сравнение ESP/CDP</td><td>Чек-лист выбора платформы</td></tr>
+          <tr><td>Реактивация базы</td><td>Шаблоны 3 реактивационных писем</td></tr>
+          <tr><td>Retention Rate</td><td>Дашборд метрик в Google Sheets</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ── ТЕХНИЧЕСКИЙ СТАТУС ── -->
+  <div class="section">
+    <div class="section-title">Технический фундамент · Статус</div>
+    <div class="checklist">
+      <div class="check-item done"><span class="check-icon">✅</span> og:type = website на всех сервисных страницах</div>
+      <div class="check-item done"><span class="check-icon">✅</span> og:image на всех сервисных страницах + 82 глоссарных</div>
+      <div class="check-item done"><span class="check-icon">✅</span> meta description на всех сервисных страницах</div>
+      <div class="check-item done"><span class="check-icon">✅</span> H-иерархия исправлена: сервисные + telegram-chatbot, web-development</div>
+      <div class="check-item done"><span class="check-icon">✅</span> Schema.org DefinedTerm + FAQPage + BreadcrumbList на 82 страницах глоссария</div>
+      <div class="check-item done"><span class="check-icon">✅</span> H1 глоссарного хаба /glossary/ — убран placeholder</div>
+      <div class="check-item"><span class="check-icon">⬜</span> Schema.org Article + BreadcrumbList на блоге</div>
+      <div class="check-item"><span class="check-icon">⬜</span> Schema.org Service + BreadcrumbList на сервисных страницах</div>
+      <div class="check-item"><span class="check-icon">⬜</span> Internal linking: глоссарий ↔ блог (сейчас связей нет)</div>
+      <div class="check-item"><span class="check-icon">⬜</span> title/H1 расхождение у 22 глоссарных статей</div>
+    </div>
+  </div>
+
+  <!-- ── МЕТРИКИ ── -->
+  <div class="section">
+    <div class="section-title">Метрики прогресса</div>
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr><th>Метрика</th><th>Сейчас</th><th>Q1</th><th>Q2</th><th>Q3 / Цель</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Органический трафик/мес</td>
+            <td class="tag-red">~324 est</td>
+            <td>5–10k</td>
+            <td>15–25k</td>
+            <td class="tag-green">40–50k</td>
+          </tr>
+          <tr>
+            <td>Статей в топ-10</td>
+            <td class="tag-red">~7</td>
+            <td>+10</td>
+            <td>+20</td>
+            <td class="tag-green">+40</td>
+          </tr>
+          <tr>
+            <td>Глоссарных терминов</td>
+            <td>82</td>
+            <td>82</td>
+            <td>100</td>
+            <td>120+</td>
+          </tr>
+          <tr>
+            <td>Лидов из контента/мес</td>
+            <td class="tag-red">~0</td>
+            <td>5–10</td>
+            <td>20–30</td>
+            <td class="tag-green">50+</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:13px;color:var(--text-muted);margin-top:12px">📊 Инструмент замера: Яндекс.Метрика ID <code>106846293</code> + Яндекс.Вебмастер + Google Search Console</p>
+  </div>
+
+  <!-- ── FOOTER ── -->
+  <div class="doc-footer">
+    <span class="doc-footer-label">CRM-group · SEO-стратегия · Версия 1.1 · Март 2026</span>
+    <span class="doc-footer-badge">Обновлять ежеквартально</span>
+  </div>
+
+</div>
+</body>
+</html>
