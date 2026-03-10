@@ -1,0 +1,1187 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Маркетинг по-русски: шпаргалка маркетолога 2026 — CRM-group</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --red:    #c01020;
+    --red-dk: #8b0c18;
+    --red-lt: #f5e6e8;
+    --dark:   #0d1117;
+    --dark2:  #1c2128;
+    --gray:   #6e7681;
+    --gray-lt:#f0f2f4;
+    --text:   #1a1f2e;
+    --white:  #ffffff;
+    --green:  #1a7f4b;
+    --green-lt:#e6f4ed;
+    --amber:  #7d4e00;
+    --amber-lt:#fdf3e0;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    font-size: 10pt;
+    color: var(--text);
+    background: #e8e8e8;
+  }
+
+  /* ── PAGE SHELL ─────────────────────────────── */
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    background: var(--white);
+    margin: 0 auto 12px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    page-break-after: always;
+  }
+
+  /* ── COVER ──────────────────────────────────── */
+  .cover {
+    background: var(--dark);
+    color: var(--white);
+    min-height: 297mm;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .cover-bar {
+    background: var(--red);
+    height: 6px;
+    width: 100%;
+  }
+
+  .cover-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 14mm 16mm 12mm;
+  }
+
+  .cover-label {
+    font-size: 8pt;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 48mm;
+  }
+
+  .cover-eyebrow {
+    font-size: 9pt;
+    font-weight: 500;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 6mm;
+  }
+
+  .cover-title {
+    font-size: 30pt;
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 6mm;
+  }
+
+  .cover-title em {
+    color: var(--red);
+    font-style: normal;
+  }
+
+  .cover-sub {
+    font-size: 11pt;
+    font-weight: 400;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.5;
+    max-width: 130mm;
+    margin-bottom: 16mm;
+  }
+
+  .cover-pills {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: auto;
+  }
+
+  .cover-pill {
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 20px;
+    padding: 4px 12px;
+    font-size: 8pt;
+    color: rgba(255,255,255,0.7);
+  }
+
+  .cover-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 12mm 16mm 10mm;
+    border-top: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .cover-logo {
+    font-size: 14pt;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+  }
+
+  .cover-logo span { color: var(--red); }
+
+  .cover-date {
+    font-size: 8pt;
+    color: rgba(255,255,255,0.4);
+  }
+
+  .cover-deco {
+    position: absolute;
+    right: 0;
+    top: 30mm;
+    width: 90mm;
+    height: 90mm;
+    background: radial-gradient(circle at 70% 40%, rgba(192,16,32,0.25) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  /* ── INNER PAGES ────────────────────────────── */
+  .page-inner {
+    padding: 14mm 16mm 12mm;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .page-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 6mm;
+    border-bottom: 2px solid var(--red);
+    margin-bottom: 8mm;
+  }
+
+  .page-num {
+    font-size: 7.5pt;
+    font-weight: 700;
+    color: var(--red);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .page-brand {
+    font-size: 8pt;
+    font-weight: 700;
+    color: var(--gray);
+    letter-spacing: 0.04em;
+  }
+
+  .section-title {
+    font-size: 17pt;
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    margin-bottom: 7mm;
+  }
+
+  .section-title em {
+    color: var(--red);
+    font-style: normal;
+  }
+
+  /* ── THREE NORMS ────────────────────────────── */
+  .norms-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 5mm;
+    margin-bottom: 7mm;
+  }
+
+  .norm-card {
+    background: var(--gray-lt);
+    border-radius: 6px;
+    padding: 5mm;
+    border-top: 3px solid var(--red);
+  }
+
+  .norm-n {
+    font-size: 20pt;
+    font-weight: 800;
+    color: var(--red);
+    line-height: 1;
+    margin-bottom: 2mm;
+  }
+
+  .norm-text {
+    font-size: 8.5pt;
+    line-height: 1.45;
+    color: var(--text);
+  }
+
+  .norms-exceptions {
+    background: var(--dark);
+    border-radius: 6px;
+    padding: 5mm 6mm;
+    margin-bottom: 7mm;
+    color: var(--white);
+  }
+
+  .norms-exceptions-title {
+    font-size: 8pt;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 3mm;
+  }
+
+  .exceptions-row {
+    display: flex;
+    gap: 4mm;
+  }
+
+  .exception-item {
+    flex: 1;
+    background: rgba(255,255,255,0.07);
+    border-radius: 5px;
+    padding: 3.5mm 4mm;
+    font-size: 8pt;
+    line-height: 1.4;
+    color: rgba(255,255,255,0.85);
+  }
+
+  .exception-item strong {
+    display: block;
+    color: var(--white);
+    font-weight: 600;
+    margin-bottom: 1mm;
+  }
+
+  .fines-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5mm;
+  }
+
+  .fine-card {
+    border: 1px solid #e0e3e9;
+    border-radius: 6px;
+    padding: 4mm 5mm;
+  }
+
+  .fine-who {
+    font-size: 7.5pt;
+    font-weight: 600;
+    color: var(--gray);
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    margin-bottom: 1.5mm;
+  }
+
+  .fine-amount {
+    font-size: 13pt;
+    font-weight: 800;
+    color: var(--red);
+    line-height: 1.1;
+    margin-bottom: 1mm;
+  }
+
+  .fine-basis {
+    font-size: 7.5pt;
+    color: var(--gray);
+    line-height: 1.35;
+  }
+
+  /* ── DECISION FLOW ──────────────────────────── */
+  .flow-wrap {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+
+  .flow-box {
+    background: var(--gray-lt);
+    border-radius: 7px;
+    padding: 4mm 7mm;
+    text-align: center;
+    font-size: 9pt;
+    font-weight: 600;
+    min-width: 72mm;
+    max-width: 90mm;
+    position: relative;
+  }
+
+  .flow-box.start {
+    background: var(--dark);
+    color: var(--white);
+    font-size: 10pt;
+  }
+
+  .flow-question {
+    background: var(--white);
+    border: 2px solid var(--red);
+    border-radius: 7px;
+    padding: 3.5mm 6mm;
+    text-align: center;
+    font-size: 9pt;
+    font-weight: 600;
+    min-width: 80mm;
+    max-width: 100mm;
+  }
+
+  .flow-arrow {
+    font-size: 14pt;
+    color: var(--gray);
+    line-height: 1;
+    margin: 1.5mm 0;
+    text-align: center;
+  }
+
+  .flow-branch {
+    display: flex;
+    gap: 10mm;
+    align-items: flex-start;
+    width: 100%;
+    justify-content: center;
+    margin-top: 1.5mm;
+  }
+
+  .flow-branch-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5mm;
+  }
+
+  .flow-yes { font-size: 7.5pt; font-weight: 700; color: var(--green); }
+  .flow-no  { font-size: 7.5pt; font-weight: 700; color: var(--red); }
+
+  .flow-result {
+    border-radius: 7px;
+    padding: 3.5mm 5mm;
+    text-align: center;
+    font-size: 8.5pt;
+    font-weight: 600;
+    min-width: 48mm;
+  }
+
+  .flow-result.keep {
+    background: var(--green-lt);
+    color: var(--green);
+    border: 1.5px solid #a3d9bc;
+  }
+
+  .flow-result.change {
+    background: #fde8ea;
+    color: var(--red-dk);
+    border: 1.5px solid #f5b3bb;
+  }
+
+  .flow-result.check {
+    background: var(--amber-lt);
+    color: var(--amber);
+    border: 1.5px solid #f5d99a;
+  }
+
+  .flow-sub {
+    font-size: 7.5pt;
+    font-weight: 400;
+    opacity: 0.75;
+    margin-top: 1mm;
+  }
+
+  /* ── TABLE ──────────────────────────────────── */
+  .word-section-label {
+    font-size: 7.5pt;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--red);
+    padding: 3mm 4mm 2mm;
+    background: var(--red-lt);
+    border-radius: 5px 5px 0 0;
+    margin-bottom: 0;
+    margin-top: 5mm;
+  }
+
+  .word-section-label:first-of-type { margin-top: 0; }
+
+  table.words {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 8.5pt;
+    margin-bottom: 0;
+  }
+
+  table.words thead th {
+    background: var(--dark);
+    color: var(--white);
+    font-weight: 600;
+    font-size: 7.5pt;
+    letter-spacing: 0.05em;
+    padding: 2.5mm 3.5mm;
+    text-align: left;
+  }
+
+  table.words td {
+    padding: 2.5mm 3.5mm;
+    border-bottom: 1px solid #e8eaed;
+    vertical-align: top;
+    line-height: 1.4;
+  }
+
+  table.words tr:last-child td { border-bottom: none; }
+
+  table.words tbody tr:hover { background: #fbfbfb; }
+
+  .tag {
+    display: inline-block;
+    font-size: 7pt;
+    font-weight: 700;
+    padding: 1.5px 6px;
+    border-radius: 3px;
+    white-space: nowrap;
+  }
+
+  .tag-keep   { background: var(--green-lt);  color: var(--green); }
+  .tag-change { background: #fde8ea; color: var(--red-dk); }
+  .tag-check  { background: var(--amber-lt);  color: var(--amber); }
+
+  .word-orig { font-weight: 600; }
+  .word-action { color: var(--gray); font-size: 8pt; }
+  .word-action strong { color: var(--text); font-weight: 600; }
+
+  /* ── GRAY ZONES ─────────────────────────────── */
+  .zone-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5mm;
+    margin-bottom: 7mm;
+  }
+
+  .zone-card {
+    border-radius: 6px;
+    padding: 5mm;
+    border-left: 4px solid;
+  }
+
+  .zone-card.gray {
+    background: var(--gray-lt);
+    border-color: var(--gray);
+  }
+
+  .zone-card.likely-yes {
+    background: #fde8ea;
+    border-color: var(--red);
+  }
+
+  .zone-card.likely-no {
+    background: var(--green-lt);
+    border-color: var(--green);
+  }
+
+  .zone-label {
+    font-size: 7pt;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 1.5mm;
+    color: var(--gray);
+  }
+
+  .zone-card.likely-yes .zone-label { color: var(--red-dk); }
+  .zone-card.likely-no  .zone-label { color: var(--green); }
+
+  .zone-title {
+    font-size: 9.5pt;
+    font-weight: 700;
+    margin-bottom: 2mm;
+    line-height: 1.3;
+  }
+
+  .zone-desc {
+    font-size: 8pt;
+    line-height: 1.5;
+    color: #444;
+  }
+
+  .tactic-box {
+    background: var(--dark);
+    border-radius: 6px;
+    padding: 5mm 6mm;
+    color: var(--white);
+  }
+
+  .tactic-label {
+    font-size: 7.5pt;
+    font-weight: 700;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 3mm;
+  }
+
+  .tactic-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4mm;
+  }
+
+  .tactic-item {
+    font-size: 8.5pt;
+    line-height: 1.45;
+    padding-left: 3.5mm;
+    border-left: 2px solid var(--red);
+  }
+
+  .tactic-item strong { display: block; font-weight: 600; margin-bottom: 0.5mm; }
+  .tactic-item span { color: rgba(255,255,255,0.65); font-size: 7.5pt; }
+
+  /* ── CHECKLIST ──────────────────────────────── */
+  .checklist {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5mm;
+    flex: 1;
+  }
+
+  .checklist-group {
+    margin-bottom: 4mm;
+  }
+
+  .checklist-group-title {
+    font-size: 8pt;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--red);
+    padding-bottom: 2mm;
+    border-bottom: 1px solid var(--red-lt);
+    margin-bottom: 3mm;
+  }
+
+  .check-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 3mm;
+    padding: 2.5mm 3.5mm;
+    border-radius: 5px;
+    border: 1px solid #e8eaed;
+    background: var(--white);
+    margin-bottom: 2mm;
+  }
+
+  .check-item:last-child { margin-bottom: 0; }
+
+  .check-box {
+    width: 4.5mm;
+    height: 4.5mm;
+    border: 1.5px solid #c0c5cd;
+    border-radius: 2px;
+    flex-shrink: 0;
+    margin-top: 0.5mm;
+  }
+
+  .check-text {
+    font-size: 8.5pt;
+    line-height: 1.4;
+    color: var(--text);
+    flex: 1;
+  }
+
+  .check-text strong { color: var(--red); font-weight: 600; }
+
+  .check-badge {
+    flex-shrink: 0;
+    font-size: 6.5pt;
+    font-weight: 700;
+    padding: 1.5px 5px;
+    border-radius: 3px;
+    align-self: center;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .badge-urgent { background: #fde8ea; color: var(--red-dk); }
+  .badge-watch  { background: var(--amber-lt); color: var(--amber); }
+
+  /* ── CTA PAGE ───────────────────────────────── */
+  .cta-page {
+    background: var(--dark);
+    color: var(--white);
+    min-height: 297mm;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-deco {
+    position: absolute;
+    left: -30mm;
+    bottom: -20mm;
+    width: 110mm;
+    height: 110mm;
+    background: radial-gradient(circle, rgba(192,16,32,0.3) 0%, transparent 65%);
+    pointer-events: none;
+  }
+
+  .cta-deco2 {
+    position: absolute;
+    right: -20mm;
+    top: 20mm;
+    width: 80mm;
+    height: 80mm;
+    background: radial-gradient(circle, rgba(192,16,32,0.15) 0%, transparent 65%);
+    pointer-events: none;
+  }
+
+  .cta-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20mm 18mm;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cta-eyebrow {
+    font-size: 8pt;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 5mm;
+  }
+
+  .cta-title {
+    font-size: 24pt;
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin-bottom: 6mm;
+  }
+
+  .cta-title em {
+    color: var(--red);
+    font-style: normal;
+  }
+
+  .cta-desc {
+    font-size: 10.5pt;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.65);
+    max-width: 120mm;
+    margin-bottom: 10mm;
+  }
+
+  .cta-points {
+    display: flex;
+    flex-direction: column;
+    gap: 3mm;
+    margin-bottom: 12mm;
+  }
+
+  .cta-point {
+    display: flex;
+    align-items: center;
+    gap: 3mm;
+    font-size: 9.5pt;
+    color: rgba(255,255,255,0.8);
+  }
+
+  .cta-point::before {
+    content: '';
+    width: 5mm;
+    height: 1.5px;
+    background: var(--red);
+    flex-shrink: 0;
+  }
+
+  .cta-btn {
+    display: inline-block;
+    background: var(--red);
+    color: var(--white);
+    font-size: 10.5pt;
+    font-weight: 700;
+    padding: 4.5mm 10mm;
+    border-radius: 6px;
+    text-decoration: none;
+    letter-spacing: 0.01em;
+    align-self: flex-start;
+    margin-bottom: 8mm;
+  }
+
+  .cta-url {
+    font-size: 8.5pt;
+    color: rgba(255,255,255,0.35);
+    font-family: monospace;
+  }
+
+  .cta-footer {
+    padding: 8mm 18mm 10mm;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cta-logo {
+    font-size: 13pt;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+  }
+
+  .cta-logo span { color: var(--red); }
+
+  .cta-copy {
+    font-size: 7.5pt;
+    color: rgba(255,255,255,0.3);
+  }
+
+  /* ── PRINT ──────────────────────────────────── */
+  @media print {
+    body { background: none; }
+    .page { margin: 0; box-shadow: none; page-break-after: always; }
+    @page { size: A4; margin: 0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+     СТРАНИЦА 1 — ОБЛОЖКА
+═══════════════════════════════════════════ -->
+<div class="page cover">
+  <div class="cover-bar"></div>
+  <div class="cover-deco"></div>
+  <div class="cover-body">
+    <div class="cover-label">CRM-group · Практический гайд</div>
+
+    <div class="cover-eyebrow">Закон о защите русского языка · ФЗ №168-ФЗ</div>
+    <div class="cover-title">Маркетинг<br>по&#8209;русски:<br><em>шпаргалка<br>маркетолога&nbsp;2026</em></div>
+    <div class="cover-sub">Что оставить, что заменить, где исключения. Таблица 30+ слов, схема проверки за две минуты, чеклист аудита шаблонов за один день.</div>
+
+    <div class="cover-pills">
+      <div class="cover-pill">Email и push-рассылки</div>
+      <div class="cover-pill">Программы лояльности</div>
+      <div class="cover-pill">Исключения: ТМ и словарь РАН</div>
+      <div class="cover-pill">Серые зоны</div>
+    </div>
+  </div>
+  <div class="cover-footer">
+    <div class="cover-logo">CRM<span>-</span>group</div>
+    <div class="cover-date">Март 2026</div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     СТРАНИЦА 2 — СУТЬ ЗАКОНА
+═══════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-inner">
+    <div class="page-header">
+      <div class="page-num">01 · Суть закона</div>
+      <div class="page-brand">crmgroup.ru</div>
+    </div>
+
+    <div class="section-title">За 60 секунд:<br><em>что требует закон</em></div>
+
+    <div class="norms-grid">
+      <div class="norm-card">
+        <div class="norm-n">01</div>
+        <div class="norm-text"><strong>Приоритет русскому.</strong> Информация для потребителей — на русском языке как государственном. Иностранный текст рядом допустим, но вторичен.</div>
+      </div>
+      <div class="norm-card">
+        <div class="norm-n">02</div>
+        <div class="norm-text"><strong>Одинаковый размер.</strong> Если иностранное слово оставляете — русский эквивалент рядом, тем же шрифтом и того же размера. Не мельче, не серее.</div>
+      </div>
+      <div class="norm-card">
+        <div class="norm-n">03</div>
+        <div class="norm-text"><strong>Три исключения.</strong> Зарегистрированные ТМ, официальные названия юрлиц из ЕГРЮЛ, слова из нормативных словарей РАН — переводить не нужно.</div>
+      </div>
+    </div>
+
+    <div class="norms-exceptions">
+      <div class="norms-exceptions-title">Три исключения подробнее</div>
+      <div class="exceptions-row">
+        <div class="exception-item">
+          <strong>Товарный знак</strong>
+          Зарегистрирован в Роспатенте — используете в оригинальном виде без перевода. Свидетельство о регистрации — защита.
+        </div>
+        <div class="exception-item">
+          <strong>Название юрлица</strong>
+          Официальное наименование компании, как в ЕГРЮЛ, — менять не нужно. Но описательные тексты рядом — по закону.
+        </div>
+        <div class="exception-item">
+          <strong>Словарь РАН</strong>
+          Слово зафиксировано в нормативном орфографическом словаре ИРЯ РАН — перевода не требует. Проверка: normaslov.ru
+        </div>
+      </div>
+    </div>
+
+    <div style="font-size:8.5pt; font-weight:600; color:var(--text); margin-bottom:3mm;">Штрафы</div>
+    <div class="fines-grid">
+      <div class="fine-card">
+        <div class="fine-who">Нарушение в рекламе (ФАС)</div>
+        <div class="fine-amount">100 000 — 500 000 ₽</div>
+        <div class="fine-basis">Для организаций · ч.1 ст.14.2 КоАП · каждый факт отдельно</div>
+      </div>
+      <div class="fine-card">
+        <div class="fine-who">Потребительская информация (Роспотребнадзор)</div>
+        <div class="fine-amount">5 000 — 10 000 ₽</div>
+        <div class="fine-basis">Для организаций · нарушение прав потребителей</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     СТРАНИЦА 3 — СХЕМА ПРОВЕРКИ
+═══════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-inner">
+    <div class="page-header">
+      <div class="page-num">02 · Схема проверки</div>
+      <div class="page-brand">crmgroup.ru</div>
+    </div>
+
+    <div class="section-title">Как проверить <em>любое слово</em><br>за две минуты</div>
+
+    <div class="flow-wrap">
+      <div class="flow-box start">Слово в шаблоне рассылки / push / баннере</div>
+      <div class="flow-arrow">↓</div>
+
+      <div class="flow-question">Зарегистрировано как товарный знак в Роспатенте?</div>
+      <div class="flow-arrow">↓</div>
+
+      <div class="flow-branch">
+        <div class="flow-branch-item">
+          <div class="flow-yes">Да</div>
+          <div class="flow-result keep">Оставить<div class="flow-sub">ТМ-статус — защита</div></div>
+        </div>
+        <div class="flow-branch-item" style="align-items:center; padding-top:8mm">
+          <div class="flow-no">Нет ↓</div>
+        </div>
+        <div style="width:48mm"></div>
+      </div>
+
+      <div style="margin-top:4mm; width:100%; display:flex; flex-direction:column; align-items:center; gap:0;">
+        <div class="flow-question">Слово есть в нормативном словаре РАН?<div style="font-size:7.5pt;font-weight:400;margin-top:1mm;color:#666">Проверить: normaslov.ru</div></div>
+        <div class="flow-arrow">↓</div>
+
+        <div class="flow-branch">
+          <div class="flow-branch-item">
+            <div class="flow-yes">Да — в словаре</div>
+            <div class="flow-result keep">Оставить<div class="flow-sub">Кешбэк, бонус, маркетинг…</div></div>
+          </div>
+          <div class="flow-branch-item">
+            <div class="flow-no">Нет — не в словаре</div>
+            <div class="flow-arrow">↓</div>
+            <div class="flow-question" style="min-width:52mm; font-size:8pt;">Слово критично для бренда?</div>
+            <div class="flow-arrow">↓</div>
+            <div class="flow-branch" style="gap:5mm">
+              <div class="flow-branch-item">
+                <div class="flow-yes" style="font-size:7pt">Да</div>
+                <div class="flow-result check" style="min-width:40mm">Регистрация ТМ<div class="flow-sub">Через Роспатент</div></div>
+              </div>
+              <div class="flow-branch-item">
+                <div class="flow-no" style="font-size:7pt">Нет</div>
+                <div class="flow-result change" style="min-width:40mm">Заменить<div class="flow-sub">Русский аналог</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     СТРАНИЦА 4 — ТАБЛИЦА СЛОВ (часть 1)
+═══════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-inner">
+    <div class="page-header">
+      <div class="page-num">03 · Таблица слов — промо и лояльность</div>
+      <div class="page-brand">crmgroup.ru</div>
+    </div>
+
+    <div class="section-title">Слова в <em>CRM-шаблонах:</em><br>оставить или заменить</div>
+
+    <div class="word-section-label">Промо и скидки</div>
+    <table class="words">
+      <thead><tr><th style="width:28%">Слово</th><th style="width:26%">Статус</th><th>Что делать</th></tr></thead>
+      <tbody>
+        <tr><td class="word-orig">Sale</td><td><span class="tag tag-change">Заменить</span></td><td class="word-action">→ <strong>Скидка</strong> / <strong>Распродажа</strong></td></tr>
+        <tr><td class="word-orig">Flash sale</td><td><span class="tag tag-change">Заменить</span></td><td class="word-action">→ <strong>Срочная распродажа</strong></td></tr>
+        <tr><td class="word-orig">Black Friday</td><td><span class="tag tag-change">Заменить</span></td><td class="word-action">→ <strong>Чёрная пятница</strong> (устоявшийся перевод)</td></tr>
+        <tr><td class="word-orig">Clearance</td><td><span class="tag tag-change">Заменить</span></td><td class="word-action">→ <strong>Ликвидация остатков</strong></td></tr>
+        <tr><td class="word-orig">Promo / Promo code</td><td><span class="tag tag-change">Заменить</span></td><td class="word-action">→ <strong>Акция</strong> / <strong>Промокод</strong> (проверить словарь)</td></tr>
+        <tr><td class="word-orig">Special offer</td><td><span class="tag tag-change">Заменить</span></td><td class="word-action">→ <strong>Специальное предложение</strong></td></tr>
+        <tr><td class="word-orig">New arrivals</td><td><span class="tag tag-change">Заменить</span></td><td class="word-action">→ <strong>Новинки</strong></td></tr>
+        <tr><td class="word-orig">Best sellers</td><td><span class="tag tag-change">Заменить</span></td><td class="word-action">→ <strong>Хиты продаж</strong></td></tr>
+      </tbody>
+    </table>
+
+    <div class="word-section-label">Программы лояльности</div>
+    <table class="words">
+      <thead><tr><th style="width:28%">Слово</th><th style="width:26%">Статус</th><th>Что делать</th></tr></thead>
+      <tbody>
+        <tr><td class="word-orig">Loyalty / loyalty card</td><td><span class="tag tag-change">Заменить</span></td><td class="word-action">→ <strong>Программа лояльности</strong> / <strong>Карта лояльности</strong></td></tr>
+        <tr><td class="word-orig">Loyalty points</td><td><span class="tag tag-change">Заменить</span></td><td class="word-action">→ <strong>Баллы</strong> / <strong>Бонусные баллы</strong></td></tr>
+        <tr><td class="word-orig">Кешбэк</td><td><span class="tag tag-keep">Оставить</span></td><td class="word-action">В словаре РАН с 2020 года. Написание: <strong>кешбэк</strong></td></tr>
+        <tr><td class="word-orig">Бонус</td><td><span class="tag tag-keep">Оставить</span></td><td class="word-action">В нормативных словарях. Менять не нужно</td></tr>
+        <tr><td class="word-orig">VIP</td><td><span class="tag tag-check">Проверить</span></td><td class="word-action">Аббревиатура. Уточнить статус на normaslov.ru или зарегистрировать как ТМ</td></tr>
+        <tr><td class="word-orig">Gold / Silver / Premium</td><td><span class="tag tag-change">Заменить</span></td><td class="word-action">→ <strong>Статус Золото</strong> / <strong>Серебро</strong> / <strong>Премиум</strong> (проверить словарь)</td></tr>
+        <tr><td class="word-orig">Reward</td><td><span class="tag tag-change">Заменить</span></td><td class="word-action">→ <strong>Вознаграждение</strong> / <strong>Награда</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     СТРАНИЦА 5 — ТАБЛИЦА СЛОВ (часть 2)
+═══════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-inner">
+    <div class="page-header">
+      <div class="page-num">04 · Таблица слов — email, push, интерфейс</div>
+      <div class="page-brand">crmgroup.ru</div>
+    </div>
+
+    <div class="word-section-label">Email и механики коммуникаций</div>
+    <table class="words">
+      <thead><tr><th style="width:28%">Слово</th><th style="width:26%">Статус</th><th>Что делать</th></tr></thead>
+      <tbody>
+        <tr><td class="word-orig">Welcome-серия</td><td><span class="tag tag-change">Заменить</span></td><td class="word-action">→ <strong>Приветственная серия</strong></td></tr>
+        <tr><td class="word-orig">Newsletter</td><td><span class="tag tag-change">Заменить</span></td><td class="word-action">→ <strong>Рассылка</strong> / <strong>Дайджест</strong></td></tr>
+        <tr><td class="word-orig">Onboarding</td><td><span class="tag tag-change">Заменить</span></td><td class="word-action">→ <strong>Знакомство с сервисом</strong></td></tr>
+        <tr><td class="word-orig">Win-back / Winback</td><td><span class="tag tag-change">Заменить</span></td><td class="word-action">→ <strong>Реактивация</strong></td></tr>
+        <tr><td class="word-orig">Upsell</td><td><span class="tag tag-change">Заменить</span></td><td class="word-action">→ <strong>Допродажа</strong></td></tr>
+        <tr><td class="word-orig">Cross-sell</td><td><span class="tag tag-change">Заменить</span></td><td class="word-action">→ <strong>Перекрёстные продажи</strong></td></tr>
+        <tr><td class="word-orig">Abandoned cart</td><td><span class="tag tag-change">Заменить</span></td><td class="word-action">→ <strong>Брошенная корзина</strong></td></tr>
+        <tr><td class="word-orig">Subscribe / Unsubscribe</td><td><span class="tag tag-change">Заменить</span></td><td class="word-action">→ <strong>Подписаться / Отписаться</strong></td></tr>
+      </tbody>
+    </table>
+
+    <div class="word-section-label">Каналы, интерфейс и технические термины</div>
+    <table class="words">
+      <thead><tr><th style="width:28%">Слово</th><th style="width:26%">Статус</th><th>Что делать</th></tr></thead>
+      <tbody>
+        <tr><td class="word-orig">Push (промо-термин)</td><td><span class="tag tag-check">Проверить</span></td><td class="word-action">Уточнить по словарю. Безопаснее: <strong>Уведомление</strong></td></tr>
+        <tr><td class="word-orig">Маркетинг</td><td><span class="tag tag-keep">Оставить</span></td><td class="word-action">В нормативных словарях. Термин устоявшийся</td></tr>
+        <tr><td class="word-orig">Email</td><td><span class="tag tag-keep">Оставить</span></td><td class="word-action">Технический стандарт, широко признан. Следить за практикой</td></tr>
+        <tr><td class="word-orig">CRM, CDP, ESP</td><td><span class="tag tag-keep">Оставить</span></td><td class="word-action">Технические аббревиатуры B2B-сферы. Попадают вне сферы закона</td></tr>
+        <tr><td class="word-orig">Get / Get now</td><td><span class="tag tag-change">Заменить</span></td><td class="word-action">→ <strong>Получить</strong> / <strong>Забрать</strong></td></tr>
+        <tr><td class="word-orig">Shop / Shop now</td><td><span class="tag tag-change">Заменить</span></td><td class="word-action">→ <strong>Купить</strong> / <strong>В каталог</strong></td></tr>
+        <tr><td class="word-orig">Download</td><td><span class="tag tag-change">Заменить</span></td><td class="word-action">→ <strong>Скачать</strong></td></tr>
+      </tbody>
+    </table>
+
+    <div style="margin-top:5mm; background:var(--gray-lt); border-radius:6px; padding:4mm 5mm; font-size:8pt; line-height:1.5; color:#444;">
+      <strong style="color:var(--text);">Как проверить самостоятельно:</strong> откройте normaslov.ru, введите слово — сервис показывает наличие в нормативных словарях РАН и применимость по закону. Проверка бесплатная.
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     СТРАНИЦА 6 — СЕРЫЕ ЗОНЫ
+═══════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-inner">
+    <div class="page-header">
+      <div class="page-num">05 · Серые зоны</div>
+      <div class="page-brand">crmgroup.ru</div>
+    </div>
+
+    <div class="section-title">Что закон <em>не уточнил:</em><br>честный ответ</div>
+
+    <div class="zone-grid">
+      <div class="zone-card likely-yes">
+        <div class="zone-label">Скорее охватывается</div>
+        <div class="zone-title">Маркетинговые рассылки</div>
+        <div class="zone-desc">Промо-письма с темой «Sale», акционные push, баннеры в письмах — это публичная информация для потребителей. По логике закона попадают.</div>
+      </div>
+      <div class="zone-card likely-yes">
+        <div class="zone-label">Скорее охватывается</div>
+        <div class="zone-title">Темы писем и заголовки push</div>
+        <div class="zone-desc">Первое, что видит получатель — считается информацией для потребителя. «Flash Sale — только сегодня» без перевода: риск.</div>
+      </div>
+      <div class="zone-card likely-no">
+        <div class="zone-label">Скорее не охватывается</div>
+        <div class="zone-title">Транзакционные уведомления</div>
+        <div class="zone-desc">Статус заказа, коды подтверждения, уведомления о записи — сервисная информация, не реклама. Первых штрафов за транзакционные письма пока нет.</div>
+      </div>
+      <div class="zone-card gray">
+        <div class="zone-label">Неопределённо</div>
+        <div class="zone-title">Личный кабинет и интерфейс приложения</div>
+        <div class="zone-desc">Закон упоминает сайты и мобильные приложения. Первые прецеденты по личным кабинетам появятся в 2026–2027, до этого — наблюдать.</div>
+      </div>
+    </div>
+
+    <div class="tactic-box">
+      <div class="tactic-label">Разумная тактика на сейчас</div>
+      <div class="tactic-grid">
+        <div class="tactic-item">
+          <strong>Маркетинговые шаблоны</strong>
+          <span>Приоритет. Темы писем, тексты push, баннеры — привести в соответствие до конца квартала.</span>
+        </div>
+        <div class="tactic-item">
+          <strong>Программы лояльности</strong>
+          <span>Названия уровней, механика начисления, кнопки CTA — проверить и адаптировать.</span>
+        </div>
+        <div class="tactic-item">
+          <strong>Транзакционные письма</strong>
+          <span>Следить за первыми штрафами ФАС и Роспотребнадзора — они появятся в 2026.</span>
+        </div>
+        <div class="tactic-item">
+          <strong>Ключевые слова бренда</strong>
+          <span>Если важно сохранить в оригинале — подать заявку на регистрацию ТМ в Роспатент.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     СТРАНИЦА 7 — ЧЕКЛИСТ АУДИТА
+═══════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-inner">
+    <div class="page-header">
+      <div class="page-num">06 · Чеклист аудита</div>
+      <div class="page-brand">crmgroup.ru</div>
+    </div>
+
+    <div class="section-title">Аудит за <em>один день:</em><br>пошаговый список</div>
+
+    <div class="checklist">
+      <div class="checklist-group">
+        <div class="checklist-group-title">Шаг 1 · Выгрузить шаблоны</div>
+        <div class="check-item">
+          <div class="check-box"></div>
+          <div class="check-text">Выгрузить список всех активных шаблонов из ESP (Unisender, Sendsay, Mindbox)</div>
+          <div class="check-badge badge-urgent">Срочно</div>
+        </div>
+        <div class="check-item">
+          <div class="check-box"></div>
+          <div class="check-text">Отдельный список: <strong>темы писем</strong> с иностранными словами — их видит получатель первыми</div>
+          <div class="check-badge badge-urgent">Срочно</div>
+        </div>
+        <div class="check-item">
+          <div class="check-box"></div>
+          <div class="check-text">Тексты активных push-уведомлений и триггерных SMS</div>
+        </div>
+      </div>
+
+      <div class="checklist-group">
+        <div class="checklist-group-title">Шаг 2 · Проверить слова</div>
+        <div class="check-item">
+          <div class="check-box"></div>
+          <div class="check-text">Темы писем: <strong>Sale, Flash sale, Black Friday, Welcome, Newsletter</strong> — заменить по таблице</div>
+          <div class="check-badge badge-urgent">Срочно</div>
+        </div>
+        <div class="check-item">
+          <div class="check-box"></div>
+          <div class="check-text">Названия уровней программы лояльности: Gold, Silver, VIP, Premium — проверить ТМ или перевести</div>
+          <div class="check-badge badge-urgent">Срочно</div>
+        </div>
+        <div class="check-item">
+          <div class="check-box"></div>
+          <div class="check-text">Кнопки CTA в письмах: <strong>Subscribe, Get, Shop now, Download</strong> — заменить русскими аналогами</div>
+        </div>
+        <div class="check-item">
+          <div class="check-box"></div>
+          <div class="check-text">Заголовки блоков: New arrivals, Best sellers, Top picks, Clearance — заменить</div>
+        </div>
+      </div>
+
+      <div class="checklist-group">
+        <div class="checklist-group-title">Шаг 3 · Принять решение по пограничным словам</div>
+        <div class="check-item">
+          <div class="check-box"></div>
+          <div class="check-text">Слова, критичные для бренда → подать заявку на регистрацию ТМ в Роспатент</div>
+          <div class="check-badge badge-watch">Наблюдать</div>
+        </div>
+        <div class="check-item">
+          <div class="check-box"></div>
+          <div class="check-text">Спорные слова (VIP, Push) → проверить на normaslov.ru, зафиксировать решение</div>
+          <div class="check-badge badge-watch">Наблюдать</div>
+        </div>
+      </div>
+
+      <div class="checklist-group">
+        <div class="checklist-group-title">Шаг 4 · Обновить и зафиксировать</div>
+        <div class="check-item">
+          <div class="check-box"></div>
+          <div class="check-text">Обновить шаблоны в ESP, поставить дату версии</div>
+        </div>
+        <div class="check-item">
+          <div class="check-box"></div>
+          <div class="check-text">Записать в гайдлайн бренда: какие слова разрешены, какие заменены, какие под ТМ</div>
+        </div>
+        <div class="check-item">
+          <div class="check-box"></div>
+          <div class="check-text">Установить напоминание: проверять новые шаблоны при создании и за 2 недели до крупной акции</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     СТРАНИЦА 8 — CTA
+═══════════════════════════════════════════ -->
+<div class="page cta-page">
+  <div class="cta-deco"></div>
+  <div class="cta-deco2"></div>
+  <div class="cover-bar"></div>
+
+  <div class="cta-body">
+    <div class="cta-eyebrow">CRM-аудит · CRM-group</div>
+    <div class="cta-title">Проверим всю CRM<br>за <em>одну встречу</em></div>
+    <div class="cta-desc">Аудит каналов, шаблонов, сегментации и метрик. Показываем, где база работает вполсилы, — и даём конкретный план на квартал.</div>
+
+    <div class="cta-points">
+      <div class="cta-point">Разбор активных каналов и регуляторных рисков</div>
+      <div class="cta-point">Анализ шаблонов: 168-ФЗ, сегментация, релевантность</div>
+      <div class="cta-point">Шаблон метрик из этого гайда — в подарок</div>
+    </div>
+
+    <a href="https://crmgroup.ru/crm-audit/" class="cta-btn">Запросить аудит →</a>
+    <div class="cta-url">crmgroup.ru/crm-audit/</div>
+  </div>
+
+  <div class="cta-footer">
+    <div class="cta-logo">CRM<span>-</span>group</div>
+    <div class="cta-copy">© 2026 · Практический гайд. Не является юридической консультацией.</div>
+  </div>
+</div>
+
+</body>
+</html>
